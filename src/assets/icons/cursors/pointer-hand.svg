@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 36 36">
+  <defs>
+    <radialGradient id="pointer-fill" cx="38%" cy="31%" r="72%">
+      <stop offset="0" stop-color="#ffe87a"/>
+      <stop offset=".58" stop-color="#ffd350"/>
+      <stop offset="1" stop-color="#f0a91e"/>
+    </radialGradient>
+    <filter id="pointer-shadow" x="-30%" y="-20%" width="170%" height="175%">
+      <feDropShadow dx=".6" dy="1.2" stdDeviation="1" flood-color="#7c4c0c" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <path
+    d="M13.2 31.8c-1.1-2.3-2.1-4.6-3.6-6.6l-4-5.3c-1.1-1.5-.9-3.2.4-4.2 1.2-1 2.8-.7 3.9.5l2.4 2.7V4.4c0-1.8 1.1-3 2.7-3s2.7 1.2 2.7 3v10.8c.3-1.4 1.3-2.3 2.7-2.3 1.5 0 2.6 1.1 2.7 2.7v1.1c.3-1.3 1.3-2.1 2.6-2.1 1.6 0 2.7 1.2 2.7 2.8v1.3c.4-1.1 1.3-1.8 2.5-1.8 1.6 0 2.7 1.3 2.7 2.9v5c0 3.2-.9 5.8-2.5 8H13.2Z"
+    fill="url(#pointer-fill)"
+    stroke="#c88917"
+    stroke-width="1.15"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#pointer-shadow)"
+  />
+  <path
+    d="M17.7 15.2v4.1m5.4-2.6v3.7m5.3-1.7v3.2M9.6 25.2c2.1 1.8 3.2 4.1 3.6 6.6"
+    fill="none"
+    stroke="#e4a11d"
+    stroke-width=".9"
+    stroke-linecap="round"
+    opacity=".65"
+  />
+  <path
+    d="M14.1 3.9c.2-1 .8-1.5 1.7-1.6"
+    fill="none"
+    stroke="#fff2a7"
+    stroke-width=".8"
+    stroke-linecap="round"
+    opacity=".8"
+  />
+</svg>

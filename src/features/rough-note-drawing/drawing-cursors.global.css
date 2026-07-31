@@ -1,0 +1,70 @@
+@media (pointer: fine) {
+  html[data-rough-note-tool="pencil"] body {
+    cursor:
+      url("../../assets/icons/cursors/pencil.svg") 3 29,
+      crosshair;
+  }
+
+  html[data-rough-note-tool="pen"] body {
+    cursor:
+      url("../../assets/icons/cursors/pen.svg") 3 29,
+      crosshair;
+  }
+
+  html[data-rough-note-tool="highlighter"] body {
+    cursor:
+      url("../../assets/icons/cursors/highlighter.svg") 4 28,
+      crosshair;
+  }
+
+  html[data-rough-note-tool="eraser"] body {
+    cursor:
+      url("../../assets/icons/cursors/eraser.svg") 10 28,
+      crosshair;
+  }
+
+  html[data-rough-note-interaction="browse"] body {
+    cursor: auto;
+  }
+
+  html[data-rough-note-tool] [data-drawing-exclusion] {
+    cursor: auto;
+  }
+
+  html[data-rough-note-tool] :is(
+      a,
+      button,
+      select,
+      option,
+      label,
+      video,
+      audio,
+      iframe,
+      [role="button"],
+      [role="link"]
+    ) {
+    cursor: pointer;
+  }
+
+  html[data-rough-note-tool] :is(
+      input:not([type="range"]):not([type="button"]):not([type="submit"]),
+      textarea,
+      [contenteditable="true"]
+    ) {
+    cursor: text;
+  }
+
+  html[data-rough-note-tool] input[type="range"] {
+    cursor: grab;
+  }
+}
+
+@media (max-width: 767px) {
+  html[data-rough-note-interaction="draw"] body {
+    touch-action: none;
+  }
+
+  html[data-rough-note-interaction="browse"] body {
+    touch-action: auto;
+  }
+}

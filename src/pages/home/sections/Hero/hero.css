@@ -1,0 +1,373 @@
+/* Homepage opening sheet */
+.div-1-hero {
+  align-items: center;
+  background-color: #f8f3ea;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='.04'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 50% 46%, transparent 32%, rgb(103 141 111 / 11%) 145%);
+  box-sizing: border-box;
+  color: #2c2c2c;
+  display: flex;
+  font-family: "Space Grotesk", sans-serif;
+  justify-content: center;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-x: clip;
+  padding: clamp(78px, 7vh, 112px) clamp(28px, 3.5vw, 62px) clamp(88px, 9vh, 136px);
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.d1-container {
+  align-items: center;
+  display: grid;
+  gap: clamp(34px, 4vw, 72px);
+  grid-template-columns: minmax(360px, 0.83fr) minmax(530px, 1.17fr);
+  margin-inline: auto;
+  max-width: 1320px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.d1-left,
+.d1-right {
+  min-width: 0;
+  position: relative;
+}
+
+.d1-left {
+  padding-left: clamp(0px, 1.4vw, 20px);
+}
+
+.d1-right {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.d1-hand-drawn {
+  fill: none;
+  stroke: #2c2c2c;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.d1-top-header {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  margin-bottom: clamp(17px, 2vh, 25px);
+  position: relative;
+}
+
+.d1-star {
+  height: 22px;
+  transform: rotate(-10deg);
+  width: 22px;
+}
+
+.d1-top-text {
+  font: 400 clamp(25px, 2vw, 30px)/1 "Reenie Beanie", cursive;
+  position: relative;
+  z-index: 2;
+}
+
+.d1-highlight-yellow {
+  background-color: rgb(253 216 53 / 70%);
+  border-radius: 10px;
+  bottom: 2px;
+  filter: blur(0.5px);
+  height: 12px;
+  left: 30px;
+  position: absolute;
+  transform: rotate(-1.5deg);
+  width: 165px;
+  z-index: -1;
+}
+
+.d1-title {
+  color: #24221f;
+  font: 700 clamp(62px, 5.15vw, 89px) / 0.99 "Kalam", "Caveat Brush", cursive;
+  letter-spacing: -2.7px;
+  margin: 0 0 clamp(27px, 3vh, 35px);
+  text-wrap: balance;
+}
+
+.d1-dot {
+  background: #f38959;
+  border-radius: 50%;
+  color: transparent;
+  display: inline-block;
+  font-size: 0;
+  height: 0.22em;
+  margin-left: 0.07em;
+  width: 0.22em;
+}
+
+.d1-body {
+  color: #3b3a37;
+  font-size: clamp(16px, 1.35vw, 18px);
+  font-weight: 500;
+  line-height: 1.7;
+  margin: 0 0 clamp(34px, 4vh, 45px);
+  max-width: 430px;
+}
+
+.d1-highlight-orange {
+  background: #fff000;
+  border-radius: 4px;
+  color: #24221f;
+  font-weight: 600;
+  padding: 2px 8px;
+}
+
+.d1-underline {
+  position: relative;
+}
+
+.d1-underline::after {
+  background: #3b3a37;
+  border-radius: 2px;
+  bottom: -2px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transform: rotate(-0.5deg);
+  width: 100%;
+}
+
+.d1-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.d1-btn {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #24221f;
+  cursor: pointer;
+  display: inline-flex;
+  filter: drop-shadow(0 8px 10px rgb(78 60 35 / 14%));
+  font: 600 16px/1.2 "Space Grotesk", sans-serif;
+  gap: 12px;
+  justify-content: center;
+  min-height: 58px;
+  min-width: 194px;
+  padding: 14px 28px;
+  position: relative;
+  text-decoration: none;
+}
+
+.d1-arrow-icon {
+  font: 18px/1 Arial, sans-serif;
+}
+
+.d1-coffee-stain {
+  border: 4px solid rgb(139 90 43 / 12%);
+  border-radius: 50%;
+  bottom: -40px;
+  filter: blur(1.5px);
+  height: 180px;
+  position: absolute;
+  right: 80px;
+  width: 180px;
+  z-index: 1;
+}
+
+.d1-coffee-stain::after {
+  border: 2px solid rgb(139 90 43 / 8%);
+  border-radius: 50%;
+  content: "";
+  height: 160px;
+  left: 15px;
+  position: absolute;
+  top: 10px;
+  transform: rotate(20deg);
+  width: 150px;
+}
+
+.d1-badge {
+  align-items: center;
+  border: 1.5px solid #2c2c2c;
+  border-radius: 50%;
+  color: #2c2c2c;
+  display: flex;
+  font: 600 18px/1 "Caveat", cursive;
+  height: 45px;
+  justify-content: center;
+  position: absolute;
+  right: clamp(20px, 3vw, 40px);
+  top: 30px;
+  transform: rotate(5deg);
+  width: 45px;
+  z-index: 5;
+}
+
+.d1-hero-tear {
+  line-height: 0;
+  margin-top: -2px;
+  overflow: hidden;
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.d1-hero-tear-img {
+  display: block;
+  height: auto;
+  max-width: none;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.d1-hero-tear-left-patch {
+  filter:
+    drop-shadow(0 2px 2px rgb(220 210 190 / 90%))
+    drop-shadow(0 6px 12px rgb(40 30 20 / 12%));
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 350px;
+  z-index: 2;
+}
+
+@media (min-width: 901px) {
+  .div-1-hero {
+    margin-left: -50px;
+    width: calc(100% + 50px);
+  }
+}
+
+@media (max-width: 1220px) {
+  .div-1-hero {
+    padding-inline: clamp(24px, 3vw, 38px);
+  }
+
+  .d1-container {
+    gap: clamp(24px, 3vw, 42px);
+    grid-template-columns: minmax(330px, 0.8fr) minmax(475px, 1.2fr);
+  }
+
+  .d1-title {
+    font-size: clamp(59px, 6vw, 78px);
+  }
+
+  .div-1-hero .d1-buttons .d1-btn {
+    font-size: 16px;
+    min-width: 176px;
+    padding-inline: 18px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .div-1-hero {
+    min-height: auto;
+    padding-block: 130px 105px;
+  }
+
+  .d1-container {
+    gap: 72px;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 760px;
+  }
+
+  .d1-left {
+    margin-inline: auto;
+    max-width: 590px;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .d1-body {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 767px) {
+  .div-1-hero {
+    margin-top: 0;
+    overflow: clip;
+    padding: 142px 18px 82px;
+  }
+
+  .d1-container {
+    gap: 58px;
+  }
+
+  .d1-left {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .d1-top-header {
+    margin-bottom: 15px;
+  }
+
+  .d1-top-text {
+    font-size: 24px;
+  }
+
+  .d1-title {
+    font-size: clamp(50px, 15vw, 66px);
+    margin-bottom: 25px;
+  }
+
+  .d1-body {
+    font-size: 16px;
+    margin-bottom: 35px;
+    max-width: 500px;
+  }
+
+  .d1-buttons {
+    flex-direction: column;
+    max-width: 310px;
+    width: 100%;
+  }
+
+  .d1-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .d1-badge {
+    right: 12px;
+    top: 104px;
+    transform: scale(0.8) rotate(5deg);
+  }
+
+  .d1-coffee-stain {
+    bottom: -60px;
+    right: -60px;
+    transform: scale(0.5);
+  }
+}
+
+@media (max-width: 420px) {
+  .div-1-hero {
+    padding-inline: 12px;
+  }
+
+  .d1-title {
+    font-size: clamp(48px, 15vw, 58px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .d1-btn,
+  .d1-arrow-icon {
+    transition: none;
+  }
+}

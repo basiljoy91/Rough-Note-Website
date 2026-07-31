@@ -1,0 +1,861 @@
+/* Studio Snapshot: the torn-paper section directly below the hero. */
+.div-2-snapshot {
+  --ink: #211d19;
+  position: relative;
+  min-height: 295px;
+  overflow: hidden;
+  padding: 34px 42px 46px 62px;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    url("../../../../assets/textures/div2Background.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f7f2e8;
+  font-family: "Caveat", cursive;
+}
+
+.div-2-snapshot::before {
+  content: "";
+  position: absolute;
+  top: -72px;
+  right: -64px;
+  width: 190px;
+  height: 190px;
+  border: 17px solid rgba(142, 101, 51, 0.22);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  transform: rotate(21deg);
+}
+
+/* The small curled corner at the top-right of the reference section. */
+.div-2-snapshot::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -58px;
+  right: -4px;
+  width: 84px;
+  height: 92px;
+  background: linear-gradient(
+    135deg,
+    #cdbd9f 0 3%,
+    #eee5d5 20%,
+    #faf5e9 49%,
+    #d7c6a8 50%,
+    #f5ecdc 72%
+  );
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  filter: drop-shadow(-7px 8px 6px rgba(69, 49, 30, 0.18));
+  transform: rotate(2deg);
+}
+
+.div-2-snapshot h2 {
+  width: fit-content;
+  margin: 0 0 94px;
+  color: #29231e;
+  font:
+    600 40px/0.9 "Caveat",
+    cursive;
+  transform: rotate(-1deg);
+}
+
+.d2-heading {
+  position: relative;
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.d2-heading-arrow {
+  position: absolute;
+  right: calc(100% + 23px);
+  bottom: -5px;
+  width: 54px;
+  overflow: visible;
+  fill: none;
+  stroke: #2a241e;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+  transform: rotate(-5deg);
+}
+
+.d2-note {
+  position: absolute;
+  top: 14px;
+  left: 21px;
+  z-index: 1;
+  width: 91px;
+  padding: 20px 11px 16px;
+  background-color: #f8f0de;
+  background-image:
+    linear-gradient(rgba(248, 240, 222, 0.58), rgba(248, 240, 222, 0.58)),
+    url("../../../../assets/textures/paper-texture.jpg");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 3px 5px 8px rgba(63, 46, 28, 0.2);
+  font:
+    600 18px/1.08 "Caveat",
+    cursive;
+  text-align: center;
+  transform: rotate(-2deg);
+}
+
+.d2-note::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 50px;
+  height: 15px;
+  background: rgba(195, 171, 130, 0.55);
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.d2-note b {
+  color: #f1a129;
+  font-size: 24px;
+}
+
+.d2-growth {
+  position: absolute;
+  top: 11px;
+  right: 62px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #28221c;
+  transform: rotate(-2deg);
+}
+
+.d2-growth-chart {
+  width: 112px;
+  height: 92px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.d2-chart-bar {
+  fill: rgba(255, 255, 255, 0.12);
+}
+.d2-chart-line {
+  stroke-width: 2px;
+}
+.d2-chart-spark {
+  fill: #eca32d;
+  stroke: #eca32d;
+}
+.d2-growth p {
+  margin: 0;
+  font:
+    600 22px/0.92 "Caveat",
+    cursive;
+}
+.d2-growth u {
+  text-decoration-color: #eca32d;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.div-2-snapshot h2::after {
+  content: "";
+  display: block;
+  width: 114px;
+  height: 3px;
+  margin: 7px 0 0 2px;
+  border-radius: 50%;
+  background: #ee9c3d;
+  transform: rotate(-3deg);
+}
+
+.d2-metrics {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 124px));
+  gap: 23px;
+  align-items: start;
+  margin-left: -24px;
+}
+
+.d2-sticky {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 145px;
+  padding: 20px 12px 15px;
+  overflow: hidden;
+  text-align: center;
+  color: #241f19;
+  border-radius: 3px 5px 4px 6px;
+  border: 1px solid rgba(95, 70, 35, 0.15);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.12),
+    0 14px 24px rgba(0, 0, 0, 0.16),
+    inset 0 1px rgba(255, 255, 255, 0.45);
+  transform: rotate(var(--tilt));
+  transition: all 0.35s ease;
+}
+
+.d2-sticky::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(var(--tape-rotate));
+
+  width: 72px;
+  height: 22px;
+
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.18)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(150, 130, 90, 0.18) 0 2px,
+      rgba(255, 255, 255, 0.12) 2px 6px
+    );
+
+  background-color: #dbc9a5;
+
+  border-radius: 2px;
+
+  opacity: 0.9;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    inset 0 1px rgba(255, 255, 255, 0.35);
+
+  z-index: 5;
+}
+
+.d2-sticky:nth-child(1) {
+  --tilt: -2deg;
+
+  background-image:
+    linear-gradient(rgba(248, 235, 157, 0.55), rgba(235, 210, 107, 0.55)),
+    url("../../../../assets/textures/paper-texture.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+.d2-sticky:nth-child(2) {
+  background-image:
+    linear-gradient(rgba(223, 240, 181, 0.55), rgba(200, 223, 136, 0.55)),
+    url("../../../../assets/textures/paper-texture.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.d2-sticky:nth-child(3) {
+  background-image:
+    linear-gradient(rgba(217, 239, 255, 0.55), rgba(189, 221, 244, 0.55)),
+    url("../../../../assets/textures/paper-texture.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.d2-sticky:nth-child(4) {
+  background-image:
+    linear-gradient(rgba(255, 208, 138, 0.55), rgba(239, 174, 87, 0.55)),
+    url("../../../../assets/textures/paper-texture.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.d2-sticky:nth-child(5) {
+  background-image:
+    linear-gradient(rgba(255, 216, 223, 0.55), rgba(244, 185, 198, 0.55)),
+    url("../../../../assets/textures/paper-texture.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.d2-sticky:nth-child(6) {
+  background-image:
+    linear-gradient(rgba(238, 220, 255, 0.55), rgba(217, 194, 248, 0.55)),
+    url("../../../../assets/textures/paper-texture.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+.d2-sticky:nth-child(2)::after {
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.d2-sticky:nth-child(3)::after {
+  transform: translateX(-50%) rotate(-8deg);
+}
+
+.d2-sticky:nth-child(4)::after {
+  transform: translateX(-50%) rotate(5deg);
+}
+
+.d2-sticky:nth-child(5)::after {
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.d2-sticky:nth-child(6)::after {
+  transform: translateX(-50%) rotate(7deg);
+}
+
+.d2-sticky strong {
+  display: block;
+  font:
+    500 35px/0.9 "Caveat",
+    cursive;
+}
+
+.d2-sticky span {
+  display: block;
+  margin-top: 8px;
+  font:
+    600 17px/1.08 "Caveat",
+    cursive;
+}
+
+.d2-sticky i {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  font:
+    23px/1 "Caveat",
+    cursive;
+  font-style: normal;
+}
+
+/* Masking-tape strips for the Studio Snapshot sticky notes. */
+.d2-sticky {
+  overflow: visible;
+}
+
+.d2-sticky::before {
+  top: -12px;
+  clip-path: polygon(2% 8%, 98% 3%, 100% 91%, 3% 100%);
+}
+
+.d2-sticky:nth-child(1)::before {
+  transform: translateX(-50%) rotate(-3deg);
+}
+.d2-sticky:nth-child(2)::before {
+  transform: translateX(-50%) rotate(3deg);
+}
+.d2-sticky:nth-child(3)::before {
+  transform: translateX(-50%) rotate(-8deg);
+}
+.d2-sticky:nth-child(4)::before {
+  transform: translateX(-50%) rotate(5deg);
+}
+.d2-sticky:nth-child(5)::before {
+  transform: translateX(-50%) rotate(-2deg);
+}
+.d2-sticky:nth-child(6)::before {
+  transform: translateX(-50%) rotate(7deg);
+}
+
+.d2-asides {
+  position: relative;
+  display: flex;
+  min-height: 112px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 70px 0 92px;
+}
+
+.d2-passion {
+  margin: 0;
+  font:
+    600 22px/1.08 "Caveat",
+    cursive;
+  transform: rotate(-2deg);
+}
+
+.d2-passion span {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 32px;
+  transform: rotate(-21deg);
+}
+.d2-passion u,
+.d2-bottom u {
+  text-decoration-color: #eca32d;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.d2-approved {
+  margin: 0;
+  padding: 10px 27px 8px;
+  border: 2px solid #29231e;
+  border-radius: 50%;
+  font:
+    600 24px/0.92 "Caveat",
+    cursive;
+  text-align: center;
+  transform: rotate(-5deg);
+}
+
+.d2-approved::after {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 3px;
+  margin: 5px auto 0;
+  background: #eca32d;
+  transform: rotate(-5deg);
+}
+.d2-approved-arrow {
+  position: absolute;
+  right: 33px;
+  top: 16px;
+  font:
+    35px/1 "Caveat",
+    cursive;
+  transform: rotate(-15deg);
+}
+
+.d2-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 26px;
+}
+.d2-rule::before,
+.d2-rule::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: #28221c;
+}
+.d2-rule span {
+  font-size: 31px;
+  line-height: 1;
+}
+
+.d2-partners-heading {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 38px;
+}
+.d2-partners-heading h3 {
+  margin: 0;
+  font:
+    600 39px/1 "Caveat",
+    cursive;
+  transform: rotate(-1deg);
+}
+.d2-partners-heading h3 mark {
+  padding: 0 5px;
+  color: inherit;
+  background: linear-gradient(
+    transparent 37%,
+    #f4c94c 38% 87%,
+    transparent 88%
+  );
+}
+.d2-partners-heading p {
+  position: absolute;
+  top: -13px;
+  right: 17%;
+  margin: 0;
+  font:
+    600 20px/1 "Caveat",
+    cursive;
+  text-align: center;
+  transform: rotate(7deg);
+}
+
+.d2-partners-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.d2-carousel-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid #40382d;
+  background: #f7f1e7;
+  color: #40382d;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.d2-carousel-btn:hover {
+  background: #40382d;
+  color: #f7f1e7;
+  transform: scale(1.1);
+}
+.d2-carousel-btn:active {
+  transform: scale(0.95);
+}
+.d2-carousel-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Hide scrollbar for all browsers */
+.d2-partners::-webkit-scrollbar {
+  display: none;
+}
+.d2-partners {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.d2-partners {
+  display: flex;
+  gap: 15px;
+  /* Space above the cards keeps tape crossing the edge fully visible. */
+  padding: 22px 5px 55px;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  max-width: calc(100% - 120px);
+}
+.d2-company{
+    position: relative;
+    display: flex;
+    flex: 0 0 136px;
+    min-height: 145px;
+    padding: 18px 8px;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #2b2720;
+    text-align: center;
+    scroll-snap-align: start;
+    transform: rotate(var(--company-tilt, -1deg));
+
+    /* Paper */
+    background-color:#efe6d5;
+
+    background-image:
+    linear-gradient(
+        rgba(243,236,223,.88),
+        rgba(238,230,215,.88)
+    ),
+    url("../../../../assets/textures/paper-texture.jpg");
+
+    background-size: 260px cover;
+    background-repeat: repeat;
+    background-position: center;
+
+    border: 1px solid rgba(122,95,60,.14);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.75),
+        inset 0 -1px 2px rgba(0,0,0,.05),
+        0 5px 12px rgba(62,45,27,.18);
+}
+.d2-company:nth-child(even) {
+  --company-tilt: 1deg;
+}
+.d2-company::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: -10px;
+    left: 50%;
+    width: 62px;
+    height: 17px;
+    transform: translateX(-50%) rotate(-4deg);
+    background: #d8c39b;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(58, 42, 22, .18);
+}
+
+/* Pinned cards use the paper clip only, matching the reference layout. */
+.d2-company:nth-child(1)::before,
+.d2-company:nth-child(4)::before,
+.d2-company:nth-child(7)::before {
+  display: none;
+}
+.d2-company:nth-child(1)::after,
+.d2-company:nth-child(4)::after,
+.d2-company:nth-child(7)::after {
+  content: "";
+  position: absolute;
+  top: -18px;
+  right: 13px;
+  width: 10px;
+  height: 43px;
+  border: 3px solid #73706b;
+  border-radius: 8px;
+  transform: rotate(10deg);
+}
+.d2-company-logo {
+  display: block;
+  margin-bottom: 7px;
+  max-width: 80px;
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.d2-company strong {
+  font:
+    700 17px/1 "Space Grotesk",
+    sans-serif;
+}
+.d2-company small {
+  margin-top: 4px;
+  font:
+    600 10px/1 "Space Grotesk",
+    sans-serif;
+}
+.d2-company em {
+  position: absolute;
+  top: calc(100% + 13px);
+  font:
+    600 16px/1 "Caveat",
+    cursive;
+  font-style: normal;
+  white-space: nowrap;
+}
+.d2-company--packaging {
+  color: #af8214;
+}
+.d2-company--sbp strong {
+  color: #365582;
+  font-size: 38px;
+}
+.d2-company--sbp small {
+  font-size: 15px;
+}
+.d2-company--vardhman strong {
+  color: #d73732;
+  font-size: 13px;
+}
+.d2-company--vrr strong {
+  color: #d9ad1e;
+  font-size: 32px;
+}
+.d2-company--vrr strong span {
+  color: #5d5a57;
+  font-size: 28px;
+}
+.d2-company--velvet strong {
+  color: #58953d;
+  font-size: 18px;
+}
+.d2-company--rapid strong,
+.d2-company--seven-star strong {
+  font-size: 15px;
+}
+.d2-company--velvet small {
+  letter-spacing: 1px;
+}
+
+.d2-bottom {
+  position: relative;
+  display: flex;
+  min-height: 148px;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+.d2-bottom > p {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  margin: 0;
+  padding: 18px 17px;
+  background: #a9ddeb;
+  box-shadow: 2px 4px 7px rgba(36, 58, 64, 0.18);
+  font:
+    600 18px/1.08 "Caveat",
+    cursive;
+  transform: rotate(8deg);
+}
+.d2-handshake {
+  display: grid;
+  width: 128px;
+  height: 92px;
+  place-items: center;
+  color: #28221c;
+  font-size: 86px;
+  line-height: 1;
+  transform: rotate(-5deg);
+}
+.d2-bottom > strong {
+  font:
+    600 25px/1.15 "Caveat",
+    cursive;
+  transform: rotate(-1deg);
+}
+.d2-bottom > b {
+  position: absolute;
+  right: 17%;
+  bottom: 23px;
+  padding: 5px 11px;
+  border: 2px solid #40382d;
+  color: #40382d;
+  font:
+    700 24px/1 "Space Grotesk",
+    sans-serif;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  transform: rotate(-10deg);
+}
+.d2-bottom::after {
+  content: "";
+  position: absolute;
+  right: -42px;
+  bottom: -47px;
+  width: 163px;
+  height: 151px;
+  background: linear-gradient(
+    135deg,
+    transparent 0 45%,
+    #d8c5a6 46%,
+    #f7eddb 66%,
+    #eadcc4 100%
+  );
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  filter: drop-shadow(-10px -11px 10px rgba(67, 47, 29, 0.18));
+  transform: rotate(-4deg);
+}
+
+@media (max-width: 1200px) {
+  .d2-note {
+    left: 18px;
+  }
+  .d2-growth {
+    right: 23px;
+  }
+  .d2-metrics {
+    grid-template-columns: repeat(3, minmax(124px, 1fr));
+    max-width: 430px;
+    margin: 0 auto;
+    row-gap: 31px;
+  }
+  .d2-company {
+    flex-basis: 132px;
+  }
+  .d2-carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 901px) {
+  .div-2-snapshot {
+    width: calc(100% + 50px);
+    margin-left: -50px;
+  }
+}
+
+@media (max-width: 700px) {
+  .div-2-snapshot {
+    min-height: 0;
+    padding: 31px 24px 44px;
+  }
+  .d2-note,
+  .d2-growth,
+  .d2-heading-arrow {
+    display: none;
+  }
+  .d2-heading {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .div-2-snapshot h2 {
+    margin-bottom: 29px;
+  }
+  .d2-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+    gap: 28px 18px;
+  }
+  .d2-sticky {
+    min-height: 138px;
+  }
+  .d2-asides {
+    min-height: 96px;
+    padding: 0 8px;
+  }
+  .d2-passion {
+    font-size: 18px;
+  }
+  .d2-approved {
+    padding: 8px 17px;
+    font-size: 20px;
+  }
+  .d2-approved-arrow {
+    display: none;
+  }
+  .d2-partners-heading {
+    margin: 8px 0 31px;
+  }
+  .d2-partners-heading h3 {
+    font-size: 31px;
+    text-align: center;
+  }
+  .d2-partners-heading p {
+    display: none;
+  }
+  .d2-partners-wrapper {
+    flex-direction: row;
+    gap: 9px;
+  }
+  .d2-carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .d2-partners {
+    gap: 15px;
+    padding-bottom: 20px;
+    max-width: calc(100% - 90px);
+  }
+  .d2-company {
+    flex-basis: 130px;
+    min-height: 135px;
+  }
+  .d2-company em {
+    font-size: 14px;
+  }
+  .d2-bottom {
+    min-height: 175px;
+    justify-content: flex-end;
+  }
+  .d2-bottom > p {
+    font-size: 16px;
+  }
+  .d2-handshake {
+    display: none;
+  }
+  .d2-bottom > strong {
+    font-size: 20px;
+  }
+  .d2-bottom > b {
+    right: 0;
+    bottom: 112px;
+    font-size: 16px;
+  }
+}

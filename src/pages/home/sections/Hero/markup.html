@@ -1,0 +1,75 @@
+<section class="div-1-hero" data-rough-anchor="home-hero">
+        <div class="d1-coffee-stain"></div>
+        <div class="d1-badge">v1.0</div>
+
+        <div class="d1-container">
+
+          <!-- LEFT COLUMN -->
+          <div class="d1-left">
+            <!-- Main Content -->
+            <div class="d1-top-header">
+              <svg class="d1-star d1-hand-drawn" viewBox="0 0 24 24">
+                <path d="M12 2 L15 9 L22 9 L16 14 L18 21 L12 17 L6 21 L8 14 L2 9 L9 9 Z" />
+              </svg>
+              <span class="d1-top-text">the first rough note
+                <span class="d1-highlight-yellow"></span>
+              </span>
+            </div>
+
+            <h1 class="d1-title">
+              Every Great<br>Product<br>Starts Here<span class="d1-dot">.</span>
+            </h1>
+
+            <p class="d1-body">
+              We transform rough ideas into <span class="d1-highlight-orange">AI products</span>,
+              ERP systems, <span class="d1-underline">websites</span>, mobile apps, and
+              <span class="d1-underline">unforgettable</span> digital experiences.
+            </p>
+
+            <div class="d1-buttons">
+              <a class="d1-btn d1-btn-primary" href="./contact.html">
+                Start a Project <span class="d1-arrow-icon" aria-hidden="true">→</span>
+              </a>
+              <a class="d1-btn d1-btn-secondary" href="#div-4">
+                View Our Work
+                <svg class="d1-eye-icon" viewBox="0 0 32 24" aria-hidden="true" focusable="false">
+                  <path d="M2.5 12s4.8-7.4 13.5-7.4S29.5 12 29.5 12 24.7 19.4 16 19.4 2.5 12 2.5 12Z" />
+                  <circle cx="16" cy="12" r="3.8" />
+                  <path class="d1-eye-sketch-line" d="M4.5 13.2C8 8.1 12 6 16.4 6.1c4.5.1 8.3 2.3 11 6.2" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+          <div class="d1-right">
+            __WORKSPACE_BOARD__
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+      <!-- Realistic Torn Edge spanning full width with folded corner -->
+      <div class="d1-hero-tear">
+        <!-- SVG patch to seamlessly cover the left-side black gap in the image -->
+        <svg class="d1-hero-tear-left-patch" width="100%" height="100%" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="patch-tear-filter" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="200%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.03 0.3" numOctaves="4" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <!-- Fades out to the right so the patch blends seamlessly into the image's torn edge -->
+            <linearGradient id="patch-fade" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="50%" stop-color="#F8F3EA" stop-opacity="1" />
+              <stop offset="90%" stop-color="#F8F3EA" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <rect x="-10%" y="-10%" width="120%" height="100%" fill="url(#patch-fade)" filter="url(#patch-tear-filter)" />
+        </svg>
+
+        <img src="/assets/torn-edge-bottom.jpg" alt="Torn paper edge" class="d1-hero-tear-img" />
+      </div>

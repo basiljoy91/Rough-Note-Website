@@ -1,0 +1,47 @@
+.contact-island-placeholder {
+  min-height: 100vh;
+}
+
+.contact-loading-note,
+.contact-load-error {
+  color: #211d18;
+  font: 600 clamp(24px, 4vw, 42px)/1.2 "Caveat", cursive;
+  margin: 0;
+  padding: 42vh 24px 24px;
+  text-align: center;
+}
+
+.contact-loading-note::after {
+  animation: contact-loading-pencil 1.2s ease-in-out infinite alternate;
+  background: #dc6d11;
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 3px;
+  margin: 14px auto 0;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  width: 210px;
+}
+
+.contact-load-error {
+  color: #7a271f;
+}
+
+@keyframes contact-loading-pencil {
+  from {
+    opacity: 0.45;
+    transform: rotate(-2deg) scaleX(0.35);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: rotate(-1deg) scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-loading-note::after {
+    animation: none;
+  }
+}

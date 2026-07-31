@@ -1,0 +1,16 @@
+:root {
+    /* Colors */
+    --color-paper: #F7F3EB;
+    --color-paper-light: #FBF8F2;
+    --color-ink: #1D1D1D;
+    --color-muted: #6F675E;
+    --color-accent: #E6B93F;
+    
+    /* Typography */
+    --font-primary: "Space Grotesk", Arial, sans-serif;
+    --font-hand: "Caveat", cursive;
+    
+    /* Structure */
+    --max-width: 1440px;
+    --radius: 8px;
+}
