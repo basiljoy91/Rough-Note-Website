@@ -35,7 +35,7 @@ export const navigationItems: NavigationItem[] = [
   {
     key: 'services',
     label: 'Our Services',
-    href: '/html/index.html?animated=true#services',
+    href: '/html/services.html',
     icon: servicesIcon
   },
   {

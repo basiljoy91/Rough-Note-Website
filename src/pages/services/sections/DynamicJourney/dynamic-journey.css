@@ -1,0 +1,485 @@
+/* dynamic-journey.css */
+.dynamic-journey {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem 8rem 2rem;
+  background-color: var(--paper-cream, #f8f5f0);
+  font-family: var(--font-handwriting, 'Kalam', cursive);
+  color: #3e2723;
+  overflow: hidden;
+}
+
+.dj-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  z-index: 10;
+}
+
+.dj-header__subtitle {
+  font-size: 1.2rem;
+  color: #e65100;
+  margin-bottom: -0.5rem;
+}
+
+.dj-header__title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.dj-header__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #e65100;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+.dj-header__desc {
+  max-width: 600px;
+  margin: 1.5rem auto 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Service Selector */
+.dj-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.5rem 0;
+  z-index: 10;
+}
+
+.dj-card {
+  position: relative;
+  width: 126px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dj-card:hover {
+  transform: translateY(-5px);
+}
+
+.dj-card--active {
+  transform: translateY(-8px);
+}
+.dj-card--active .dj-card__bg {
+  filter: drop-shadow(0px 8px 12px rgba(230, 81, 0, 0.4));
+}
+
+.dj-card__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.dj-card__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px; /* space for pin */
+}
+
+.dj-card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.dj-card__title {
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.dj-card__pin {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  z-index: 4;
+  box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), 2px 4px 4px rgba(0,0,0,0.2);
+}
+.dj-card__pin::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+}
+
+/* Timeline */
+.dj-timeline-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0.5rem auto 0 auto;
+  z-index: 10;
+}
+
+.dj-timeline__bg {
+  width: 100%;
+  height: auto;
+  min-height: 350px;
+  filter: drop-shadow(5px 10px 15px rgba(0,0,0,0.1));
+  border-radius: 4px;
+  background: #fdfaf6;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dj-timeline__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 3rem 4rem 4rem 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dj-timeline__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.dj-timeline__title {
+  font-size: 1.8rem;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+.dj-timeline__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #e65100;
+  transform: rotate(-0.5deg);
+}
+
+.dj-timeline__subtitle {
+  max-width: 500px;
+  text-align: right;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding-right: 120px;
+}
+
+.dj-timeline__stamp {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  border: 2px solid #333;
+  padding: 5px 10px;
+  transform: rotate(12deg);
+  font-size: 1rem;
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+.dj-steps {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+  flex: 1;
+}
+
+.dj-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.dj-step__num {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #e65100;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #e65100;
+  margin-bottom: 0.2rem;
+  background: rgba(255,255,255,0.5);
+}
+
+.dj-step__icon {
+  font-size: 2rem;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.2rem;
+  color: #333;
+}
+
+.dj-step__title {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+
+.dj-step__list {
+  list-style-type: disc;
+  padding-left: 15px;
+  margin: 0;
+  font-size: 0.75rem;
+  text-align: left;
+  line-height: 1.6;
+  color: #444;
+}
+
+.dj-step__arrow {
+  position: absolute;
+  top: 16px;
+  right: -0.5rem;
+  transform: translate(50%, -50%);
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Bottom CTA Area */
+.dj-bottom-cta {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: -1.5rem auto 2rem auto;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.dj-bottom__strip {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dj-bottom__strip-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+.dj-bottom__strip-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+}
+
+.cta-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.cta-text-group {
+  text-align: left;
+}
+
+.cta-arrow {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  margin: 0 2rem;
+}
+
+.cta-right {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dj-bottom__strip-content .highlight {
+  position: relative;
+  display: inline-block;
+}
+.dj-bottom__strip-content .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #e65100;
+  border-radius: 1px;
+}
+
+.dj-bottom__cta-title {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.dj-bottom__cta-link {
+  font-size: 1.05rem;
+  color: #e65100;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+}
+.dj-bottom__cta-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #e65100;
+}
+
+/* Absolute Sticky Notes and Doodles */
+.dj-sticky {
+  position: absolute;
+  filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.2));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  line-height: 1.3;
+}
+
+.dj-sticky img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: -1;
+}
+
+.dj-sticky--top-right {
+  top: 10%;
+  right: 5%;
+  margin-top: -85px;
+  margin-right: -50px;
+  width: 150px;
+  height: 150px;
+  font-size: 0.7rem;
+  transform: rotate(3deg);
+}
+
+.dj-sticky--mid-left {
+  top: 45%;
+  left: -2%;
+  width: 130px;
+  height: 130px;
+  font-size: 0.75rem;
+  transform: rotate(-4deg);
+}
+
+.dj-sticky--bottom-right {
+  bottom: 15%;
+  right: 2%;
+  width: 110px;
+  height: 110px;
+  font-size: 0.7rem;
+  transform: rotate(-2deg);
+}
+
+.dj-doodle {
+  position: absolute;
+  font-size: 1.1rem;
+  color: #333;
+  z-index: 4;
+}
+
+.dj-doodle--top-left {
+  top: 12%;
+  left: 2%;
+  transform: rotate(-5deg);
+  max-width: 200px;
+}
+
+.dj-doodle--mid-right {
+  top: 25%;
+  right: 18%;
+  max-width: 150px;
+}
+
+@media (max-width: 1200px) {
+  .dj-timeline__content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dj-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dj-step__arrow {
+    display: none;
+  }
+  .dj-sticky {
+    transform: scale(0.7); /* Scale down instead of hiding */
+  }
+}
+
+@media (max-width: 768px) {
+  .dj-steps {
+    grid-template-columns: 1fr;
+  }
+  .dj-timeline__content {
+    position: relative;
+  }
+  .dj-timeline__bg {
+    display: none; /* Can just use css background for mobile */
+  }
+}

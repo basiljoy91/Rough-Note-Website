@@ -1,0 +1,117 @@
+
+/* Card Text Overlays */
+.card-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let hover effects on cards still work smoothly */
+}
+.card-text__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  top: 15%;
+  left: 10%;
+}
+.card-text__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #e65100;
+  border-radius: 50%;
+  color: #e65100;
+  font-family: var(--font-handwriting, 'Kalam', cursive);
+  font-size: 11px;
+  font-weight: bold;
+}
+.card-text__title {
+  font-family: var(--font-handwriting, 'Kalam', cursive);
+  color: #333;
+  font-size: clamp(16px, 1.5vw, 20px);
+  margin: 0;
+  position: relative;
+}
+.card-text__title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: #e65100;
+  border-radius: 1px;
+  transform: rotate(-1deg);
+}
+.card-text__list {
+  position: absolute;
+  top: 32%;
+  left: 12%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-handwriting, 'Kalam', cursive);
+  color: #222;
+  font-size: clamp(9px, 0.9vw, 12px);
+  line-height: 1.6;
+}
+.card-text__list li::before {
+  content: '•';
+  margin-right: 6px;
+  color: #333;
+}
+.card-text__sticky {
+  position: absolute;
+  font-family: var(--font-handwriting, 'Kalam', cursive);
+  font-size: clamp(8px, 0.8vw, 11px);
+  color: #222;
+  text-align: center;
+  line-height: 1.3;
+}
+.card-text__sticky--pink { color: #333; }
+.card-text__sticky--yellow { color: #333; }
+.card-text__sticky--blue { color: #333; }
+.card-text__sticky--green { color: #333; }
+
+/* Positions for specific stickies inside their cards */
+/* C1 */
+.c1-sticky { bottom: 25%; left: 15%; transform: rotate(-2deg); }
+.c1-arrow { bottom: 22%; right: 28%; font-size: 14px; color: #555; transform: rotate(-30deg); }
+.c1-star { top: 20%; right: 20%; font-size: 10px; color: #e65100; transform: rotate(15deg); }
+
+/* C2 */
+.c2-sticky { bottom: 20%; right: 18%; transform: rotate(-3deg); }
+.c2-label-1 { top: 12%; right: 30%; font-size: 8px; color: #555; transform: rotate(2deg); }
+.c2-label-2 { top: 38%; right: 30%; font-size: 8px; color: #555; transform: rotate(-1deg); }
+.c2-arrow { top: 25%; right: 35%; font-size: 12px; color: #555; }
+
+/* C3 */
+.c3-sticky { top: 15%; right: 10%; transform: rotate(4deg); }
+.c3-check { bottom: 35%; right: 25%; font-size: 12px; color: #2e7d32; font-weight: bold; transform: rotate(10deg); }
+.c3-arrow { bottom: 20%; right: 40%; font-size: 14px; color: #555; transform: rotate(-20deg); }
+
+/* C4 */
+.c4-sticky { bottom: 22%; left: 35%; transform: rotate(-2deg); }
+.c4-star { bottom: 30%; right: 25%; font-size: 10px; color: #e65100; transform: rotate(5deg); }
+
+/* C5 */
+.c5-sticky { bottom: 18%; left: 32%; transform: rotate(2deg); }
+.c5-note { top: 18%; right: 22%; font-size: 9px; color: #555; transform: rotate(-5deg); }
+.c5-arrow { top: 35%; right: 32%; font-size: 12px; color: #555; transform: rotate(45deg); }
+
+/* C6 */
+.c6-sticky { bottom: 25%; right: 18%; transform: rotate(-4deg); }
+.c6-star { top: 18%; right: 22%; font-size: 10px; color: #e65100; transform: rotate(10deg); }
+
+/* C7 */
+.c7-sticky { bottom: 18%; right: 32%; transform: rotate(3deg); }
+.c7-star { top: 22%; right: 22%; font-size: 10px; color: #e65100; transform: rotate(-15deg); }
+
+.card-text__doodle {
+  position: absolute;
+  font-family: var(--font-handwriting, 'Kalam', cursive);
+}
