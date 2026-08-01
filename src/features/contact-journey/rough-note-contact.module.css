@@ -1,0 +1,2350 @@
+:global(:root) {
+  --contact-paper-main: #f4ead8;
+  --contact-paper-light: #fbf5e9;
+  --contact-paper-dark: #dfcfb4;
+  --contact-ink: #211d18;
+  --contact-graphite: #4a433a;
+  --contact-orange: #dc6d11;
+  --contact-blue: #4b70bb;
+  --contact-pink: #e69a9e;
+  --contact-green: #a8c368;
+  --contact-yellow: #e9c966;
+  --contact-tape: rgb(211 187 145 / 72%);
+  --contact-error: #a93027;
+  --contact-success: #5f8738;
+  --contact-shadow: rgb(58 39 20 / 18%);
+  --contact-grain:
+    radial-gradient(circle at 17% 23%, rgb(79 49 24 / 8%) 0 0.55px, transparent 0.9px)
+      0 0 / 9px 8px,
+    radial-gradient(circle at 71% 62%, rgb(255 255 255 / 38%) 0 0.7px, transparent 1px)
+      0 0 / 11px 13px,
+    repeating-linear-gradient(
+      83deg,
+      transparent 0 31px,
+      rgb(82 54 26 / 2.5%) 32px,
+      transparent 34px 67px
+    );
+}
+
+:global(html.contact-transition-locked),
+:global(html.contact-transition-locked body) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+:global(body.rough-note-contact-page) {
+  background:
+    radial-gradient(ellipse at 60% 20%, rgb(255 255 255 / 64%), transparent 56%),
+    var(--contact-grain),
+    #eee4d4;
+  color: var(--contact-ink);
+  min-height: 100vh;
+}
+
+.contactApp {
+  min-height: 100vh;
+}
+
+.contactMain {
+  min-height: 100vh;
+  padding: 18px 24px 24px 0;
+  position: relative;
+}
+
+.journeyWorkspace {
+  margin: 0 auto;
+  max-width: 1520px;
+  perspective: 1200px;
+  position: relative;
+  transform-style: preserve-3d;
+  width: 100%;
+}
+
+.stepShell {
+  background:
+    radial-gradient(ellipse at 50% -5%, rgb(255 255 255 / 52%), transparent 42%),
+    radial-gradient(circle at 8% 33%, rgb(140 96 47 / 5%) 0 1px, transparent 1.3px)
+      0 0 / 17px 19px,
+    radial-gradient(circle at 90% 72%, rgb(86 55 29 / 4.5%) 0 0.7px, transparent 1.1px)
+      0 0 / 13px 15px,
+    var(--contact-grain),
+    linear-gradient(99deg, #f2e6d4, #fbf4e7 50%, #eee0ca);
+  border-radius: 18px 15px 19px 14px / 15px 19px 14px 17px;
+  box-shadow:
+    0 28px 50px rgb(59 39 19 / 12%),
+    0 7px 15px rgb(59 39 19 / 8%),
+    inset 0 0 42px rgb(115 79 42 / 8%);
+  isolation: isolate;
+  margin: 0 auto;
+  min-height: max(920px, calc(100svh - 36px));
+  overflow: hidden;
+  padding: clamp(72px, 6vw, 96px) clamp(32px, 5vw, 86px) 84px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.stepShell::before,
+.paperPerimeter {
+  border: 1.3px solid rgb(71 52 31 / 52%);
+  border-radius: 17px 14px 20px 13px / 14px 20px 13px 18px;
+  content: "";
+  inset: 9px 8px 10px 9px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 20;
+}
+
+.paperPerimeter {
+  border-color: rgb(255 255 255 / 34%);
+  inset: 11px 10px 8px 7px;
+  transform: rotate(0.05deg);
+}
+
+.stepShell::after {
+  background:
+    linear-gradient(95deg, transparent 0 12%, rgb(104 69 37 / 4%) 12.2%, transparent 12.7%),
+    linear-gradient(8deg, transparent 0 64%, rgb(98 69 42 / 3%) 64.5%, transparent 65%);
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.progress {
+  display: none;
+  gap: 12px;
+  left: 50%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 20px;
+  transform: translateX(-50%);
+  z-index: 23;
+}
+
+.progressTab {
+  color: rgb(33 29 24 / 48%);
+  display: grid;
+  font: 600 15px/1 "Patrick Hand", cursive;
+  height: 30px;
+  place-items: center;
+  transform: rotate(-2deg);
+  width: 42px;
+}
+
+.progressTab::before {
+  background: currentColor;
+  border-radius: 50%;
+  bottom: -4px;
+  content: "";
+  height: 3px;
+  left: 50%;
+  opacity: 0.22;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 18px;
+}
+
+.progressActive {
+  background: color-mix(in srgb, currentColor 28%, var(--contact-paper-light));
+  box-shadow: 0 4px 5px rgb(57 39 23 / 14%);
+  color: var(--contact-ink);
+  transform: rotate(1.5deg) translateY(-2px);
+}
+
+.progressComplete {
+  color: var(--contact-success);
+}
+
+.stepLabel {
+  box-shadow:
+    0 7px 9px rgb(58 39 20 / 18%),
+    inset 0 1px rgb(255 255 255 / 46%);
+  color: var(--contact-ink);
+  font: 600 clamp(18px, 1.5vw, 24px)/1 "Patrick Hand", cursive;
+  left: clamp(26px, 3vw, 48px);
+  letter-spacing: 0.04em;
+  padding: 15px 24px 13px;
+  position: absolute;
+  top: clamp(25px, 3vw, 44px);
+  transform: rotate(-5deg);
+  z-index: 22;
+}
+
+.stepLabel::before {
+  background: rgb(255 255 255 / 28%);
+  content: "";
+  inset: 4px 7px auto;
+  height: 3px;
+  position: absolute;
+  transform: rotate(1deg);
+}
+
+.yellow {
+  --field-accent: var(--contact-yellow);
+  color: var(--contact-yellow);
+}
+
+.blue {
+  --field-accent: var(--contact-blue);
+  color: var(--contact-blue);
+}
+
+.pink {
+  --field-accent: var(--contact-pink);
+  color: var(--contact-pink);
+}
+
+.green {
+  --field-accent: var(--contact-green);
+  color: var(--contact-green);
+}
+
+.orange {
+  --field-accent: var(--contact-orange);
+  color: var(--contact-orange);
+}
+
+.graphite {
+  color: var(--contact-graphite);
+}
+
+.stepLabel.yellow {
+  background:
+    var(--contact-grain),
+    linear-gradient(103deg, #f3d77b, #e7c05a);
+}
+
+.stepLabel.blue {
+  background:
+    var(--contact-grain),
+    linear-gradient(103deg, #91c4e2, #75aecd);
+}
+
+.stepLabel.pink {
+  background:
+    var(--contact-grain),
+    linear-gradient(103deg, #efb1b6, #de8f99);
+}
+
+.stepLabel.green {
+  background:
+    var(--contact-grain),
+    linear-gradient(103deg, #bed776, #9cb851);
+}
+
+.stepLabel.yellow,
+.stepLabel.blue,
+.stepLabel.pink,
+.stepLabel.green {
+  color: var(--contact-ink);
+}
+
+.stepHeading {
+  margin: 0 auto 36px;
+  max-width: 760px;
+  position: relative;
+  text-align: center;
+  z-index: 8;
+}
+
+.headingLine {
+  align-items: center;
+  display: inline-flex;
+  gap: 24px;
+  justify-content: center;
+  max-width: 100%;
+  position: relative;
+}
+
+.stepHeading h1 {
+  color: var(--contact-ink);
+  font-family: "Caveat Brush", "Caveat", cursive;
+  font-size: clamp(48px, 4.7vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  margin: 0;
+  max-width: 700px;
+  outline: none;
+  text-wrap: balance;
+  transform: rotate(-0.45deg);
+  white-space: pre-line;
+}
+
+.handUnderline {
+  display: block;
+  height: 23px;
+  margin: 7px auto 0;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-linecap: round;
+  width: min(360px, 82%);
+}
+
+.handUnderline path:first-child {
+  opacity: 0.9;
+  stroke-width: 3.2;
+}
+
+.handUnderline path:last-child {
+  opacity: 0.34;
+  stroke-width: 1.3;
+}
+
+.headingBulb,
+.headingStar,
+.headingSmile {
+  color: var(--contact-ink);
+  flex: 0 0 auto;
+  height: 70px;
+  transform: rotate(5deg);
+  width: 58px;
+}
+
+.headingStar {
+  height: 52px;
+  width: 52px;
+}
+
+.headingSmile {
+  height: 55px;
+  width: 55px;
+}
+
+.stepThreeAdornment {
+  align-items: flex-start;
+  color: var(--contact-ink);
+  display: flex;
+  gap: 18px;
+}
+
+.stepThreeAdornment svg:first-child {
+  height: 42px;
+  width: 42px;
+}
+
+.stepThreeAdornment svg:last-child {
+  height: 30px;
+  margin-top: -18px;
+  width: 30px;
+}
+
+.stepIntro,
+.stepOneIntro {
+  color: var(--contact-ink);
+  font: 400 clamp(20px, 1.8vw, 28px)/1.55 "Kalam", cursive;
+  margin: 0 auto 34px;
+  position: relative;
+  text-align: center;
+  z-index: 7;
+}
+
+.stepOneIntro p {
+  margin: 0 0 14px;
+}
+
+.stepOneIntro strong {
+  color: var(--contact-orange);
+  font-weight: 700;
+}
+
+.pageNumber {
+  bottom: 28px;
+  color: var(--contact-ink);
+  font: 500 23px/1 "Caveat", cursive;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%) rotate(-1deg);
+  z-index: 22;
+}
+
+.pageNumber span {
+  background: var(--contact-orange);
+  border-radius: 50%;
+  display: block;
+  height: 3px;
+  margin: 6px auto 0;
+  transform: rotate(-3deg);
+  width: 62px;
+}
+
+.paperPanel {
+  background:
+    var(--contact-grain),
+    linear-gradient(98deg, #f8efe0, #fcf6ea 52%, #eee0ca);
+  box-shadow:
+    0 9px 14px rgb(65 44 23 / 12%),
+    inset 0 0 18px rgb(120 86 48 / 5%);
+  color: var(--contact-ink);
+  position: relative;
+}
+
+.stickyNote {
+  background-blend-mode: multiply, normal;
+  box-shadow:
+    0 14px 19px rgb(50 33 17 / 18%),
+    0 3px 5px rgb(50 33 17 / 12%),
+    inset 0 0 18px rgb(85 57 29 / 8%);
+  color: var(--contact-ink);
+  font: 500 23px/1.42 "Caveat", cursive;
+  padding: 48px 28px 26px;
+  position: relative;
+  transform: rotate(3deg);
+}
+
+.stickyNote.yellow {
+  background:
+    var(--contact-grain),
+    linear-gradient(111deg, #f6dda1, #f1c85e);
+}
+
+.stickyNote.blue {
+  background:
+    var(--contact-grain),
+    linear-gradient(111deg, #b5d5e8, #8ec3df);
+}
+
+.stickyNote.pink {
+  background:
+    var(--contact-grain),
+    linear-gradient(111deg, #efb1b6, #e7929b);
+}
+
+.stickyNote.green {
+  background:
+    var(--contact-grain),
+    linear-gradient(111deg, #c4d78e, #a9c86b);
+}
+
+.tapeStrip {
+  background:
+    repeating-linear-gradient(
+      93deg,
+      transparent 0 12px,
+      rgb(126 93 52 / 10%) 13px 14px
+    ),
+    linear-gradient(100deg, rgb(235 215 176 / 75%), var(--contact-tape));
+  box-shadow: 0 3px 5px rgb(70 47 24 / 10%);
+  height: 31px;
+  left: 50%;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 3%,
+    #000 97%,
+    transparent 100%
+  );
+  position: absolute;
+  top: -14px;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 92px;
+}
+
+.paperButton {
+  align-items: center;
+  border: 0;
+  border-radius: 4px 7px 5px 3px;
+  box-shadow:
+    0 10px 13px rgb(62 39 17 / 22%),
+    0 3px 4px rgb(62 39 17 / 15%),
+    inset 0 1px rgb(255 255 255 / 30%);
+  color: #fff8ed;
+  cursor: pointer;
+  display: inline-flex;
+  font: 500 clamp(23px, 2vw, 31px)/1 "Caveat", cursive;
+  gap: 13px;
+  justify-content: center;
+  min-height: 62px;
+  padding: 16px 32px;
+  position: relative;
+  text-shadow: 0 1px rgb(52 31 15 / 30%);
+  transform: rotate(-0.7deg);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.paperButton::after {
+  background:
+    var(--contact-grain),
+    linear-gradient(105deg, rgb(255 255 255 / 7%), transparent);
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  position: absolute;
+}
+
+.paperButton.orange {
+  background: #dd6e10;
+}
+
+.paperButton.blue {
+  background: #4c70b6;
+}
+
+.paperButton.pink {
+  background: #dc8992;
+}
+
+.paperButton.green {
+  background: #779642;
+}
+
+.paperButton:hover:not(:disabled) {
+  box-shadow:
+    0 14px 17px rgb(62 39 17 / 24%),
+    0 5px 6px rgb(62 39 17 / 16%);
+  transform: translateY(-3px) rotate(-0.25deg);
+}
+
+.paperButton:active:not(:disabled) {
+  box-shadow:
+    0 4px 5px rgb(62 39 17 / 20%),
+    inset 0 3px 5px rgb(51 30 14 / 18%);
+  transform: translateY(1px) scaleY(0.97) rotate(-0.6deg);
+}
+
+.paperButton:focus-visible,
+.backButton:focus-visible,
+.field :is(input, select, textarea):focus-visible,
+.uploadPrompt:focus-visible,
+.attachment button:focus-visible,
+.resetConfirmation button:focus-visible,
+.successActions a:focus-visible {
+  outline: 3px solid var(--contact-orange);
+  outline-offset: 4px;
+}
+
+.paperButton:disabled {
+  cursor: wait;
+  filter: saturate(0.6);
+  opacity: 0.68;
+}
+
+.buttonIcon {
+  display: inline-grid;
+  height: 30px;
+  place-items: center;
+  width: 30px;
+}
+
+.buttonIcon svg {
+  color: currentColor;
+  height: 100%;
+  width: 100%;
+}
+
+.backButton {
+  background: none;
+  border: 0;
+  color: var(--contact-ink);
+  cursor: pointer;
+  font: 600 22px/1 "Caveat", cursive;
+  padding: 12px 10px;
+  position: relative;
+}
+
+.backButton::after {
+  background: var(--contact-orange);
+  bottom: 6px;
+  content: "";
+  height: 2px;
+  left: 10px;
+  position: absolute;
+  transform: rotate(-2deg) scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+  width: calc(100% - 20px);
+}
+
+.backButton:hover::after {
+  transform: rotate(-2deg) scaleX(1);
+}
+
+.field {
+  color: var(--contact-ink);
+  margin-bottom: 27px;
+  position: relative;
+}
+
+.field label,
+.uploadLabel {
+  align-items: center;
+  color: var(--contact-ink);
+  display: flex;
+  font: 600 22px/1.25 "Patrick Hand", cursive;
+  gap: 10px;
+  margin: 0 0 9px;
+}
+
+.field label svg {
+  color: var(--contact-ink);
+  height: 25px;
+  width: 25px;
+}
+
+.field label em {
+  color: var(--contact-error);
+  font-style: normal;
+}
+
+.field :is(input, select, textarea) {
+  appearance: none;
+  background:
+    radial-gradient(circle at 20% 30%, rgb(86 57 29 / 5%) 0 0.6px, transparent 1px)
+      0 0 / 9px 11px,
+    linear-gradient(99deg, rgb(255 252 245 / 82%), rgb(243 232 214 / 70%));
+  border: 1.4px solid rgb(68 54 39 / 48%);
+  border-radius: 4px 2px 5px 3px;
+  box-shadow:
+    inset 0 1px 4px rgb(75 50 27 / 5%),
+    0 1px rgb(255 255 255 / 52%);
+  color: var(--contact-ink);
+  font: 400 19px/1.35 "Kalam", cursive;
+  min-height: 52px;
+  padding: 12px 17px;
+  width: 100%;
+}
+
+.field select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--contact-ink) 50%),
+    linear-gradient(135deg, var(--contact-ink) 50%, transparent 50%),
+    linear-gradient(99deg, rgb(255 252 245 / 82%), rgb(243 232 214 / 70%));
+  background-position:
+    calc(100% - 20px) 22px,
+    calc(100% - 13px) 22px,
+    0 0;
+  background-repeat: no-repeat;
+  background-size:
+    7px 7px,
+    7px 7px,
+    100% 100%;
+  padding-right: 44px;
+}
+
+.field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.field :is(input, textarea)::placeholder {
+  color: rgb(73 66 57 / 58%);
+  font-style: italic;
+}
+
+.field :is(input, select, textarea):focus {
+  border-color: rgb(68 54 39 / 52%);
+  box-shadow:
+    inset 0 -3px 0 color-mix(in srgb, var(--field-accent, var(--contact-orange)) 74%, transparent),
+    0 4px 7px rgb(62 42 23 / 8%);
+}
+
+.fieldHelp {
+  color: var(--contact-graphite);
+  font: 400 15px/1.35 "Kalam", cursive;
+  margin-top: 6px;
+}
+
+.fieldError {
+  align-items: center;
+  color: var(--contact-error);
+  display: flex;
+  font: 600 16px/1.25 "Patrick Hand", cursive;
+  gap: 7px;
+  margin: 7px 0 0;
+}
+
+.fieldError > span {
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  flex: 0 0 18px;
+  height: 18px;
+  place-items: center;
+  width: 18px;
+}
+
+.fieldInvalid :is(input, select, textarea),
+.fieldInvalid.uploadPaper {
+  border-color: var(--contact-error);
+  box-shadow: inset 0 -2px 0 rgb(169 48 39 / 70%);
+}
+
+.formActions {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin: 34px auto 0;
+  position: relative;
+  z-index: 8;
+}
+
+.primaryAction {
+  display: flex;
+  margin: 26px auto 18px;
+  min-width: min(410px, 100%);
+  position: relative;
+  z-index: 12;
+}
+
+/* Step 1 */
+.stepOne {
+  min-height: max(980px, calc(100svh - 36px));
+}
+
+.stepOneComposition {
+  height: 356px;
+  margin: 0 auto;
+  max-width: 760px;
+  position: relative;
+  z-index: 8;
+}
+
+.crumpledPaper {
+  border-radius: 44% 52% 47% 55% / 52% 43% 56% 48%;
+  filter:
+    drop-shadow(0 20px 14px rgb(55 37 18 / 20%))
+    drop-shadow(0 5px 4px rgb(55 37 18 / 12%));
+  height: 286px;
+  left: 50%;
+  position: absolute;
+  top: 20px;
+  transform: translateX(-50%);
+  transform-style: preserve-3d;
+  width: 300px;
+  z-index: 8;
+}
+
+.crumpledTransitioning {
+  z-index: 40;
+}
+
+.facetStage {
+  border-radius: inherit;
+  clip-path: polygon(
+    18% 7%,
+    27% 3%,
+    39% 5%,
+    49% 0,
+    59% 5%,
+    71% 3%,
+    78% 9%,
+    90% 14%,
+    94% 26%,
+    100% 38%,
+    96% 50%,
+    99% 63%,
+    91% 72%,
+    88% 84%,
+    74% 88%,
+    63% 98%,
+    51% 94%,
+    39% 100%,
+    29% 93%,
+    17% 94%,
+    12% 84%,
+    3% 77%,
+    5% 64%,
+    0 53%,
+    5% 42%,
+    2% 30%,
+    11% 23%,
+    10% 14%
+  );
+  height: 100%;
+  overflow: hidden;
+  perspective: 1200px;
+  position: relative;
+  transform-style: preserve-3d;
+  width: 100%;
+}
+
+.paperFacet {
+  background:
+    linear-gradient(
+      calc(25deg + var(--facet-index) * 17deg),
+      rgb(255 255 255 / 72%),
+      rgb(228 210 180 / 42%) 48%,
+      rgb(255 250 237 / 72%)
+    ),
+    var(--contact-grain),
+    #f4ead8;
+  filter: drop-shadow(0 8px 6px rgb(61 43 23 / 24%));
+  inset: 0;
+  position: absolute;
+  transform: var(--facet-initial-transform);
+  transform-style: preserve-3d;
+}
+
+.paperFacet:nth-of-type(3n + 1) {
+  background:
+    linear-gradient(128deg, rgb(255 255 255 / 80%), rgb(211 188 151 / 38%) 52%, rgb(250 241 225 / 70%)),
+    var(--contact-grain),
+    #f4ead8;
+}
+
+.paperFacet:nth-of-type(4n + 2) {
+  filter:
+    brightness(0.94)
+    drop-shadow(0 9px 5px rgb(61 43 23 / 28%));
+}
+
+.crumpleShards {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 27;
+}
+
+.crumpleShards i {
+  background:
+    linear-gradient(
+      calc(52deg + var(--crumple-shard-index) * 19deg),
+      rgb(255 253 246 / 96%),
+      rgb(223 203 172 / 74%) 58%,
+      rgb(249 239 222 / 92%)
+    ),
+    var(--contact-grain);
+  box-shadow:
+    0 6px 6px rgb(63 44 24 / 23%),
+    inset 1px 1px rgb(255 255 255 / 72%);
+  display: block;
+  position: absolute;
+  transform:
+    rotate(var(--crumple-shard-rotate))
+    translateZ(calc(8px + var(--crumple-shard-index) * 0.8px));
+  transform-origin: 50% 50%;
+}
+
+.creaseOverlay {
+  height: 100%;
+  inset: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 30;
+}
+
+.facetStage::before {
+  background:
+    radial-gradient(circle at 28% 22%, rgb(255 255 255 / 84%), transparent 19%),
+    radial-gradient(circle at 72% 31%, rgb(174 143 101 / 27%), transparent 22%),
+    radial-gradient(circle at 43% 67%, rgb(255 255 255 / 72%), transparent 25%),
+    conic-gradient(
+      from 18deg at 53% 47%,
+      #f8efdf,
+      #ddcbae 14%,
+      #fff9ed 26%,
+      #d9c3a2 39%,
+      #f7eddd 53%,
+      #ceb996 66%,
+      #fff8eb 79%,
+      #e0ceb1 91%,
+      #f8efdf
+    );
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.facetStage::after {
+  background:
+    radial-gradient(ellipse at 17% 47%, transparent 0 14%, rgb(100 72 42 / 18%) 25%, transparent 39%),
+    radial-gradient(ellipse at 83% 56%, transparent 0 12%, rgb(255 255 255 / 52%) 25%, transparent 39%),
+    radial-gradient(ellipse at 48% 13%, rgb(255 255 255 / 58%), transparent 27%),
+    radial-gradient(ellipse at 51% 87%, rgb(112 79 42 / 18%), transparent 26%);
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  position: absolute;
+  z-index: 24;
+}
+
+.creaseDark {
+  fill: none;
+  opacity: 0.17;
+  stroke: #614c35;
+  stroke-linecap: round;
+  stroke-width: 2.2;
+}
+
+.creaseLight {
+  fill: none;
+  opacity: 0.32;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-width: 2.8;
+}
+
+.crumpleCreases {
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 31;
+}
+
+.facetStage > .creaseOverlay {
+  opacity: 0.42;
+}
+
+.crumpleValleys,
+.crumpleRidges,
+.crumpleScuffs {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.crumpleValleys {
+  filter: blur(0.35px);
+  opacity: 0.22;
+  stroke: #755a38;
+  stroke-width: 1.35;
+}
+
+.crumpleRidges {
+  opacity: 0.42;
+  stroke: #fffdf6;
+  stroke-width: 1.45;
+  transform: translate(2px, -2px);
+}
+
+.crumpleScuffs {
+  opacity: 0.16;
+  stroke: #4e3b28;
+  stroke-width: 0.9;
+}
+
+.unfoldingFormImpression {
+  display: grid;
+  gap: 8%;
+  inset: 11% 12%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 32;
+}
+
+.unfoldingFormImpression span {
+  border: 1px solid rgb(55 46 36 / 26%);
+  display: block;
+  height: 8%;
+}
+
+.unfoldingFormImpression .impressionHeading {
+  border: 0;
+  border-bottom: 3px solid rgb(75 111 181 / 36%);
+  margin: 0 auto;
+  width: 47%;
+}
+
+.unfoldingFormImpression .impressionUpload {
+  border-style: dashed;
+  height: 27%;
+}
+
+.unfoldingFormImpression .impressionTextarea {
+  height: 22%;
+}
+
+.rnStamp {
+  border: 4px double rgb(30 26 21 / 88%);
+  border-radius: 50%;
+  color: var(--contact-ink);
+  display: grid;
+  font: 600 43px/1 "Caveat", cursive;
+  height: 96px;
+  left: 50%;
+  opacity: 0.88;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  width: 96px;
+  z-index: 33;
+}
+
+.rnStamp::before,
+.rnStamp::after {
+  border: 1px solid rgb(30 26 21 / 72%);
+  border-radius: 50%;
+  content: "";
+  inset: 6px;
+  position: absolute;
+}
+
+.rnStamp::after {
+  inset: -8px;
+  opacity: 0.33;
+}
+
+.ballArrow {
+  color: var(--contact-ink);
+  height: 92px;
+  position: absolute;
+  stroke-dasharray: 120;
+  stroke-dashoffset: 0;
+  width: 82px;
+}
+
+.ballArrowLeft {
+  left: 9%;
+  top: 6%;
+  transform: rotate(-14deg);
+}
+
+.ballArrowRight {
+  right: 10%;
+  top: 0;
+  transform: scaleX(-1) rotate(-17deg);
+}
+
+.ballArrowBottom {
+  bottom: 7%;
+  left: 23%;
+  transform: rotate(158deg);
+}
+
+.noPressureNote {
+  bottom: 0;
+  font-size: 25px;
+  padding: 42px 25px 22px;
+  position: absolute;
+  right: 3%;
+  width: 188px;
+  z-index: 12;
+}
+
+.noPressureNote svg {
+  color: var(--contact-ink);
+  float: right;
+  height: 31px;
+  margin-top: -8px;
+  width: 31px;
+}
+
+.ideaExplanation {
+  border: 1.5px dashed rgb(59 48 35 / 58%);
+  box-shadow: none;
+  font: 500 21px/1.45 "Kalam", cursive;
+  margin: 5px auto 0;
+  max-width: 510px;
+  padding: 20px 50px;
+  transform: rotate(-0.25deg);
+}
+
+.ideaExplanation p + p {
+  margin-top: 22px;
+}
+
+.explanationHeart,
+.explanationStar {
+  color: var(--contact-ink);
+  height: 34px;
+  position: absolute;
+  right: 27px;
+  top: 40px;
+  width: 34px;
+}
+
+.explanationStar {
+  bottom: 23px;
+  height: 42px;
+  right: -20px;
+  top: auto;
+  transform: rotate(7deg);
+  width: 42px;
+}
+
+/* Step 2 */
+.stepTwo {
+  min-height: max(1120px, calc(100svh - 36px));
+}
+
+.challengeForm {
+  --fold-shadow: 0 12px 21px rgb(66 44 23 / 9%);
+  background:
+    linear-gradient(92deg, transparent 49.7%, rgb(87 62 37 / 5%) 50%, transparent 50.4%),
+    var(--contact-grain),
+    linear-gradient(98deg, rgb(250 243 231 / 70%), rgb(242 231 213 / 40%));
+  box-shadow: var(--fold-shadow);
+  margin: 0 auto;
+  max-width: 790px;
+  padding: 28px 34px 34px;
+  position: relative;
+  transform-style: preserve-3d;
+  z-index: 8;
+}
+
+.formCreases {
+  opacity: 0.46;
+}
+
+.challengeForm > :not(.formCreases) {
+  position: relative;
+  z-index: 4;
+}
+
+.uploadComposition {
+  margin-bottom: 22px;
+  min-height: 260px;
+  position: relative;
+}
+
+.uploadField {
+  position: relative;
+}
+
+.uploadLabel {
+  margin-bottom: 10px;
+}
+
+.uploadLabel em {
+  font-size: 0.9em;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.uploadPaper {
+  background:
+    linear-gradient(93deg, transparent 49.6%, rgb(88 63 39 / 6%) 50%, transparent 50.4%),
+    var(--contact-grain),
+    rgb(250 244 232 / 76%);
+  border: 1.5px dashed rgb(54 45 35 / 70%);
+  border-radius: 5px 3px 7px 4px;
+  min-height: 205px;
+  position: relative;
+  width: min(470px, 70%);
+}
+
+.uploadPrompt {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--contact-ink);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: 400 17px/1.35 "Kalam", cursive;
+  height: 100%;
+  inset: 0;
+  justify-content: center;
+  min-height: 205px;
+  padding: 22px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.uploadPrompt svg {
+  height: 60px;
+  margin-bottom: 8px;
+  width: 78px;
+}
+
+.uploadPrompt strong {
+  font-weight: 500;
+}
+
+.uploadPrompt small {
+  margin-top: 9px;
+}
+
+.attachment {
+  align-items: center;
+  display: grid;
+  gap: 13px;
+  grid-template-columns: 35px 1fr 38px;
+  min-height: 205px;
+  padding: 30px;
+}
+
+.attachment > span:nth-child(2) {
+  min-width: 0;
+}
+
+.attachment strong,
+.attachment small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachment strong {
+  font: 600 20px/1.3 "Patrick Hand", cursive;
+}
+
+.attachment small {
+  font: 400 16px/1.3 "Kalam", cursive;
+}
+
+.attachmentClip {
+  font: 500 44px/1 Arial, sans-serif;
+  transform: rotate(14deg);
+}
+
+.attachment button {
+  background: none;
+  border: 1.5px solid var(--contact-ink);
+  border-radius: 50%;
+  cursor: pointer;
+  font: 400 28px/1 Arial, sans-serif;
+  height: 34px;
+  width: 34px;
+}
+
+.uploadNote {
+  font-size: 22px;
+  padding: 42px 24px 22px;
+  position: absolute;
+  right: 1%;
+  top: 64px;
+  transform: rotate(2deg);
+  width: 225px;
+}
+
+.uploadNote svg {
+  bottom: 10px;
+  height: 34px;
+  position: absolute;
+  right: 12px;
+  width: 34px;
+}
+
+.uploadArrow {
+  color: var(--contact-ink);
+  height: 72px;
+  position: absolute;
+  right: -31px;
+  top: -47px;
+  transform: rotate(48deg);
+  width: 65px;
+}
+
+.supportedFiles {
+  font: 400 16px/1.4 "Kalam", cursive;
+  margin: 0 0 25px;
+}
+
+.supportedFiles > span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.supportedFiles ul {
+  display: grid;
+  gap: 7px 28px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  max-width: 530px;
+  padding: 0;
+}
+
+.supportedFiles li {
+  align-items: center;
+  display: flex;
+  gap: 9px;
+}
+
+.supportedFiles li span {
+  font: 600 21px/1 Arial, sans-serif;
+}
+
+.specificNote {
+  bottom: 47px;
+  font-size: 20px;
+  left: -74px;
+  padding: 39px 21px 20px;
+  position: absolute;
+  transform: rotate(-5deg);
+  width: 145px;
+}
+
+.noteSmile {
+  display: block;
+  font: 600 37px/1 "Caveat", cursive;
+  text-align: right;
+}
+
+.foldingPaperEdges {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  transform-style: preserve-3d;
+  z-index: 25;
+}
+
+.foldingPaperEdges i {
+  backface-visibility: visible;
+  background:
+    linear-gradient(105deg, rgb(255 255 255 / 55%), transparent 34%),
+    var(--contact-grain),
+    linear-gradient(98deg, #f4ead8, #fbf5e9 58%, #dfcfb4);
+  box-shadow:
+    inset 0 0 18px rgb(87 60 30 / 10%),
+    0 10px 14px rgb(48 32 17 / 20%);
+  display: block;
+  opacity: 0;
+  position: absolute;
+}
+
+.foldEdgeLeft,
+.foldEdgeRight {
+  bottom: 1%;
+  top: 1%;
+  width: 27%;
+}
+
+.foldEdgeLeft {
+  left: 0;
+  transform-origin: 100% 50%;
+}
+
+.foldEdgeRight {
+  right: 0;
+  transform-origin: 0 50%;
+}
+
+.foldEdgeTop,
+.foldEdgeBottom {
+  height: 25%;
+  left: 25%;
+  width: 50%;
+}
+
+.foldEdgeTop {
+  top: 0;
+  transform-origin: 50% 100%;
+}
+
+.foldEdgeBottom {
+  bottom: 0;
+  transform-origin: 50% 0;
+}
+
+.foldThickness {
+  background: linear-gradient(90deg, #a98e67, #f6e7d0 36%, #b99c73);
+  bottom: -4px;
+  box-shadow: 0 5px 7px rgb(48 32 17 / 21%);
+  height: 6px;
+  left: 17%;
+  opacity: 0;
+  position: absolute;
+  transform: rotate(-0.7deg);
+  width: 66%;
+}
+
+/* Step 3 */
+.stepThree {
+  min-height: max(1100px, calc(100svh - 36px));
+}
+
+.contactForm {
+  margin: 0 auto;
+  max-width: 760px;
+  position: relative;
+  z-index: 8;
+}
+
+.tornFormPaper {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 54px,
+      rgb(102 135 161 / 9%) 55px,
+      transparent 56px
+    ),
+    var(--contact-grain),
+    linear-gradient(99deg, #f5ead8, #fbf4e8 58%, #eee0cc);
+  box-shadow:
+    0 20px 24px rgb(62 42 22 / 17%),
+    0 4px 7px rgb(62 42 22 / 12%),
+    inset 0 0 26px rgb(107 75 40 / 8%);
+  margin: 0 auto;
+  mask-image:
+    linear-gradient(90deg, transparent 0, #000 2.3%, #000 100%),
+    linear-gradient(180deg, #000 0 96%, transparent 100%);
+  mask-composite: intersect;
+  max-width: 610px;
+  min-height: 665px;
+  padding: 35px 38px 45px 66px;
+  position: relative;
+  transform: rotate(-0.35deg);
+  transform-style: preserve-3d;
+}
+
+.tornFormContent {
+  position: relative;
+  z-index: 5;
+}
+
+.tornFormPaper .creaseOverlay {
+  opacity: 0.34;
+}
+
+.punchedEdge {
+  bottom: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  left: 10px;
+  position: absolute;
+  top: 20px;
+  z-index: 9;
+}
+
+.punchedEdge i {
+  background: #d6c2a4;
+  border-radius: 50%;
+  box-shadow:
+    inset 2px 1px 3px rgb(72 49 25 / 28%),
+    1px 0 rgb(255 255 255 / 54%);
+  display: block;
+  height: 17px;
+  width: 17px;
+}
+
+.routingNote {
+  bottom: 125px;
+  font-size: 21px;
+  padding: 43px 22px 20px;
+  position: absolute;
+  right: -98px;
+  transform: rotate(3deg);
+  width: 185px;
+  z-index: 12;
+}
+
+.routingNote svg {
+  bottom: 9px;
+  height: 35px;
+  position: absolute;
+  right: 9px;
+  width: 35px;
+}
+
+.contactForm .formActions {
+  margin-top: 38px;
+}
+
+.contactForm .paperButton {
+  min-width: 350px;
+}
+
+.excitementNote {
+  align-items: center;
+  color: var(--contact-ink);
+  display: flex;
+  font: 500 23px/1.2 "Caveat", cursive;
+  gap: 5px;
+  justify-content: center;
+  margin: 22px auto 0;
+  text-align: center;
+}
+
+.excitementNote svg {
+  height: 35px;
+  width: 35px;
+}
+
+.submissionError {
+  background:
+    var(--contact-grain),
+    linear-gradient(102deg, #f3cbc7, #e8aaa4);
+  box-shadow: 0 8px 12px rgb(78 35 28 / 15%);
+  color: #68231d;
+  display: flex;
+  flex-direction: column;
+  font: 500 18px/1.35 "Kalam", cursive;
+  gap: 3px;
+  margin: 22px auto;
+  max-width: 540px;
+  padding: 15px 22px;
+  transform: rotate(-0.6deg);
+}
+
+.envelopeTransitionPreview {
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 43%;
+  transform: translate(-50%, -50%) scale(0.8);
+  visibility: hidden;
+  z-index: 45;
+}
+
+/* Step 4 */
+.stepFour {
+  min-height: max(1060px, calc(100svh - 36px));
+}
+
+.successComposition {
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  z-index: 7;
+}
+
+.envelope {
+  filter:
+    drop-shadow(0 24px 21px rgb(54 36 18 / 19%))
+    drop-shadow(0 5px 5px rgb(54 36 18 / 13%));
+  height: 310px;
+  margin: 0 auto 18px;
+  position: relative;
+  transform: rotate(-2deg);
+  transform-style: preserve-3d;
+  width: min(620px, 78vw);
+}
+
+.envelopeCompact {
+  margin: 0;
+}
+
+.envelopeBack,
+.envelopeLeftFold,
+.envelopeRightFold,
+.envelopeBottomFold,
+.envelopeTopFlap {
+  background:
+    radial-gradient(circle at 22% 31%, rgb(94 60 29 / 8%) 0 0.7px, transparent 1px)
+      0 0 / 11px 10px,
+    repeating-linear-gradient(
+      35deg,
+      transparent 0 28px,
+      rgb(115 78 39 / 4%) 29px,
+      transparent 31px 58px
+    ),
+    linear-gradient(111deg, #ead5b5, #f6e5c9 56%, #d7bb91);
+  border: 1px solid rgb(86 59 31 / 35%);
+  inset: 0;
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.envelopeBack {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.envelopeLeftFold {
+  clip-path: polygon(0 0, 55% 50%, 0 100%);
+  filter: brightness(0.98);
+}
+
+.envelopeRightFold {
+  clip-path: polygon(100% 0, 45% 50%, 100% 100%);
+  filter: brightness(0.96);
+}
+
+.envelopeBottomFold {
+  clip-path: polygon(0 100%, 50% 43%, 100% 100%);
+  filter: brightness(1.02);
+}
+
+.envelopeTopFlap {
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  filter: brightness(1.04);
+  transform-origin: 50% 0;
+}
+
+.postalStamp {
+  border: 2px solid rgb(45 39 31 / 74%);
+  border-radius: 50%;
+  color: rgb(37 32 26 / 82%);
+  display: grid;
+  height: 98px;
+  place-items: center;
+  position: absolute;
+  right: 42px;
+  text-align: center;
+  top: 31px;
+  transform: rotate(9deg);
+  width: 98px;
+  z-index: 9;
+}
+
+.postalStamp::before {
+  border: 1px dashed currentColor;
+  border-radius: 50%;
+  content: "";
+  inset: 6px;
+  position: absolute;
+}
+
+.postalStamp span,
+.postalStamp small {
+  font: 600 10px/1 "Patrick Hand", cursive;
+  letter-spacing: 0.08em;
+}
+
+.postalStamp strong {
+  font: 600 34px/1 "Caveat", cursive;
+}
+
+.stringWrap {
+  inset: 0;
+  position: absolute;
+  z-index: 11;
+}
+
+.stringHorizontal,
+.stringVertical {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #987141 0 4px,
+      #d5b27e 5px 7px,
+      #806039 8px 10px
+    );
+  box-shadow:
+    0 2px 2px rgb(48 31 15 / 30%),
+    inset 0 1px rgb(255 239 205 / 32%);
+  height: 7px;
+  left: -2%;
+  position: absolute;
+  top: 50%;
+  transform: rotate(-1deg);
+  width: 104%;
+}
+
+.stringVertical {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #987141 0 4px,
+      #d5b27e 5px 7px,
+      #806039 8px 10px
+    );
+  height: 108%;
+  left: 50%;
+  top: -4%;
+  transform: rotate(0.4deg);
+  width: 7px;
+}
+
+.stringKnot {
+  border: 3px solid #89643a;
+  border-radius: 50%;
+  height: 25px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  width: 34px;
+}
+
+.waxSeal {
+  background:
+    radial-gradient(circle at 35% 30%, rgb(255 181 126 / 24%), transparent 23%),
+    radial-gradient(circle at 65% 72%, rgb(66 12 5 / 24%), transparent 35%),
+    #9d2b16;
+  border: 5px ridge #7e210f;
+  border-radius: 46% 54% 49% 51% / 52% 45% 55% 48%;
+  box-shadow:
+    0 8px 10px rgb(63 19 7 / 35%),
+    inset 0 0 12px rgb(255 150 98 / 25%);
+  color: #52180d;
+  display: grid;
+  font: 700 43px/1 "Caveat", cursive;
+  height: 110px;
+  left: 50%;
+  place-items: center;
+  position: absolute;
+  text-shadow: 0 1px rgb(240 128 82 / 38%);
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(3deg);
+  width: 110px;
+  z-index: 15;
+}
+
+.waxSeal::before {
+  border: 2px solid rgb(75 20 10 / 65%);
+  border-radius: 50%;
+  content: "";
+  inset: 13px;
+  position: absolute;
+}
+
+.waxSeal > span {
+  opacity: 0.88;
+}
+
+.sealPress {
+  height: 142px;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 104px;
+  z-index: 18;
+}
+
+.sealPress i {
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 12%), transparent 35%),
+    repeating-linear-gradient(
+      8deg,
+      #5e321e 0 6px,
+      #71402a 7px 12px,
+      #4b281a 13px 18px
+    );
+  border: 1px solid #3d2118;
+  border-radius: 8px 8px 25px 25px;
+  box-shadow:
+    0 8px 9px rgb(40 20 12 / 27%),
+    inset 2px 0 rgb(255 255 255 / 10%);
+  display: block;
+  height: 83px;
+  left: 50%;
+  position: absolute;
+  top: -65px;
+  transform: translateX(-50%);
+  width: 46px;
+}
+
+.sealPress span {
+  background:
+    radial-gradient(circle at 35% 28%, #d09b67, #765038 72%);
+  border: 5px ridge #6a4732;
+  border-radius: 50%;
+  bottom: 0;
+  box-shadow:
+    0 9px 11px rgb(42 24 14 / 35%),
+    inset 0 0 8px rgb(255 222 183 / 28%);
+  color: #3f2b20;
+  display: grid;
+  font: 700 34px/1 "Caveat", cursive;
+  height: 98px;
+  left: 50%;
+  place-items: center;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 98px;
+}
+
+.receivedStamp {
+  border: 5px double #4d7d35;
+  color: #4d7d35;
+  font: 700 32px/1 "Patrick Hand", cursive;
+  opacity: 0.82;
+  padding: 7px 13px;
+  position: absolute;
+  right: 42px;
+  top: 62%;
+  transform: rotate(-9deg);
+  z-index: 17;
+}
+
+.receivedCopy {
+  font: 600 22px/1.4 "Kalam", cursive;
+  margin: 10px 0 16px;
+}
+
+.successIntro {
+  font: 400 19px/1.5 "Kalam", cursive;
+}
+
+.confirmationNumber {
+  color: var(--contact-graphite);
+  font: 400 15px/1.4 "Kalam", cursive;
+  margin-top: 8px;
+}
+
+.successDetails {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(280px, 1fr) minmax(185px, 0.72fr) minmax(290px, 1fr) minmax(185px, 0.72fr);
+  margin: 40px auto 0;
+  max-width: 1250px;
+  position: relative;
+  z-index: 8;
+}
+
+.workingHours {
+  padding: 25px 28px;
+  transform: rotate(1deg);
+}
+
+.workingHours h2 {
+  align-items: center;
+  display: flex;
+  font: 600 28px/1 "Caveat", cursive;
+  gap: 9px;
+  justify-content: center;
+  margin: 0 0 18px;
+}
+
+.workingHours h2 svg {
+  height: 33px;
+  width: 33px;
+}
+
+.workingHours p {
+  align-items: flex-start;
+  display: flex;
+  font: 400 17px/1.3 "Kalam", cursive;
+  gap: 12px;
+  margin: 13px 0;
+}
+
+.workingHours p svg,
+.closedMark {
+  flex: 0 0 26px;
+  height: 26px;
+  width: 26px;
+}
+
+.closedMark {
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.workingHours strong {
+  display: block;
+  font-weight: 400;
+}
+
+.closed {
+  color: var(--contact-orange);
+}
+
+.responseNote,
+.quoteNote {
+  font-size: 20px;
+  padding: 42px 21px 22px;
+}
+
+.responseNote svg,
+.quoteNote svg {
+  bottom: 9px;
+  height: 30px;
+  position: absolute;
+  right: 11px;
+  width: 30px;
+}
+
+.successChecklist {
+  align-self: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.successChecklist li {
+  align-items: center;
+  display: flex;
+  font: 500 17px/1.3 "Kalam", cursive;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.successChecklist svg {
+  color: var(--contact-success);
+  flex: 0 0 27px;
+  height: 27px;
+  width: 27px;
+}
+
+.quoteNote svg:first-of-type {
+  left: 10px;
+  right: auto;
+  top: 11px;
+}
+
+.successActions {
+  align-items: center;
+  display: flex;
+  font: 600 20px/1 "Caveat", cursive;
+  gap: 14px;
+  justify-content: center;
+  margin: 32px auto 0;
+  position: relative;
+  z-index: 10;
+}
+
+.successActions a {
+  position: relative;
+}
+
+.successActions a::after {
+  background: var(--contact-orange);
+  bottom: -4px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0) rotate(-1deg);
+  transform-origin: left;
+  transition: transform 200ms ease;
+  width: 100%;
+}
+
+.successActions a:hover::after {
+  transform: scaleX(1) rotate(-1deg);
+}
+
+.successActions .paperButton {
+  font-size: 20px;
+  min-height: 48px;
+  padding: 12px 18px;
+}
+
+.resetConfirmation {
+  background:
+    var(--contact-grain),
+    linear-gradient(101deg, #f8e9bf, #efd28c);
+  box-shadow: 0 18px 35px rgb(57 38 19 / 26%);
+  color: var(--contact-ink);
+  font: 400 18px/1.4 "Kalam", cursive;
+  left: 50%;
+  max-width: calc(100% - 40px);
+  padding: 26px 28px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-0.7deg);
+  width: 390px;
+  z-index: 2000;
+}
+
+.resetConfirmation strong {
+  display: block;
+  font: 600 28px/1 "Caveat", cursive;
+  margin-bottom: 10px;
+}
+
+.resetConfirmation button {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--contact-ink);
+  cursor: pointer;
+  font: 600 18px/1 "Patrick Hand", cursive;
+  margin: 18px 10px 0;
+  padding: 6px 8px;
+}
+
+.resetConfirmation button:last-child {
+  border-color: var(--contact-orange);
+  color: #8c3b0b;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (max-width: 1280px) and (min-width: 901px) {
+  .contactMain {
+    padding-right: 16px;
+  }
+
+  .stepShell {
+    padding-left: 34px;
+    padding-right: 34px;
+  }
+
+  .stepLabel {
+    left: 26px;
+  }
+
+  .successDetails {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 780px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contactMain {
+    padding: 110px 14px 22px;
+  }
+
+  .journeyWorkspace {
+    max-width: 760px;
+  }
+
+  .stepShell {
+    border-radius: 13px 16px 12px 15px;
+    min-height: calc(100svh - 128px);
+    padding: 84px 34px 76px;
+  }
+
+  .progress {
+    display: flex;
+  }
+
+  .stepLabel {
+    font-size: 18px;
+    left: 25px;
+    padding: 12px 18px 10px;
+    top: 48px;
+  }
+
+  .stepHeading {
+    margin-top: 18px;
+  }
+
+  .stepHeading h1 {
+    font-size: clamp(43px, 8vw, 62px);
+  }
+
+  .specificNote {
+    bottom: 40px;
+    left: -20px;
+  }
+
+  .routingNote {
+    bottom: 140px;
+    right: -25px;
+  }
+
+  .successDetails {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 690px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contactMain {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .stepShell {
+    background:
+      radial-gradient(ellipse at 50% -5%, rgb(255 255 255 / 54%), transparent 42%),
+      var(--contact-grain),
+      linear-gradient(99deg, #f2e6d4, #fbf4e7 50%, #eee0ca);
+    border-radius: 9px 13px 10px 12px;
+    min-height: calc(100svh - 124px);
+    overflow: visible;
+    padding: 88px 20px 76px;
+  }
+
+  .stepShell::before,
+  .paperPerimeter {
+    inset: 6px;
+  }
+
+  .stepLabel {
+    left: 18px;
+    top: 52px;
+  }
+
+  .stepHeading {
+    margin-bottom: 27px;
+  }
+
+  .headingLine {
+    gap: 10px;
+  }
+
+  .stepHeading h1 {
+    font-size: clamp(39px, 12vw, 54px);
+    max-width: 290px;
+  }
+
+  .headingBulb,
+  .headingStar,
+  .headingSmile {
+    height: 48px;
+    width: 42px;
+  }
+
+  .stepIntro,
+  .stepOneIntro {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .stepOne {
+    min-height: 1260px;
+  }
+
+  .stepOneComposition {
+    height: 390px;
+  }
+
+  .crumpledPaper {
+    height: 240px;
+    top: 55px;
+    width: 250px;
+  }
+
+  .rnStamp {
+    font-size: 34px;
+    height: 78px;
+    width: 78px;
+  }
+
+  .ballArrow {
+    height: 63px;
+    width: 57px;
+  }
+
+  .ballArrowLeft {
+    left: 1%;
+  }
+
+  .ballArrowRight {
+    right: 1%;
+  }
+
+  .ballArrowBottom {
+    bottom: 25px;
+    left: 5%;
+  }
+
+  .noPressureNote {
+    bottom: -3px;
+    font-size: 20px;
+    padding: 38px 18px 17px;
+    right: 0;
+    width: 145px;
+  }
+
+  .ideaExplanation {
+    font-size: 18px;
+    padding: 20px 34px 20px 24px;
+  }
+
+  .primaryAction {
+    font-size: 25px;
+    min-width: 100%;
+  }
+
+  .stepTwo,
+  .stepThree,
+  .stepFour {
+    min-height: auto;
+  }
+
+  .challengeForm {
+    box-shadow: none;
+    margin-left: -5px;
+    margin-right: -5px;
+    padding: 20px 8px 28px;
+  }
+
+  .field label,
+  .uploadLabel {
+    font-size: 20px;
+  }
+
+  .field :is(input, select, textarea) {
+    font-size: 17px;
+    min-height: 52px;
+  }
+
+  .uploadComposition {
+    margin-bottom: 188px;
+  }
+
+  .uploadPaper {
+    width: 100%;
+  }
+
+  .uploadNote {
+    bottom: -172px;
+    font-size: 19px;
+    left: 50%;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%) rotate(2deg);
+    width: 190px;
+  }
+
+  .uploadArrow {
+    display: none;
+  }
+
+  .supportedFiles ul {
+    gap: 7px 14px;
+  }
+
+  .specificNote {
+    bottom: 102px;
+    font-size: 17px;
+    left: auto;
+    right: -3px;
+    width: 124px;
+  }
+
+  .formActions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .formActions .paperButton {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .tornFormPaper {
+    margin-left: -7px;
+    margin-right: -7px;
+    padding: 29px 18px 39px 50px;
+  }
+
+  .punchedEdge {
+    left: 9px;
+  }
+
+  .routingNote {
+    bottom: 165px;
+    font-size: 17px;
+    right: -7px;
+    width: 145px;
+  }
+
+  .contactForm .paperButton {
+    min-width: 100%;
+  }
+
+  .envelope {
+    height: min(48vw, 235px);
+    width: min(92vw, 470px);
+  }
+
+  .waxSeal {
+    font-size: 31px;
+    height: 80px;
+    width: 80px;
+  }
+
+  .postalStamp {
+    height: 70px;
+    right: 20px;
+    top: 20px;
+    width: 70px;
+  }
+
+  .postalStamp strong {
+    font-size: 25px;
+  }
+
+  .postalStamp span,
+  .postalStamp small {
+    font-size: 7px;
+  }
+
+  .receivedStamp {
+    border-width: 3px;
+    font-size: 21px;
+    right: 20px;
+  }
+
+  .successDetails {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+
+  .workingHours,
+  .responseNote,
+  .successChecklist,
+  .quoteNote {
+    margin: 0 auto;
+    max-width: 330px;
+    width: 100%;
+  }
+
+  .responseNote {
+    transform: rotate(-1deg);
+  }
+
+  .quoteNote {
+    transform: rotate(1deg);
+  }
+
+  .successActions {
+    flex-wrap: wrap;
+  }
+
+  .successActions .paperButton {
+    flex-basis: 100%;
+    margin-top: 8px;
+  }
+
+  .pageNumber {
+    bottom: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .contactMain {
+    padding-top: 94px;
+  }
+
+  .stepShell {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .progress {
+    gap: 7px;
+  }
+
+  .progressTab {
+    width: 36px;
+  }
+
+  .stepHeading h1 {
+    font-size: 41px;
+  }
+
+  .ideaExplanation {
+    padding-right: 25px;
+  }
+
+  .specificNote {
+    position: relative;
+    bottom: auto;
+    margin: -10px 0 15px auto;
+  }
+
+  .routingNote {
+    bottom: 165px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paperButton,
+  .backButton::after,
+  .successActions a::after {
+    transition-duration: 1ms;
+  }
+
+  .paperButton:hover:not(:disabled) {
+    transform: none;
+  }
+}

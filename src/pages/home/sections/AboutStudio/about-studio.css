@@ -1,0 +1,1004 @@
+/* =========================================
+   Div-3 Hero Component (Vintage Sketch)
+   ========================================= */
+
+#div-3 {
+  --bg-parchment: #F7F1E5;
+  --paper-color: #FAF4EA;
+  --ink-color: #2D2D2D;
+  --marker-yellow: rgba(245, 212, 106, 0.4);
+  --marker-orange: rgba(232, 178, 77, 0.4);
+  --marker-blue: rgba(191, 216, 244, 0.4);
+  --coffee-color: #7A5335;
+  --shadow-soft: 2px 6px 15px rgba(0,0,0,0.12);
+  --font-clean: 'Patrick Hand', cursive;
+  --font-note: 'Kalam', cursive;
+  --font-title: 'Caveat Brush', cursive;
+  --font-body: 'Space Grotesk', sans-serif;
+  
+  width: 100%;
+  background-color: var(--bg-parchment);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 40px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  /* Match Div-1's -50px desktop pull */
+  margin-left: -50px;
+  width: calc(100% + 50px);
+
+  /* Subtle parchment grain */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0,0,0,0.02) 1px, transparent 1.5px),
+    radial-gradient(circle at 90% 80%, rgba(0,0,0,0.02) 1px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+/* Base resets inside div-3 */
+#div-3 * {
+  box-sizing: border-box;
+}
+
+/* ================== LEFT CONTENT ================== */
+.d3-left-content {
+  width: 42%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.d3-who-we-are {
+  font-family: var(--font-clean);
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--ink-color);
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  align-self: flex-start;
+}
+.d3-who-we-are::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--ink-color);
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+.d3-title {
+  font-family: var(--font-title);
+  font-size: 42px;
+  line-height: 1.1;
+  color: var(--ink-color);
+  margin: 0;
+  position: relative;
+}
+
+.marker-draw {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: stroke-dashoffset 0.8s ease-out 0.2s;
+}
+.visible .marker-draw {
+  stroke-dashoffset: 0;
+}
+.marker-wipe {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+.visible .marker-wipe {
+  transform: scaleX(1);
+}
+
+.visible .d3-highlight-text::after {
+  background-size: 100% 100%;
+}
+
+.d3-star-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  transform: rotate(15deg);
+}
+.d3-star-icon-small {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  transform: rotate(15deg);
+}
+
+.d3-paragraphs {
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.d3-highlight-text {
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+.blue-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; width: 100%; height: 3px;
+  background-color: var(--marker-blue);
+  border-radius: 5px;
+  transform: rotate(-1deg);
+}
+.mark-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: -2px; width: calc(100% + 4px); height: 18px;
+  border: 1.5px solid var(--ink-color);
+  border-radius: 50%;
+  transform: rotate(-2deg);
+}
+.orange-underline::after {
+  border-color: var(--marker-orange);
+}
+
+/* Pencil & Eraser */
+.d3-stationery-bottom {
+  position: relative;
+  height: 80px;
+  margin-top: 20px;
+}
+.d3-pencil-ill {
+  position: absolute;
+  left: 20px; top: 20px;
+  width: 140px; height: 12px;
+  transform: rotate(15deg);
+  display: flex;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+  border-radius: 2px;
+}
+.d3-pencil-tip { width: 10px; background: #222; clip-path: polygon(100% 0, 100% 100%, 0 50%); }
+.d3-pencil-wood { width: 15px; background: #DEB887; clip-path: polygon(100% 0, 100% 100%, 0 50%); margin-left: -2px; }
+.d3-pencil-body { flex: 1; background: #FFD700; border-top: 2px solid #DAA520; border-bottom: 2px solid #DAA520; }
+.d3-pencil-metal { width: 15px; background: #C0C0C0; border-left: 1px solid #999; border-right: 1px solid #999; }
+.d3-pencil-eraser { width: 12px; background: #FFB6C1; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+
+.d3-eraser-ill {
+  position: absolute;
+  left: 140px; top: 50px;
+  width: 40px; height: 20px;
+  transform: rotate(-10deg);
+  display: flex;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+.d3-eraser-rubber { flex: 1; background: #FFF; border-radius: 4px 0 0 4px; border: 1px solid #DDD; }
+.d3-eraser-sleeve { width: 25px; background: #4169E1; border-radius: 0 4px 4px 0; border: 1px solid #27408B; }
+
+/* ================== CENTER WORKSPACE ================== */
+.d3-center-workspace {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 60%;
+  height: 600px;
+}
+
+/* Notebook */
+.d3-notebook {
+  position: absolute;
+  top: 150px; left: 10%;
+  width: 480px; height: 300px;
+  display: flex;
+  transform: rotate(-2deg);
+  z-index: 5;
+}
+.d3-notebook-shadow {
+  position: absolute;
+  top: 5px; left: 5px;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.1);
+  border-radius: 10px;
+  filter: blur(8px);
+  z-index: -1;
+}
+.d3-notebook-pages {
+  display: flex;
+  width: 100%;
+  background: var(--paper-color);
+  border-radius: 8px;
+  border: 1px solid #DDD;
+  position: relative;
+}
+.d3-notebook-page {
+  flex: 1;
+  position: relative;
+  padding: 25px;
+  overflow: hidden;
+}
+.d3-notebook-lines {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: linear-gradient(transparent 95%, #E5E5E5 95%);
+  background-size: 100% 24px;
+  z-index: 0;
+}
+.d3-page-left {
+  border-right: 1px solid #CCC;
+  border-radius: 8px 0 0 8px;
+  box-shadow: inset -5px 0 10px rgba(0,0,0,0.03);
+}
+.d3-page-right {
+  border-left: 1px solid #CCC;
+  border-radius: 0 8px 8px 0;
+  box-shadow: inset 5px 0 10px rgba(0,0,0,0.03);
+}
+.d3-spiral-binding {
+  position: absolute;
+  left: 50%; top: 5%;
+  height: 90%; width: 30px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+.d3-coil {
+  width: 100%; height: 6px;
+  background: linear-gradient(to bottom, #999, #555, #999);
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Notebook Pen */
+.d3-notebook-pen {
+  position: absolute;
+  right: -30px; top: 10px;
+  width: 50px; height: 180px;
+  transform: rotate(5deg);
+  z-index: 6;
+}
+
+/* Sticky Notes */
+.d3-sticky-note {
+  background: #FDF2B3;
+  padding: 15px;
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-note);
+  font-size: 16px;
+  color: var(--ink-color);
+  line-height: 1.3;
+  position: relative;
+  z-index: 10;
+}
+.d3-tape-small {
+  position: absolute;
+  top: -8px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 30px; height: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.d3-tape-large {
+  position: absolute;
+  top: -10px; right: 20px;
+  transform: rotate(5deg);
+  width: 40px; height: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.d3-note-1 {
+  position: absolute;
+  top: 40px; left: 30px;
+  width: 140px;
+  transform: rotate(-3deg);
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 20px;
+  z-index: 1;
+}
+.d3-note-1::before {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px; right: -20px; bottom: -20px;
+  background-image: url('/assets/images/sticky-note-div3-bg2.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  display: block !important;
+}
+.d3-note-2 {
+  position: absolute;
+  bottom: -30px; right: 20px;
+  width: 110px;
+  transform: rotate(4deg);
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 20px;
+  z-index: 1;
+}
+.d3-note-2::before {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px; right: -20px; bottom: -20px;
+  background-image: url('/assets/images/sticky-note-div3-bg3-clean.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  display: block !important;
+}
+.d3-note-3 {
+  position: absolute;
+  top: 10px; right: 40px;
+  width: 160px;
+  transform: rotate(2deg);
+  font-size: 18px;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 20px;
+  z-index: 1;
+}
+.d3-note-3::before {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px; right: -20px; bottom: -20px;
+  background-image: url('/assets/images/sticky-note-div3-bg.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  display: block !important;
+}
+.d3-note-4 {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 180px;
+  transform: rotate(-2deg);
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 20px;
+  z-index: 1;
+}
+.d3-note-4::before {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px; right: -20px; bottom: -20px;
+  background-image: url('/assets/images/sticky-note-div3-bg.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  display: block !important;
+}
+.d3-heart { color: #555; }
+
+/* Philosophy Checklist */
+.d3-page-title {
+  font-family: var(--font-clean);
+  font-size: 22px;
+  margin: 0 0 15px 0;
+  position: relative;
+  z-index: 1;
+}
+.d3-checklist {
+  list-style: none;
+  padding: 0; margin: 0;
+  position: relative;
+  z-index: 1;
+}
+.d3-checklist li {
+  font-family: var(--font-note);
+  font-size: 18px;
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 35px;
+  display: block;
+}
+.check-svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px; height: 24px;
+  display: block;
+  color: var(--ink-color);
+}
+.check-path {
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Paperclip */
+.d3-paperclip-1 {
+  position: absolute;
+  top: -15px; left: -10px;
+  width: 12px; height: 35px;
+  border: 2px solid #999;
+  border-radius: 6px;
+  transform: rotate(-15deg);
+}
+.d3-paperclip-2 {
+  position: absolute;
+  top: -5px; left: -25px;
+  width: 10px; height: 28px;
+  border: 2px solid #888;
+  border-radius: 5px;
+  transform: rotate(10deg);
+}
+
+/* Floating text */
+.d3-floating-text {
+  font-family: var(--font-note);
+  font-size: 16px;
+  position: absolute;
+  color: var(--ink-color);
+  line-height: 1.2;
+  animation: subtleFloat 6s ease-in-out infinite alternate;
+}
+.d3-float-1 { top: 60px; left: 10%; transform: rotate(-5deg); animation-delay: 0s; }
+.d3-float-2 { top: 220px; right: 10%; transform: rotate(3deg); animation-delay: -3s; }
+.d3-note-3 {
+  animation: subtleFloat 7s ease-in-out infinite alternate;
+}
+
+@keyframes subtleFloat {
+  0% { margin-top: 0; }
+  100% { margin-top: 10px; }
+}
+
+/* Wireframe Paper */
+.d3-wireframe-paper {
+  position: absolute;
+  bottom: 20px; left: 15%;
+  width: 250px; height: 150px;
+  background: var(--paper-color);
+  box-shadow: var(--shadow-soft);
+  transform: rotate(-8deg);
+  border: 1px solid #DDD;
+  z-index: 4;
+}
+.d3-wireframe-sketch {
+  width: 100%; height: 100%;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 30px 1fr;
+  gap: 10px;
+}
+.d3-wireframe-sketch::before {
+  content: '';
+  grid-column: 1 / 3;
+  border: 1.5px solid #888;
+  border-radius: 2px;
+}
+.d3-wireframe-sketch::after {
+  content: '';
+  border: 1.5px solid #888;
+  border-radius: 2px;
+  background: repeating-linear-gradient(45deg, transparent, transparent 5px, #CCC 5px, #CCC 6px);
+}
+
+/* Desk Lamp */
+.d3-desk-lamp {
+  position: absolute;
+  top: 10px; left: 35%;
+  width: 200px; height: 200px;
+  z-index: 6;
+}
+.d3-lamp-base {
+  position: absolute; bottom: 0; left: 10px;
+  width: 60px; height: 8px;
+  background: linear-gradient(to right, #333, #666, #333);
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transform: none;
+}
+.d3-lamp-base::after {
+  content: ''; position: absolute; bottom: 8px; left: 25px; width: 10px; height: 12px;
+  background: linear-gradient(to right, #222, #555, #222);
+  border-radius: 3px 3px 0 0;
+}
+.d3-lamp-arm-1 {
+  position: absolute; bottom: 20px; left: 37px;
+  width: 6px; height: 75px;
+  background: transparent;
+  border-left: 2px solid #888;
+  border-right: 2px solid #888;
+  transform-origin: bottom center;
+  transform: rotate(30deg);
+}
+.d3-lamp-joint-1 {
+  position: absolute; bottom: 79px; left: 71.5px;
+  width: 12px; height: 12px;
+  background: radial-gradient(circle, #999, #444);
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.d3-lamp-arm-2 {
+  position: absolute; bottom: 85px; left: 74.5px;
+  width: 6px; height: 65px;
+  background: transparent;
+  border-left: 2px solid #888;
+  border-right: 2px solid #888;
+  transform-origin: bottom center;
+  transform: rotate(25deg);
+}
+.d3-lamp-joint-2 {
+  position: absolute; bottom: 138px; left: 98.5px;
+  width: 12px; height: 12px;
+  background: radial-gradient(circle, #999, #444);
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.d3-lamp-head {
+  position: absolute; top: 10px; right: 40px;
+  width: 80px; height: 50px;
+  background: #555;
+  border-radius: 40px 40px 0 0;
+  transform: rotate(30deg);
+}
+.d3-lamp-bulb {
+  position: absolute; top: 55px; right: 65px;
+  width: 30px; height: 15px;
+  background: #FFF8D6;
+  border-radius: 0 0 15px 15px;
+  transform: rotate(30deg);
+  box-shadow: 0 0 10px #FFD700;
+  animation: lampBreathe 3s infinite alternate;
+}
+.d3-lamp-light-cone {
+  position: absolute;
+  top: 65px; right: -50px;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle at top, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+  transform: rotate(30deg);
+  pointer-events: none;
+  animation: lampBreatheOpacity 3s infinite alternate;
+}
+
+@keyframes lampBreathe {
+  0% { box-shadow: 0 0 5px #FFD700; background: #FFF8D6; }
+  100% { box-shadow: 0 0 15px #FFD700; background: #FFF; }
+}
+@keyframes lampBreatheOpacity {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Plant */
+.d3-plant-container {
+  position: absolute;
+  top: 60px; right: 20px;
+  width: 80px; height: 120px;
+  z-index: 5;
+}
+.d3-plant-pot {
+  position: absolute; bottom: 0; left: 10px;
+  width: 60px; height: 50px;
+  background: #C19A6B;
+  border-radius: 5px 5px 20px 20px;
+  border: 1px solid #8B4513;
+  overflow: hidden;
+}
+.d3-pot-rim {
+  position: absolute; top: 0; left: -2px;
+  width: 64px; height: 8px;
+  background: #A0522D;
+  border-radius: 4px;
+}
+.d3-pot-lines {
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(0deg, transparent, transparent 5px, rgba(0,0,0,0.1) 5px, rgba(0,0,0,0.1) 6px);
+}
+.d3-plant-leaves {
+  position: absolute; bottom: 40px; left: 40px;
+}
+.d3-leaf {
+  position: absolute; bottom: 0; left: 0;
+  width: 15px; height: 60px;
+  background: #4CAF50;
+  border-radius: 50% 50% 0 0;
+  border: 1px solid #2E8B57;
+  transform-origin: bottom center;
+  animation: plantSway 4s infinite ease-in-out alternate;
+}
+.d3-leaf-1 { transform: rotate(-40deg); height: 50px; left: -10px; animation-delay: 0s; }
+.d3-leaf-2 { transform: rotate(-20deg); height: 65px; left: -5px; animation-delay: 0.5s; }
+.d3-leaf-3 { transform: rotate(0deg); height: 70px; animation-delay: 1s; }
+.d3-leaf-4 { transform: rotate(20deg); height: 60px; left: 5px; animation-delay: 0.3s; }
+.d3-leaf-5 { transform: rotate(40deg); height: 45px; left: 10px; animation-delay: 0.8s; }
+
+@keyframes plantSway {
+  0% { transform: rotate(var(--angle)) skewX(0deg); }
+  100% { transform: rotate(calc(var(--angle) + 5deg)) skewX(2deg); }
+}
+.d3-leaf-1 { --angle: -40deg; }
+.d3-leaf-2 { --angle: -20deg; }
+.d3-leaf-3 { --angle: 0deg; }
+.d3-leaf-4 { --angle: 20deg; }
+.d3-leaf-5 { --angle: 40deg; }
+
+
+/* Coffee Mug */
+.d3-coffee-container {
+  position: absolute;
+  bottom: -20px; right: 20px;
+  width: 150px; height: 150px;
+  z-index: 5;
+}
+.d3-coffee-mug {
+  position: absolute; bottom: 0; left: 10px;
+  width: 90px; height: 82px;
+  background: #FFF;
+  border-radius: 8px 8px 22px 22px;
+  border: 1.5px solid #888;
+  box-shadow: inset -7px -7px 15px rgba(0,0,0,0.1), var(--shadow-soft);
+}
+.d3-mug-handle {
+  position: absolute; top: 15px; right: -22px;
+  width: 30px; height: 45px;
+  border: 2px solid #888;
+  border-left: none;
+  border-radius: 0 22px 22px 0;
+}
+.d3-mug-inside {
+  position: absolute; top: -8px; left: 0;
+  width: 100%; height: 18px;
+  background: #DDD;
+  border-radius: 50%;
+  border: 1.5px solid #888;
+  overflow: hidden;
+}
+.d3-coffee-liquid {
+  width: 100%; height: 100%;
+  background: var(--coffee-color);
+  border-radius: 50%;
+  transform: scale(0.9);
+}
+.d3-mug-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 15px; /* Offset from top rim */
+  box-sizing: border-box;
+}
+.d3-mug-logo svg {
+  width: 33px; /* Scales properly inside the 90px mug */
+  height: auto;
+  opacity: 0.9; /* Slight blend to look printed */
+}
+.d3-coffee-stain {
+  position: absolute; bottom: -15px; right: -30px;
+  width: 98px; height: 38px;
+  border: 3px solid rgba(122, 83, 53, 0.3);
+  border-radius: 50%;
+  transform: rotate(-15deg);
+  z-index: -1;
+}
+.d3-coffee-drops {
+  position: absolute; bottom: 0; right: -45px;
+  width: 7px; height: 7px;
+  background: rgba(122, 83, 53, 0.4);
+  border-radius: 50%;
+  box-shadow: 15px -8px 0 rgba(122, 83, 53, 0.3);
+}
+.d3-coffee-note {
+  position: absolute;
+  top: -30px; right: -50px;
+  font-family: var(--font-note);
+  font-size: 16px;
+  color: var(--ink-color);
+}
+
+.d3-steam {
+  position: absolute;
+  bottom: 85px; left: 40px;
+  width: 8px; height: 45px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 10px;
+  filter: blur(4px);
+  animation: steamRise 3s infinite ease-in;
+}
+.d3-steam-1 { left: 35px; animation-delay: 0s; }
+.d3-steam-2 { left: 65px; animation-delay: 1.5s; height: 30px; }
+
+@keyframes steamRise {
+  0% { transform: translateY(0) scaleX(1); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-40px) scaleX(3); opacity: 0; }
+}
+
+
+/* ================== BOTTOM TIMELINE ================== */
+.d3-timeline-container {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  margin-top: 10px;
+}
+.d3-torn-divider {
+  width: 100%; height: 40px;
+  margin-bottom: 10px;
+}
+.d3-timeline-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  transform: translateX(-75px);
+}
+.d3-timeline-header {
+  font-family: var(--font-clean);
+  font-size: 24px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  position: relative;
+  margin-left: 20px;
+}
+.d3-timeline-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+.timeline-arrow {
+  font-family: var(--font-clean);
+  font-size: 32px;
+  color: #666;
+  margin: 0 25px 0 10px;
+  opacity: 0;
+  transition: all 0.6s ease-out;
+}
+.d3-step-icon {
+  width: 90px; height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.d3-step-ill {
+  width: 100%;
+  height: 100%;
+}
+.d3-step-label {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
+/* RESPONSIVE ADAPTATIONS */
+@media (max-width: 1100px) {
+  #div-3 { padding: 40px 20px; }
+  .d3-center-workspace { width: 55%; transform: scale(0.9); transform-origin: top right; }
+  .d3-left-content { width: 40%; }
+}
+@media (max-width: 900px) {
+  #div-3 { 
+    margin-left: 0; 
+    width: 100%; 
+    padding: 60px 20px;
+  }
+  /* When navbar hides or becomes top */
+  .d3-center-workspace {
+    position: relative;
+    top: auto; right: auto;
+    width: 100%;
+    transform: scale(0.85);
+    transform-origin: top center;
+    margin-top: -50px;
+    height: 500px;
+  }
+  .d3-left-content { width: 100%; }
+}
+@media (max-width: 768px) {
+  .d3-timeline-steps {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  .timeline-arrow { display: none; }
+  .d3-center-workspace { transform: scale(0.65); height: 400px; }
+}
+
+@media (max-width: 767px) {
+  /* Establish a fixed coordinate wrapper for the notebook elements to prevent layout collapse */
+  .d3-center-workspace {
+    position: relative !important;
+    width: 600px !important;
+    height: 750px !important;
+    left: 50% !important;
+    transform: translateX(-50%) scale(0.6) !important;
+    transform-origin: top center !important;
+    margin-top: -30px !important; /* Pull up to reduce vertical gap */
+    top: auto !important;
+    right: auto !important;
+    margin-bottom: -280px !important; /* Removes the bottom blank space left by scaling */
+  }
+
+  /* Notebook stays perfectly centered in the lower area of the space */
+  .d3-notebook {
+    top: 450px !important;
+    left: 50% !important;
+    height: 65%;
+    width:120% ;
+    transform: translateX(-50%) rotate(-2deg) !important; /* Fixes right-side alignment issue */
+  }
+
+  /* Reposition Lamp directly above notebook */
+  .d3-desk-lamp {
+    top: 220px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) scale(1.2) !important;
+  }
+
+  /* Sticky Note near the lamp */
+  .d3-note-3 {
+    top: -90px !important;
+    left: 490px !important;
+    right: auto !important;
+    transform: rotate(5deg) scale(1.5) !important;
+  }
+
+  /* Plant on the right side of the notebook */
+  .d3-plant-container {
+    top: 320px !important;
+    right: 20px !important;
+    left: auto !important;
+    transform: scale(1.3) !important;
+  }
+
+  /* Coffee mug on the bottom left */
+  .d3-coffee-container {
+    bottom: -520px !important;
+    left: 20px !important;
+    right: auto !important;
+    transform: scale(1.55) !important;
+  }
+
+  /* Ensure the coffee mug logo remains sharp and scaled correctly */
+  .d3-mug-logo svg {
+    width: 55px !important;
+  }
+
+  /* Sticky note on notebook */
+  .d3-note-1 {
+    transform: rotate(-3deg) scale(1.45) !important;
+    top: 130px;
+   
+  }
+
+  /* Pencil, Eraser, and Floating Text layout */
+  .d3-stationery-bottom {
+    height: 100px !important; /* Greatly reduce vertical empty space */
+    margin-top: 10px !important;
+  }
+  .d3-pencil-ill {
+    top: 0px !important;
+    left: 40px !important;
+    transform: scale(1.5) rotate(15deg) !important;
+  }
+  .d3-eraser-ill {
+    top: 80px !important;
+    left: 120px !important;
+    transform: scale(1.6) rotate(-10deg) !important;
+  }
+  .d3-float-1 {
+    top: 120px !important; /* Move handwritten note closer to notebook */
+    left: 20px !important;
+    transform: scale(1.55) !important;
+  }
+
+  .d3-float-2 {
+    transform: rotate(3deg) scale(1.25) !important;
+  }
+
+  /* Notebook Checklist Adjustments */
+  .d3-page-title {
+    margin-top: 25px !important;
+  }
+  .d3-checklist li {
+    font-size: 22px !important;
+  }
+  .check-svg {
+    width: 29px !important;
+    height: 29px !important;
+  }
+
+  /* Hide wireframe paper to keep composition focused on notebook */
+  .d3-wireframe-paper {
+    display: none !important;
+  }
+
+  /* Timeline Re-layout for Mobile */
+  .d3-timeline-steps {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr auto 1fr !important;
+    row-gap: 15px !important;
+    column-gap: 5px !important;
+    align-items: start !important;
+    justify-items: center !important;
+    padding: 0 10px !important;
+    width: 100% !important;
+    transform: translateX(70px) !important; /* Shift icons 70px right */
+  }
+  
+  .timeline-item {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  /* Show and style timeline arrows for mobile */
+  .timeline-arrow {
+    display: block !important;
+    font-size: 26px !important;
+    margin: 32px 0 0 0 !important;
+    opacity: 1 !important;
+    color: #666 !important;
+    transform: rotate(-360deg) !important; 
+  }
+
+  /* Continuous transition arrow from Design to Development */
+  .timeline-arrow:nth-child(6) {
+    grid-column: 1 / 6 !important;
+    width: 100% !important;
+    height: 60px !important;
+    color: transparent !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 60'%3E%3Cpath d='M 305 0 L 305 25 Q 305 35 295 35 L 55 35 Q 45 35 45 45 L 45 50' fill='none' stroke='%23666' stroke-width='3'/%3E%3Cpolygon points='38,48 52,48 45,58' fill='%23666'/%3E%3C/svg%3E") !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    transform: none !important;
+    margin: 5px 0 !important;
+  }
+
+  /* Adjust Our Journey Header */
+  .d3-timeline-header {
+    transform: translateX(30px) !important;
+    top: 50px;
+  }
+
+  /* Unhide and Position Infinite Possibilities Sticky Note */
+  .d3-note-4 {
+    position: relative !important;
+    top: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) rotate(2deg) scale(0.9) !important;
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .d3-center-workspace { transform: translateX(-50%) scale(0.42) !important; }
+  .d3-title { font-size: 32px; }
+}
+

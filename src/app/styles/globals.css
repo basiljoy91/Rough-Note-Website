@@ -1,0 +1,113 @@
+@import "./tokens.css";
+@import "./reset.css";
+@import "./layout.css";
+
+html {
+  min-width: 320px;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+/*
+ * One quiet, physical-paper layer shared by every route and section.
+ * It sits above the section background colours so the same fibres and
+ * soft crease valleys remain visible as the notebook pages change.
+ */
+body::before {
+  background-image: url("../../assets/textures/wrinkled-paper.webp");
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-size: max(100vw, 900px) auto;
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.28;
+  pointer-events: none;
+  position: absolute;
+  z-index: 30;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (pointer: fine) {
+  :is(
+      a[href],
+      area[href],
+      button:not(:disabled),
+      input[type="button"]:not(:disabled),
+      input[type="submit"]:not(:disabled),
+      input[type="reset"]:not(:disabled),
+      input[type="checkbox"]:not(:disabled),
+      input[type="radio"]:not(:disabled),
+      select:not(:disabled),
+      option,
+      label[for],
+      summary,
+      [role="button"]:not([aria-disabled="true"]),
+      [role="link"]:not([aria-disabled="true"]),
+      [data-cursor="pointer"]
+    ) {
+    cursor:
+      url("../../assets/icons/cursors/pointer-hand.svg") 13 1,
+      pointer !important;
+  }
+
+  :is(
+      input[type="range"]:not(:disabled),
+      [draggable="true"],
+      [data-cursor="grab"]
+    ) {
+    cursor:
+      url("../../assets/icons/cursors/open-palm.svg") 16 16,
+      grab !important;
+  }
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+@media (prefers-contrast: more) {
+  body::before {
+    opacity: 0.14;
+  }
+}
+
+.svg-filters {
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+.simple-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 120px 24px 48px;
+}
+
+.simple-page h1 {
+  font: 700 clamp(2.5rem, 8vw, 6rem) / 1 "Caveat", cursive;
+  text-align: center;
+}

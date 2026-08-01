@@ -1,0 +1,775 @@
+/* =========================================
+   DIV-8 (FAQ SECTION) STYLES
+   ========================================= */
+
+.div8-faq {
+  background-color: #f9f8f3; /* Notebook paper */
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 70px;
+  font-family: var(--font-note), 'Kalam', cursive, sans-serif;
+  color: #2a2a2a;
+  z-index: 1;
+}
+
+/* Subtle paper texture overlay */
+.div8-faq::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  z-index: -1;
+  pointer-events: none;
+}
+
+.div8-faq .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  padding: 0 50px;
+}
+
+
+
+/* =========================================
+   HEADER AREA
+   ========================================= */
+.d8-header-area {
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.d8-header-left {
+  position: relative;
+  width: 50%;
+}
+
+.d8-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  letter-spacing: -0.5px;
+}
+
+.d8-blue-underline {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+}
+
+.d8-yellow-accent {
+  position: absolute;
+  top: 40px;
+  right: -30px;
+  width: 30px;
+  height: 20px;
+}
+
+.d8-subtext {
+  font-size: 18px;
+  margin-top: 25px;
+  line-height: 1.3;
+  color: #1a1a1a;
+}
+
+.d8-subtext-heart {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+/* Header Sketches (Center/Right) */
+.d8-header-center {
+  position: absolute;
+  left: 45%;
+  top: -10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.d8-speech-bubbles {
+  width: 100px;
+  height: 80px;
+}
+.d8-browser-sketch {
+  width: 140px;
+  height: 100px;
+}
+
+.d8-header-right {
+  position: absolute;
+  right: 15%;
+  top: 10px;
+  text-align: center;
+}
+
+.d8-curious-star {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 10px;
+  position: relative;
+  right: 40px;
+
+}
+
+.d8-curious-text {
+  font-size: 16px;
+  line-height: 1.2;
+  position: absolute;
+  right: -90px;
+}
+.d8-curious-underline {
+  position: relative;
+  display: inline-block;
+}
+.d8-curious-underline-svg {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+.d8-curious-heart {
+  position: absolute;
+  bottom: 0;
+  right: -15px;
+  width: 12px;
+  height: 12px;
+}
+
+.d8-coffee-stain {
+  position: absolute;
+  right: -90px;
+  top: -20px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #a37c52;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* =========================================
+   MAIN LAYOUT (FLEX)
+   ========================================= */
+.d8-main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* =========================================
+   LEFT SIDEBAR
+   ========================================= */
+.d8-left-sidebar {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  top: 10px;
+}
+
+.d8-left-sticky {
+  position: relative;
+  width: 100%;
+  padding-bottom: 45%; /* Aspect ratio hack for sticky note */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.d8-left-sticky:nth-child(1) { transform: rotate(-2deg); }
+.d8-left-sticky:nth-child(2) { transform: rotate(1deg); }
+.d8-left-sticky:nth-child(3) { transform: rotate(-1deg); }
+.d8-left-sticky:nth-child(4) { transform: rotate(2deg); }
+.d8-left-sticky:nth-child(5) { transform: rotate(-1deg); }
+
+.d8-left-sticky img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+
+
+.d8-left-sticky-content {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px; /* Adjust for tape */
+}
+
+.d8-left-icon {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 5px;
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+}
+
+.d8-left-title {
+  font-size: 11.5px;
+  font-weight: bold;
+  margin: 0;
+  position: absolute;
+  right: 15px;
+}
+
+.d8-left-count {
+  font-size: 11px;
+  margin: 0;
+  position: absolute;
+  right: 35px;
+  bottom: 10px;
+}
+
+.d8-left-annotation {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+  line-height: 1.2;
+  position: relative;
+  left: -110px;
+  top: -220px;
+}
+.d8-left-arrow {
+  position: absolute;
+  right: 45px;
+  top: -42px;
+  width: 30px;
+  height: 40px;
+  transform: rotate(25deg);
+
+
+}
+
+.d8-left-decorations {
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+}
+.d8-left-star {
+  position: absolute;
+  top: -200px; left: -20px;
+  width: 20px; height: 20px;
+}
+.d8-pencil-sketch {
+  position: absolute;
+  top: -100px; left: -30px;
+  width: 100px;
+  height: 20px;
+  transform: rotate(55deg);
+}
+.d8-left-scribble {
+  position: absolute;
+  top: -50px; left: 80px;
+  width: 60px; height: 20px;
+}
+
+.t-1{
+    font-size: 10px;
+    left: 40px;
+}
+
+.t-2{
+    left: 40px;
+}
+
+.t-3{
+    left: 10px;
+}
+
+.t-4{
+    left: 20px;
+}
+
+.t-5{
+    left: 15px;
+}
+
+
+
+/* =========================================
+   FAQ WRAPPER
+   ========================================= */
+.d8-faq-wrapper {
+  width: 62%;
+  display: flex;
+  flex-direction: column;
+  /* Removed gap to allow negative margins to pull items together */
+  position: relative;
+  z-index: 5;
+}
+
+.d8-faq-item {
+  position: relative;
+  width: 100%;
+  margin-top: -25px; /* Pull items together to overlap the transparent space in the PNG */
+  /* Maintain fixed width constraint for paper */
+  /* Runs when closing: wait 100ms for text to fade out before shrinking */
+  transition: margin-bottom 0.3s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+}
+.d8-faq-item:first-child {
+  margin-top: 0;
+}
+.d8-faq-item:nth-child(2) {
+  margin-top: -45px; /* m-1.png has more transparent space at its bottom than m-2.png */
+}
+
+.d8-faq-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  /* Allow paper to stretch vertically when accordion opens */
+  object-fit: fill; 
+}
+
+.d8-faq-bg-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: fill;
+  z-index: -1;
+}
+
+/* Fix m-1.png being visually wider on the right edge due to less intrinsic transparent padding */
+.d8-faq-item:first-child .d8-faq-bg-img {
+  width: 94.5%;
+  left:15px;
+}
+
+.d8-faq-content {
+  position: relative;
+  padding: 25px 40px 25px 50px; /* Account for left paper clip in padding */
+  display: flex;
+  align-items: flex-start;
+  min-height: 55px;
+  /* Runs when closing: wait 100ms for text to fade out before shrinking */
+  transition: padding-bottom 0.3s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+}
+
+/* Shift Q1 content up slightly because m-1.png has more top space and is being overlapped by Q2 */
+.d8-faq-item:first-child .d8-faq-content {
+  top: -10px;
+}
+
+.d8-faq-number {
+  flex: 0 0 40px;
+  width: 30px; height: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-right: 20px;
+  margin-top: -5px;
+  right: -10px;
+}
+.d8-faq-number svg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1;
+}
+
+.d8-faq-text-area {
+  flex: 1;
+}
+
+.d8-faq-question {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  /* Removed display: inline-block to let it flow naturally */
+}
+
+.d8-highlight-wrap {
+  display: inline;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-size: 100% 110%;
+  background-position: center 60%;
+  background-repeat: no-repeat;
+  padding: 0 4px; /* Extend marker slightly beyond the first and last letters */
+  margin: 0 -4px;
+}
+
+.hl-yellow {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M 2 6 C 30 2, 70 5, 98 4 C 99 15, 97 26, 96 28 C 70 29, 30 27, 4 28 C 1 20, 3 10, 2 6 Z' fill='rgba(255, 235, 59, 0.55)'/%3E%3C/svg%3E");
+}
+.hl-pink {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M 3 5 C 35 7, 65 3, 97 6 C 98 16, 96 27, 95 28 C 65 26, 35 29, 4 27 C 2 18, 1 9, 3 5 Z' fill='rgba(244, 143, 177, 0.55)'/%3E%3C/svg%3E");
+}
+.hl-blue {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M 1 7 C 30 4, 70 6, 99 3 C 98 14, 97 25, 98 29 C 70 27, 30 28, 3 26 C 2 18, 4 12, 1 7 Z' fill='rgba(66, 165, 245, 0.55)'/%3E%3C/svg%3E");
+}
+.hl-green {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M 4 4 C 40 2, 60 7, 96 5 C 99 15, 97 24, 98 28 C 60 26, 40 29, 3 27 C 1 18, 2 10, 4 4 Z' fill='rgba(129, 199, 132, 0.55)'/%3E%3C/svg%3E");
+}
+.hl-orange {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M 2 5 C 25 8, 75 3, 97 6 C 98 17, 96 28, 97 29 C 75 27, 25 29, 3 27 C 1 19, 4 11, 2 5 Z' fill='rgba(255, 167, 38, 0.55)'/%3E%3C/svg%3E");
+}
+.hl-purple {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M 3 6 C 35 4, 65 7, 98 5 C 99 16, 97 25, 96 28 C 65 29, 35 27, 4 28 C 2 20, 1 10, 3 6 Z' fill='rgba(171, 71, 188, 0.55)'/%3E%3C/svg%3E");
+}
+
+.d8-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px); /* Answer starts slightly lower for slide-up effect */
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 0;
+  color: #2a2a2a;
+  /* Runs when closing: fade and slide out immediately (0.2s), shrink height after 100ms delay */
+  transition: opacity 0.2s ease 0s, 
+              transform 0.2s ease 0s,
+              max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1) 0.1s, 
+              margin-top 0.3s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+}
+
+/* 
+  Target only the expanded state to ensure text stays inside paper
+  and next paper moves down naturally
+*/
+.d8-faq-item.active {
+  /* Runs when opening: expand immediately */
+  transition: margin-bottom 0.35s cubic-bezier(0.25, 1, 0.5, 1) 0s;
+}
+
+.d8-faq-item.active .d8-faq-content {
+  padding-bottom: 35px; /* Ensures text stays 10-15px visually inside the paper after PNG stretch */
+  /* Runs when opening: expand immediately */
+  transition: padding-bottom 0.35s cubic-bezier(0.25, 1, 0.5, 1) 0s;
+}
+
+/* Special rules for FAQ Item 01 because m-1.png has a massive transparent bottom shadow */
+.d8-faq-item:first-child.active {
+  margin-bottom: -35px; /* Pull Q2 up heavily to prevent empty space below the answer */
+}
+.d8-faq-item:first-child.active .d8-faq-content {
+  padding-bottom: 75px; /* Push the text high up to ensure it stays completely inside m-1.png's visual paper */
+}
+
+.d8-faq-item.active .d8-faq-answer {
+  max-height: 200px; /* Use content height dynamically */
+  opacity: 1;
+  transform: translateY(0); /* Slide up to final position */
+  margin-top: 1px; /* 8-10px of spacing above the answer */
+  padding-bottom: 0;
+  /* Runs when opening: expand immediately, fade and slide in after 100ms delay */
+  transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1) 0s, 
+              margin-top 0.35s cubic-bezier(0.25, 1, 0.5, 1) 0s,
+              opacity 0.25s ease 0.1s, 
+              transform 0.25s ease 0.1s;
+}
+
+.d8-faq-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 20px;
+}
+.d8-faq-icon {
+  width: 30px; height: 30px;
+}
+.d8-faq-icon-star {
+  width: 20px; height: 20px;
+  
+}
+.d8-faq-toggle {
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.d8-faq-item.active .d8-faq-toggle {
+  transform: rotate(180deg);
+}
+
+/* =========================================
+   RIGHT SIDEBAR
+   ========================================= */
+.d8-right-sidebar {
+  width: 16%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  top: 20px;
+}
+
+.d8-right-sticky {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -50px;
+}
+
+.d8-right-sticky img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+
+.d8-right-sticky-content {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10%;
+}
+
+.d8-right-sticky:nth-child(1) { transform: rotate(2deg); }
+.d8-right-sticky:nth-child(2) { transform: rotate(-2deg); top: -90px; } /* Moved up another 70px from -20px */
+.d8-right-sticky:nth-child(3) { transform: rotate(1deg); top: -110px; }
+
+/* Sticky 1 */
+.d8-r-text-1 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+.d8-r-smiley {
+  position: absolute;
+  bottom: 25%; right: 20%;
+  width: 25px; height: 25px;
+}
+
+/* Sticky 2 */
+.d8-r-text-2 {
+  font-size: 18px;
+  line-height: 1.3;
+}
+.d8-r-check {
+  width: 30px; height: 30px;
+  margin-top: 5px;
+}
+.d8-r-heart {
+  position: absolute;
+  bottom: 15%; right: 15%;
+  width: 15px; height: 15px;
+}
+
+/* Sticky 3 */
+.d8-r-text-3 {
+  font-size: 16px;
+  line-height: 1.3;
+}
+.d8-r-underline {
+  position: relative;
+  display: inline-block;
+}
+.d8-r-underline svg {
+  position: absolute;
+  bottom: -2px; left: 0; width: 100%; height: 4px;
+}
+
+.d8-bottom-arrow {
+  position: absolute;
+  bottom: -40px;
+  left: -20px;
+  width: 40px; height: 40px;
+}
+
+/* =========================================
+   RESPONSIVENESS
+   ========================================= */
+@media (max-width: 1200px) {
+  .d8-faq-wrapper { width: 55%; }
+  .d8-left-sidebar { width: 20%; }
+  .d8-right-sidebar { width: 20%; }
+}
+
+@media (max-width: 992px) {
+  .d8-header-area { flex-direction: column; }
+  .d8-header-left { width: 100%; margin-bottom: 20px; }
+  .d8-header-center, .d8-header-right { position: relative; left: 0; right: 0; top: 0; align-self: flex-start; }
+  .d8-coffee-stain { display: none; }
+  
+  .d8-main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .d8-left-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    top: 0;
+    margin-bottom: 30px;
+  }
+  .d8-left-sticky {
+    width: 30%;
+    padding-bottom: 15%; /* adjust for wide layout */
+  }
+  .d8-left-decorations, .d8-left-annotation { display: none; }
+  
+  .d8-faq-wrapper {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .d8-right-sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    top: 0;
+  }
+  .d8-right-sticky {
+    width: 30%;
+    padding-bottom: 30%;
+  }
+  .d8-right-sticky:nth-child(2), .d8-right-sticky:nth-child(3) {
+    top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  /* 1. LEFT CATEGORY STICKY NOTES */
+  .d8-left-sticky { 
+    width: 45%; 
+    padding-bottom: 25%; 
+  }
+  .d8-left-icon {
+    left: 15px !important; 
+  }
+  
+  /* 2. "CURIOUS MINDS CREATE GREAT PRODUCTS." */
+  .d8-header-right {
+    transform: translateY(-30px) !important;
+  }
+  
+  /* 3. FAQ QUESTIONS */
+  .d8-faq-content { 
+    padding-left: 25px !important;
+    padding-right: 10px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+  }
+  .d8-faq-item.active .d8-faq-content {
+    padding-bottom: 35px !important;
+  }
+  .d8-faq-item:first-child.active .d8-faq-content {
+    padding-bottom: 75px !important;
+  }
+  
+  .d8-faq-number { 
+    flex: 0 0 25px !important; 
+    width: 25px !important; 
+    height: 25px !important;
+    margin-right: 10px !important; 
+    font-size: 14px !important;
+  }
+  .d8-faq-question {
+    font-size: clamp(14px, 4vw, 16px) !important;
+    line-height: 1.3 !important;
+  }
+  .d8-faq-right {
+    margin-left: 10px !important;
+  }
+
+  /* 4. RIGHT SIDE STICKY NOTES */
+  .d8-right-sidebar {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 15px !important;
+  }
+  .d8-right-sticky { 
+    width: 45% !important; 
+    padding-bottom: 45% !important; 
+    flex: none !important;
+  }
+  .d8-right-sticky-content {
+    padding: 12% 8% !important;
+  }
+  .d8-r-text-1 { font-size: clamp(11px, 3.0vw, 14px) !important; line-height: 1.2 !important; }
+  .d8-r-text-2 { font-size: clamp(12px, 3.2vw, 15px) !important; line-height: 1.2 !important; }
+  .d8-r-text-3 { font-size: clamp(11px, 3.0vw, 14px) !important; line-height: 1.2 !important; }
+  .d8-r-smiley, .d8-r-heart {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .d8-r-check {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* 5. "JUMP TO A TOPIC QUICKLY" */
+  .d8-left-annotation {
+    display: block !important;
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
+    text-align: center !important;
+    font-size: clamp(14px, 4vw, 16px) !important;
+  }
+  .d8-left-arrow {
+    display: inline-block !important;
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    margin-left: 10px !important;
+    transform: rotate(30deg) !important; 
+    vertical-align: middle !important;
+    width: 30px !important;
+    height: 40px !important;
+  }
+  
+  /* 6. BOTTOM LEFT PENCIL (MOBILE ONLY) */
+  .d8-left-sidebar {
+    position: static !important;
+  }
+  .d8-left-decorations {
+    display: block !important;
+    position: absolute !important;
+    bottom: -60px !important;
+    left: 10px !important;
+    width: 100px !important;
+    height: 100px !important;
+    z-index: 10 !important;
+  }
+  .d8-pencil-sketch {
+    display: block !important;
+    position: absolute !important;
+    top: 20px !important;
+    left: 20px !important;
+    transform: rotate(55deg) scale(0.8) !important;
+  }
+  .d8-left-star, .d8-left-scribble {
+    display: none !important;
+  }
+}
