@@ -216,9 +216,10 @@
 
 .dj-steps {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1rem;
+  gap: 0.5rem;
   flex: 1;
+  align-items: start;
+  margin: 0 -2rem;
 }
 
 .dj-step {
@@ -272,11 +273,12 @@
 
 .dj-step__arrow {
   position: absolute;
-  top: 16px;
+  top: 116px;
   right: -0.5rem;
   transform: translate(50%, -50%);
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #666;
+  z-index: 10;
 }
 
 /* Bottom CTA Area */
@@ -406,7 +408,7 @@
 }
 
 .dj-sticky--top-right {
-  top: 10%;
+  top: 100px;
   right: 5%;
   margin-top: -85px;
   margin-right: -50px;
@@ -417,7 +419,7 @@
 }
 
 .dj-sticky--mid-left {
-  top: 45%;
+  top: 450px;
   left: -2%;
   width: 130px;
   height: 130px;
@@ -426,7 +428,7 @@
 }
 
 .dj-sticky--bottom-right {
-  bottom: 15%;
+  bottom: 200px;
   right: 2%;
   width: 110px;
   height: 110px;
@@ -442,16 +444,131 @@
 }
 
 .dj-doodle--top-left {
-  top: 12%;
+  top: 120px;
   left: 2%;
   transform: rotate(-5deg);
   max-width: 200px;
 }
 
 .dj-doodle--mid-right {
-  top: 25%;
+  top: 250px;
   right: 18%;
   max-width: 150px;
+}
+
+/* Motion Graphics - Specific Elements */
+.dj-sticky--motion-left {
+  position: absolute;
+  top: 540px;
+  left: 2%;
+  margin-left: -80px;
+  width: 200px;
+  height: 110px;
+  transform: rotate(-4deg);
+}
+
+.dj-motion-bottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 1200px;
+  margin: -3rem auto 2rem;
+  min-height: 250px;
+  z-index: 2;
+}
+
+.dj-motion-bottom__checklist {
+  position: relative;
+  background-image: url('/assets/images/bottom-left.png');
+  background-size: 100% 100%;
+  padding: 3rem 2.5rem 3rem 3rem;
+  width: 340px;
+  transform: rotate(-2deg);
+  filter: drop-shadow(4px 6px 10px rgba(0,0,0,0.15));
+  top: -100px;
+}
+
+.dj-motion-bottom__title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.dj-motion-bottom__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dj-motion-bottom__list li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.dj-motion-bottom__list .check {
+  margin-right: 10px;
+}
+
+.dj-sticky--motion-mid {
+  position: relative;
+  transform: rotate(3deg);
+  margin-bottom: 15rem;
+  max-width: 150px;
+  left: -10px; /* shift right by 200px as requested */
+}
+
+.dj-motion-bottom__camera {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0;
+  left: 0px; 
+  top: -200px; 
+}
+.dj-camera-icon {
+  width: 100px;
+  height: auto;
+}
+.dj-camera-text {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.dj-sticky--motion-right {
+  position: relative;
+  transform: rotate(-2deg);
+  margin-bottom: 12rem;
+  max-width: 160px;
+}
+
+.dj-deliverables-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.55rem;
+  line-height: 1.5;
+}
+.dj-deliverables-list li {
+  display: flex;
+  align-items: flex-start;
+}
+.dj-deliverables-list .check {
+  margin-right: 5px;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.dj-motion-bottom__pencil {
+  position: absolute;
+  right: -5%;
+  bottom: 80px; /* moved up by 100px from -20px */
+  max-width: 150px;
+  transform: rotate(35deg);
+  z-index: 5;
 }
 
 @media (max-width: 1200px) {
@@ -605,4 +722,44 @@
   }
   .cta-left { justify-content: center; margin-bottom: 1rem; }
   .cta-arrow { transform: rotate(90deg); margin: 1rem 0; }
+
+  /* Motion Graphics Mobile */
+  .dj-motion-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem auto;
+    order: 9;
+  }
+  .dj-motion-bottom__checklist {
+    width: 90%;
+    margin-bottom: 1rem;
+    padding: 2rem 1.5rem;
+  }
+  .dj-sticky--motion-mid {
+    transform: rotate(0);
+    margin: 1rem auto;
+  }
+  .dj-motion-bottom__camera {
+    margin: 1rem auto;
+  }
+  .dj-sticky--motion-right {
+    transform: rotate(0);
+    margin: 1rem auto;
+  }
+  .dj-motion-bottom__pencil {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 1rem;
+    transform: rotate(15deg);
+  }
+  .dj-sticky--motion-left {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 4;
+    align-self: center;
+    margin: 1rem auto !important;
+  }
 }
