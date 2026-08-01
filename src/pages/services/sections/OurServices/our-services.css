@@ -480,3 +480,156 @@
   filter: drop-shadow(3px 4px 5px rgba(0,0,0,0.4));
   pointer-events: none;
 }
+
+/* Mobile Responsiveness for Div-2 */
+@media (max-width: 767px) {
+  .services-wall {
+    min-height: auto;
+    padding: 0.5rem 0 0 0;
+    margin-bottom: -1rem;
+    z-index: 10;
+    overflow: visible !important;
+  }
+  .services-wall__board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-bottom: 0;
+    gap: 0.5rem;
+  }
+  
+  .services-wall__notebook-wrapper {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 90%;
+    max-width: 350px;
+    height: auto !important;
+    margin: 0 auto 0.5rem auto;
+    z-index: 5;
+  }
+  .services-wall__notebook-bg {
+    position: relative;
+    height: auto;
+    display: block;
+  }
+  .services-wall__notebook-title {
+    font-size: 1.5rem;
+  }
+  .services-wall__workflow {
+    font-size: 12px;
+  }
+  
+  .services-wall__threads {
+    display: none;
+  }
+  
+  .services-wall__card {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 90%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .services-wall__card:nth-child(even) {
+    transform: rotate(1deg) !important;
+  }
+  .services-wall__card:nth-child(odd) {
+    transform: rotate(-1deg) !important;
+  }
+
+  /* Replace absolute pins with CSS pseudo-elements for fluid flow */
+  .services-wall__pin {
+    display: none !important;
+  }
+  
+  .services-wall__card::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), 2px 4px 4px rgba(0,0,0,0.2);
+    background: #d32f2f;
+  }
+  .services-wall__card::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: calc(50% - 2px);
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    z-index: 11;
+  }
+
+  /* Decorative connector line */
+  .card-text::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    background-color: #e65100;
+    opacity: 0.5;
+    z-index: 2;
+  }
+
+  .services-wall__pencil, .services-wall__clip {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none;
+    margin-top: 0;
+    z-index: 6;
+  }
+  .services-wall__pencil--left {
+    transform: rotate(15deg) !important;
+    align-self: flex-start;
+    margin-left: 10%;
+    max-width: 100px;
+    margin-bottom: -2rem;
+  }
+  .services-wall__pencil--right {
+    transform: rotate(-10deg) !important;
+    align-self: flex-end;
+    margin-right: 10%;
+    max-width: 100px;
+    margin-top: -1.5rem;
+    margin-bottom: -1.5rem;
+  }
+  .services-wall__clip {
+    align-self: center;
+    transform: rotate(-5deg) !important;
+    max-width: 50px;
+    margin-top: 0;
+    margin-bottom: -1.5rem;
+  }
+  
+  .services-wall__bottom {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .services-wall__bottom-content p {
+    font-size: 14px;
+  }
+}

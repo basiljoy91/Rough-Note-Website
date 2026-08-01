@@ -472,14 +472,137 @@
   }
 }
 
-@media (max-width: 768px) {
-  .dj-steps {
-    grid-template-columns: 1fr;
+@media (max-width: 767px) {
+  .dj-header__title { font-size: 1.5rem; text-align: center; }
+  .dj-header__desc { text-align: center; font-size: 0.95rem; }
+  .dj-header p { transform: none !important; text-align: center; margin-top: 1rem !important; }
+  
+  .dj-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
+  .dj-card {
+    width: 100%;
+    margin: 0;
+  }
+  .dj-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 60%;
+    max-width: 150px;
+  }
+
+  .dj-timeline-wrapper {
+    background: #fdfaf6;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 4px;
+    filter: drop-shadow(3px 6px 10px rgba(0,0,0,0.1));
+  }
+  .dj-timeline__bg { display: none; }
   .dj-timeline__content {
     position: relative;
+    padding: 2rem 1.5rem;
   }
-  .dj-timeline__bg {
-    display: none; /* Can just use css background for mobile */
+
+  .dj-timeline__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
+  .dj-timeline__title { font-size: 1.4rem; }
+  .dj-timeline__subtitle { padding: 1rem 0; text-align: center; }
+  .dj-timeline__stamp {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 1rem auto;
+    transform: rotate(-5deg);
+  }
+
+  .dj-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .dj-step { padding-bottom: 1rem; }
+  .dj-step__arrow {
+    display: block !important;
+    position: absolute;
+    top: auto;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg) !important;
+  }
+  .dj-step:last-child .dj-step__arrow { display: none !important; }
+
+  .dj-sticky {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0.5rem auto;
+  }
+  
+  .dj-doodle {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0.5rem auto;
+    text-align: center;
+  }
+
+  /* Flex ordering for decorative elements to fix overlap and layout */
+  .dynamic-journey > * { order: 5; }
+  .dj-header { order: 6; }
+  .dj-selector { order: 7; }
+  .dj-timeline-wrapper { order: 8; }
+  .dj-bottom-cta { order: 9; }
+
+  .dj-doodle--top-left { 
+    order: 1; 
+    margin-bottom: 1.5rem !important; 
+  }
+  .dj-doodle--mid-right { 
+    order: 2; 
+    margin-top: 0 !important; /* Overrides inline -150px */
+    margin-bottom: 2rem !important; 
+  }
+  
+  .dj-sticky--top-right {
+    order: 3;
+    align-self: flex-start;
+    margin-left: 10% !important;
+    margin-bottom: 0 !important;
+  }
+  .dj-sticky--mid-left {
+    order: 4;
+    align-self: flex-end;
+    margin-right: 10% !important;
+    margin-top: -130px !important; /* Pulls it up next to the other sticky */
+  }
+
+  .dj-bottom-cta {
+    margin: 2rem auto;
+    height: auto;
+  }
+  .dj-bottom__strip-img {
+    height: 100%;
+    min-height: 250px;
+    object-fit: cover;
+  }
+  .dj-bottom__strip-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+  .cta-left { justify-content: center; margin-bottom: 1rem; }
+  .cta-arrow { transform: rotate(90deg); margin: 1rem 0; }
 }
