@@ -541,6 +541,381 @@ export const webDesignData: JourneyData = {
   )
 };
 
+export const threeDModelingData: JourneyData = {
+  id: '3d',
+  title: '3D Modeling',
+  subtitle: "From concept to photorealistic renders,<br/>we create 3D models that bring your ideas to life.",
+  timelineBg: 'none',
+  timelineStepBg: '/assets/images/d-3-p-2-2.png',
+  stamp: (
+    <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
+      <svg width="120" height="60" viewBox="0 0 160 80">
+        <rect x="5" y="5" width="150" height="70" fill="none" stroke="#e65100" strokeWidth="3" strokeDasharray="5,2" />
+        <text x="80" y="38" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">RENDER</text>
+        <text x="80" y="60" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+      </svg>
+    </div>
+  ),
+  steps: [
+    {
+      num: '01',
+      title: 'Concept & Brief',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <filter id="shadow01" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="2" dy="4" stdDeviation="3" floodOpacity="0.2"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow01)">
+            <rect x="25" y="20" width="50" height="60" rx="3" fill="#fdfdfd" stroke="#333" strokeWidth="2" transform="rotate(-5 50 50)" />
+            <line x1="30" y1="35" x2="70" y2="35" stroke="#333" strokeWidth="2" transform="rotate(-5 50 50)" />
+            <line x1="30" y1="45" x2="60" y2="45" stroke="#333" strokeWidth="2" transform="rotate(-5 50 50)" />
+            <line x1="30" y1="55" x2="65" y2="55" stroke="#333" strokeWidth="2" transform="rotate(-5 50 50)" />
+            <circle cx="50" cy="50" r="15" fill="#fff9c4" stroke="#fbc02d" strokeWidth="1.5" transform="translate(15, 10)" opacity="0.9" />
+            <path d="M50 35c-5 0-8 4-8 8s3 7 5 9v3h6v-3c2-2 5-5 5-9s-3-8-8-8zm-2 22h4m-3 3h2" fill="none" stroke="#f57f17" strokeWidth="2" transform="translate(15, 10)" />
+          </g>
+        </svg>
+      ),
+      bullets: ['Understand goals', 'Reference collection', 'Concept sketches', 'Style exploration']
+    },
+    {
+      num: '02',
+      title: '3D Modeling',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <filter id="shadow02" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="3" dy="10" stdDeviation="6" floodOpacity="0.3"/>
+            </filter>
+            <linearGradient id="cubeTop" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#f5f5f5"/>
+              <stop offset="100%" stopColor="#e0e0e0"/>
+            </linearGradient>
+            <linearGradient id="cubeLeft" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#9e9e9e"/>
+              <stop offset="100%" stopColor="#757575"/>
+            </linearGradient>
+            <linearGradient id="cubeRight" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#616161"/>
+              <stop offset="100%" stopColor="#424242"/>
+            </linearGradient>
+          </defs>
+          <g filter="url(#shadow02)">
+            <polygon points="50,20 20,35 50,50 80,35" fill="url(#cubeTop)" stroke="#333" strokeWidth="1" strokeLinejoin="round"/>
+            <polygon points="20,35 50,50 50,80 20,65" fill="url(#cubeLeft)" stroke="#333" strokeWidth="1" strokeLinejoin="round"/>
+            <polygon points="50,50 80,35 80,65 50,80" fill="url(#cubeRight)" stroke="#333" strokeWidth="1" strokeLinejoin="round"/>
+          </g>
+        </svg>
+      ),
+      bullets: ['High-poly modeling', 'Accurate topology', 'Proportion & scale', 'Scene blocking']
+    },
+    {
+      num: '03',
+      title: 'UV Mapping',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <filter id="shadow03">
+              <feDropShadow dx="2" dy="5" stdDeviation="4" floodOpacity="0.2"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow03)">
+            <polygon points="50,25 25,38 50,51 75,38" fill="none" stroke="#555" strokeWidth="1.5" strokeLinejoin="round"/>
+            <polygon points="25,38 50,51 50,77 25,64" fill="none" stroke="#555" strokeWidth="1.5" strokeLinejoin="round"/>
+            <polygon points="50,51 75,38 75,64 50,77" fill="none" stroke="#555" strokeWidth="1.5" strokeLinejoin="round"/>
+            {/* Inner wireframe lines */}
+            <path d="M50,25 L50,51 M25,38 L75,38 M25,64 L50,51 M75,64 L50,51" stroke="#999" strokeWidth="0.5" />
+            <path d="M37.5,31.5 L62.5,44.5 M37.5,44.5 L62.5,31.5" stroke="#999" strokeWidth="0.5" />
+            <path d="M37.5,44.5 L37.5,70.5 M62.5,44.5 L62.5,70.5" stroke="#999" strokeWidth="0.5" />
+            <path d="M25,51 L50,64 M50,64 L75,51" stroke="#999" strokeWidth="0.5" />
+          </g>
+        </svg>
+      ),
+      bullets: ['UV unwrapping', 'Texel optimization', 'Seam management', 'UV layout']
+    },
+    {
+      num: '04',
+      title: 'Texturing',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <radialGradient id="sphereMatte" cx="40%" cy="40%" r="60%">
+              <stop offset="0%" stopColor="#795548"/>
+              <stop offset="70%" stopColor="#4e342e"/>
+              <stop offset="100%" stopColor="#212121"/>
+            </radialGradient>
+            <radialGradient id="sphereGlossy" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stopColor="#ffffff"/>
+              <stop offset="20%" stopColor="#cfd8dc"/>
+              <stop offset="70%" stopColor="#546e7a"/>
+              <stop offset="100%" stopColor="#263238"/>
+            </radialGradient>
+            <filter id="shadow04">
+              <feDropShadow dx="3" dy="8" stdDeviation="5" floodOpacity="0.3"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow04)">
+            {/* Bases */}
+            <ellipse cx="35" cy="70" rx="15" ry="6" fill="#3e2723" />
+            <ellipse cx="65" cy="70" rx="15" ry="6" fill="#212121" />
+            <path d="M25,60 Q35,75 45,60" fill="#5d4037" />
+            <path d="M55,60 Q65,75 75,60" fill="#424242" />
+            
+            <circle cx="35" cy="45" r="20" fill="url(#sphereMatte)" />
+            <circle cx="65" cy="45" r="20" fill="url(#sphereGlossy)" />
+          </g>
+        </svg>
+      ),
+      bullets: ['PBR materials', 'Color & roughness', 'Normal & detail maps', 'Texture baking']
+    },
+    {
+      num: '05',
+      title: 'Lighting',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <filter id="shadow05">
+              <feDropShadow dx="2" dy="5" stdDeviation="4" floodOpacity="0.2"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow05)">
+            {/* Stand left */}
+            <path d="M25,75 L35,50 L45,75" stroke="#333" strokeWidth="2" fill="none" />
+            <line x1="35" y1="50" x2="35" y2="35" stroke="#333" strokeWidth="2" />
+            {/* Light head left */}
+            <polygon points="25,25 45,25 40,35 30,35" fill="#424242" stroke="#212121" strokeWidth="1" />
+            <polygon points="30,35 40,35 37,40 33,40" fill="#616161" />
+            <path d="M25,25 L15,15 M45,25 L55,15" stroke="#ffb300" strokeWidth="1.5" strokeDasharray="2,2" />
+
+            {/* Stand right */}
+            <path d="M55,75 L65,55 L75,75" stroke="#333" strokeWidth="2" fill="none" />
+            <line x1="65" y1="55" x2="65" y2="40" stroke="#333" strokeWidth="2" />
+            {/* Light head right */}
+            <polygon points="55,30 75,30 70,40 60,40" fill="#424242" stroke="#212121" strokeWidth="1" />
+            <polygon points="60,40 70,40 67,45 63,45" fill="#616161" />
+            <path d="M55,30 L45,20 M75,30 L85,20" stroke="#ffb300" strokeWidth="1.5" strokeDasharray="2,2" />
+          </g>
+        </svg>
+      ),
+      bullets: ['HDRI / Studio setup', 'Light composition', 'Shadows & mood', 'Realistic ambience']
+    },
+    {
+      num: '06',
+      title: 'Rendering',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <filter id="shadow06">
+              <feDropShadow dx="3" dy="6" stdDeviation="5" floodOpacity="0.25"/>
+            </filter>
+            <linearGradient id="lensGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#4dd0e1"/>
+              <stop offset="50%" stopColor="#0277bd"/>
+              <stop offset="100%" stopColor="#004d40"/>
+            </linearGradient>
+          </defs>
+          <g filter="url(#shadow06)">
+            {/* Camera Body */}
+            <rect x="20" y="35" width="60" height="40" rx="5" fill="#263238" stroke="#eceff1" strokeWidth="1.5" />
+            <rect x="35" y="25" width="30" height="10" rx="2" fill="#37474f" stroke="#eceff1" strokeWidth="1" />
+            <circle cx="50" cy="55" r="22" fill="#37474f" stroke="#eceff1" strokeWidth="1.5" />
+            <circle cx="50" cy="55" r="16" fill="url(#lensGrad)" />
+            <circle cx="45" cy="50" r="4" fill="#ffffff" opacity="0.6" />
+            <rect x="25" y="40" width="10" height="6" rx="1" fill="#ef5350" />
+            <circle cx="72" cy="42" r="3" fill="#ffffff" />
+          </g>
+        </svg>
+      ),
+      bullets: ['High quality render', 'Multi-pass rendering', 'Denoising & optimization', 'Angle variations']
+    },
+    {
+      num: '07',
+      title: 'Post Processing',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <filter id="shadow07">
+              <feDropShadow dx="2" dy="5" stdDeviation="4" floodOpacity="0.2"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow07)">
+            {/* Monitor */}
+            <rect x="15" y="25" width="70" height="45" rx="2" fill="#212121" stroke="#e0e0e0" strokeWidth="2" />
+            <rect x="20" y="30" width="60" height="35" fill="#37474f" />
+            <path d="M45,70 L55,70 L55,80 L45,80 Z" fill="#757575" />
+            <rect x="35" y="80" width="30" height="5" rx="1" fill="#424242" />
+            {/* Render on screen */}
+            <circle cx="40" cy="45" r="8" fill="#ffb300" opacity="0.8"/>
+            <path d="M30,65 L70,65 L50,40 Z" fill="#ab47bc" opacity="0.8"/>
+            <path d="M50,65 L70,65 L60,50 Z" fill="#ef5350" opacity="0.8"/>
+            <path d="M22,32 L35,32 M22,36 L30,36" stroke="#4dd0e1" strokeWidth="2" strokeLinecap="round" />
+          </g>
+        </svg>
+      ),
+      bullets: ['Color correction', 'Glare & effects', 'Background cleanup', 'Final touches']
+    },
+    {
+      num: '08',
+      title: 'Delivery',
+      icon: (
+        <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <filter id="shadow08">
+              <feDropShadow dx="2" dy="5" stdDeviation="4" floodOpacity="0.2"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow08)">
+            {/* Box bottom */}
+            <polygon points="50,85 20,70 50,55 80,70" fill="#d7ccc8" stroke="#5d4037" strokeWidth="1" strokeLinejoin="round"/>
+            <polygon points="20,70 50,85 50,55 20,40" fill="#bcaaa4" stroke="#5d4037" strokeWidth="1" strokeLinejoin="round"/>
+            <polygon points="50,85 80,70 80,40 50,55" fill="#a1887f" stroke="#5d4037" strokeWidth="1" strokeLinejoin="round"/>
+            {/* Box flaps */}
+            <polygon points="20,40 50,55 35,35 5,20" fill="#d7ccc8" stroke="#5d4037" strokeWidth="1" opacity="0.9" />
+            <polygon points="80,40 50,55 65,35 95,20" fill="#d7ccc8" stroke="#5d4037" strokeWidth="1" opacity="0.9" />
+            <polygon points="50,55 20,40 40,25 70,40" fill="#efebe9" stroke="#5d4037" strokeWidth="1" opacity="0.9" />
+            {/* Magic sparkles */}
+            <circle cx="50" cy="30" r="2" fill="#ffeb3b" />
+            <circle cx="40" cy="20" r="1.5" fill="#ffeb3b" />
+            <circle cx="60" cy="25" r="2.5" fill="#ffeb3b" />
+          </g>
+        </svg>
+      ),
+      bullets: ['Final 3D files', 'High-res renders', 'Source files', 'Usage rights']
+    }
+  ],
+  renderDecorations: () => (
+    <>
+      <div className="dj-sticky dj-sticky--motion-left">
+        <img src="/assets/images/sticky-note-4-v2-clean.png" alt="Sticky Note" />
+        <div style={{ position: 'relative', zIndex: 2, padding: '10px', fontSize: '0.8rem', lineHeight: '1.4' }}>
+          Precision.<br/>Creativity.<br/>Realism.<br/>That's our<br/>promise.<br/>
+          <span style={{ position: 'absolute', bottom: '-10px', right: '10px', fontSize: '1.2rem' }}>☺</span>
+        </div>
+      </div>
+    </>
+  ),
+  renderBottomCTA: () => (
+    <div className="dj-motion-bottom">
+      
+      {/* Left Wireframe Sketch (Chairs) */}
+      <div className="dj-motion-bottom__camera" style={{ flexDirection: 'column', alignItems: 'flex-start', left: '-40px', top: '-50px' }}>
+        <div style={{ backgroundImage: "url('/assets/images/sticky-note-2-bg-clean.png')", width: '240px', height: '240px', backgroundSize: '100% 100%', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', filter: 'drop-shadow(3px 5px 10px rgba(0,0,0,0.2))' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', width: '100%' }}>
+            {/* Wireframe chair representation */}
+            <svg viewBox="0 0 100 100" width="90" height="90" fill="none" stroke="#555" strokeWidth="1">
+              <path d="M20,60 L20,30 L80,30 L80,60" />
+              <path d="M30,30 L30,10 L70,10 L70,30" />
+              <path d="M40,60 L40,90 M60,60 L60,90 M20,90 L80,90" />
+              <path d="M20,30 L80,60 M20,60 L80,30 M30,10 L70,30 M30,30 L70,10" stroke="#aaa" />
+            </svg>
+            {/* Realistic chair representation */}
+            <svg viewBox="0 0 100 100" width="90" height="90" fill="#795548" stroke="#4e342e" strokeWidth="2" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))' }}>
+              <rect x="20" y="30" width="60" height="30" rx="5" />
+              <rect x="30" y="10" width="40" height="20" rx="5" />
+              <rect x="45" y="60" width="10" height="20" fill="#333" stroke="none" />
+              <path d="M30,90 L70,90 L50,80 Z" fill="#424242" stroke="none" />
+            </svg>
+          </div>
+          <div className="dj-camera-text" style={{ fontSize: '1rem', textAlign: 'center', lineHeight: '1.2' }}>
+            Turning ideas<br/>
+            <span style={{ fontStyle: 'italic' }}>into real-world visuals.</span>
+          </div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ position: 'absolute', bottom: '10px', right: '10px', transform: 'rotate(-45deg)' }}>
+            <path d="M10 19 Q 5 12 14 5" />
+            <polyline points="8,5 14,5 14,11" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Middle Notebook Checklist */}
+      <div className="dj-motion-bottom__checklist" style={{ backgroundImage: "url('/assets/images/bottom-left.png')", width: '360px', height: '200px', padding: '15px 35px', boxSizing: 'border-box', transform: 'translate(-60px, 40px)' }}>
+        <h4 className="dj-motion-bottom__title" style={{ fontSize: '0.75rem', marginBottom: '2px' }}>What you'll get</h4>
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <ul className="dj-motion-bottom__list" style={{ fontSize: '0.3rem', lineHeight: '0.9' }}>
+            <li style={{ marginBottom: '0px' }}><span className="check">✔</span> High quality 3D models</li>
+            <li style={{ marginBottom: '0px' }}><span className="check">✔</span> Photorealistic renders</li>
+            <li style={{ marginBottom: '0px' }}><span className="check">✔</span> Multiple angles & variations</li>
+            <li style={{ marginBottom: '0px' }}><span className="check">✔</span> Ready for marketing & production</li>
+            <li style={{ marginBottom: '0px' }}><span className="check">✔</span> Fast turnaround & revisions</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Third Note - Blueprint Car Sketch */}
+      <div className="dj-motion-bottom__camera" style={{ left: '-60px', top: '-40px', opacity: 0.9 }}>
+        <div style={{ backgroundColor: '#fcfcfc', width: '380px', height: '220px', padding: '20px', display: 'flex', flexDirection: 'column', filter: 'drop-shadow(4px 6px 12px rgba(0,0,0,0.15))', border: '1px solid #ddd', position: 'relative', borderRadius: '2px', backgroundImage: 'radial-gradient(#e0e0e0 1px, transparent 1px)', backgroundSize: '15px 15px' }}>
+          {/* Detailed Car wireframe sketch SVG */}
+          <svg viewBox="0 0 200 100" width="100%" height="120" fill="none" stroke="#222" strokeWidth="1">
+            {/* Base construction lines */}
+            <path d="M10,80 L190,80 M40,90 L40,30 M150,90 L150,30" stroke="#aaa" strokeWidth="0.5" strokeDasharray="2,2"/>
+            {/* Body contour */}
+            <path d="M15,65 C20,50 45,45 65,35 C85,25 125,25 155,35 C175,42 185,55 185,65 C185,72 180,75 170,75 L25,75 C15,75 15,70 15,65 Z" fill="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* Windows */}
+            <path d="M70,35 C85,28 120,28 140,35 C145,40 148,45 150,48 L105,48 L75,48 C72,42 70,38 70,35 Z" fill="#f5f5f5" strokeWidth="1"/>
+            <path d="M105,30 L105,48 M140,35 C135,45 130,48 130,48" stroke="#555" strokeWidth="0.5"/>
+            {/* Wheels & Arches */}
+            <path d="M25,75 C25,60 55,60 55,75" strokeWidth="1.5" strokeDasharray="3,1"/>
+            <path d="M135,75 C135,60 165,60 165,75" strokeWidth="1.5" strokeDasharray="3,1"/>
+            {/* Detailed Wheels */}
+            <circle cx="40" cy="75" r="12" strokeWidth="1.5" fill="#fcfcfc" />
+            <circle cx="40" cy="75" r="8" strokeWidth="1" />
+            <circle cx="40" cy="75" r="3" strokeWidth="1.5" />
+            <path d="M40,67 L40,72 M40,78 L40,83 M32,75 L37,75 M43,75 L48,75" strokeWidth="1"/>
+            
+            <circle cx="150" cy="75" r="12" strokeWidth="1.5" fill="#fcfcfc"/>
+            <circle cx="150" cy="75" r="8" strokeWidth="1" />
+            <circle cx="150" cy="75" r="3" strokeWidth="1.5" />
+            <path d="M150,67 L150,72 M150,78 L150,83 M142,75 L147,75 M153,75 L158,75" strokeWidth="1"/>
+            {/* Details (Lights, Grille, Lines) */}
+            <path d="M175,60 C180,60 183,62 183,65" strokeWidth="1"/>
+            <path d="M20,62 C25,60 30,60 30,60" strokeWidth="1"/>
+            <path d="M60,55 L160,55" stroke="#777" strokeWidth="0.5"/>
+            <path d="M55,65 L170,65" stroke="#777" strokeWidth="0.5"/>
+            {/* Cross-hatching shading */}
+            <path d="M25,65 L30,70 M30,65 L35,70 M35,65 L40,70 M160,65 L165,70 M165,65 L170,70 M170,65 L175,70" stroke="#999" strokeWidth="0.5"/>
+            <path d="M10,82 L190,82 M15,85 L185,85" stroke="#ccc" strokeWidth="1"/>
+          </svg>
+          {/* Labels */}
+          <div style={{ fontSize: '0.85rem', fontFamily: "'Caveat', cursive", position: 'absolute', top: '10px', right: '30px', display: 'flex', alignItems: 'center' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" style={{ transform: 'rotate(135deg)', marginRight: '5px' }}><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            Clean Geometry
+          </div>
+          <div style={{ fontSize: '0.85rem', fontFamily: "'Caveat', cursive", position: 'absolute', top: '60px', right: '10px', display: 'flex', alignItems: 'center' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" style={{ marginRight: '5px' }}><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            Realistic Materials
+          </div>
+          <div style={{ fontSize: '0.85rem', fontFamily: "'Caveat', cursive", position: 'absolute', bottom: '15px', right: '60px', display: 'flex', alignItems: 'center' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" style={{ transform: 'rotate(-45deg)', marginRight: '5px' }}><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            Perfect Lighting
+          </div>
+          {/* Material Swatches */}
+          <div style={{ display: 'flex', gap: '15px', position: 'absolute', bottom: '20px', left: '20px' }}>
+            <div style={{ width: '40px', height: '40px', backgroundColor: '#9e9e9e', boxShadow: 'inset 2px 2px 5px rgba(255,255,255,0.5), inset -2px -2px 5px rgba(0,0,0,0.5), 2px 2px 4px rgba(0,0,0,0.2)' }}></div>
+            <div style={{ width: '40px', height: '40px', backgroundColor: '#795548', boxShadow: 'inset 2px 2px 5px rgba(255,255,255,0.2), inset -2px -2px 5px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.2)' }}></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Sticky */}
+      <div className="dj-sticky" style={{ position: 'absolute', top: '30px', right: '-40px', zIndex: 10, width: '180px', transform: 'rotate(2deg)' }}>
+        <img src="/assets/images/sticky-note-5-bg-clean.png" alt="Sticky Note" style={{ width: '100%', height: 'auto', position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
+        <div style={{ position: 'relative', zIndex: 2, padding: '20px 25px' }}>
+          <div className="dj-note__text" style={{ fontSize: '0.9rem', marginTop: '10px' }}>
+            Great products<br/>
+            deserve great<br/>
+            visuals.<br/>
+          </div>
+          <svg className="dj-note__doodle" style={{ bottom: '10px', right: '20px', position: 'absolute' }} width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="1.5">
+            <path d="M2 19l4-12 6 5 6-5 4 12z" />
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  )
+};
+
 export const fallbackJourneyData = (id: string, title: string): JourneyData => ({
   ...brandJourneyData,
   id,
