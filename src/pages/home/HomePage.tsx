@@ -9,7 +9,6 @@ import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
 import { aboutStudioMarkup } from './sections/AboutStudio';
 import { companySnapshotMarkup } from './sections/CompanySnapshot';
-import { useCompanySnapshot } from './sections/CompanySnapshot/useCompanySnapshot';
 import { faqMarkup } from './sections/FAQ';
 import { useFaq } from './sections/FAQ/useFaq';
 import { heroMarkup } from './sections/Hero';
@@ -34,7 +33,6 @@ export function HomePage() {
   const mainRef = useRef<HTMLElement>(null);
 
   useScrollReveal(mainRef);
-  useCompanySnapshot(mainRef);
   useWorkbookCarousel(mainRef);
   useFaq(mainRef);
   useHeroInteractions(mainRef);

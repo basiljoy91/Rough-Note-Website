@@ -103,18 +103,26 @@ if (
 if (!homepage.includes('useHeroInteractions')) {
   failures.push('HomePage is missing the hero typing and bulb interactions');
 }
-const workspaceProjectCards =
-  workspaceBoard.match(/class="d1-project-card\b/g) ?? [];
-const workspaceProjectArtwork =
-  workspaceBoard.match(
-    /\/assets\/images\/workspace-board\/[a-z-]+\.webp/g
-  ) ?? [];
+const workspaceFlowNotes =
+  workspaceBoard.match(/class="d1-flow-note\b/g) ?? [];
+const requiredWorkflowDetails = [
+  'Idea',
+  'Dashboard',
+  'Automation',
+  'Launch',
+  'd1-workspace-paperclip',
+  'd1-workspace-pencil',
+  'd1-workspace-coffee-ring',
+  'd1-wireframe-sketch',
+  'data-idea-bulb',
+  'data-type-text'
+];
 if (
-  workspaceProjectCards.length !== 6 ||
-  new Set(workspaceProjectArtwork).size !== 6
+  workspaceFlowNotes.length !== 4 ||
+  requiredWorkflowDetails.some((detail) => !workspaceBoard.includes(detail))
 ) {
   failures.push(
-    'Hero workspace must retain six separate project cards and artwork assets'
+    'Hero workspace must retain the four-note idea-to-launch paper workflow'
   );
 }
 

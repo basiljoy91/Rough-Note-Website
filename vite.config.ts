@@ -11,10 +11,16 @@ function sitesStaticWorker() {
     apply: 'build' as const,
     async closeBundle() {
       const serverDirectory = page('dist/server');
+      const hostingDirectory = page('dist/.openai');
       await mkdir(serverDirectory, { recursive: true });
+      await mkdir(hostingDirectory, { recursive: true });
       await copyFile(
         page('src/app/hosting/static-worker.js'),
         resolve(serverDirectory, 'index.js')
+      );
+      await copyFile(
+        page('.openai/hosting.json'),
+        resolve(hostingDirectory, 'hosting.json')
       );
     }
   };

@@ -178,10 +178,61 @@
 
 .d2-metrics {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 124px));
-  gap: 23px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(15px, 1.45vw, 25px);
   align-items: start;
-  margin-left: -24px;
+  width: min(100%, 1110px);
+  margin: 0 auto;
+}
+
+.d2-metrics-scene {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.d2-metric-doodle {
+  position: absolute;
+  z-index: 1;
+  width: 132px;
+  margin: 0;
+  color: rgba(42, 36, 30, 0.88);
+  font: 600 18px/1.02 "Caveat", cursive;
+  text-align: center;
+}
+
+.d2-metric-doodle u {
+  text-decoration-color: #eca32d;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.d2-metric-doodle span {
+  display: inline-block;
+  font-size: 27px;
+}
+
+.d2-metric-doodle--left {
+  top: 43px;
+  left: max(0px, calc(50% - 744px));
+  transform: rotate(-7deg);
+}
+
+.d2-metric-doodle--left span {
+  margin-left: 5px;
+  transform: rotate(-11deg);
+}
+
+.d2-metric-doodle--right {
+  top: 49px;
+  right: max(0px, calc(50% - 744px));
+  transform: rotate(6deg);
+}
+
+.d2-metric-doodle--right span {
+  margin-left: 4px;
+  color: #e99d2d;
+  transform: rotate(9deg);
 }
 
 .d2-sticky {
@@ -749,9 +800,12 @@
   }
   .d2-metrics {
     grid-template-columns: repeat(3, minmax(124px, 1fr));
-    max-width: 430px;
+    max-width: 620px;
     margin: 0 auto;
     row-gap: 31px;
+  }
+  .d2-metric-doodle {
+    display: none;
   }
   .d2-company {
     flex-basis: 132px;
@@ -857,5 +911,504 @@
     right: 0;
     bottom: 112px;
     font-size: 16px;
+  }
+}
+
+/* Trusted-partner wall: a centered grid of tactile, self-contained notes. */
+.d2-partners-heading {
+  width: min(100%, 1110px);
+  margin: 6px auto 48px;
+}
+
+.d2-partners-heading h3 {
+  font-size: clamp(35px, 3vw, 45px);
+}
+
+.d2-partners-heading p {
+  top: -9px;
+  right: 3%;
+  font-size: 21px;
+  line-height: 0.95;
+}
+
+.d2-partners-heading p u,
+.d2-partners-margin-note u {
+  text-decoration-color: #eca32d;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.d2-partners-wrapper {
+  display: block;
+  width: min(100%, 1360px);
+  margin: 0 auto;
+  padding: 12px 138px 24px;
+}
+
+.d2-partners {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 44px 30px;
+  width: min(100%, 1080px);
+  max-width: none;
+  margin: 0 auto;
+  padding: 0;
+  overflow: visible;
+}
+
+.d2-company {
+  --company-tilt: -1deg;
+  --note-color: #f6e79d;
+  position: relative;
+  display: grid;
+  grid-template-rows: 102px auto auto 1fr;
+  align-items: start;
+  box-sizing: border-box;
+  min-height: 245px;
+  padding: 34px 22px 20px;
+  overflow: visible;
+  color: #27211b;
+  text-align: center;
+  background-color: var(--note-color);
+  background-image:
+    linear-gradient(142deg, rgba(255, 255, 255, 0.42), transparent 38%),
+    linear-gradient(318deg, rgba(114, 81, 34, 0.08), transparent 32%),
+    url("../../../../assets/textures/wrinkled-paper.webp");
+  background-position: center;
+  background-size: auto, auto, cover;
+  border: 1px solid rgba(92, 67, 31, 0.14);
+  clip-path: polygon(1% 1%, 49% 0, 99% 2%, 100% 96%, 77% 98%, 51% 97%, 24% 100%, 0 97%);
+  filter:
+    drop-shadow(0 3px 2px rgba(68, 48, 25, 0.16))
+    drop-shadow(0 16px 13px rgba(68, 48, 25, 0.2));
+  transform: rotate(var(--company-tilt));
+}
+
+.d2-company::before {
+  display: none;
+}
+
+.d2-company::after,
+.d2-company:nth-child(1)::after,
+.d2-company:nth-child(4)::after,
+.d2-company:nth-child(7)::after {
+  content: "";
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  width: 28px;
+  height: 25px;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(135deg, rgba(105, 76, 35, 0.12), rgba(255, 255, 255, 0.32));
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  filter: drop-shadow(-2px -2px 2px rgba(78, 56, 27, 0.1));
+  transform: none;
+}
+
+.d2-company:nth-child(1) { --company-tilt: -1.4deg; }
+.d2-company:nth-child(2) { --company-tilt: 0.8deg; }
+.d2-company:nth-child(3) { --company-tilt: -0.6deg; }
+.d2-company:nth-child(4) { --company-tilt: 1.2deg; }
+.d2-company:nth-child(5) { --company-tilt: 0.9deg; }
+.d2-company:nth-child(6) { --company-tilt: -1.1deg; }
+.d2-company:nth-child(7) { --company-tilt: 0.6deg; }
+.d2-company:nth-child(8) { --company-tilt: -0.8deg; }
+
+.d2-company--sunny { --note-color: #f7e89d; }
+.d2-company--sky { --note-color: #cfe7ee; }
+.d2-company--mint { --note-color: #dce9b7; }
+.d2-company--rose { --note-color: #efc7ca; }
+.d2-company--lilac { --note-color: #dfd2ec; }
+.d2-company--peach { --note-color: #f0d2ac; }
+.d2-company--blue { --note-color: #c7dcec; }
+.d2-company--cream { --note-color: #eee0bb; }
+
+.d2-company-fastener {
+  position: absolute;
+  z-index: 4;
+  display: block;
+  pointer-events: none;
+}
+
+.d2-company-fastener--tape {
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 25px;
+  background:
+    repeating-linear-gradient(90deg, rgba(122, 92, 49, 0.07) 0 2px, transparent 2px 7px),
+    rgba(210, 187, 141, 0.76);
+  box-shadow: 0 2px 3px rgba(72, 51, 28, 0.13);
+  clip-path: polygon(2% 8%, 99% 0, 97% 93%, 0 100%);
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+.d2-company:nth-child(4) .d2-company-fastener--tape {
+  transform: translateX(-50%) rotate(4deg);
+}
+
+.d2-company-fastener--pin {
+  top: -7px;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(78, 43, 23, 0.38);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #f8d2b9 0 10%, #a74b3e 35%, #6b291f 100%);
+  box-shadow:
+    0 2px 3px rgba(49, 29, 18, 0.28),
+    0 8px 7px rgba(49, 29, 18, 0.2);
+}
+
+.d2-company-fastener--pin::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 7px;
+  width: 1px;
+  height: 12px;
+  background: rgba(53, 45, 37, 0.48);
+  transform: rotate(-5deg);
+  transform-origin: top;
+}
+
+.d2-company-fastener--clip {
+  top: -18px;
+  right: 22px;
+  width: 15px;
+  height: 53px;
+  border: 3px solid #74716a;
+  border-radius: 10px;
+  box-shadow: 2px 3px 3px rgba(47, 43, 37, 0.16);
+  transform: rotate(11deg);
+}
+
+.d2-company-fastener--clip::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 3px;
+  width: 5px;
+  height: 37px;
+  border: 2px solid rgba(116, 113, 106, 0.82);
+  border-radius: 7px;
+}
+
+.d2-company-logo-sheet {
+  display: grid;
+  align-self: start;
+  justify-self: center;
+  box-sizing: border-box;
+  width: 118px;
+  height: 92px;
+  padding: 10px;
+  place-items: center;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.72), rgba(248, 243, 233, 0.82)),
+    url("../../../../assets/textures/paper-texture.jpg") center / cover;
+  border: 1px solid rgba(93, 72, 45, 0.1);
+  box-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.85) inset,
+    0 4px 8px rgba(71, 49, 27, 0.15);
+  clip-path: polygon(1% 2%, 98% 0, 100% 97%, 4% 100%);
+}
+
+.d2-company-logo-sheet--dark {
+  background: #1d1c19;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.d2-company-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  object-fit: contain;
+}
+
+.d2-company strong {
+  align-self: end;
+  margin-top: 11px;
+  font:
+    600 23px/0.94 "Patrick Hand",
+    cursive;
+}
+
+.d2-company small {
+  margin-top: 3px;
+  font:
+    600 16px/1 "Caveat",
+    cursive;
+}
+
+.d2-company em {
+  position: static;
+  top: auto;
+  align-self: end;
+  margin-top: 11px;
+  padding-top: 8px;
+  border-top: 1.5px solid rgba(49, 41, 31, 0.44);
+  font:
+    600 18px/1 "Caveat",
+    cursive;
+  font-style: normal;
+  white-space: normal;
+}
+
+.d2-company em span {
+  display: inline-block;
+  color: #b37b19;
+  font-size: 19px;
+  transform: rotate(8deg);
+}
+
+.d2-partners-margin-note {
+  position: absolute;
+  top: 43%;
+  right: 2px;
+  margin: 0;
+  font:
+    600 19px/1.05 "Caveat",
+    cursive;
+  text-align: center;
+  transform: rotate(7deg);
+}
+
+.d2-bottom {
+  display: grid;
+  grid-template-columns: 210px minmax(380px, 540px) 180px;
+  min-height: 225px;
+  align-items: center;
+  justify-content: center;
+  gap: 58px;
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: 48px 0 16px;
+}
+
+.d2-bottom > p {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  box-sizing: border-box;
+  width: 184px;
+  min-height: 142px;
+  margin: 0;
+  padding: 35px 22px 20px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.32), transparent 42%),
+    url("../../../../assets/textures/wrinkled-paper.webp") center / cover,
+    #a9ddeb;
+  border: 1px solid rgba(47, 77, 85, 0.12);
+  box-shadow: none;
+  clip-path: polygon(2% 1%, 99% 3%, 97% 98%, 3% 100%);
+  filter:
+    drop-shadow(0 4px 3px rgba(36, 58, 64, 0.16))
+    drop-shadow(0 15px 12px rgba(36, 58, 64, 0.17));
+  font:
+    600 22px/1.04 "Caveat",
+    cursive;
+  text-align: center;
+  transform: rotate(-4deg);
+}
+
+.d2-bottom > p span {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 80px;
+  height: 22px;
+  background: rgba(214, 190, 145, 0.75);
+  box-shadow: 0 2px 3px rgba(67, 48, 29, 0.12);
+  clip-path: polygon(2% 7%, 100% 0, 98% 93%, 0 100%);
+  transform: translateX(-50%) rotate(4deg);
+}
+
+.d2-relationship-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 27px;
+  min-height: 126px;
+  padding: 18px 34px;
+  background:
+    linear-gradient(rgba(249, 243, 231, 0.82), rgba(238, 228, 210, 0.78)),
+    url("../../../../assets/textures/paper-texture.jpg") center / cover;
+  border: 1px solid rgba(92, 70, 42, 0.12);
+  clip-path: polygon(1% 5%, 28% 2%, 52% 5%, 76% 1%, 99% 4%, 98% 96%, 72% 98%, 45% 95%, 18% 99%, 2% 95%);
+  filter: drop-shadow(0 9px 9px rgba(65, 46, 26, 0.15));
+  transform: rotate(0.7deg);
+}
+
+.d2-handshake {
+  width: 106px;
+  height: 84px;
+  font-size: 72px;
+}
+
+.d2-relationship-note > strong {
+  font:
+    600 27px/1.05 "Caveat",
+    cursive;
+}
+
+.d2-bottom > b {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  display: block;
+  padding: 10px 15px 8px;
+  border: 3px double #40382d;
+  font:
+    700 26px/0.92 "Space Grotesk",
+    sans-serif;
+  text-align: center;
+  opacity: 0.78;
+  transform: rotate(-7deg);
+}
+
+.d2-bottom > b small {
+  display: block;
+  margin-top: 5px;
+  font: 700 8px/1 "Space Grotesk", sans-serif;
+  letter-spacing: 2px;
+}
+
+.d2-bottom::after {
+  right: -6px;
+  bottom: 0;
+  width: 118px;
+  height: 118px;
+  border: 6px solid rgba(129, 83, 41, 0.12);
+  border-right-color: rgba(129, 83, 41, 0.04);
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 0 2px rgba(129, 83, 41, 0.04);
+  clip-path: none;
+  filter: none;
+  transform: rotate(-12deg);
+}
+
+@media (max-width: 1200px) {
+  .d2-partners-wrapper {
+    width: min(100%, 780px);
+    padding: 12px 64px 24px;
+  }
+
+  .d2-partners {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 610px;
+  }
+
+  .d2-partners-margin-note {
+    display: none;
+  }
+
+  .d2-bottom {
+    grid-template-columns: 184px minmax(330px, 500px);
+    gap: 38px;
+  }
+
+  .d2-bottom > b {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 700px) {
+  .d2-partners-heading {
+    margin-bottom: 34px;
+  }
+
+  .d2-partners-heading p {
+    display: none;
+  }
+
+  .d2-partners-wrapper {
+    width: 100%;
+    padding: 8px 0 20px;
+  }
+
+  .d2-partners {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 31px 14px;
+    max-width: none;
+  }
+
+  .d2-company {
+    grid-template-rows: 80px auto auto 1fr;
+    min-height: 215px;
+    padding: 28px 12px 17px;
+  }
+
+  .d2-company-logo-sheet {
+    width: 92px;
+    height: 73px;
+    padding: 7px;
+  }
+
+  .d2-company strong {
+    margin-top: 8px;
+    font-size: 20px;
+  }
+
+  .d2-company small {
+    font-size: 14px;
+  }
+
+  .d2-company em {
+    margin-top: 8px;
+    padding-top: 6px;
+    font-size: 15px;
+  }
+
+  .d2-company-fastener--clip {
+    right: 15px;
+    transform: scale(0.82) rotate(11deg);
+    transform-origin: top;
+  }
+
+  .d2-bottom {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 28px;
+    padding: 40px 0 8px;
+  }
+
+  .d2-bottom > p,
+  .d2-bottom > b {
+    justify-self: center;
+  }
+
+  .d2-relationship-note {
+    gap: 14px;
+    min-height: 105px;
+    padding: 15px 21px;
+  }
+
+  .d2-handshake {
+    display: grid;
+    width: 72px;
+    height: 64px;
+    font-size: 52px;
+  }
+
+  .d2-relationship-note > strong {
+    font-size: 21px;
+  }
+
+  .d2-bottom > b {
+    grid-column: auto;
+    font-size: 20px;
+  }
+
+  .d2-bottom::after {
+    width: 82px;
+    height: 82px;
   }
 }
