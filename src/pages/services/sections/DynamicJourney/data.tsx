@@ -320,6 +320,227 @@ export const motionJourneyData: JourneyData = {
   )
 };
 
+export const webDesignData: JourneyData = {
+  id: 'web',
+  title: 'Website Design',
+  subtitle: 'We design user-focused websites that look<br/>beautiful, load fast, and convert visitors into customers.',
+  timelineBg: 'none',
+  timelineStepBg: '/assets/images/d-3-p-2-2.png',
+  stamp: <>USER<br/>APPROVED<br/><span style={{fontSize: '1.2rem', display: 'block', marginTop: '-5px'}}>✔</span></>,
+  steps: [
+    {
+      num: '01',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      ),
+      title: 'Discovery',
+      bullets: ['Understand business goals', 'Target audience', 'Competitor review', 'Success metrics']
+    },
+    {
+      num: '02',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="8" y="2" width="8" height="6" rx="1" />
+          <path d="M12 8v4" />
+          <path d="M6 12h12" />
+          <path d="M6 12v2" />
+          <path d="M18 12v2" />
+          <rect x="2" y="14" width="8" height="6" rx="1" />
+          <rect x="14" y="14" width="8" height="6" rx="1" />
+        </svg>
+      ),
+      title: 'Information Architecture',
+      bullets: ['Sitemap creation', 'Page structure', 'Content planning', 'User flow mapping']
+    },
+    {
+      num: '03',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <line x1="3" y1="9" x2="21" y2="9" />
+          <line x1="9" y1="21" x2="9" y2="9" />
+        </svg>
+      ),
+      title: 'Wireframing',
+      bullets: ['Low-fidelity layouts', 'Page wireframes', 'Content placement', 'UX flow validation']
+    },
+    {
+      num: '04',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+          <path d="M17 12l-4-4-4 4" />
+        </svg>
+      ),
+      title: 'UI Design',
+      bullets: ['Visual design', 'Color & typography', 'UI components', 'Responsive layouts']
+    },
+    {
+      num: '05',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+          <line x1="12" y1="18" x2="12.01" y2="18" />
+        </svg>
+      ),
+      title: 'Prototype',
+      bullets: ['Interactive prototype', 'User testing', 'Feedback collection', 'Design refinement']
+    },
+    {
+      num: '06',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+      ),
+      title: 'Development',
+      bullets: ['Clean coding', 'CMS integration', 'Responsive build', 'Speed optimization']
+    },
+    {
+      num: '07',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 11l3 3L22 4" />
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+        </svg>
+      ),
+      title: 'Testing & QA',
+      bullets: ['Functionality test', 'Cross-browser test', 'Mobile optimization', 'Bug fixing']
+    },
+    {
+      num: '08',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M13.5 2.5l5.5 5.5-12 12-7.5 1.5 1.5-7.5 12-12z" />
+          <path d="M12 5l7 7" />
+        </svg>
+      ),
+      title: 'Launch',
+      bullets: ['Deployment', 'SEO setup', 'Analytics setup', 'Performance check']
+    }
+  ],
+  renderDecorations: () => (
+    <>
+      <div className="dj-sticky dj-sticky--motion-left">
+        <img src="/assets/images/sticky-note-4-v2-clean.png" alt="Sticky Note" />
+        <div style={{ position: 'relative', zIndex: 2, padding: '10px', fontSize: '0.8rem', lineHeight: '1.4' }}>
+          Focus on<br/>user experience,<br/>clarity, and<br/>conversions.<br/>
+          <span style={{ position: 'absolute', bottom: '-10px', right: '10px', fontSize: '1.2rem' }}>☺</span>
+        </div>
+      </div>
+    </>
+  ),
+  renderBottomCTA: () => (
+    <div className="dj-motion-bottom">
+      
+      {/* Left Wireframe Sketch */}
+      <div className="dj-motion-bottom__camera" style={{ flexDirection: 'column', alignItems: 'flex-start', left: '20px', top: '-190px' }}>
+        <svg viewBox="0 0 100 100" style={{ width: '130px', transform: 'rotate(-2deg)' }} fill="none" stroke="#444" strokeWidth="2">
+          <rect x="5" y="10" width="90" height="80" rx="2" />
+          <line x1="5" y1="22" x2="95" y2="22" />
+          <circle cx="14" cy="16" r="2" />
+          <circle cx="22" cy="16" r="2" />
+          <circle cx="30" cy="16" r="2" />
+          <rect x="15" y="30" width="70" height="30" rx="1" />
+          <rect x="15" y="68" width="30" height="15" rx="1" />
+          <rect x="55" y="68" width="30" height="15" rx="1" />
+          <line x1="15" y1="30" x2="85" y2="60" />
+          <line x1="15" y1="60" x2="85" y2="30" />
+        </svg>
+        <div className="dj-camera-text" style={{ fontSize: '1.1rem', position: 'relative', marginTop: '10px' }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '10px', marginBottom: '5px' }}>
+            <path d="M10 19 Q 5 12 14 5" />
+            <polyline points="8,5 14,5 14,11" />
+          </svg><br/>
+          Keep it<br/>
+          <span style={{ fontStyle: 'italic' }}>simple and</span><br/>
+          impactful.
+        </div>
+      </div>
+
+      {/* Middle Notebook Checklist with UI Sketch Inside */}
+      <div className="dj-motion-bottom__checklist" style={{ backgroundImage: "url('/assets/images/bottom-left.png')", width: '800px', height: '260px', padding: '50px 5px 15px 30px', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        
+        {/* Left side: Checklist */}
+        <div style={{ flex: 1 }}>
+          <h4 className="dj-motion-bottom__title" style={{ fontSize: '1rem', marginBottom: '5px', marginTop: '0' }}>What you'll get</h4>
+          <div style={{ display: 'flex', gap: '15px' }}>
+            <ul className="dj-motion-bottom__list" style={{ fontSize: '0.65rem', lineHeight: '1.5', margin: 0 }}>
+              <li><span className="check">✔</span> Modern & Responsive Website</li>
+              <li><span className="check">✔</span> SEO Optimized</li>
+              <li><span className="check">✔</span> Fast Loading Speed</li>
+              <li><span className="check">✔</span> CMS / Admin Panel</li>
+            </ul>
+            <ul className="dj-motion-bottom__list" style={{ fontSize: '0.65rem', lineHeight: '1.5', margin: 0 }}>
+              <li><span className="check">✔</span> Security & Performance</li>
+              <li><span className="check">✔</span> User-Friendly Experience</li>
+              <li><span className="check">✔</span> Analytics Integration</li>
+              <li><span className="check">✔</span> Ongoing Support</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Right side: Wireframe UI Sketch */}
+        <div style={{ display: 'flex', alignItems: 'center', opacity: 0.8, marginTop: '20px' }}>
+          <svg viewBox="0 0 100 100" style={{ width: '130px' }} fill="none" stroke="#333" strokeWidth="1.5">
+            <rect x="5" y="10" width="90" height="80" rx="2" />
+            <line x1="5" y1="20" x2="95" y2="20" />
+            <circle cx="12" cy="15" r="1.5" />
+            <circle cx="17" cy="15" r="1.5" />
+            <circle cx="22" cy="15" r="1.5" />
+            <rect x="15" y="30" width="70" height="30" rx="2" />
+            <rect x="15" y="65" width="30" height="20" rx="2" />
+            <rect x="55" y="65" width="30" height="20" rx="2" />
+            <line x1="15" y1="30" x2="85" y2="60" />
+            <line x1="15" y1="60" x2="85" y2="30" />
+          </svg>
+          
+          {/* Right side labels with arrows */}
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '90px', marginLeft: '10px', fontSize: '0.7rem', fontWeight: 'bold' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'rotate(45deg)' }}><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+              Clear Headline
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+              Strong CTA
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'rotate(-45deg)' }}><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+              Engaging Content
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Pink Sticky */}
+      <div className="dj-sticky dj-sticky--motion-right" style={{ width: '180px', height: '180px', top: '-70px', left: '-20px', transform: 'rotate(2deg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img src="/assets/images/sticky-note-div3-bg2.png" alt="Pink Sticky" style={{ objectFit: 'fill' }} />
+        <div style={{ position: 'relative', zIndex: 2, padding: '15px', fontSize: '0.75rem', lineHeight: '1.4', textAlign: 'center' }}>
+          Great websites<br/>
+          don't happen<br/>
+          by accident.<br/>
+          They're designed<br/>
+          with intent.<br/>
+          <span style={{ display: 'block', marginTop: '5px', fontSize: '1rem', color: '#c2185b' }}>♥</span>
+        </div>
+      </div>
+
+      {/* Pencil Decor */}
+      <img src="/assets/images/pencil-right.png" alt="Pencil" className="dj-motion-bottom__pencil" />
+
+    </div>
+  )
+};
+
 export const fallbackJourneyData = (id: string, title: string): JourneyData => ({
   ...brandJourneyData,
   id,

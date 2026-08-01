@@ -26,7 +26,7 @@ export const JourneyTimeline: React.FC<JourneyTimelineProps> = ({ data }) => {
           {data.stamp || <>BRAND<br/>APPROVED</>}
         </div>
 
-        <div className="dj-steps" style={{ gridTemplateColumns: `repeat(${data.steps.length}, 1fr)` }}>
+        <div className="dj-steps" style={{ gridTemplateColumns: `repeat(${data.steps.length}, minmax(0, 1fr))` }}>
           {data.steps.map((step, index) => (
             <div key={index} className="dj-step" style={data.timelineStepBg ? { backgroundImage: `url(${data.timelineStepBg})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', padding: '1rem', minHeight: '300px' } : {}}>
               <div className="dj-step__num">{step.num}</div>
