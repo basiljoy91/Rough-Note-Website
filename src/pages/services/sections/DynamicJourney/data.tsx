@@ -916,6 +916,313 @@ export const threeDModelingData: JourneyData = {
   )
 };
 
+export const erpSoftwareData: JourneyData = {
+  id: 'erp',
+  title: 'ERP Software',
+  subtitle: 'We design and develop ERP solutions that streamline<br/>processes, connect departments, and deliver real-time insights.',
+  timelineBg: 'none',
+  timelineStepBg: '/assets/images/d-3-p-2-2.png',
+  stamp: (
+    <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
+      <svg width="120" height="60" viewBox="0 0 160 80">
+        <rect x="5" y="5" width="150" height="70" fill="none" stroke="#43a047" strokeWidth="3" strokeDasharray="5,2" />
+        <text x="80" y="38" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">PROCESS</text>
+        <text x="80" y="60" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+      </svg>
+      <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#43a047" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    </div>
+  ),
+  steps: [
+    {
+      num: '01',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          <path d="M14 6h5M14 10h3" strokeDasharray="1,1" />
+        </svg>
+      ),
+      title: 'Business Analysis',
+      bullets: ['Understand business goals', 'Process study', 'Pain points', 'Requirement gathering']
+    },
+    {
+      num: '02',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="8" y="2" width="8" height="6" />
+          <path d="M12 8v4" />
+          <path d="M6 12h12" />
+          <path d="M6 12v4" />
+          <path d="M18 12v4" />
+          <rect x="2" y="16" width="8" height="6" />
+          <rect x="14" y="16" width="8" height="6" />
+        </svg>
+      ),
+      title: 'Department Mapping',
+      bullets: ['Map departments', 'Define roles & access', 'Data flow analysis', 'Process alignment']
+    },
+    {
+      num: '03',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="3" y="10" width="5" height="5" transform="rotate(45 5.5 12.5)" />
+          <path d="M9 12.5h4" />
+          <rect x="13" y="10" width="5" height="5" />
+          <path d="M15.5 15v3h-4" />
+          <rect x="9" y="18" width="5" height="5" />
+          <path d="M11.5 8v-2h4" />
+          <rect x="15" y="4" width="5" height="5" />
+        </svg>
+      ),
+      title: 'Workflow Design',
+      bullets: ['Process automation', 'Workflow diagrams', 'Approval flows', 'Rule definitions']
+    },
+    {
+      num: '04',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M2 8h20" />
+          <path d="M7 8v12" />
+          <path d="M10 12h8" />
+          <path d="M10 16h6" />
+          <circle cx="5" cy="6" r="1" />
+          <circle cx="8" cy="6" r="1" />
+        </svg>
+      ),
+      title: 'Module Planning',
+      bullets: ['Module selection', 'Feature planning', 'Data structure', 'Integration points']
+    },
+    {
+      num: '05',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="3" y="4" width="18" height="12" rx="2" />
+          <path d="M2 20h20" />
+          <path d="M8 10l2 2-2 2" />
+          <path d="M11 14h4" />
+        </svg>
+      ),
+      title: 'Development',
+      bullets: ['Custom development', 'Module integration', 'Database setup', 'API connections']
+    },
+    {
+      num: '06',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+          <rect x="8" y="2" width="8" height="4" rx="1" />
+          <path d="M9 10l2 2 4-4" />
+          <path d="M9 15l2 2 4-4" />
+        </svg>
+      ),
+      title: 'Testing',
+      bullets: ['Functionality test', 'User acceptance test', 'Performance test', 'Security test']
+    },
+    {
+      num: '07',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="10" y="4" width="12" height="10" />
+          <path d="M14 8h4" />
+          <circle cx="5" cy="10" r="3" />
+          <path d="M2 18v-2a4 4 0 0 1 4-4h2" />
+          <path d="M7 16l3-6" />
+        </svg>
+      ),
+      title: 'Training',
+      bullets: ['User training', 'Documentation', 'Role-based training', 'Process walkthrough']
+    },
+    {
+      num: '08',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M13.5 2.5l6 6-9 9-4 4-2-2 4-4 9-9z" />
+          <path d="M9.5 6.5l8 8" />
+          <path d="M17.5 4.5c2 2 4 6 4 6s-4-2-6-4" />
+          <path d="M7 17l-3 3" />
+          <path d="M10 20l-3 3" />
+        </svg>
+      ),
+      title: 'Deployment',
+      bullets: ['Go-live setup', 'Data migration', 'System monitoring', 'Ongoing support']
+    }
+  ],
+  renderDecorations: () => (
+    <>
+      <div className="dj-sticky dj-sticky--motion-left">
+        <img src="/assets/images/sticky-note-4-v2-clean.png" alt="Sticky Note" />
+        <div style={{ position: 'relative', zIndex: 2, padding: '10px', fontSize: '0.8rem', lineHeight: '1.4' }}>
+          Every business<br/>has a unique<br/>workflow.<br/>We build ERP<br/>around it.<br/>
+          <span style={{ position: 'absolute', bottom: '-10px', right: '10px', fontSize: '1.2rem' }}>☺</span>
+        </div>
+      </div>
+    </>
+  ),
+  renderBottomCTA: () => (
+    <div className="dj-motion-bottom" style={{ position: 'relative' }}>
+      
+      {/* Bottom Item 1 (Left Sticky Note with Dashboard Sketch) */}
+      <div className="dj-motion-bottom__camera" style={{ flexDirection: 'column', alignItems: 'flex-start', left: '-50px', top: '-50px', transform: 'scale(0.85)' }}>
+        <div style={{ backgroundImage: "url('/assets/images/sticky-note-2-bg-clean.png')", width: '240px', height: '240px', backgroundSize: '100% 100%', padding: '20px', display: 'flex', flexDirection: 'column', filter: 'drop-shadow(3px 5px 10px rgba(0,0,0,0.2))', position: 'relative' }}>
+          
+          {/* Dashboard sketch */}
+          <div style={{ width: '100%', height: '140px', border: '1px solid #777', borderRadius: '4px', padding: '10px', boxSizing: 'border-box', marginBottom: '10px', position: 'relative', backgroundColor: '#fdfdfd' }}>
+            <div style={{ borderBottom: '1px solid #777', height: '15px', marginBottom: '8px', display: 'flex', gap: '4px', paddingLeft: '5px' }}>
+               <circle cx="5" cy="8" r="2.5" fill="#777" />
+               <circle cx="15" cy="8" r="2.5" fill="#777" />
+               <circle cx="25" cy="8" r="2.5" fill="#777" />
+            </div>
+            <div style={{ display: 'flex', gap: '8px', height: '80px' }}>
+              <div style={{ width: '35px', border: '1px solid #777', borderRadius: '2px', padding: '5px' }}>
+                <div style={{ width: '100%', height: '4px', backgroundColor: '#aaa', marginBottom: '5px' }}></div>
+                <div style={{ width: '100%', height: '4px', backgroundColor: '#aaa', marginBottom: '5px' }}></div>
+                <div style={{ width: '100%', height: '4px', backgroundColor: '#aaa', marginBottom: '5px' }}></div>
+              </div>
+              <div style={{ flex: 1, border: '1px solid #777', borderRadius: '2px', position: 'relative', overflow: 'hidden' }}>
+                 <svg viewBox="0 0 100 50" width="100%" height="100%" fill="none" stroke="#444">
+                   <polyline points="0,40 20,30 40,35 60,15 80,25 100,5" strokeWidth="1.5" />
+                   <rect x="20" y="25" width="10" height="25" fill="#ccc" stroke="none" />
+                   <rect x="40" y="15" width="10" height="35" fill="#aaa" stroke="none" />
+                   <rect x="60" y="30" width="10" height="20" fill="#999" stroke="none" />
+                 </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Small green sticky note overlay */}
+          <div style={{ position: 'absolute', bottom: '15px', left: '10px', backgroundColor: '#dce775', padding: '10px 15px', width: '130px', fontSize: '0.75rem', transform: 'rotate(-5deg)', boxShadow: '2px 3px 6px rgba(0,0,0,0.2)', fontFamily: "'Caveat', cursive", lineHeight: '1.2' }}>
+            Real-time insights.<br/>Better decisions.
+            <svg style={{ position: 'absolute', bottom: '5px', right: '5px' }} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="1.5">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+          </div>
+          
+        </div>
+      </div>
+
+      {/* Bottom Item 2 (Middle Checklist) */}
+      <div className="dj-motion-bottom__checklist" style={{ backgroundImage: "url('/assets/images/bottom-left.png')", width: '360px', height: '200px', padding: '15px 30px', boxSizing: 'border-box', transform: 'translate(-50px, 40px) scale(0.85)' }}>
+        <h4 className="dj-motion-bottom__title" style={{ fontSize: '0.75rem', marginBottom: '6px' }}>What you'll get</h4>
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <ul className="dj-motion-bottom__list" style={{ fontSize: '0.55rem', lineHeight: '1.2', flex: 1, margin: 0, padding: 0 }}>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Centralized Dashboard</li>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Inventory Management</li>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Sales & CRM</li>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Purchase Management</li>
+          </ul>
+          <ul className="dj-motion-bottom__list" style={{ fontSize: '0.55rem', lineHeight: '1.2', flex: 1, margin: 0, padding: 0 }}>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> HR & Payroll</li>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Accounting & Finance</li>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Reports & Analytics</li>
+            <li style={{ marginBottom: '0px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Role-based Access</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom Item 4 (ERP Workflow Diagram on White Board) */}
+      <div className="dj-motion-bottom__camera" style={{ left: '-50px', top: '-40px', opacity: 0.9, transform: 'scale(0.85)' }}>
+        <div style={{ backgroundColor: '#fcfcfc', width: '380px', height: '220px', padding: '20px', display: 'flex', flexDirection: 'column', filter: 'drop-shadow(4px 6px 12px rgba(0,0,0,0.15))', border: '1px solid #ddd', position: 'relative', borderRadius: '2px', backgroundImage: 'radial-gradient(#e0e0e0 1px, transparent 1px)', backgroundSize: '15px 15px' }}>
+          
+          {/* ERP Diagram SVG */}
+          <svg viewBox="0 0 380 220" width="100%" height="100%" fill="none" stroke="#333" strokeWidth="1.2">
+            {/* Center Box (ERP SYSTEM) */}
+            <rect x="130" y="80" width="120" height="40" fill="#e8f5e9" stroke="#4caf50" strokeWidth="2" rx="2" />
+            <text x="190" y="105" textAnchor="middle" fontSize="14" fontFamily="sans-serif" fontWeight="bold" fill="#333">ERP SYSTEM</text>
+            
+            {/* Sales - top left */}
+            <rect x="40" y="25" width="70" height="25" fill="#fff" stroke="#555" />
+            <text x="75" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Sales</text>
+            
+            {/* Inventory - top middle */}
+            <rect x="155" y="25" width="70" height="25" fill="#fff" stroke="#555" />
+            <text x="190" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Inventory</text>
+            
+            {/* Purchase - top right */}
+            <rect x="270" y="25" width="70" height="25" fill="#fff" stroke="#555" />
+            <text x="305" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Purchase</text>
+            
+            {/* Finance - bottom left */}
+            <rect x="40" y="155" width="70" height="25" fill="#fff" stroke="#555" />
+            <text x="75" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Finance</text>
+            
+            {/* HR - bottom middle */}
+            <rect x="155" y="155" width="70" height="25" fill="#fff" stroke="#555" />
+            <text x="190" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">HR</text>
+            
+            {/* Reports - bottom right */}
+            <rect x="270" y="155" width="70" height="25" fill="#fff" stroke="#555" />
+            <text x="305" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Reports</text>
+
+            {/* Arrows */}
+            {/* To Sales */}
+            <path d="M130,90 L75,90 L75,50" strokeDasharray="3,2" />
+            <polyline points="70,55 75,50 80,55" />
+            
+            {/* To Inventory */}
+            <path d="M190,80 L190,50" strokeDasharray="3,2" />
+            <polyline points="185,55 190,50 195,55" />
+            
+            {/* To Purchase */}
+            <path d="M250,90 L305,90 L305,50" strokeDasharray="3,2" />
+            <polyline points="300,55 305,50 310,55" />
+            
+            {/* To Finance */}
+            <path d="M130,110 L75,110 L75,155" strokeDasharray="3,2" />
+            <polyline points="70,150 75,155 80,150" />
+            
+            {/* To HR */}
+            <path d="M190,120 L190,155" strokeDasharray="3,2" />
+            <polyline points="185,150 190,155 195,150" />
+            
+            {/* To Reports */}
+            <path d="M250,110 L305,110 L305,155" strokeDasharray="3,2" />
+            <polyline points="300,150 305,155 310,150" />
+          </svg>
+        </div>
+
+        {/* Bottom Item 3 (Small Sticky Note - Built for growth) Overlay */}
+        <div className="dj-sticky" style={{ width: '130px', position: 'absolute', top: '100px', left: '-110px', transform: 'rotate(-4deg)', zIndex: 5 }}>
+           <div className="dj-note__paper" style={{ backgroundImage: "url('/assets/images/sticky-note-4-v2-clean.png')", width: '100%', height: '130px', backgroundSize: '100% 100%', padding: '15px 20px', backgroundColor: 'rgba(205, 220, 57, 0.4)', backgroundBlendMode: 'multiply' }}>
+              <div style={{ fontSize: '0.75rem', fontFamily: "'Caveat', cursive", lineHeight: '1.2', color: '#222', marginTop: '1px' }}>
+                Built for your business. Built for growth.
+              </div>
+              <svg style={{ position: 'absolute', bottom: '15px', right: '15px' }} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="1.5">
+                 <path d="M2 19l4-12 6 5 6-5 4 12z" />
+              </svg>
+           </div>
+        </div>
+      </div>
+
+      {/* Bottom Item 5 (Right Sticky - Blue) */}
+      <div className="dj-sticky" style={{ position: 'absolute', top: '30px', right: '-40px', zIndex: 10, width: '180px', transform: 'scale(0.85) rotate(2deg)' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
+          <img src="/assets/images/sticky-note-5-bg-clean.png" alt="Sticky Note" style={{ width: '100%', height: 'auto', display: 'block' }} />
+          {/* Blue overlay tint */}
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(33, 150, 243, 0.25)', mixBlendMode: 'multiply', borderRadius: '5px' }}></div>
+          
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, padding: '25px 20px' }}>
+            <div className="dj-note__text" style={{ fontSize: '0.85rem', marginTop: '5px', lineHeight: '1.4' }}>
+              One system.
+              One source of truth.
+              Endless possibilities.
+            </div>
+            <svg className="dj-note__doodle" style={{ bottom: '15px', right: '15px', position: 'absolute' }} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="1.5">
+              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.7 0l-1.1 1-1.1-1a5.5 5.5 0 0 0-7.8 7.8l1 1 7.9 7.9 7.9-7.9 1-1a5.5 5.5 0 0 0 0-7.8z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  )
+};
+
 export const fallbackJourneyData = (id: string, title: string): JourneyData => ({
   ...brandJourneyData,
   id,
