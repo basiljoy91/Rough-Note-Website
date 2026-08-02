@@ -940,16 +940,16 @@
 
 .d2-partners-wrapper {
   display: block;
-  width: min(100%, 1360px);
+  width: min(100%, 1240px);
   margin: 0 auto;
-  padding: 12px 138px 24px;
+  padding: 12px 32px 24px;
 }
 
 .d2-partners {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 44px 30px;
-  width: min(100%, 1080px);
+  width: min(100%, 1120px);
   max-width: none;
   margin: 0 auto;
   padding: 0;
@@ -957,30 +957,31 @@
 }
 
 .d2-company {
-  --company-tilt: -1deg;
-  --note-color: #f6e79d;
+  --company-tilt: -0.25deg;
   position: relative;
   display: grid;
-  grid-template-rows: 102px auto auto 1fr;
+  grid-template-rows: 112px auto auto 1fr;
   align-items: start;
   box-sizing: border-box;
-  min-height: 245px;
-  padding: 34px 22px 20px;
+  min-height: 264px;
+  padding: 38px 22px 21px;
   overflow: visible;
   color: #27211b;
   text-align: center;
-  background-color: var(--note-color);
+  background-color: #d7e8ef;
   background-image:
-    linear-gradient(142deg, rgba(255, 255, 255, 0.42), transparent 38%),
-    linear-gradient(318deg, rgba(114, 81, 34, 0.08), transparent 32%),
+    linear-gradient(145deg, rgba(219, 237, 244, 0.82), rgba(194, 220, 231, 0.78)),
+    linear-gradient(318deg, rgba(54, 93, 108, 0.12), transparent 36%),
     url("../../../../assets/textures/wrinkled-paper.webp");
   background-position: center;
   background-size: auto, auto, cover;
-  border: 1px solid rgba(92, 67, 31, 0.14);
-  clip-path: polygon(1% 1%, 49% 0, 99% 2%, 100% 96%, 77% 98%, 51% 97%, 24% 100%, 0 97%);
-  filter:
-    drop-shadow(0 3px 2px rgba(68, 48, 25, 0.16))
-    drop-shadow(0 16px 13px rgba(68, 48, 25, 0.2));
+  border: 1px solid rgba(69, 97, 108, 0.25);
+  border-radius: 12px;
+  box-shadow:
+    0 2px 2px rgba(255, 255, 255, 0.6) inset,
+    0 5px 8px rgba(47, 69, 78, 0.12),
+    0 16px 24px rgba(47, 69, 78, 0.14);
+  filter: none;
   transform: rotate(var(--company-tilt));
 }
 
@@ -992,108 +993,39 @@
 .d2-company:nth-child(1)::after,
 .d2-company:nth-child(4)::after,
 .d2-company:nth-child(7)::after {
-  content: "";
-  position: absolute;
-  top: auto;
-  right: 0;
-  bottom: 0;
-  width: 28px;
-  height: 25px;
-  border: 0;
-  border-radius: 0;
-  background: linear-gradient(135deg, rgba(105, 76, 35, 0.12), rgba(255, 255, 255, 0.32));
-  clip-path: polygon(100% 0, 0 100%, 100% 100%);
-  filter: drop-shadow(-2px -2px 2px rgba(78, 56, 27, 0.1));
-  transform: none;
+  display: none;
 }
 
-.d2-company:nth-child(1) { --company-tilt: -1.4deg; }
-.d2-company:nth-child(2) { --company-tilt: 0.8deg; }
-.d2-company:nth-child(3) { --company-tilt: -0.6deg; }
-.d2-company:nth-child(4) { --company-tilt: 1.2deg; }
-.d2-company:nth-child(5) { --company-tilt: 0.9deg; }
-.d2-company:nth-child(6) { --company-tilt: -1.1deg; }
-.d2-company:nth-child(7) { --company-tilt: 0.6deg; }
-.d2-company:nth-child(8) { --company-tilt: -0.8deg; }
-
-.d2-company--sunny { --note-color: #f7e89d; }
-.d2-company--sky { --note-color: #cfe7ee; }
-.d2-company--mint { --note-color: #dce9b7; }
-.d2-company--rose { --note-color: #efc7ca; }
-.d2-company--lilac { --note-color: #dfd2ec; }
-.d2-company--peach { --note-color: #f0d2ac; }
-.d2-company--blue { --note-color: #c7dcec; }
-.d2-company--cream { --note-color: #eee0bb; }
+.d2-company:nth-child(1) { --company-tilt: -0.35deg; }
+.d2-company:nth-child(2) { --company-tilt: 0.25deg; }
+.d2-company:nth-child(3) { --company-tilt: -0.2deg; }
+.d2-company:nth-child(4) { --company-tilt: 0.35deg; }
+.d2-company:nth-child(5) { --company-tilt: 0.25deg; }
+.d2-company:nth-child(6) { --company-tilt: -0.3deg; }
+.d2-company:nth-child(7) { --company-tilt: 0.2deg; }
+.d2-company:nth-child(8) { --company-tilt: -0.25deg; }
 
 .d2-company-fastener {
   position: absolute;
   z-index: 4;
   display: block;
-  pointer-events: none;
-}
-
-.d2-company-fastener--tape {
-  top: -12px;
+  top: -13px;
   left: 50%;
-  width: 92px;
-  height: 25px;
+  width: 102px;
+  height: 27px;
+  border: 0;
+  border-radius: 0;
   background:
-    repeating-linear-gradient(90deg, rgba(122, 92, 49, 0.07) 0 2px, transparent 2px 7px),
-    rgba(210, 187, 141, 0.76);
-  box-shadow: 0 2px 3px rgba(72, 51, 28, 0.13);
+    repeating-linear-gradient(90deg, rgba(122, 92, 49, 0.08) 0 2px, transparent 2px 8px),
+    rgba(217, 196, 153, 0.82);
+  box-shadow: 0 2px 4px rgba(72, 51, 28, 0.14);
   clip-path: polygon(2% 8%, 99% 0, 97% 93%, 0 100%);
-  transform: translateX(-50%) rotate(-3deg);
+  pointer-events: none;
+  transform: translateX(-50%) rotate(-6deg);
 }
 
-.d2-company:nth-child(4) .d2-company-fastener--tape {
-  transform: translateX(-50%) rotate(4deg);
-}
-
-.d2-company-fastener--pin {
-  top: -7px;
-  left: 50%;
-  width: 15px;
-  height: 15px;
-  border: 1px solid rgba(78, 43, 23, 0.38);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 28%, #f8d2b9 0 10%, #a74b3e 35%, #6b291f 100%);
-  box-shadow:
-    0 2px 3px rgba(49, 29, 18, 0.28),
-    0 8px 7px rgba(49, 29, 18, 0.2);
-}
-
-.d2-company-fastener--pin::after {
-  content: "";
-  position: absolute;
-  top: 12px;
-  left: 7px;
-  width: 1px;
-  height: 12px;
-  background: rgba(53, 45, 37, 0.48);
-  transform: rotate(-5deg);
-  transform-origin: top;
-}
-
-.d2-company-fastener--clip {
-  top: -18px;
-  right: 22px;
-  width: 15px;
-  height: 53px;
-  border: 3px solid #74716a;
-  border-radius: 10px;
-  box-shadow: 2px 3px 3px rgba(47, 43, 37, 0.16);
-  transform: rotate(11deg);
-}
-
-.d2-company-fastener--clip::after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 3px;
-  width: 5px;
-  height: 37px;
-  border: 2px solid rgba(116, 113, 106, 0.82);
-  border-radius: 7px;
+.d2-company:nth-child(even) .d2-company-fastener {
+  transform: translateX(-50%) rotate(5deg);
 }
 
 .d2-company-logo-sheet {
@@ -1101,33 +1033,31 @@
   align-self: start;
   justify-self: center;
   box-sizing: border-box;
-  width: 118px;
-  height: 92px;
-  padding: 10px;
+  width: min(100%, 168px);
+  height: 106px;
+  padding: 0;
   place-items: center;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.72), rgba(248, 243, 233, 0.82)),
-    url("../../../../assets/textures/paper-texture.jpg") center / cover;
-  border: 1px solid rgba(93, 72, 45, 0.1);
-  box-shadow:
-    0 1px 1px rgba(255, 255, 255, 0.85) inset,
-    0 4px 8px rgba(71, 49, 27, 0.15);
-  clip-path: polygon(1% 2%, 98% 0, 100% 97%, 4% 100%);
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  clip-path: none;
 }
 
 .d2-company-logo-sheet--dark {
-  background: #1d1c19;
-  border-color: rgba(255, 255, 255, 0.12);
+  background: transparent;
+  border-color: transparent;
 }
 
 .d2-company-logo {
   display: block;
   width: 100%;
   height: 100%;
-  max-width: none;
-  max-height: none;
+  max-width: 168px;
+  max-height: 106px;
   margin: 0;
   object-fit: contain;
+  object-position: center;
 }
 
 .d2-company strong {
@@ -1352,15 +1282,20 @@
   }
 
   .d2-company {
-    grid-template-rows: 80px auto auto 1fr;
-    min-height: 215px;
-    padding: 28px 12px 17px;
+    grid-template-rows: 88px auto auto 1fr;
+    min-height: 232px;
+    padding: 32px 12px 17px;
   }
 
   .d2-company-logo-sheet {
-    width: 92px;
-    height: 73px;
-    padding: 7px;
+    width: min(100%, 124px);
+    height: 84px;
+    padding: 0;
+  }
+
+  .d2-company-logo {
+    max-width: 124px;
+    max-height: 84px;
   }
 
   .d2-company strong {
