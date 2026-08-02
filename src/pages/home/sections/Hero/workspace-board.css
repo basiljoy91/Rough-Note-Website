@@ -327,8 +327,8 @@
 }
 
 .d1-note-heading {
-  font: 500 clamp(13px, 4.15cqw, 26px)/1 "Patrick Hand", "Caveat", cursive;
-  letter-spacing: 0.01em;
+  font: 600 clamp(14px, 4.3cqw, 28px)/0.96 "Caveat", "Kalam", cursive;
+  letter-spacing: 0;
   position: relative;
   text-align: center;
   z-index: 2;
@@ -1024,6 +1024,22 @@
 @keyframes d1-process-type-caret {
   0%, 52% { background: currentColor; }
   53%, 100% { background: transparent; }
+}
+
+/* Keep the left process rail clear of the hero CTAs before the layout stacks. */
+@media (min-width: 1181px) and (max-width: 1380px) {
+  .d1-annotation-rail {
+    left: -23%;
+    width: 24%;
+  }
+
+  .d1-process-note {
+    font-size: clamp(20px, 4.1cqw, 27px);
+  }
+
+  .d1-process-note-build {
+    right: -18%;
+  }
 }
 
 @media (max-width: 1180px) {
