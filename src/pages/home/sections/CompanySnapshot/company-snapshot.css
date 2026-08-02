@@ -1175,20 +1175,14 @@
 }
 
 .d2-handshake {
-  width: 106px;
-  height: 84px;
-  color: rgba(42, 38, 33, 0.08);
-  filter: url(#sketch-filter-small);
-  font-size: 72px;
-  opacity: 0.9;
-  text-shadow:
-    0.7px 0.35px 0 rgba(42, 38, 33, 0.3),
-    -0.45px -0.25px 0 rgba(42, 38, 33, 0.2);
-  -webkit-text-stroke: 1.35px rgba(42, 38, 33, 0.84);
-}
-
-.d2-handshake::before {
-  paint-order: stroke fill;
+  display: block;
+  width: 184px;
+  height: 116px;
+  object-fit: contain;
+  object-position: center;
+  filter: contrast(1.08) saturate(0.72);
+  opacity: 0.96;
+  transform: rotate(-2.5deg);
 }
 
 .d2-relationship-note > strong {
@@ -1338,10 +1332,9 @@
   }
 
   .d2-handshake {
-    display: grid;
-    width: 72px;
-    height: 64px;
-    font-size: 52px;
+    display: block;
+    width: 128px;
+    height: 82px;
   }
 
   .d2-relationship-note > strong {
