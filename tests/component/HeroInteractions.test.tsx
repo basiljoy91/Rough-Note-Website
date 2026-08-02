@@ -22,7 +22,15 @@ function HeroHarness() {
         aria-label="Light up your brain"
         aria-pressed="false"
       >
-        Idea light
+        Rail idea light
+      </button>
+      <button
+        type="button"
+        data-idea-bulb
+        aria-label="Light up your brain"
+        aria-pressed="false"
+      >
+        Board idea light
       </button>
     </main>
   );
@@ -45,16 +53,19 @@ describe('hero interactions', () => {
     expect(note).not.toHaveClass('is-typing');
   });
 
-  it('toggles the small bulb light without changing the page', () => {
+  it('toggles both bulb lights without changing the page', () => {
     render(<HeroHarness />);
-    const bulb = screen.getByRole('button', { name: 'Light up your brain' });
+    const bulbs = screen.getAllByRole('button', { name: 'Light up your brain' });
+    expect(bulbs).toHaveLength(2);
 
-    fireEvent.click(bulb);
-    expect(bulb).toHaveAttribute('aria-pressed', 'true');
-    expect(bulb).toHaveAccessibleName('Turn off idea light');
+    bulbs.forEach((bulb) => {
+      fireEvent.click(bulb);
+      expect(bulb).toHaveAttribute('aria-pressed', 'true');
+      expect(bulb).toHaveAccessibleName('Turn off idea light');
 
-    fireEvent.click(bulb);
-    expect(bulb).toHaveAttribute('aria-pressed', 'false');
-    expect(bulb).toHaveAccessibleName('Light up your brain');
+      fireEvent.click(bulb);
+      expect(bulb).toHaveAttribute('aria-pressed', 'false');
+      expect(bulb).toHaveAccessibleName('Light up your brain');
+    });
   });
 });

@@ -327,8 +327,8 @@
 }
 
 .d1-note-heading {
-  font: 500 clamp(13px, 4.15cqw, 26px)/1 "Patrick Hand", "Caveat", cursive;
-  letter-spacing: 0.01em;
+  font: 600 clamp(14px, 4.3cqw, 28px)/0.96 "Caveat", "Kalam", cursive;
+  letter-spacing: 0;
   position: relative;
   text-align: center;
   z-index: 2;
@@ -494,7 +494,7 @@
   border: 0.42cqw solid #302f2c;
   border-radius: 1.1cqw;
   flex: 1;
-  margin-top: 1.7%;
+  margin-top: 2.75cqw;
   max-height: 9.4cqw;
   position: relative;
   width: 14.6cqw;
@@ -503,21 +503,21 @@
 
 .d1-robot-antenna {
   border-left: 0.36cqw solid #302f2c;
-  height: 2.2cqw;
+  height: 1.4cqw;
   left: 50%;
   position: absolute;
-  top: -2.5cqw;
+  top: -1.65cqw;
 }
 
 .d1-robot-antenna::before {
   border: 0.34cqw solid #302f2c;
   border-radius: 50%;
   content: "";
-  height: 0.9cqw;
-  left: -0.65cqw;
+  height: 0.65cqw;
+  left: -0.53cqw;
   position: absolute;
-  top: -1cqw;
-  width: 0.9cqw;
+  top: -0.72cqw;
+  width: 0.65cqw;
 }
 
 .d1-robot-ear {
@@ -800,6 +800,216 @@
   width: 1.7cqw;
 }
 
+/* Handwritten process rail from the notebook reference. */
+.d1-annotation-rail {
+  bottom: 16.7%;
+  left: -29%;
+  pointer-events: none;
+  position: absolute;
+  top: 7.1%;
+  width: 29%;
+  z-index: 5;
+}
+
+.d1-process-note {
+  color: #2c2b28;
+  font: 400 clamp(22px, 5cqw, 32px)/0.95 "Reenie Beanie", "Caveat", cursive;
+  pointer-events: none;
+  position: absolute;
+  white-space: pre-line;
+  width: 100%;
+}
+
+.d1-type-copy {
+  display: inline-block;
+  white-space: pre-line;
+}
+
+.d1-type-copy.is-typing::after {
+  animation: d1-process-type-caret 700ms steps(1, end) infinite;
+  border-radius: 999px;
+  content: "";
+  display: inline-block;
+  height: 0.82em;
+  margin-left: 3px;
+  transform: rotate(5deg);
+  vertical-align: -0.04em;
+  width: 2px;
+}
+
+.d1-process-note-idea {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  text-align: center;
+  top: 0;
+}
+
+.d1-process-note-idea .d1-type-copy {
+  min-height: 2.85em;
+}
+
+.d1-idea-bulb {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: inherit;
+  display: flex;
+  height: clamp(84px, 19cqw, 112px);
+  justify-content: center;
+  margin: 0 0 4px;
+  padding: 0;
+  pointer-events: auto;
+  position: relative;
+  width: clamp(68px, 16cqw, 94px);
+}
+
+.d1-idea-bulb:focus-visible {
+  outline: none;
+}
+
+.d1-idea-bulb:focus-visible .d1-bulb-line-art {
+  filter: drop-shadow(0 0 3px rgb(121 87 24 / 48%));
+}
+
+.d1-bulb-line-art {
+  fill: none;
+  height: 100%;
+  overflow: visible;
+  position: relative;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.35;
+  transition:
+    color 230ms ease,
+    filter 230ms ease;
+  width: 100%;
+  z-index: 2;
+}
+
+.d1-bulb-glow {
+  background: radial-gradient(circle, rgb(255 211 77 / 42%) 0 20%, rgb(255 211 77 / 18%) 45%, transparent 72%);
+  border-radius: 50%;
+  height: 122%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: -10%;
+  transform: scale(0.7);
+  transition:
+    opacity 260ms ease,
+    transform 350ms ease;
+  width: 150%;
+  z-index: 1;
+}
+
+.d1-bulb-message {
+  font: 500 clamp(13px, 2.8cqw, 18px)/0.9 "Reenie Beanie", cursive;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  top: 29%;
+  transform: translate(-50%, 3px) rotate(-2deg);
+  transition:
+    opacity 200ms ease,
+    transform 250ms ease;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.d1-idea-bulb[aria-pressed="true"] .d1-bulb-glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.d1-idea-bulb[aria-pressed="true"] .d1-bulb-line-art {
+  color: #6a5218;
+  filter: drop-shadow(0 0 2px rgb(250 197 52 / 42%));
+}
+
+.d1-idea-bulb[aria-pressed="true"] .d1-bulb-filament {
+  opacity: 0;
+}
+
+.d1-idea-bulb[aria-pressed="true"] .d1-bulb-message {
+  opacity: 1;
+  transform: translate(-50%, 0) rotate(-2deg);
+}
+
+.d1-process-arrow,
+.d1-process-bracket {
+  fill: none;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.d1-process-arrow-idea {
+  height: clamp(48px, 10cqw, 60px);
+  position: absolute;
+  right: -23%;
+  top: 72%;
+  width: clamp(38px, 8cqw, 48px);
+}
+
+.d1-process-note-cycle {
+  align-items: center;
+  display: flex;
+  right: -2%;
+  text-align: right;
+  top: 43%;
+}
+
+.d1-process-note-cycle .d1-type-copy {
+  flex: 1;
+  min-height: 3.8em;
+}
+
+.d1-process-bracket {
+  flex: 0 0 auto;
+  height: clamp(112px, 23cqw, 142px);
+  margin-left: 5px;
+  width: clamp(22px, 4.4cqw, 27px);
+}
+
+.d1-process-note-build {
+  bottom: 0;
+  right: -3%;
+  text-align: center;
+}
+
+.d1-process-note-build .d1-type-copy {
+  min-height: 2.85em;
+}
+
+.d1-process-note-build::after {
+  background: rgb(98 197 239 / 30%);
+  bottom: -3px;
+  content: "";
+  height: 9px;
+  left: 18%;
+  position: absolute;
+  transform: rotate(-2deg);
+  width: 64%;
+  z-index: -1;
+}
+
+.d1-process-arrow-build {
+  height: clamp(34px, 7cqw, 43px);
+  position: absolute;
+  right: -34%;
+  top: 13%;
+  width: clamp(45px, 9cqw, 55px);
+}
+
 .d1-needs-ai-note .is-typing::after,
 .d1-mvp-note .is-typing::after {
   animation: d1-process-type-caret 700ms steps(1, end) infinite;
@@ -816,6 +1026,22 @@
   53%, 100% { background: transparent; }
 }
 
+/* Keep the left process rail clear of the hero CTAs before the layout stacks. */
+@media (min-width: 1181px) and (max-width: 1380px) {
+  .d1-annotation-rail {
+    left: -23%;
+    width: 24%;
+  }
+
+  .d1-process-note {
+    font-size: clamp(20px, 4.1cqw, 27px);
+  }
+
+  .d1-process-note-build {
+    right: -18%;
+  }
+}
+
 @media (max-width: 1180px) {
   .d1-workspace-stage {
     margin-inline: auto;
@@ -825,25 +1051,44 @@
 
 @media (max-width: 620px) {
   .d1-workspace-stage {
+    margin-left: 18%;
     max-width: 560px;
+    width: 88%;
+  }
+
+  .d1-process-note {
+    font-size: clamp(20px, 6cqw, 27px);
+  }
+
+  .d1-idea-bulb {
+    height: clamp(70px, 21cqw, 92px);
+    width: clamp(57px, 17cqw, 77px);
+  }
+
+  .d1-process-bracket {
+    height: clamp(96px, 29cqw, 126px);
   }
 }
 
 @media (max-width: 390px) {
   .d1-workspace-stage {
-    margin-left: -3%;
+    margin-left: 26%;
     width: 106%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .d1-idea-button i,
-  .d1-idea-glow {
+  .d1-idea-glow,
+  .d1-bulb-line-art,
+  .d1-bulb-glow,
+  .d1-bulb-message {
     transition: none;
   }
 
   .d1-needs-ai-note .is-typing::after,
-  .d1-mvp-note .is-typing::after {
+  .d1-mvp-note .is-typing::after,
+  .d1-type-copy.is-typing::after {
     animation: none;
     display: none;
   }
