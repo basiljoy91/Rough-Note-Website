@@ -14,7 +14,7 @@ const servicesList = [
   { id: 'ai', title: 'AI<br/>Automation', icon: '🤖', pinColor: '#00acc1' },
 ];
 
-import { brandJourneyData, motionJourneyData, webDesignData, threeDModelingData, erpSoftwareData, fallbackJourneyData } from './data';
+import { brandJourneyData, motionJourneyData, webDesignData, threeDModelingData, erpSoftwareData, customSoftwareData, fallbackJourneyData } from './data';
 
 export const DynamicJourney: React.FC = () => {
   const [activeService, setActiveService] = useState('brand');
@@ -28,6 +28,7 @@ export const DynamicJourney: React.FC = () => {
     if (activeService === 'web') return webDesignData;
     if (activeService === '3d') return threeDModelingData;
     if (activeService === 'erp') return erpSoftwareData;
+    if (activeService === 'custom') return customSoftwareData;
     const service = servicesList.find(s => s.id === activeService);
     return fallbackJourneyData(activeService, service?.title || 'Service');
   };

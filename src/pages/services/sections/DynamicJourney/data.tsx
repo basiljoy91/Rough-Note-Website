@@ -1223,6 +1223,308 @@ export const erpSoftwareData: JourneyData = {
   )
 };
 
+export const customSoftwareData: JourneyData = {
+  id: 'custom',
+  title: 'Custom Software',
+  subtitle: 'From concept to scalable solution — we build custom software<br/>that grows with your business.',
+  timelineBg: 'none',
+  timelineStepBg: '/assets/images/d-3-p-2-2.png',
+  stamp: (
+    <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
+      <svg width="180" height="60" viewBox="0 0 200 80">
+        <rect x="5" y="5" width="190" height="70" fill="none" stroke="#673ab7" strokeWidth="3" strokeDasharray="5,2" />
+        <text x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">CODE QUALITY</text>
+        <text x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+      </svg>
+      <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#673ab7" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    </div>
+  ),
+  steps: [
+    {
+      num: '01',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M9 18h6" />
+          <path d="M10 22h4" />
+          <path d="M12 2v1" />
+          <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
+          <path d="M18.36 6.64l.71-.71" />
+          <path d="M5.64 6.64l-.71-.71" />
+        </svg>
+      ),
+      title: 'Requirements',
+      bullets: ['Understand goals', 'Gather requirements', 'Define scope', 'Identify key features']
+    },
+    {
+      num: '02',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="8" y="2" width="8" height="6" />
+          <path d="M12 8v4" />
+          <path d="M6 12h12" />
+          <path d="M6 12v4" />
+          <path d="M18 12v4" />
+          <rect x="2" y="16" width="8" height="6" />
+          <rect x="14" y="16" width="8" height="6" />
+        </svg>
+      ),
+      title: 'Architecture',
+      bullets: ['System architecture', 'Technology stack', 'Database design', 'API planning']
+    },
+    {
+      num: '03',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M2 8h20" />
+          <path d="M6 4v4" />
+          <rect x="6" y="12" width="4" height="4" />
+          <rect x="14" y="12" width="4" height="4" />
+        </svg>
+      ),
+      title: 'UI / UX Design',
+      bullets: ['User flow', 'Wireframes', 'UI Design', 'Interactive prototype']
+    },
+    {
+      num: '04',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <path d="M7 12l2 2-2 2" />
+          <path d="M13 16h4" />
+        </svg>
+      ),
+      title: 'Development',
+      bullets: ['Clean coding', 'Feature development', 'API integration', 'Version control']
+    },
+    {
+      num: '05',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+          <rect x="8" y="2" width="8" height="4" rx="1" />
+          <path d="M9 10l2 2 4-4" />
+          <path d="M9 15l2 2 4-4" />
+        </svg>
+      ),
+      title: 'Testing',
+      bullets: ['Functional testing', 'Performance testing', 'Security testing', 'Bug fixing']
+    },
+    {
+      num: '06',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M12 12v9" />
+          <path d="M16 16l-4-4-4 4" />
+          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+        </svg>
+      ),
+      title: 'Deployment',
+      bullets: ['Server setup', 'CI/CD pipeline', 'Staging testing', 'Production deploy']
+    },
+    {
+      num: '07',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M6 16l4-4 4 2 4-6" />
+          <circle cx="18" cy="8" r="1" />
+        </svg>
+      ),
+      title: 'Monitoring',
+      bullets: ['Performance monitoring', 'Error tracking', 'User analytics', 'System alerts']
+    },
+    {
+      num: '08',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+          <path d="M21 19a2 2 0 0 1-2 2h-1v-6h3v4z" />
+          <path d="M3 19a2 2 0 0 0 2 2h1v-6H3v4z" />
+          <path d="M12 17v4" />
+        </svg>
+      ),
+      title: 'Support & Scale',
+      bullets: ['Ongoing support', 'Feature updates', 'Scalability planning', 'Continuous improvement']
+    }
+  ],
+  renderDecorations: () => (
+    <>
+      <div className="dj-sticky dj-sticky--motion-left">
+        <img src="/assets/images/sticky-note-philosophy-bg-clean.png" alt="Sticky Note" />
+        <div style={{ position: 'relative', zIndex: 2, padding: '15px 10px', fontSize: '0.8rem', lineHeight: '1.4' }}>
+          Your idea.<br/>Our code.<br/>Endless<br/>possibilities.<br/>
+          <span style={{ position: 'absolute', bottom: '0px', right: '15px', fontSize: '1.2rem' }}>☺</span>
+        </div>
+      </div>
+    </>
+  ),
+  renderBottomCTA: () => (
+    <div className="dj-motion-bottom" style={{ position: 'relative' }}>
+      
+      {/* Bottom Item 1 (Left Box with Code Editor Sketch) */}
+      <div className="dj-motion-bottom__camera" style={{ flexDirection: 'column', alignItems: 'flex-start', left: '-50px', top: '-50px', transform: 'scale(0.85)' }}>
+        <div style={{ backgroundImage: "url('/assets/images/sticky-note-2-bg-clean.png')", width: '250px', height: '240px', backgroundSize: '100% 100%', padding: '15px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', filter: 'drop-shadow(3px 5px 10px rgba(0,0,0,0.2))', position: 'relative' }}>
+          
+          {/* Dark Code Editor sketch */}
+          <div style={{ width: '100%', height: '140px', backgroundColor: '#1e1e1e', borderRadius: '4px', padding: '10px', boxSizing: 'border-box', position: 'relative', overflow: 'hidden', border: '1px solid #444', boxShadow: 'inset 2px 2px 5px rgba(0,0,0,0.5)' }}>
+            <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
+               <circle cx="4" cy="4" r="3" fill="#ff5f56" />
+               <circle cx="12" cy="4" r="3" fill="#ffbd2e" />
+               <circle cx="20" cy="4" r="3" fill="#27c93f" />
+            </div>
+            {/* Fake Code Lines */}
+            <svg width="100%" height="90" viewBox="0 0 200 90">
+               <rect x="0" y="0" width="30" height="4" fill="#c586c0" />
+               <rect x="35" y="0" width="40" height="4" fill="#9cdcfe" />
+               <rect x="80" y="0" width="10" height="4" fill="#d4d4d4" />
+               
+               <rect x="10" y="10" width="40" height="4" fill="#569cd6" />
+               <rect x="55" y="10" width="60" height="4" fill="#ce9178" />
+               
+               <rect x="10" y="20" width="20" height="4" fill="#c586c0" />
+               <rect x="35" y="20" width="30" height="4" fill="#4ec9b0" />
+               
+               <rect x="20" y="30" width="30" height="4" fill="#dcdcaa" />
+               <rect x="55" y="30" width="40" height="4" fill="#9cdcfe" />
+               
+               <rect x="30" y="40" width="50" height="4" fill="#ce9178" />
+               
+               <rect x="20" y="50" width="20" height="4" fill="#c586c0" />
+               <rect x="0" y="60" width="10" height="4" fill="#d4d4d4" />
+            </svg>
+          </div>
+
+          {/* Hand annotation below editor */}
+          <div style={{ marginTop: '15px', paddingLeft: '15px', fontSize: '0.65rem', fontFamily: "'Caveat', cursive", lineHeight: '1.2', transform: 'rotate(-2deg)' }}>
+            Clean code.<br/>
+            Better performance.<br/>
+            Scalable solution.<br/>
+          </div>
+          
+        </div>
+      </div>
+
+      {/* Bottom Item 2 (Middle Checklist) */}
+      <div className="dj-motion-bottom__checklist" style={{ backgroundImage: "url('/assets/images/bottom-left.png')", width: '360px', height: '200px', padding: '15px 30px', boxSizing: 'border-box', transform: 'translate(-50px, 40px) scale(0.85)' }}>
+        <h4 className="dj-motion-bottom__title" style={{ fontSize: '0.75rem', marginBottom: '6px' }}>What you'll get</h4>
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <ul className="dj-motion-bottom__list" style={{ fontSize: '0.55rem', lineHeight: '1.2', flex: 1, margin: 0, padding: 0 }}>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Custom Solution</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Scalable Architecture</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Clean & Secure Code</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> High Performance</li>
+          </ul>
+          <ul className="dj-motion-bottom__list" style={{ fontSize: '0.55rem', lineHeight: '1.2', flex: 1, margin: 0, padding: 0 }}>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Admin Dashboard</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> API Integrations</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Documentation</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Ongoing Support</li>
+          </ul>
+        </div>
+      </div>
+      
+      {/* Bottom Item 3 (Small Purple Sticky Note) */}
+      {/* Placed between Checklist and Diagram as requested */}
+      <div className="dj-sticky" style={{ width: '130px', position: 'absolute', top: '0px', left: '460px', transform: 'rotate(-4deg) scale(0.85)', zIndex: 6 }}>
+         <div style={{ backgroundImage: "url('/assets/images/sticky-note-philosophy-bg-clean.png')", width: '100%', height: '140px', backgroundSize: '100% 100%', padding: '20px', boxShadow: '3px 4px 8px rgba(0,0,0,0.2)' }}>
+            <div style={{ fontSize: '0.6rem', fontFamily: "'Caveat', cursive", lineHeight: '1.2', color: '#222', textAlign: 'center' }}>
+              We don't just write code.
+              We solve business problems.
+            </div>
+            <svg style={{ position: 'absolute', top: '10px', left: '10px' }} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="1.5">
+               <path d="M9 18h6" />
+               <path d="M10 22h4" />
+               <path d="M12 2v1" />
+               <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
+            </svg>
+            <svg style={{ position: 'absolute', bottom: '10px', right: '15px' }} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#673ab7" strokeWidth="1.5">
+               <path d="M2 19l4-12 6 5 6-5 4 12z" />
+            </svg>
+         </div>
+      </div>
+
+      {/* Bottom Item 4 (API Gateway Diagram on White Board) */}
+      <div className="dj-motion-bottom__camera" style={{ left: '-50px', top: '-40px', opacity: 0.9, transform: 'scale(0.85)', zIndex: 1 }}>
+        <div style={{ backgroundColor: '#fcfcfc', width: '400px', height: '240px', padding: '15px', display: 'flex', flexDirection: 'column', filter: 'drop-shadow(4px 6px 12px rgba(0,0,0,0.15))', border: '1px solid #ddd', position: 'relative', borderRadius: '2px', backgroundImage: 'radial-gradient(#e0e0e0 1px, transparent 1px)', backgroundSize: '15px 15px' }}>
+          
+          {/* API Gateway Diagram SVG */}
+          <svg viewBox="0 0 400 240" width="100%" height="100%" fill="none" stroke="#333" strokeWidth="1.2">
+            
+            {/* Top: Web/Mobile Application */}
+            <rect x="130" y="15" width="140" height="25" fill="#fff" stroke="#555" rx="2" />
+            <text x="200" y="32" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Web / Mobile Application</text>
+            
+            {/* Center: API Gateway */}
+            <rect x="150" y="70" width="100" height="25" fill="#f5f5f5" stroke="#555" rx="2" />
+            <text x="200" y="87" textAnchor="middle" fontSize="10" fontFamily="sans-serif" fontWeight="bold">API Gateway</text>
+            
+            {/* Below Center: Business Logic */}
+            <rect x="150" y="125" width="100" height="35" fill="#fff" stroke="#555" strokeDasharray="3,3" />
+            <text x="200" y="146" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Business Logic</text>
+
+            {/* Bottom: Database */}
+            <path d="M150,190 C150,185 250,185 250,190 L250,210 C250,215 150,215 150,210 Z" fill="#fff" stroke="#555" />
+            <path d="M150,190 C150,195 250,195 250,190" stroke="#555" />
+            <text x="200" y="206" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Database</text>
+            
+            {/* Left: Auth Service */}
+            <rect x="25" y="125" width="90" height="30" fill="#fff" stroke="#555" />
+            <text x="70" y="140" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Authentication</text>
+            <text x="70" y="150" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Service</text>
+            
+            {/* Right: File Storage */}
+            <rect x="285" y="125" width="90" height="30" fill="#fff" stroke="#555" />
+            <text x="330" y="140" textAnchor="middle" fontSize="9" fontFamily="sans-serif">File Storage</text>
+            <text x="330" y="150" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Service</text>
+
+            {/* Bottom-right: Third-party */}
+            <rect x="285" y="185" width="90" height="25" fill="#fff" stroke="#555" />
+            <text x="330" y="202" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Third-party Services</text>
+
+            {/* Arrows */}
+            {/* App to API Gateway */}
+            <path d="M200,40 L200,70" strokeDasharray="2,2" />
+            <polyline points="196,65 200,70 204,65" />
+            
+            {/* API Gateway to Logic */}
+            <path d="M200,95 L200,125" strokeDasharray="2,2" />
+            <polyline points="196,120 200,125 204,120" />
+            
+            {/* Logic to Database */}
+            <path d="M200,160 L200,185" strokeDasharray="2,2" />
+            <polyline points="196,180 200,185 204,180" />
+
+            {/* API Gateway to Auth */}
+            <path d="M150,82 L70,82 L70,125" strokeDasharray="2,2" />
+            <polyline points="66,120 70,125 74,120" />
+
+            {/* API Gateway to File Storage */}
+            <path d="M250,82 L330,82 L330,125" strokeDasharray="2,2" />
+            <polyline points="326,120 330,125 334,120" />
+
+            {/* API Gateway to Third-party */}
+            <path d="M250,90 L380,90 L380,197 L375,197" strokeDasharray="2,2" />
+            <polyline points="380,193 375,197 380,201" />
+
+          </svg>
+          
+          <div style={{ position: 'absolute', top: '-10px', right: '30px' }}>
+             {/* Paper clip doodle */}
+             <svg width="20" height="40" viewBox="0 0 20 40" fill="none" stroke="#777" strokeWidth="2">
+               <path d="M10,5 L10,35 C10,38 15,38 15,35 L15,10 C15,5 5,5 5,10 L5,30" strokeLinecap="round" strokeLinejoin="round" />
+             </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  )
+};
+
 export const fallbackJourneyData = (id: string, title: string): JourneyData => ({
   ...brandJourneyData,
   id,
