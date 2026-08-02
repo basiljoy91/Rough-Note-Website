@@ -261,24 +261,84 @@
   user-select: none;
 }
 
-.d3-lamp {
+.d3-lamp-control {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: block;
   left: 11%;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
   top: 9.2%;
   width: 58%;
   z-index: 2;
 }
 
+.d3-lamp {
+  display: block;
+  left: auto;
+  position: relative;
+  top: auto;
+  transition: filter 220ms ease, transform 220ms ease;
+  width: 100%;
+}
+
+.d3-lamp-control:hover .d3-lamp {
+  filter: drop-shadow(0 0.35cqi 0.4cqi rgb(67 49 30 / 16%));
+  transform: translateY(-0.15cqi);
+}
+
+.d3-lamp-control:focus-visible {
+  outline: none;
+}
+
+.d3-lamp-control:focus-visible .d3-lamp {
+  filter: drop-shadow(0 0 0.5cqi rgb(106 78 28 / 52%));
+}
+
+.d3-lamp-bulb-glow {
+  background: radial-gradient(circle, rgb(255 224 105 / 78%) 0 22%, rgb(255 212 72 / 43%) 42%, transparent 72%);
+  border-radius: 50%;
+  height: 17%;
+  left: 58%;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 26.5%;
+  transform: scale(0.58);
+  transition: opacity 230ms ease, transform 300ms ease;
+  width: 17%;
+  z-index: 3;
+}
+
 .d3-lamp-glow {
-  background: linear-gradient(118deg, rgb(239 206 102 / 22%), rgb(239 206 102 / 4%) 60%, transparent 80%);
+  background: linear-gradient(118deg, rgb(247 207 72 / 32%), rgb(239 206 102 / 10%) 60%, transparent 82%);
   clip-path: polygon(8% 0, 44% 0, 100% 100%, 0 100%);
   height: 46%;
   left: 47%;
-  opacity: 0.72;
+  opacity: 0;
+  pointer-events: none;
   position: absolute;
   top: 26%;
-  transform: rotate(-8deg);
+  transform: rotate(-8deg) scaleY(0.92);
+  transform-origin: 24% 0;
+  transition: opacity 260ms ease, transform 340ms ease;
   width: 43%;
   z-index: 1;
+}
+
+.d3-lamp-control[aria-pressed="true"] .d3-lamp-bulb-glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.d3-lamp-control[aria-pressed="true"] + .d3-lamp-glow {
+  opacity: 0.82;
+  transform: rotate(-8deg) scaleY(1);
 }
 
 .d3-notebook {
@@ -748,7 +808,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .d3-lamp-glow { animation: d3-glow 3.4s ease-in-out infinite alternate; }
+  .d3-lamp-control[aria-pressed="true"] + .d3-lamp-glow { animation: d3-glow 3.4s ease-in-out infinite alternate; }
   .d3-note-love { animation: d3-note-float 5.8s ease-in-out infinite alternate; }
 }
 
