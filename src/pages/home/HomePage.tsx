@@ -8,6 +8,7 @@ import { useWorkbookCarousel } from '../../features/workbook-carousel/useWorkboo
 import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
 import { aboutStudioMarkup } from './sections/AboutStudio';
+import { useAboutStudioInteractions } from './sections/AboutStudio/useAboutStudioInteractions';
 import { companySnapshotMarkup } from './sections/CompanySnapshot';
 import { faqMarkup } from './sections/FAQ';
 import { useFaq } from './sections/FAQ/useFaq';
@@ -36,6 +37,7 @@ export function HomePage() {
   useWorkbookCarousel(mainRef);
   useFaq(mainRef);
   useHeroInteractions(mainRef);
+  useAboutStudioInteractions(mainRef);
 
   return (
     <>
