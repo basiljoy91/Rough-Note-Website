@@ -7,6 +7,7 @@ import { RoughNoteDrawingFeature } from '../../features/rough-note-drawing/Rough
 import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
 import { ourServicesMarkup } from './sections/OurServices';
+import { HeroSection } from './sections/HeroSection';
 import { DynamicJourney } from './sections/DynamicJourney/DynamicJourney';
 
 export function ServicesPage() {
@@ -26,6 +27,7 @@ export function ServicesPage() {
           ref={mainRef}
           data-rough-anchor="services-main"
         >
+          <HeroSection />
           <div dangerouslySetInnerHTML={{ __html: ourServicesMarkup }} />
           <DynamicJourney />
         </main>
