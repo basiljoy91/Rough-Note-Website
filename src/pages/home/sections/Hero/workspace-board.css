@@ -494,7 +494,7 @@
   border: 0.42cqw solid #302f2c;
   border-radius: 1.1cqw;
   flex: 1;
-  margin-top: 1.7%;
+  margin-top: 2.75cqw;
   max-height: 9.4cqw;
   position: relative;
   width: 14.6cqw;
@@ -503,21 +503,21 @@
 
 .d1-robot-antenna {
   border-left: 0.36cqw solid #302f2c;
-  height: 2.2cqw;
+  height: 1.4cqw;
   left: 50%;
   position: absolute;
-  top: -2.5cqw;
+  top: -1.65cqw;
 }
 
 .d1-robot-antenna::before {
   border: 0.34cqw solid #302f2c;
   border-radius: 50%;
   content: "";
-  height: 0.9cqw;
-  left: -0.65cqw;
+  height: 0.65cqw;
+  left: -0.53cqw;
   position: absolute;
-  top: -1cqw;
-  width: 0.9cqw;
+  top: -0.72cqw;
+  width: 0.65cqw;
 }
 
 .d1-robot-ear {
