@@ -210,6 +210,50 @@
   width: 64.5%;
 }
 
+.d3-sketch-scene::before {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 31px,
+      rgb(92 70 44 / 8%) 32px,
+      transparent 33px 58px
+    ),
+    repeating-linear-gradient(
+      96deg,
+      transparent 0 74px,
+      rgb(255 255 255 / 9%) 76px,
+      transparent 79px 154px
+    ),
+    linear-gradient(108deg, rgb(235 221 198 / 82%), rgb(225 207 179 / 68%));
+  border-top: 2px solid rgb(75 57 36 / 17%);
+  box-shadow:
+    inset 0 12px 19px rgb(255 255 255 / 24%),
+    inset 0 -10px 20px rgb(91 68 41 / 5%),
+    0 16px 26px rgb(75 55 33 / 10%);
+  clip-path: polygon(0 2%, 13% 0, 30% 1.2%, 47% 0.3%, 66% 1.5%, 84% 0.5%, 100% 1.7%, 100% 100%, 0 100%);
+  content: "";
+  inset: 24% -3% -2% -5%;
+  opacity: 0.86;
+  position: absolute;
+  transform: rotate(-0.28deg);
+  z-index: 0;
+}
+
+.d3-sketch-scene::after {
+  background:
+    linear-gradient(90deg, transparent, rgb(66 50 32 / 25%) 8% 91%, transparent),
+    linear-gradient(90deg, transparent 4%, rgb(255 255 255 / 34%) 17% 83%, transparent 96%);
+  box-shadow: 0 8px 13px rgb(67 49 29 / 9%);
+  content: "";
+  height: 3px;
+  left: -3%;
+  position: absolute;
+  right: -1%;
+  top: 25.2%;
+  transform: rotate(-0.18deg);
+  z-index: 0;
+}
+
 .d3-prop {
   height: auto;
   pointer-events: none;
@@ -341,6 +385,7 @@
 }
 
 .d3-book-pencil {
+  filter: drop-shadow(0.45cqi 0.65cqi 0.45cqi rgb(61 46 29 / 18%));
   left: 69.2%;
   top: 51.6%;
   transform: rotate(81deg);
@@ -349,6 +394,7 @@
 }
 
 .d3-plant {
+  filter: drop-shadow(0.7cqi 1.2cqi 0.7cqi rgb(61 46 29 / 18%));
   left: 66%;
   top: 28%;
   width: 29%;
@@ -356,6 +402,7 @@
 }
 
 .d3-wireframe {
+  filter: drop-shadow(0.6cqi 0.9cqi 0.55cqi rgb(61 46 29 / 16%));
   left: 6.5%;
   top: 68.5%;
   transform: rotate(-2deg);
@@ -364,6 +411,7 @@
 }
 
 .d3-mug-group {
+  filter: drop-shadow(0.8cqi 1.15cqi 0.7cqi rgb(61 46 29 / 20%));
   height: 30cqi;
   left: 63%;
   position: absolute;
