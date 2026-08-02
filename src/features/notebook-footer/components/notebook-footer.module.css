@@ -722,7 +722,9 @@
   height: 270px;
   color: var(--footer-ink);
   justify-self: center;
+  mix-blend-mode: multiply;
   object-fit: contain;
+  opacity: 0.94;
   overflow: visible;
   transform: rotate(-0.4deg);
   transform-origin: 50% 70%;
