@@ -551,8 +551,8 @@ export const threeDModelingData: JourneyData = {
     <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
       <svg width="120" height="60" viewBox="0 0 160 80">
         <rect x="5" y="5" width="150" height="70" fill="none" stroke="#e65100" strokeWidth="3" strokeDasharray="5,2" />
-        <text x="80" y="38" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">RENDER</text>
-        <text x="80" y="60" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+        <text stroke="none" fill="#333" x="80" y="38" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">RENDER</text>
+        <text stroke="none" fill="#333" x="80" y="60" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
       </svg>
     </div>
   ),
@@ -926,8 +926,8 @@ export const erpSoftwareData: JourneyData = {
     <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
       <svg width="120" height="60" viewBox="0 0 160 80">
         <rect x="5" y="5" width="150" height="70" fill="none" stroke="#43a047" strokeWidth="3" strokeDasharray="5,2" />
-        <text x="80" y="38" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">PROCESS</text>
-        <text x="80" y="60" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+        <text stroke="none" fill="#333" x="80" y="38" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">PROCESS</text>
+        <text stroke="none" fill="#333" x="80" y="60" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
       </svg>
       <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#43a047" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
@@ -1133,31 +1133,31 @@ export const erpSoftwareData: JourneyData = {
           <svg viewBox="0 0 380 220" width="100%" height="100%" fill="none" stroke="#333" strokeWidth="1.2">
             {/* Center Box (ERP SYSTEM) */}
             <rect x="130" y="80" width="120" height="40" fill="#e8f5e9" stroke="#4caf50" strokeWidth="2" rx="2" />
-            <text x="190" y="105" textAnchor="middle" fontSize="14" fontFamily="sans-serif" fontWeight="bold" fill="#333">ERP SYSTEM</text>
+            <text stroke="none" fill="#333" x="190" y="105" textAnchor="middle" fontSize="14" fontFamily="sans-serif" fontWeight="bold" fill="#333">ERP SYSTEM</text>
             
             {/* Sales - top left */}
             <rect x="40" y="25" width="70" height="25" fill="#fff" stroke="#555" />
-            <text x="75" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Sales</text>
+            <text stroke="none" fill="#333" x="75" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Sales</text>
             
             {/* Inventory - top middle */}
             <rect x="155" y="25" width="70" height="25" fill="#fff" stroke="#555" />
-            <text x="190" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Inventory</text>
+            <text stroke="none" fill="#333" x="190" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Inventory</text>
             
             {/* Purchase - top right */}
             <rect x="270" y="25" width="70" height="25" fill="#fff" stroke="#555" />
-            <text x="305" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Purchase</text>
+            <text stroke="none" fill="#333" x="305" y="42" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Purchase</text>
             
             {/* Finance - bottom left */}
             <rect x="40" y="155" width="70" height="25" fill="#fff" stroke="#555" />
-            <text x="75" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Finance</text>
+            <text stroke="none" fill="#333" x="75" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Finance</text>
             
             {/* HR - bottom middle */}
             <rect x="155" y="155" width="70" height="25" fill="#fff" stroke="#555" />
-            <text x="190" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">HR</text>
+            <text stroke="none" fill="#333" x="190" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">HR</text>
             
             {/* Reports - bottom right */}
             <rect x="270" y="155" width="70" height="25" fill="#fff" stroke="#555" />
-            <text x="305" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Reports</text>
+            <text stroke="none" fill="#333" x="305" y="172" textAnchor="middle" fontSize="11" fontFamily="sans-serif">Reports</text>
 
             {/* Arrows */}
             {/* To Sales */}
@@ -1233,8 +1233,8 @@ export const customSoftwareData: JourneyData = {
     <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
       <svg width="180" height="60" viewBox="0 0 200 80">
         <rect x="5" y="5" width="190" height="70" fill="none" stroke="#673ab7" strokeWidth="3" strokeDasharray="5,2" />
-        <text x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">CODE QUALITY</text>
-        <text x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+        <text stroke="none" fill="#333" x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">CODE QUALITY</text>
+        <text stroke="none" fill="#333" x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
       </svg>
       <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#673ab7" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
@@ -1456,34 +1456,34 @@ export const customSoftwareData: JourneyData = {
             
             {/* Top: Web/Mobile Application */}
             <rect x="130" y="15" width="140" height="25" fill="#fff" stroke="#555" rx="2" />
-            <text x="200" y="32" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Web / Mobile Application</text>
+            <text stroke="none" fill="#333" x="200" y="32" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Web / Mobile Application</text>
             
             {/* Center: API Gateway */}
             <rect x="150" y="70" width="100" height="25" fill="#f5f5f5" stroke="#555" rx="2" />
-            <text x="200" y="87" textAnchor="middle" fontSize="10" fontFamily="sans-serif" fontWeight="bold">API Gateway</text>
+            <text stroke="none" fill="#333" x="200" y="87" textAnchor="middle" fontSize="10" fontFamily="sans-serif" fontWeight="bold">API Gateway</text>
             
             {/* Below Center: Business Logic */}
             <rect x="150" y="125" width="100" height="35" fill="#fff" stroke="#555" strokeDasharray="3,3" />
-            <text x="200" y="146" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Business Logic</text>
+            <text stroke="none" fill="#333" x="200" y="146" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Business Logic</text>
 
             {/* Bottom: Database */}
             <path d="M150,190 C150,185 250,185 250,190 L250,210 C250,215 150,215 150,210 Z" fill="#fff" stroke="#555" />
             <path d="M150,190 C150,195 250,195 250,190" stroke="#555" />
-            <text x="200" y="206" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Database</text>
+            <text stroke="none" fill="#333" x="200" y="206" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Database</text>
             
             {/* Left: Auth Service */}
             <rect x="25" y="125" width="90" height="30" fill="#fff" stroke="#555" />
-            <text x="70" y="140" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Authentication</text>
-            <text x="70" y="150" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Service</text>
+            <text stroke="none" fill="#333" x="70" y="140" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Authentication</text>
+            <text stroke="none" fill="#333" x="70" y="150" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Service</text>
             
             {/* Right: File Storage */}
             <rect x="285" y="125" width="90" height="30" fill="#fff" stroke="#555" />
-            <text x="330" y="140" textAnchor="middle" fontSize="9" fontFamily="sans-serif">File Storage</text>
-            <text x="330" y="150" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Service</text>
+            <text stroke="none" fill="#333" x="330" y="140" textAnchor="middle" fontSize="9" fontFamily="sans-serif">File Storage</text>
+            <text stroke="none" fill="#333" x="330" y="150" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Service</text>
 
             {/* Bottom-right: Third-party */}
             <rect x="285" y="185" width="90" height="25" fill="#fff" stroke="#555" />
-            <text x="330" y="202" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Third-party Services</text>
+            <text stroke="none" fill="#333" x="330" y="202" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Third-party Services</text>
 
             {/* Arrows */}
             {/* App to API Gateway */}
@@ -1509,6 +1509,316 @@ export const customSoftwareData: JourneyData = {
             {/* API Gateway to Third-party */}
             <path d="M250,90 L380,90 L380,197 L375,197" strokeDasharray="2,2" />
             <polyline points="380,193 375,197 380,201" />
+
+          </svg>
+          
+          <div style={{ position: 'absolute', top: '-10px', right: '30px' }}>
+             {/* Paper clip doodle */}
+             <svg width="20" height="40" viewBox="0 0 20 40" fill="none" stroke="#777" strokeWidth="2">
+               <path d="M10,5 L10,35 C10,38 15,38 15,35 L15,10 C15,5 5,5 5,10 L5,30" strokeLinecap="round" strokeLinejoin="round" />
+             </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  )
+};
+
+export const aiAutomationData: JourneyData = {
+  id: 'ai',
+  title: 'AI Automation',
+  subtitle: 'We use AI and automation to eliminate repetitive tasks,<br/>improve accuracy, and save hours of manual work.',
+  timelineBg: 'none',
+  timelineStepBg: '/assets/images/d-3-p-2-2.png',
+  stamp: (
+    <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
+      <svg width="180" height="60" viewBox="0 0 200 80">
+        <rect x="5" y="5" width="190" height="70" fill="none" stroke="#673ab7" strokeWidth="3" strokeDasharray="5,2" />
+        <text stroke="none" fill="#333" x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">AUTOMATION</text>
+        <text stroke="none" fill="#333" x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+      </svg>
+      <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#673ab7" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    </div>
+  ),
+  steps: [
+    {
+      num: '01',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="11" cy="11" r="8" />
+          <path d="M21 21l-4.35-4.35" />
+          <path d="M7 11h8" />
+          <path d="M11 7v8" />
+        </svg>
+      ),
+      title: 'Problem Discovery',
+      bullets: ['Identify repetitive tasks', 'Evaluate business impact', 'Understand pain points', 'Define automation goals']
+    },
+    {
+      num: '02',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="8" y="2" width="8" height="6" />
+          <path d="M12 8v4" />
+          <path d="M6 12h12" />
+          <path d="M6 12v4" />
+          <path d="M18 12v4" />
+          <rect x="2" y="16" width="8" height="6" />
+          <rect x="14" y="16" width="8" height="6" />
+        </svg>
+      ),
+      title: 'Workflow Analysis',
+      bullets: ['Map current workflow', 'Find bottlenecks', 'Document processes', 'Prioritize opportunities']
+    },
+    {
+      num: '03',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 8V4" />
+          <path d="M12 20v-4" />
+          <path d="M8 12H4" />
+          <path d="M20 12h-4" />
+          <circle cx="12" cy="2" r="2" />
+          <circle cx="12" cy="22" r="2" />
+          <circle cx="2" cy="12" r="2" />
+          <circle cx="22" cy="12" r="2" />
+          <text stroke="none" fill="#333" x="12" y="14" textAnchor="middle" fontSize="6" fontFamily="sans-serif">AI</text>
+        </svg>
+      ),
+      title: 'AI Opportunity Mapping',
+      bullets: ['Spot automation areas', 'Choose right AI tools', 'Define data needs', 'Plan integration points']
+    },
+    {
+      num: '04',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M2 8h20" />
+          <path d="M6 12h8" />
+          <path d="M6 16h12" />
+          <circle cx="6" cy="6" r="1" />
+          <circle cx="10" cy="6" r="1" />
+        </svg>
+      ),
+      title: 'Solution Design',
+      bullets: ['Design automation flow', 'Build prompt logic', 'Plan user interactions', 'Define success metrics']
+    },
+    {
+      num: '05',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M6 8v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" />
+          <rect x="4" y="8" width="16" height="12" rx="2" />
+          <path d="M12 12v4" />
+          <path d="M10 14h4" />
+          <path d="M8 4v4" />
+          <path d="M16 4v4" />
+        </svg>
+      ),
+      title: 'Build & Integration',
+      bullets: ['Develop automation', 'Integrate with tools', 'Connect APIs & data', 'Configure workflows']
+    },
+    {
+      num: '06',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 2v6h6" />
+          <path d="M9 14l2 2 4-4" />
+          <circle cx="18" cy="18" r="4" />
+          <path d="M21 21l2 2" />
+        </svg>
+      ),
+      title: 'Testing & Validation',
+      bullets: ['Test all scenarios', 'Validate accuracy', 'Check edge cases', 'Improve performance']
+    },
+    {
+      num: '07',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8" />
+          <path d="M12 17v4" />
+          <path d="M6 13l4-4 4 2 4-6" />
+        </svg>
+      ),
+      title: 'Deployment',
+      bullets: ['Deploy automation', 'User training', 'Documentation', 'Go-live support']
+    },
+    {
+      num: '08',
+      icon: (
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M3 3v18h18" />
+          <path d="M7 16l4-4 4 2 6-8" />
+          <path d="M21 6v4" />
+          <path d="M17 6h4" />
+        </svg>
+      ),
+      title: 'Optimize & Scale',
+      bullets: ['Monitor performance', 'Analyze results', 'Optimize workflows', 'Scale automation']
+    }
+  ],
+  renderDecorations: () => (
+    <>
+      <div className="dj-sticky dj-sticky--motion-left">
+        <img src="/assets/images/sticky-note-2-bg-clean.png" alt="Sticky Note" />
+        <div style={{ position: 'relative', zIndex: 2, padding: '15px 10px', fontSize: '0.75rem', lineHeight: '1.4' }}>
+          Smart automation<br/>for real results.<br/>Faster workflows.<br/>Smarter teams.<br/>
+          <span style={{ position: 'absolute', bottom: '0px', right: '15px', fontSize: '1.2rem' }}>☺</span>
+        </div>
+      </div>
+    </>
+  ),
+  renderBottomCTA: () => (
+    <div className="dj-motion-bottom" style={{ position: 'relative' }}>
+      
+      {/* Bottom Item 1 (Left Box with Example Workflow) */}
+      <div className="dj-motion-bottom__camera" style={{ flexDirection: 'column', alignItems: 'flex-start', left: '-50px', top: '-50px', transform: 'scale(0.85)' }}>
+        <div style={{ backgroundImage: "url('/assets/images/sticky-note-2-bg-clean.png')", width: '250px', height: '240px', backgroundSize: '100% 100%', padding: '15px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', filter: 'drop-shadow(3px 5px 10px rgba(0,0,0,0.2))', position: 'relative' }}>
+          <h4 style={{ fontSize: '0.8rem', fontFamily: "'Caveat', cursive", textAlign: 'center', marginBottom: '10px' }}>Example Workflow</h4>
+          
+          <div style={{ width: '100%', height: '180px', position: 'relative' }}>
+            <svg viewBox="0 0 220 180" width="100%" height="100%" fill="none" stroke="#333" strokeWidth="1.2">
+              
+              {/* Row 1: Form -> AI -> Process */}
+              <rect x="5" y="20" width="60" height="30" fill="#fff" stroke="#333" rx="2" />
+              <text stroke="none" fill="#333" x="35" y="34" textAnchor="middle" fontSize="7" fontFamily="sans-serif">Form / Email</text>
+              <text stroke="none" fill="#333" x="35" y="44" textAnchor="middle" fontSize="7" fontFamily="sans-serif">Received</text>
+
+              <path d="M65,35 L85,35" strokeDasharray="2,2" />
+              <polyline points="82,32 85,35 82,38" />
+
+              <rect x="85" y="20" width="55" height="30" fill="#fff" stroke="#333" rx="2" />
+              <text stroke="none" fill="#333" x="112.5" y="34" textAnchor="middle" fontSize="7" fontFamily="sans-serif">Data Extracted</text>
+              <text stroke="none" fill="#333" x="112.5" y="44" textAnchor="middle" fontSize="7" fontFamily="sans-serif">( AI )</text>
+
+              <path d="M140,35 L160,35" strokeDasharray="2,2" />
+              <polyline points="157,32 160,35 157,38" />
+
+              <rect x="160" y="20" width="55" height="30" fill="#fff" stroke="#333" rx="2" />
+              <text stroke="none" fill="#333" x="187.5" y="34" textAnchor="middle" fontSize="7" fontFamily="sans-serif">Process</text>
+              <text stroke="none" fill="#333" x="187.5" y="44" textAnchor="middle" fontSize="7" fontFamily="sans-serif">Automated</text>
+
+              {/* Row 2: Response & DB */}
+              <path d="M187.5,50 L187.5,90" strokeDasharray="2,2" />
+              <polyline points="184.5,87 187.5,90 190.5,87" />
+              
+              <rect x="160" y="90" width="55" height="30" fill="#fff" stroke="#333" rx="2" />
+              <text stroke="none" fill="#333" x="187.5" y="104" textAnchor="middle" fontSize="7" fontFamily="sans-serif">Data Stored</text>
+
+              {/* Arrow from Data Stored left to Response */}
+              <path d="M160,105 L70,105" strokeDasharray="2,2" />
+              <polyline points="73,102 70,105 73,108" />
+              <polyline points="157,102 160,105 157,108" />
+
+              <rect x="15" y="90" width="55" height="30" fill="#fff" stroke="#333" rx="2" />
+              <text stroke="none" fill="#333" x="42.5" y="104" textAnchor="middle" fontSize="7" fontFamily="sans-serif">Response Sent</text>
+              
+              {/* Database Icon under Data Stored */}
+              <path d="M175,135 C175,130 200,130 200,135 L200,155 C200,160 175,160 175,155 Z" fill="#fff" stroke="#333" />
+              <path d="M175,135 C175,140 200,140 200,135" stroke="#333" />
+              <path d="M175,145 C175,150 200,150 200,145" stroke="#333" />
+              
+            </svg>
+          </div>
+          
+        </div>
+      </div>
+
+      {/* Bottom Item 2 (Middle Checklist) */}
+      <div className="dj-motion-bottom__checklist" style={{ backgroundImage: "url('/assets/images/bottom-left.png')", width: '360px', height: '200px', padding: '15px 20px', boxSizing: 'border-box', transform: 'translate(-50px, 40px) scale(0.85)' }}>
+        <h4 className="dj-motion-bottom__title" style={{ fontSize: '0.7rem', marginBottom: '4px' }}>What you'll get</h4>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <ul className="dj-motion-bottom__list" style={{ fontSize: '0.35rem', lineHeight: '0.85', flex: 1, margin: 0, padding: 0 }}>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> AI-Powered Automation</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Reduced Manual Work</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Improved Accuracy</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Faster Response Time</li>
+          </ul>
+          <ul className="dj-motion-bottom__list" style={{ fontSize: '0.45rem', lineHeight: '1.25', flex: 1, margin: 0, padding: 0 }}>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Cost Savings</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Real-Time Insights</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Scalable Solutions</li>
+            <li style={{ marginBottom: '2px', display: 'flex', alignItems: 'flex-start' }}><span className="check" style={{ marginRight: '4px' }}>✔</span> Continuous Optimization</li>
+          </ul>
+        </div>
+      </div>
+      
+      {/* Bottom Item 3 (Small Purple Sticky Note) */}
+      <div className="dj-sticky" style={{ width: '130px', position: 'absolute', top: '0px', left: '420px', transform: 'rotate(-4deg) scale(0.85)', zIndex: 6 }}>
+         <div style={{ backgroundImage: "url('/assets/images/sticky-note-philosophy-bg-clean.png')", width: '120%', height: '140px', backgroundSize: '100% 100%', padding: '20px', boxShadow: '3px 4px 8px rgba(0,0,0,0.2)' }}>
+            <div style={{ fontSize: '0.55rem', fontFamily: "'Caveat', cursive", lineHeight: '1.1', color: '#222', textAlign: 'center', marginTop: '5px' }}>
+              Let AI handle the busy work, so your team can do their best work.
+            </div>
+            <svg style={{ position: 'absolute', bottom: '15px', right: '15px' }} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#673ab7" strokeWidth="1.5">
+               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+         </div>
+      </div>
+
+      {/* Bottom Item 4 (AI Automation Stack Diagram on White Board) */}
+      <div className="dj-motion-bottom__camera" style={{ left: '-50px', top: '-40px', opacity: 0.9, transform: 'scale(0.85)', zIndex: 1 }}>
+        <div style={{ backgroundColor: '#fcfcfc', width: '400px', height: '240px', padding: '15px', display: 'flex', flexDirection: 'column', filter: 'drop-shadow(4px 6px 12px rgba(0,0,0,0.15))', border: '1px solid #ddd', position: 'relative', borderRadius: '2px', backgroundImage: 'radial-gradient(#e0e0e0 1px, transparent 1px)', backgroundSize: '15px 15px' }}>
+          
+          <h4 style={{ fontSize: '0.9rem', fontFamily: "'Caveat', cursive", textAlign: 'center', marginBottom: '5px' }}>AI Automation Stack</h4>
+
+          {/* AI Stack Diagram SVG */}
+          <svg viewBox="0 0 400 180" width="100%" height="100%" fill="none" stroke="#333" strokeWidth="1.2">
+            
+            {/* 1. Data Sources */}
+            <path d="M40,50 C40,45 70,45 70,50 L70,80 C70,85 40,85 40,80 Z" fill="#fff" stroke="#333" />
+            <path d="M40,50 C40,55 70,55 70,50" stroke="#333" />
+            <path d="M40,60 C40,65 70,65 70,60" stroke="#333" />
+            <path d="M40,70 C40,75 70,75 70,70" stroke="#333" />
+            <text stroke="none" fill="#333" x="55" y="105" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Data Sources</text>
+
+            <path d="M80,65 L105,65" strokeDasharray="2,2" />
+            <polyline points="102,62 105,65 102,68" />
+
+            {/* 2. AI Engine */}
+            <rect x="115" y="40" width="40" height="40" fill="#fff" stroke="none" />
+            <path d="M125,50 C125,40 145,40 145,50 C150,55 145,65 135,70 C125,75 115,70 125,60 Z" stroke="#333" strokeWidth="1.5" />
+            <path d="M135,50 v15 M125,60 h10" stroke="#333" />
+            <text stroke="none" fill="#333" x="135" y="105" textAnchor="middle" fontSize="10" fontFamily="sans-serif">AI Engine</text>
+            
+            <path d="M160,65 L185,65" strokeDasharray="2,2" />
+            <polyline points="182,62 185,65 182,68" />
+
+            {/* 3. Automation */}
+            <circle cx="215" cy="60" r="16" fill="#fff" stroke="#333" />
+            <circle cx="215" cy="60" r="6" stroke="#333" />
+            <path d="M215,38 v6 M215,76 v6 M193,60 h6 M231,60 h6 M200,45 l4,4 M230,75 l-4,-4 M200,75 l4,-4 M230,45 l-4,4" stroke="#333" strokeWidth="1.5" />
+            <text stroke="none" fill="#333" x="215" y="105" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Automation</text>
+
+            <path d="M245,65 L270,65" strokeDasharray="2,2" />
+            <polyline points="267,62 270,65 267,68" />
+
+            {/* 4. Apps & Tools */}
+            <rect x="285" y="45" width="20" height="30" rx="2" fill="#fff" stroke="#333" />
+            <rect x="315" y="45" width="25" height="30" rx="2" fill="#fff" stroke="#333" />
+            <line x1="285" y1="50" x2="305" y2="50" />
+            <line x1="315" y1="52" x2="340" y2="52" />
+            <text stroke="none" fill="#333" x="312.5" y="105" textAnchor="middle" fontSize="10" fontFamily="sans-serif">Apps & Tools</text>
+
+            {/* Bottom Process Box */}
+            <rect x="110" y="130" width="220" height="30" fill="#fff" stroke="#555" strokeDasharray="3,3" />
+            <text stroke="none" fill="#333" x="140" y="149" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Monitor</text>
+            
+            <path d="M165,145 L180,145" strokeDasharray="2,2" />
+            <polyline points="177,142 180,145 177,148" />
+            
+            <text stroke="none" fill="#333" x="205" y="149" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Analyze</text>
+            
+            <path d="M230,145 L245,145" strokeDasharray="2,2" />
+            <polyline points="242,142 245,145 242,148" />
+
+            <text stroke="none" fill="#333" x="275" y="149" textAnchor="middle" fontSize="9" fontFamily="sans-serif">Optimize</text>
 
           </svg>
           
