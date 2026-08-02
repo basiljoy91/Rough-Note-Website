@@ -718,8 +718,11 @@
 }
 
 .coffeeDrawing {
+  display: block;
+  height: 270px;
   color: var(--footer-ink);
   justify-self: center;
+  object-fit: contain;
   overflow: visible;
   transform: rotate(-0.4deg);
   transform-origin: 50% 70%;
