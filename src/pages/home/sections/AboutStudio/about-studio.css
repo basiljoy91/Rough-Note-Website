@@ -316,16 +316,16 @@
 }
 
 .d3-lamp-glow {
-  background: linear-gradient(118deg, rgb(247 207 72 / 32%), rgb(239 206 102 / 10%) 60%, transparent 82%);
-  clip-path: polygon(8% 0, 44% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgb(247 207 72 / 34%), rgb(239 206 102 / 13%) 58%, transparent 100%);
+  clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
   height: 46%;
-  left: 47%;
+  left: 28.2%;
   opacity: 0;
   pointer-events: none;
   position: absolute;
   top: 26%;
-  transform: rotate(-8deg) scaleY(0.92);
-  transform-origin: 24% 0;
+  transform: scaleY(0.92);
+  transform-origin: 50% 0;
   transition: opacity 260ms ease, transform 340ms ease;
   width: 43%;
   z-index: 1;
@@ -338,7 +338,7 @@
 
 .d3-lamp-control[aria-pressed="true"] + .d3-lamp-glow {
   opacity: 0.82;
-  transform: rotate(-8deg) scaleY(1);
+  transform: scaleY(1);
 }
 
 .d3-notebook {
