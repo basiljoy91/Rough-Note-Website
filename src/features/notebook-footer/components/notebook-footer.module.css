@@ -717,11 +717,17 @@
   width: 100%;
 }
 
+.coffeeCupWrap {
+  height: 270px;
+  justify-self: center;
+  position: relative;
+  width: 236px;
+}
+
 .coffeeDrawing {
   display: block;
-  height: 270px;
+  height: 100%;
   color: var(--footer-ink);
-  justify-self: center;
   mix-blend-mode: multiply;
   object-fit: contain;
   opacity: 0.94;
@@ -729,26 +735,54 @@
   transform: rotate(-0.4deg);
   transform-origin: 50% 70%;
   transition: transform 300ms ease;
-  width: 236px;
+  width: 100%;
 }
 
 .coffeeCard:hover .coffeeDrawing {
   transform: rotate(0.7deg) translateY(-1px);
 }
 
-.coffeeSteam {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: 2.15;
-  transform-box: fill-box;
-  transform-origin: center bottom;
-  animation: footer-steam-wiggle 9s ease-in-out infinite;
+.animatedSteam {
+  height: 24%;
+  left: 29%;
+  pointer-events: none;
+  position: absolute;
+  top: -1%;
+  width: 42%;
+  z-index: 2;
 }
 
-.coffeeCard:hover .coffeeSteam {
-  opacity: 0.82;
-  transform: translateY(-2px) scaleY(1.03);
+.steamStrand {
+  animation: footer-steam-rise 3.8s ease-in-out infinite;
+  border-left: 2px solid rgb(45 42 37 / 64%);
+  border-radius: 50%;
+  bottom: 2%;
+  height: 70%;
+  opacity: 0;
+  position: absolute;
+  transform-origin: center bottom;
+  width: 20%;
+}
+
+.steamOne {
+  animation-delay: -0.55s;
+  height: 60%;
+  left: 8%;
+}
+
+.steamTwo {
+  animation-delay: -2.05s;
+  animation-duration: 4.15s;
+  height: 86%;
+  left: 42%;
+}
+
+.steamThree {
+  animation-delay: -1.25s;
+  border-left: 0;
+  border-right: 2px solid rgb(45 42 37 / 64%);
+  height: 66%;
+  right: 4%;
 }
 
 .coffeeMonogram {
@@ -1282,19 +1316,24 @@
   width: 1px;
 }
 
-@keyframes footer-steam-wiggle {
-  0%,
+@keyframes footer-steam-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8%, 0) scaleY(0.84) rotate(-3deg);
+  }
+
+  20% {
+    opacity: 0.62;
+  }
+
+  58% {
+    opacity: 0.44;
+    transform: translate3d(8%, -16%, 0) scaleY(1.02) rotate(3deg);
+  }
+
   100% {
-    opacity: 0.72;
-    transform: translate3d(0, 0, 0) skewX(0deg);
-  }
-  35% {
-    opacity: 0.56;
-    transform: translate3d(2px, -2px, 0) skewX(1.2deg);
-  }
-  68% {
-    opacity: 0.68;
-    transform: translate3d(-2px, -1px, 0) skewX(-1deg);
+    opacity: 0;
+    transform: translate3d(-7%, -40%, 0) scaleY(1.1) rotate(-2deg);
   }
 }
 
@@ -1359,7 +1398,7 @@
     width: 100%;
   }
 
-  .coffeeDrawing {
+  .coffeeCupWrap {
     width: min(236px, 100%);
   }
 
@@ -1697,7 +1736,7 @@
     max-width: 330px;
   }
 
-  .coffeeDrawing {
+  .coffeeCupWrap {
     margin: -4px auto 0;
     max-width: 285px;
   }
@@ -1978,7 +2017,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .coffeeSteam,
+  .steamStrand,
   .subscribeCheckVisible {
     animation: none;
   }
