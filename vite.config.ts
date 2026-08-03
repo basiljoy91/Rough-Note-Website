@@ -36,6 +36,7 @@ export default defineConfig({
       input: {
         intro: page('index.html'),
         home: page('html/index.html'),
+        connect: page('html/connect.html'),
         contact: page('html/contact.html'),
         about: page('html/about.html'),
         faq: page('html/faq.html'),

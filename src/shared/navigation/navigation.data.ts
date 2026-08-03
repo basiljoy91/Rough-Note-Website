@@ -54,7 +54,7 @@ export const navigationItems: NavigationItem[] = [
   {
     key: 'contact',
     label: 'Contact',
-    href: '/html/contact.html',
+    href: '/html/connect.html',
     icon: contactIcon
   },
   {
