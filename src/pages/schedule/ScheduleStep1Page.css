@@ -1,0 +1,423 @@
+/* ScheduleStep1Page.css */
+
+.schedule-step-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start; /* Shift entire notebook left */
+  align-items: center;
+  padding-left: 2vw; /* Slight margin from the sidebar */
+  background-color: #fdfaf3;
+  overflow: hidden; /* Strict desktop constraint - no scroll */
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  box-sizing: border-box;
+}
+
+.notebook-container {
+  position: relative;
+  height: 94vh; /* Slightly smaller to guarantee footer is always in view */
+  display: inline-block; /* Shrink-wrap the image exactly */
+}
+
+.notebook-bg {
+  height: 100%;
+  width: auto; /* Preserve aspect ratio natively */
+  max-height: 94vh;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* This content overlay automatically aligns to the exact bounds of the shrink-wrapped image */
+.notebook-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 1;
+}
+
+/* Proportional Layout inside Notebook */
+.info-column {
+  position: absolute;
+  top: 15%;
+  left: 9%; /* Shift entire content left towards spiral */
+  width: 35%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-column {
+  position: absolute;
+  top: 20%; /* Moved slightly down for better alignment with left section */
+  right: 9%; /* Shift entire content left */
+  width: 48%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* --- Left Column Elements --- */
+.top-info-block {
+  position: relative;
+  top: -50px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  color: #2c2c2c;
+  margin-bottom: 2vh;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.step-circle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.red-circle-sketch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.step-heading-container {
+  position: relative;
+  margin-bottom: 2vh;
+}
+
+.step-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1;
+}
+
+.heading-underline-sketch {
+  width: 90%;
+  height: 2vh;
+  margin-top: -1vh;
+  margin-left: 2%;
+}
+
+.step-desc {
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  color: #2c2c2c;
+  line-height: 1.3;
+  margin-bottom: 4vh;
+}
+
+.pencil-sketch-wrapper {
+  width: clamp(60px, 8vw, 50px);
+  margin-bottom: 2vh;
+  margin-left: 5%;
+  position: relative;
+  top: -50px; /* Moved up by 30px */
+}
+
+.inspirational-text {
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  color: #555;
+  line-height: 1.3;
+  margin-left: 5%;
+  position: relative;
+  top: -50px; /* Moved up by 30px */
+}
+
+.respect-time-sticky {
+  position: absolute;
+  bottom: 2%; /* Moved up */
+  left: 35%; /* Moved left */
+  width: clamp(90px, 5vw, 80px); /* Reduced size by ~20% */
+  aspect-ratio: 1.05; /* Approx aspect ratio of sticky-note-6-bg-clean.png */
+  transform: rotate(-3deg);
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
+}
+
+.sticky-note-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sticky-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  font-family: 'Kalam', cursive;
+  font-size: clamp(0.8rem, 1.2vw, 0.4rem);
+  color: #1a1a1a;
+}
+
+.underline-blue {
+  position: relative;
+  display: inline-block;
+}
+
+.blue-underline-svg {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 110%;
+  height: 8px;
+}
+
+
+/* --- Right Column Form Card --- */
+.form-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.1; /* Approximate aspect ratio of c-s-m.png */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+}
+
+.form-tape {
+  position: absolute;
+  top: -3%; /* Move tape up inside card */
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 15%;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.form-content {
+  position: relative;
+  z-index: 1;
+  width: 72%; /* Reduced from 80% to add more horizontal padding inside the form */
+  height: 75%; /* Reduced from 80% to move content up slightly */
+  margin-bottom: 5%; /* Shifts content slightly upward */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7vh;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  font-family: 'Kalam', cursive;
+  font-size: clamp(0.9rem, 1.2vw, 1.3rem);
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.input-icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.notebook-input {
+  width: 100%;
+  padding: 1vh 1vw;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1rem, 1.1vw, 1.2rem);
+  color: #333;
+  background-color: #fcfbf9;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 6px;
+  box-shadow: inset 1px 2px 4px rgba(0,0,0,0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.notebook-input:focus {
+  outline: none;
+  border-color: rgba(0,0,0,0.3);
+  box-shadow: inset 1px 2px 5px rgba(0,0,0,0.1);
+}
+
+.notebook-input::placeholder {
+  color: #999;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.continue-button {
+  align-self: flex-end;
+  margin-top: 1vh;
+  background-color: #1c1c1c;
+  color: #fffaf0;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+  padding: 1vh 2vw;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.continue-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 6px 15px rgba(0,0,0,0.25);
+}
+
+/* --- Notebook Footer --- */
+.notebook-footer {
+  position: absolute;
+  bottom: 2%;
+  left: 9%;
+  width: 82%;
+  display: flex;
+  align-items: center;
+}
+
+.footer-tab {
+  background-color: #e2d7c1;
+  padding: 0.5vh 0.1vw;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 1vw, 1.1rem);
+  color: #1a1a1a;
+  box-shadow: 2px 3px 6px rgba(0,0,0,0.12), inset 0 0 5px rgba(255,255,255,0.4);
+  border-radius: 2px 4px 8px 3px / 3px 10px 4px 2px; /* Slight organic tear look */
+  transform: rotate(-1deg);
+  margin-right: -2%;
+  position: absolute;
+  left: -20px;
+}
+
+.footer-text {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1rem, 1.2vw, 1.3rem);
+  color: #4a4a4a;
+  letter-spacing: 0.5px;
+  flex-grow: 1;
+  text-align: center;
+  transform: translateX(-10%); /* Centers it beautifully in the remaining space */
+}
+
+
+/* --- Mobile & Tablet Responsiveness --- */
+@media (max-width: 900px) {
+  .schedule-step-wrapper {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto; /* Allow scrolling on smaller devices */
+    background-color: #fdfaf3; 
+    align-items: flex-start;
+  }
+
+  .notebook-container {
+    height: auto;
+    padding: 0;
+  }
+
+  .notebook-bg {
+    display: none; /* Can't safely contain an aspect-ratio image vertically without gaps */
+  }
+
+  /* When we hide the background image, we still need to mimic the notebook */
+  .notebook-content {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fdfaf3; /* Paper color */
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+  }
+
+  .info-column, .form-column {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 95%;
+    max-width: 500px;
+    height: auto;
+  }
+  
+  .form-card {
+    aspect-ratio: auto;
+    margin-top: 40px;
+    background-image: url('/assets/images/c-s-m.png');
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+
+  .form-card-bg {
+    display: none; /* Switched to background-image for fluid form card */
+  }
+
+  .form-content {
+    width: 100%;
+    gap: 20px;
+  }
+
+  .notebook-input {
+    padding: 12px 15px; /* Fixed padding for mobile */
+  }
+
+  .continue-button {
+    padding: 12px 25px; /* Fixed padding for mobile */
+  }
+
+  .respect-time-sticky {
+    position: relative;
+    left: 0;
+    margin: 40px auto 0;
+    width: 180px;
+  }
+  
+  .notebook-footer {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 40px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .footer-text {
+    transform: none;
+  }
+}

@@ -309,7 +309,7 @@ export function ConnectPage() {
                   and talk about
                   your next idea.
                 </p>
-                <button className="schedule-btn">
+                <a href="/html/schedule-step-1.html" className="schedule-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="calendar-icon">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -317,7 +317,7 @@ export function ConnectPage() {
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                   </svg>
                   Schedule a Meeting &rarr;
-                </button>
+                </a>
                 <div className="meeting-footer">
                   <svg className="curved-arrow" viewBox="0 0 50 50" fill="none" stroke="#d45b5b" strokeWidth="2">
                     <path d="M10,40 Q25,20 40,10" strokeLinecap="round" />
