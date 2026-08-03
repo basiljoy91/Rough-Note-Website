@@ -958,6 +958,10 @@
 
 .d2-company {
   --company-tilt: -0.25deg;
+  --crease-angle-a: 118deg;
+  --crease-angle-b: 24deg;
+  --crease-focus-x: 68%;
+  --crease-focus-y: 28%;
   position: relative;
   display: grid;
   grid-template-rows: 112px auto auto 1fr;
@@ -970,11 +974,12 @@
   text-align: center;
   background-color: #d7e8ef;
   background-image:
-    linear-gradient(145deg, rgba(219, 237, 244, 0.82), rgba(194, 220, 231, 0.78)),
-    linear-gradient(318deg, rgba(54, 93, 108, 0.12), transparent 36%),
+    linear-gradient(145deg, rgba(219, 237, 244, 0.78), rgba(194, 220, 231, 0.72)),
+    linear-gradient(318deg, rgba(54, 93, 108, 0.16), transparent 39%),
     url("../../../../assets/textures/wrinkled-paper.webp");
-  background-position: center;
-  background-size: auto, auto, cover;
+  background-blend-mode: multiply, soft-light, normal;
+  background-position: center, center, 48% 44%;
+  background-size: auto, auto, 132% 146%;
   border: 1px solid rgba(69, 97, 108, 0.25);
   border-radius: 12px;
   box-shadow:
@@ -986,24 +991,135 @@
 }
 
 .d2-company::before {
-  display: none;
+  position: absolute;
+  z-index: 0;
+  display: block;
+  content: "";
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      var(--crease-angle-a),
+      transparent 0 35%,
+      rgba(55, 76, 82, 0.11) 35.45%,
+      rgba(255, 255, 255, 0.34) 36.15%,
+      transparent 37.05% 100%
+    ),
+    linear-gradient(
+      var(--crease-angle-b),
+      transparent 0 63%,
+      rgba(49, 72, 80, 0.09) 63.45%,
+      rgba(255, 255, 255, 0.28) 64.1%,
+      transparent 65% 100%
+    ),
+    radial-gradient(
+      ellipse at var(--crease-focus-x) var(--crease-focus-y),
+      rgba(255, 255, 255, 0.36) 0 3%,
+      rgba(65, 86, 91, 0.09) 8%,
+      transparent 21%
+    );
+  box-shadow:
+    inset 12px 0 18px rgba(52, 72, 79, 0.045),
+    inset -10px -9px 18px rgba(49, 68, 74, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  opacity: 0.88;
+  pointer-events: none;
 }
 
 .d2-company::after,
 .d2-company:nth-child(1)::after,
 .d2-company:nth-child(4)::after,
 .d2-company:nth-child(7)::after {
-  display: none;
+  position: absolute;
+  z-index: 0;
+  display: block;
+  content: "";
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent 8%),
+    linear-gradient(315deg, rgba(58, 78, 83, 0.13), transparent 10%),
+    linear-gradient(88deg, transparent 48%, rgba(255, 255, 255, 0.18) 50%, transparent 52%);
+  opacity: 0.58;
+  pointer-events: none;
 }
 
-.d2-company:nth-child(1) { --company-tilt: -0.35deg; }
-.d2-company:nth-child(2) { --company-tilt: 0.25deg; }
-.d2-company:nth-child(3) { --company-tilt: -0.2deg; }
-.d2-company:nth-child(4) { --company-tilt: 0.35deg; }
-.d2-company:nth-child(5) { --company-tilt: 0.25deg; }
-.d2-company:nth-child(6) { --company-tilt: -0.3deg; }
-.d2-company:nth-child(7) { --company-tilt: 0.2deg; }
-.d2-company:nth-child(8) { --company-tilt: -0.25deg; }
+.d2-company > :not(.d2-company-fastener) {
+  position: relative;
+  z-index: 1;
+}
+
+.d2-company:nth-child(1) {
+  --company-tilt: -0.35deg;
+  --crease-angle-a: 112deg;
+  --crease-angle-b: 19deg;
+  --crease-focus-x: 73%;
+  --crease-focus-y: 31%;
+  background-position: center, center, 18% 22%;
+}
+
+.d2-company:nth-child(2) {
+  --company-tilt: 0.25deg;
+  --crease-angle-a: 124deg;
+  --crease-angle-b: 31deg;
+  --crease-focus-x: 29%;
+  --crease-focus-y: 67%;
+  background-position: center, center, 72% 54%;
+}
+
+.d2-company:nth-child(3) {
+  --company-tilt: -0.2deg;
+  --crease-angle-a: 105deg;
+  --crease-angle-b: 14deg;
+  --crease-focus-x: 64%;
+  --crease-focus-y: 76%;
+  background-position: center, center, 38% 78%;
+}
+
+.d2-company:nth-child(4) {
+  --company-tilt: 0.35deg;
+  --crease-angle-a: 132deg;
+  --crease-angle-b: 37deg;
+  --crease-focus-x: 36%;
+  --crease-focus-y: 23%;
+  background-position: center, center, 84% 17%;
+}
+
+.d2-company:nth-child(5) {
+  --company-tilt: 0.25deg;
+  --crease-angle-a: 116deg;
+  --crease-angle-b: 27deg;
+  --crease-focus-x: 79%;
+  --crease-focus-y: 61%;
+  background-position: center, center, 24% 66%;
+}
+
+.d2-company:nth-child(6) {
+  --company-tilt: -0.3deg;
+  --crease-angle-a: 128deg;
+  --crease-angle-b: 16deg;
+  --crease-focus-x: 24%;
+  --crease-focus-y: 38%;
+  background-position: center, center, 69% 32%;
+}
+
+.d2-company:nth-child(7) {
+  --company-tilt: 0.2deg;
+  --crease-angle-a: 108deg;
+  --crease-angle-b: 34deg;
+  --crease-focus-x: 62%;
+  --crease-focus-y: 19%;
+  background-position: center, center, 43% 10%;
+}
+
+.d2-company:nth-child(8) {
+  --company-tilt: -0.25deg;
+  --crease-angle-a: 136deg;
+  --crease-angle-b: 22deg;
+  --crease-focus-x: 31%;
+  --crease-focus-y: 72%;
+  background-position: center, center, 91% 72%;
+}
 
 .d2-company-fastener {
   position: absolute;
