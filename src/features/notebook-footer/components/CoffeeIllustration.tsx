@@ -4,11 +4,18 @@ import styles from './notebook-footer.module.css';
 
 export function CoffeeCupIllustration() {
   return (
-    <img
-      className={styles.coffeeDrawing}
-      src={coffeeRn}
-      alt="A hand-drawn coffee cup marked RN"
-    />
+    <div className={styles.coffeeCupWrap}>
+      <span className={styles.animatedSteam} aria-hidden="true">
+        <span className={`${styles.steamStrand} ${styles.steamOne}`} />
+        <span className={`${styles.steamStrand} ${styles.steamTwo}`} />
+        <span className={`${styles.steamStrand} ${styles.steamThree}`} />
+      </span>
+      <img
+        className={styles.coffeeDrawing}
+        src={coffeeRn}
+        alt="A hand-drawn coffee cup marked RN"
+      />
+    </div>
   );
 }
 
