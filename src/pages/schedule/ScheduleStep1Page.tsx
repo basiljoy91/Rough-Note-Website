@@ -168,9 +168,9 @@ export function ScheduleStep1Page() {
                     <input type="text" placeholder="Enter your company name" className="notebook-input" />
                   </div>
                   
-                  <button className="continue-button">
+                  <a href="/html/schedule-step-2.html" className="continue-button" style={{textDecoration: 'none'}}>
                     Continue &rarr;
-                  </button>
+                  </a>
                   
                 </div>
               </div>
