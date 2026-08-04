@@ -222,10 +222,7 @@ export function ScheduleStep4Page() {
   }, []);
 
   const handleConfirm = () => {
-    // Collect all information and prepare for Step 5 or backend
-    console.log("Meeting Confirmed:", meetingData);
-    alert("Meeting confirmed successfully! Redirecting...");
-    // window.location.href = '/html/schedule-step-5.html';
+    window.location.href = '/html/schedule-success.html' + window.location.search;
   };
 
   const modeText = meetingData.mode === 'online' ? 'Online Meeting\n(Google Meet)' : 'Office Visit\n(at Our Studio)';
