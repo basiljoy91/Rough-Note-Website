@@ -184,7 +184,10 @@ export function ScheduleStep3Page() {
   const minutesOptions = Array.from({length: 60}, (_, i) => String(i).padStart(2, '0'));
   const ampmOptions = ['AM', 'PM'];
 
-  const continueUrl = `/html/schedule-step-4.html?date=${rawDateParam}&time=${hour}:${minute} ${ampm}&mode=${meetingMode}`;
+  let searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  searchParams.set('time', `${hour}:${minute} ${ampm}`);
+  searchParams.set('mode', meetingMode);
+  const continueUrl = `/html/schedule-step-4.html?${searchParams.toString()}`;
 
   return (
     <SiteLayout

@@ -133,6 +133,10 @@ export function ScheduleStep2Page() {
 
   const formattedSelectedDate = `${weekdays[selectedDate.getDay()]}, ${selectedDate.getDate().toString().padStart(2, '0')} ${monthNames[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`;
   const formattedSelectedUrlParam = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+  
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  searchParams.set('date', formattedSelectedUrlParam);
+  const continueUrl = `/html/schedule-step-3.html?${searchParams.toString()}`;
 
   return (
     <SiteLayout
@@ -246,10 +250,10 @@ export function ScheduleStep2Page() {
             
             {/* Page Navigation Buttons */}
             <div className="step-navigation">
-              <a href="/html/schedule-step-1.html" className="back-button">
+              <button onClick={() => window.history.back()} className="back-button">
                 &larr; Back
-              </a>
-              <a href={`/html/schedule-step-3.html?date=${formattedSelectedUrlParam}`} className="continue-button step-continue-btn">
+              </button>
+              <a href={continueUrl} className="continue-button step-continue-btn">
                 Continue &rarr;
               </a>
             </div>

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
 import './ScheduleStep1Page.css';
 
@@ -73,6 +74,28 @@ const IconBuilding = () => (
 );
 
 export function ScheduleStep1Page() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [company, setCompany] = useState('');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('name')) setName(params.get('name')!);
+    if (params.get('email')) setEmail(params.get('email')!);
+    if (params.get('phone')) setPhone(params.get('phone')!);
+    if (params.get('company')) setCompany(params.get('company')!);
+  }, []);
+
+  const searchParams = new URLSearchParams();
+  if (name.trim()) searchParams.set('name', name.trim());
+  if (email.trim()) searchParams.set('email', email.trim());
+  if (phone.trim()) searchParams.set('phone', phone.trim());
+  if (company.trim()) searchParams.set('company', company.trim());
+
+  const queryString = searchParams.toString();
+  const continueUrl = `/html/schedule-step-2.html${queryString ? '?' + queryString : ''}`;
+
   return (
     <SiteLayout
       activeItem=""
@@ -141,7 +164,7 @@ export function ScheduleStep1Page() {
                       <IconPerson />
                       <label>Full Name</label>
                     </div>
-                    <input type="text" placeholder="Enter your full name" className="notebook-input" />
+                    <input type="text" placeholder="Enter your full name" className="notebook-input" value={name} onChange={e => setName(e.target.value)} />
                   </div>
                   
                   <div className="input-group">
@@ -149,7 +172,7 @@ export function ScheduleStep1Page() {
                       <IconMail />
                       <label>Email Address</label>
                     </div>
-                    <input type="email" placeholder="Enter your email address" className="notebook-input" />
+                    <input type="email" placeholder="Enter your email address" className="notebook-input" value={email} onChange={e => setEmail(e.target.value)} />
                   </div>
                   
                   <div className="input-group">
@@ -157,7 +180,7 @@ export function ScheduleStep1Page() {
                       <IconPhone />
                       <label>Phone Number (Optional)</label>
                     </div>
-                    <input type="tel" placeholder="Enter your phone number" className="notebook-input" />
+                    <input type="tel" placeholder="Enter your phone number" className="notebook-input" value={phone} onChange={e => setPhone(e.target.value)} />
                   </div>
                   
                   <div className="input-group">
@@ -165,10 +188,10 @@ export function ScheduleStep1Page() {
                       <IconBuilding />
                       <label>Company Name (Optional)</label>
                     </div>
-                    <input type="text" placeholder="Enter your company name" className="notebook-input" />
+                    <input type="text" placeholder="Enter your company name" className="notebook-input" value={company} onChange={e => setCompany(e.target.value)} />
                   </div>
                   
-                  <a href="/html/schedule-step-2.html" className="continue-button" style={{textDecoration: 'none'}}>
+                  <a href={continueUrl} className="continue-button" style={{textDecoration: 'none'}}>
                     Continue &rarr;
                   </a>
                   
