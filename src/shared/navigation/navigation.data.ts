@@ -48,7 +48,7 @@ export const navigationItems: NavigationItem[] = [
   {
     key: 'process',
     label: 'Our Plans',
-    href: '/html/index.html?animated=true#div-6',
+    href: '/html/process.html',
     icon: processIcon
   },
   {
