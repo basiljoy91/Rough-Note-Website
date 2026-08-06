@@ -1,23 +1,242 @@
+import { toCanvas } from 'html-to-image';
 import { useEffect, type RefObject } from 'react';
 
 const pages = ['web', 'brand', 'poster', 'logo', 'motion', 'video', 'erp'];
-const pageTurnDuration = 1280;
+const pageTurnDuration = 1480;
+const curlWidth = 0.26;
 
 type TurnDirection = 'next' | 'previous';
 
-type PageStrip = {
-  element: HTMLElement;
-  shade: HTMLElement;
-  center: number;
+type TurningCanvas = {
+  element: HTMLCanvasElement;
+  source: HTMLCanvasElement;
 };
 
-type TurnMesh = {
-  element: HTMLElement;
-  shadow: HTMLElement;
-  shadowWidth: number;
-  sheetLeft: number;
-  sheetWidth: number;
-  strips: PageStrip[];
+type CurlPoint = {
+  angle: number;
+  depth: number;
+  x: number;
+};
+
+type CurlColumn = {
+  angle: number;
+  depth: number;
+  destinationLeft: number;
+  destinationWidth: number;
+  normalizedCenter: number;
+  sourceLeft: number;
+  sourceWidth: number;
+};
+
+const clamp = (value: number, minimum: number, maximum: number) =>
+  Math.min(maximum, Math.max(minimum, value));
+
+const easePageTurn = (progress: number) =>
+  progress < 0.5
+    ? 2 * progress * progress
+    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+const getCurlPoint = (
+  position: number,
+  progress: number,
+  direction: TurnDirection
+): CurlPoint => {
+  const radius = curlWidth / Math.PI;
+  const mirroredPosition = direction === 'next' ? position : 1 - position;
+  const foldFront = 1 - progress * (1 + curlWidth);
+  const distance = mirroredPosition - foldFront;
+  let angle = 0;
+  let mappedPosition = mirroredPosition;
+
+  if (distance > 0 && distance < curlWidth) {
+    angle = distance / radius;
+    mappedPosition = foldFront + radius * Math.sin(angle);
+  } else if (distance >= curlWidth) {
+    angle = Math.PI;
+    mappedPosition = foldFront - (distance - curlWidth);
+  }
+
+  return {
+    angle,
+    depth: radius * (1 - Math.cos(angle)),
+    x: direction === 'next' ? mappedPosition : 1 - mappedPosition
+  };
+};
+
+const drawPageCurl = (
+  turningCanvas: TurningCanvas,
+  progress: number,
+  direction: TurnDirection
+) => {
+  const { element, source } = turningCanvas;
+  const context = element.getContext('2d');
+  if (!context) return;
+
+  const width = element.width;
+  const height = element.height;
+  const normalizedProgress = clamp(progress, 0, 1);
+  context.clearRect(0, 0, width, height);
+
+  if (normalizedProgress <= 0.0001) {
+    context.drawImage(source, 0, 0, width, height);
+    return;
+  }
+
+  if (normalizedProgress >= 0.9999) return;
+
+  const foldFront = 1 - normalizedProgress * (1 + curlWidth);
+  const foldPosition =
+    (direction === 'next' ? foldFront : 1 - foldFront) * width;
+  const turnStrength = Math.sin(normalizedProgress * Math.PI);
+  const shadowWidth = width * (0.075 + turnStrength * 0.085);
+  const shadow = context.createLinearGradient(
+    foldPosition - shadowWidth,
+    0,
+    foldPosition + shadowWidth,
+    0
+  );
+
+  shadow.addColorStop(0, 'rgba(49, 31, 17, 0)');
+  shadow.addColorStop(0.43, `rgba(49, 31, 17, ${0.08 * turnStrength})`);
+  shadow.addColorStop(0.56, `rgba(49, 31, 17, ${0.31 * turnStrength})`);
+  shadow.addColorStop(1, 'rgba(49, 31, 17, 0)');
+  context.fillStyle = shadow;
+  context.fillRect(0, 0, width, height);
+
+  const sourceStep = Math.max(2, Math.ceil(width / 620));
+  const columns: CurlColumn[] = [];
+
+  for (let sourceLeft = 0; sourceLeft < width; sourceLeft += sourceStep) {
+    const sourceWidth = Math.min(sourceStep, width - sourceLeft);
+    const sourceRight = sourceLeft + sourceWidth;
+    const normalizedCenter = (sourceLeft + sourceWidth / 2) / width;
+    const leftPoint = getCurlPoint(
+      sourceLeft / width,
+      normalizedProgress,
+      direction
+    );
+    const rightPoint = getCurlPoint(
+      sourceRight / width,
+      normalizedProgress,
+      direction
+    );
+    const centerPoint = getCurlPoint(
+      normalizedCenter,
+      normalizedProgress,
+      direction
+    );
+    const destinationStart = leftPoint.x * width;
+    const destinationEnd = rightPoint.x * width;
+
+    columns.push({
+      angle: centerPoint.angle,
+      depth: centerPoint.depth,
+      destinationLeft: Math.min(destinationStart, destinationEnd) - 0.8,
+      destinationWidth: Math.max(
+        1.25,
+        Math.abs(destinationEnd - destinationStart) + 1.6
+      ),
+      normalizedCenter,
+      sourceLeft,
+      sourceWidth
+    });
+  }
+
+  columns.sort((left, right) => left.depth - right.depth);
+
+  columns.forEach((column) => {
+    if (
+      column.destinationLeft > width + 3 ||
+      column.destinationLeft + column.destinationWidth < -3
+    ) {
+      return;
+    }
+
+    const fold = Math.sin(column.angle);
+    const isReverseSide = column.angle > Math.PI / 2;
+    const verticalScale = 1 - fold * 0.025;
+    const destinationHeight = height * verticalScale;
+    const paperRipple =
+      fold *
+      Math.sin(
+        (column.normalizedCenter * 1.8 + normalizedProgress * 0.65) *
+          Math.PI
+      ) *
+      Math.max(0.75, height * 0.0015);
+    const destinationTop = (height - destinationHeight) / 2 + paperRipple;
+
+    context.drawImage(
+      source,
+      column.sourceLeft,
+      0,
+      column.sourceWidth,
+      height,
+      column.destinationLeft,
+      destinationTop,
+      column.destinationWidth,
+      destinationHeight
+    );
+
+    if (isReverseSide) {
+      const reverseAmount = clamp(
+        (column.angle - Math.PI / 2) / (Math.PI / 2),
+        0,
+        1
+      );
+      context.fillStyle = `rgba(247, 240, 223, ${0.7 + reverseAmount * 0.18})`;
+      context.fillRect(
+        column.destinationLeft,
+        destinationTop,
+        column.destinationWidth,
+        destinationHeight
+      );
+    }
+
+    const foldShade = fold * (isReverseSide ? 0.2 : 0.3);
+    if (foldShade > 0.002) {
+      context.fillStyle = `rgba(64, 42, 23, ${foldShade})`;
+      context.fillRect(
+        column.destinationLeft,
+        destinationTop,
+        column.destinationWidth,
+        destinationHeight
+      );
+    }
+
+    const highlight = Math.max(0, Math.sin(column.angle * 2)) * 0.18;
+    if (highlight > 0.002) {
+      context.fillStyle = `rgba(255, 254, 243, ${highlight})`;
+      context.fillRect(
+        column.destinationLeft,
+        destinationTop,
+        column.destinationWidth,
+        destinationHeight
+      );
+    }
+  });
+
+  const freeEdgePosition = direction === 'next' ? 1 : 0;
+  const freeEdge = getCurlPoint(
+    freeEdgePosition,
+    normalizedProgress,
+    direction
+  );
+  const freeEdgeX = freeEdge.x * width;
+
+  if (freeEdgeX > -3 && freeEdgeX < width + 3) {
+    const edgeGradient = context.createLinearGradient(
+      freeEdgeX - 4,
+      0,
+      freeEdgeX + 4,
+      0
+    );
+    edgeGradient.addColorStop(0, 'rgba(47, 31, 17, 0)');
+    edgeGradient.addColorStop(0.47, 'rgba(47, 31, 17, 0.32)');
+    edgeGradient.addColorStop(0.58, 'rgba(255, 255, 245, 0.72)');
+    edgeGradient.addColorStop(1, 'rgba(255, 255, 245, 0)');
+    context.fillStyle = edgeGradient;
+    context.fillRect(freeEdgeX - 4, 0, 8, height);
+  }
 };
 
 export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
@@ -55,8 +274,10 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
     let transitionTimer = 0;
     let initialTimer = 0;
     let animationFrame = 0;
-    let turningMesh: TurnMesh | null = null;
+    let turningCanvas: TurningCanvas | null = null;
     let isTurning = false;
+    let disposed = false;
+    let turnRequest = 0;
 
     const renderPage = (index: number) => {
       intros.forEach((item, itemIndex) =>
@@ -80,35 +301,37 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       const video = section.querySelector<HTMLVideoElement>('#vp-video');
       if (video && pages[index] !== 'video') video.pause();
 
-      [intros[index], artwork[index]].forEach((item) => {
-        if (!item) return;
-        item.classList.remove('visible');
-        void item.offsetWidth;
-        item.classList.add('visible');
-      });
+      [intros[index], artwork[index]].forEach((item) =>
+        item?.classList.add('visible')
+      );
     };
 
-    const finishTurn = () => {
-      window.clearTimeout(transitionTimer);
-      window.cancelAnimationFrame(animationFrame);
-      turningMesh?.element.remove();
-      turningMesh?.shadow.remove();
-      turningMesh = null;
-      animationFrame = 0;
-      isTurning = false;
-      section.classList.remove('workbook--turning');
-      section.removeAttribute('aria-busy');
-      previous.disabled = false;
-      next.disabled = false;
+    const setControlsDisabled = (disabled: boolean) => {
+      previous.disabled = disabled;
+      next.disabled = disabled;
       dots.forEach((dot) => {
-        dot.disabled = false;
+        dot.disabled = disabled;
       });
     };
 
-    const preparePageClone = () => {
+    const prepareCaptureClone = () => {
+      const sectionRect = section.getBoundingClientRect();
+      const sheetRect = sheet.getBoundingClientRect();
+      const host = document.createElement('div');
       const clone = sheet.cloneNode(true) as HTMLElement;
-      clone.classList.add('workbook__page-strip-content');
-      clone.setAttribute('aria-hidden', 'true');
+
+      host.className = section.className;
+      host.setAttribute('aria-hidden', 'true');
+      Object.assign(host.style, {
+        height: `${sectionRect.height}px`,
+        left: '-20000px',
+        minHeight: '0',
+        pointerEvents: 'none',
+        position: 'fixed',
+        top: '0',
+        width: `${sectionRect.width}px`,
+        zIndex: '-1'
+      });
       clone.setAttribute('inert', '');
       clone
         .querySelectorAll<HTMLElement>(
@@ -118,157 +341,91 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       clone.querySelectorAll<HTMLElement>('[id]').forEach((element) => {
         element.removeAttribute('id');
       });
-      clone.querySelectorAll<HTMLVideoElement>('video').forEach((video) => {
-        video.pause();
-        video.removeAttribute('controls');
-      });
-      return clone;
-    };
-
-    const buildTurningMesh = () => {
-      const sectionRect = section.getBoundingClientRect();
-      const sheetRect = sheet.getBoundingClientRect();
-      const left = sheetRect.left - sectionRect.left;
-      const top = sheetRect.top - sectionRect.top;
-      const stripCount = Math.max(
-        18,
-        Math.min(32, Math.ceil(sheetRect.width / 46))
-      );
-      const stripWidth = sheetRect.width / stripCount;
-      const source = preparePageClone();
-      const mesh = document.createElement('div');
-      const strips: PageStrip[] = [];
-
-      mesh.className = 'workbook__turn-mesh';
-      mesh.setAttribute('aria-hidden', 'true');
-      Object.assign(mesh.style, {
+      clone.querySelectorAll('video').forEach((video) => video.remove());
+      Object.assign(clone.style, {
         height: `${sheetRect.height}px`,
-        left: `${left}px`,
-        top: `${top}px`,
+        left: `${sheetRect.left - sectionRect.left}px`,
+        margin: '0',
+        minHeight: '0',
+        position: 'absolute',
+        top: `${sheetRect.top - sectionRect.top}px`,
         width: `${sheetRect.width}px`
       });
+      host.append(clone);
+      document.body.append(host);
+      return { clone, host, sheetRect };
+    };
 
-      for (let index = 0; index < stripCount; index += 1) {
-        const stripLeft = index * stripWidth;
-        const strip = document.createElement('div');
-        const content = source.cloneNode(true) as HTMLElement;
-        const shade = document.createElement('span');
+    const capturePage = async () => {
+      const { clone, host, sheetRect } = prepareCaptureClone();
+      const pixelRatio = Math.min(
+        1.5,
+        Math.max(1, window.devicePixelRatio || 1)
+      );
 
-        strip.className = 'workbook__page-strip';
-        shade.className = 'workbook__page-strip-shade';
-        Object.assign(strip.style, {
-          left: `${stripLeft}px`,
-          width: `${stripWidth + 1.5}px`
+      try {
+        return await toCanvas(clone, {
+          cacheBust: false,
+          canvasHeight: Math.round(sheetRect.height * pixelRatio),
+          canvasWidth: Math.round(sheetRect.width * pixelRatio),
+          height: sheetRect.height,
+          pixelRatio,
+          skipAutoScale: true,
+          width: sheetRect.width
         });
-        Object.assign(content.style, {
-          height: `${sheetRect.height}px`,
-          left: `${-stripLeft}px`,
-          minHeight: '0',
-          top: '0',
-          width: `${sheetRect.width}px`
-        });
-        strip.append(content, shade);
-        mesh.append(strip);
-        strips.push({
-          element: strip,
-          shade,
-          center: (stripLeft + stripWidth / 2) / sheetRect.width
-        });
+      } finally {
+        host.remove();
       }
+    };
 
-      const shadow = document.createElement('span');
-      const shadowWidth = Math.max(74, sheetRect.width * 0.18);
-      shadow.className = 'workbook__mesh-shadow';
-      shadow.setAttribute('aria-hidden', 'true');
-      Object.assign(shadow.style, {
+    const finishTurn = () => {
+      window.clearTimeout(transitionTimer);
+      window.cancelAnimationFrame(animationFrame);
+      turningCanvas?.element.remove();
+      turningCanvas = null;
+      animationFrame = 0;
+      isTurning = false;
+      section.classList.remove('workbook--turning');
+      section.removeAttribute('aria-busy');
+      setControlsDisabled(false);
+    };
+
+    const buildTurningCanvas = (source: HTMLCanvasElement) => {
+      const sectionRect = section.getBoundingClientRect();
+      const sheetRect = sheet.getBoundingClientRect();
+      const canvas = document.createElement('canvas');
+
+      canvas.className = 'workbook__turn-canvas';
+      canvas.setAttribute('aria-hidden', 'true');
+      canvas.width = source.width;
+      canvas.height = source.height;
+      Object.assign(canvas.style, {
         height: `${sheetRect.height}px`,
-        left: `${left + sheetRect.width - shadowWidth / 2}px`,
-        top: `${top}px`,
-        width: `${shadowWidth}px`
+        left: `${sheetRect.left - sectionRect.left}px`,
+        top: `${sheetRect.top - sectionRect.top}px`,
+        width: `${sheetRect.width}px`
       });
+      section.append(canvas);
 
-      section.append(shadow, mesh);
-      return {
-        element: mesh,
-        shadow,
-        shadowWidth,
-        sheetLeft: left,
-        sheetWidth: sheetRect.width,
-        strips
-      } satisfies TurnMesh;
+      return { element: canvas, source } satisfies TurningCanvas;
     };
 
-    const updateTurningMesh = (
-      mesh: TurnMesh,
-      progress: number,
-      direction: TurnDirection
+    const animateTurningCanvas = (
+      canvas: TurningCanvas,
+      direction: TurnDirection,
+      requestId: number
     ) => {
-      const curlWidth = 0.22;
-      const curlRadius = curlWidth / Math.PI;
-      const directionSign = direction === 'next' ? -1 : 1;
-      const front =
-        direction === 'next'
-          ? 1 - progress * (1 + curlWidth)
-          : progress * (1 + curlWidth);
-
-      mesh.strips.forEach(({ element, shade, center }) => {
-        const distance =
-          direction === 'next' ? center - front : front - center;
-        let angle = 0;
-        let mappedCenter = center;
-
-        if (distance > 0) {
-          if (distance < curlWidth) {
-            angle = distance / curlRadius;
-            mappedCenter =
-              direction === 'next'
-                ? front + curlRadius * Math.sin(angle)
-                : front - curlRadius * Math.sin(angle);
-          } else {
-            angle = Math.PI;
-            mappedCenter =
-              direction === 'next'
-                ? front - (distance - curlWidth)
-                : front + (distance - curlWidth);
-          }
-        }
-
-        const fold = Math.sin(angle);
-        const lift = curlRadius * mesh.sheetWidth * (1 - Math.cos(angle));
-        const translateX = (mappedCenter - center) * mesh.sheetWidth;
-        const angleDegrees = (angle * 180) / Math.PI;
-        const ripple = fold * Math.sin((center + progress) * Math.PI) * 2.2;
-
-        element.style.transform =
-          `translate3d(${translateX}px, ${ripple}px, ${lift}px) ` +
-          `rotateY(${directionSign * angleDegrees}deg) ` +
-          `rotateZ(${directionSign * fold * 0.55}deg)`;
-        shade.style.opacity = `${Math.min(0.62, fold * 0.48 + angle / Math.PI * 0.1)}`;
-      });
-
-      const shadowOpacity = Math.sin(progress * Math.PI) * 0.72;
-      const shadowCenter = front * mesh.sheetWidth;
-      mesh.shadow.style.left = `${
-        mesh.sheetLeft + shadowCenter - mesh.shadowWidth / 2
-      }px`;
-      mesh.shadow.style.opacity = `${Math.max(0, shadowOpacity)}`;
-      mesh.shadow.style.transform = `scaleX(${0.72 + shadowOpacity * 0.48})`;
-    };
-
-    const animateTurningMesh = (
-      mesh: TurnMesh,
-      direction: TurnDirection
-    ) => {
-      let startTime = 0;
+      const startTime = performance.now();
 
       const step = (timestamp: number) => {
-        if (!startTime) startTime = timestamp;
-        const elapsed = Math.min(1, (timestamp - startTime) / pageTurnDuration);
-        const progress =
-          elapsed * elapsed * elapsed *
-          (elapsed * (elapsed * 6 - 15) + 10);
+        if (disposed || requestId !== turnRequest) return;
+        const elapsed = clamp(
+          (timestamp - startTime) / pageTurnDuration,
+          0,
+          1
+        );
+        drawPageCurl(canvas, easePageTurn(elapsed), direction);
 
-        updateTurningMesh(mesh, progress, direction);
         if (elapsed < 1) {
           animationFrame = window.requestAnimationFrame(step);
           return;
@@ -276,11 +433,10 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
         finishTurn();
       };
 
-      updateTurningMesh(mesh, 0, direction);
       animationFrame = window.requestAnimationFrame(step);
     };
 
-    const show = (requested: number, direction: TurnDirection) => {
+    const show = async (requested: number, direction: TurnDirection) => {
       if (isTurning) return;
 
       const requestedPage = (requested + pages.length) % pages.length;
@@ -290,37 +446,59 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
         '(prefers-reduced-motion: reduce)'
       ).matches;
 
-      window.clearTimeout(transitionTimer);
-      const mesh = reduceMotion ? null : buildTurningMesh();
-
-      current = requestedPage;
-      renderPage(current);
-
-      if (reduceMotion) return;
-
-      isTurning = true;
-      section.classList.add('workbook--turning');
-      section.setAttribute('aria-busy', 'true');
-      previous.disabled = true;
-      next.disabled = true;
-      dots.forEach((dot) => {
-        dot.disabled = true;
-      });
-      if (mesh) {
-        turningMesh = mesh;
-        animateTurningMesh(mesh, direction);
+      if (reduceMotion) {
+        current = requestedPage;
+        renderPage(current);
+        return;
       }
-      transitionTimer = window.setTimeout(finishTurn, pageTurnDuration + 250);
+
+      const requestId = ++turnRequest;
+      isTurning = true;
+      setControlsDisabled(true);
+      delete section.dataset.pageTurnError;
+
+      try {
+        const source = await capturePage();
+        if (disposed || requestId !== turnRequest) return;
+
+        const canvas = buildTurningCanvas(source);
+        turningCanvas = canvas;
+        drawPageCurl(canvas, 0, direction);
+        section.classList.add('workbook--turning');
+        section.setAttribute('aria-busy', 'true');
+
+        animationFrame = window.requestAnimationFrame(() => {
+          if (disposed || requestId !== turnRequest) return;
+          current = requestedPage;
+          renderPage(current);
+          animateTurningCanvas(canvas, direction, requestId);
+          transitionTimer = window.setTimeout(
+            finishTurn,
+            pageTurnDuration + 350
+          );
+        });
+      } catch (error) {
+        section.dataset.pageTurnError =
+          error instanceof Error
+            ? `${error.name}: ${error.message}`
+            : String(error);
+        if (!disposed && requestId === turnRequest) {
+          current = requestedPage;
+          renderPage(current);
+          finishTurn();
+        }
+      }
     };
 
-    const showPrevious = () => show(current - 1, 'previous');
-    const showNext = () => show(current + 1, 'next');
+    const showPrevious = () => void show(current - 1, 'previous');
+    const showNext = () => void show(current + 1, 'next');
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') showNext();
       if (event.key === 'ArrowLeft') showPrevious();
     };
     const dotHandlers = dots.map((dot, index) => {
-      const handler = () => show(index, index < current ? 'previous' : 'next');
+      const handler = () =>
+        void show(index, index < current ? 'previous' : 'next');
       dot.addEventListener('click', handler);
       return { dot, handler };
     });
@@ -335,6 +513,9 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
     initialTimer = window.setTimeout(() => {
       intros.forEach((item) => item.classList.add('visible'));
       artwork.forEach((item) => item.classList.add('visible'));
+      section
+        .querySelectorAll<HTMLElement>('.reveal-on-scroll')
+        .forEach((item) => item.classList.add('visible'));
     }, 100);
 
     const observer = new IntersectionObserver(
@@ -347,7 +528,8 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
     observer.observe(section);
 
     return () => {
-      window.clearTimeout(transitionTimer);
+      disposed = true;
+      turnRequest += 1;
       window.clearTimeout(initialTimer);
       finishTurn();
       observer.disconnect();

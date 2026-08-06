@@ -243,55 +243,16 @@
   background: #716a60;
   box-shadow: inset 1px 1px 2px rgba(31, 26, 21, 0.55);
 }
-.workbook__turn-mesh {
+.workbook__turn-canvas {
   position: absolute;
   z-index: 22;
-  overflow: visible;
   pointer-events: none;
-  perspective: 2100px;
-  transform-style: preserve-3d;
+  image-rendering: auto;
+  transform: translateZ(1px);
+  will-change: contents;
 }
-.workbook__page-strip {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
-  pointer-events: none;
-  transform-origin: center center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform;
-}
-.workbook__page-strip-content {
-  position: absolute;
-  z-index: 1;
-  margin: 0;
-  max-width: none;
-  border-radius: 0;
-  box-shadow: none;
-  backface-visibility: hidden;
-  transform: none;
-}
-.workbook__page-strip-shade {
-  position: absolute;
-  z-index: 40;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(73, 45, 20, 0.5) 58%, rgba(255, 253, 239, 0.34));
-  mix-blend-mode: multiply;
-  will-change: opacity;
-}
-.workbook__mesh-shadow {
-  position: absolute;
-  z-index: 20;
-  pointer-events: none;
-  opacity: 0;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(51, 31, 14, 0.34), rgba(51, 31, 14, 0.16) 35%, transparent 72%);
-  filter: blur(9px);
-  transform-origin: center;
-  will-change: left, opacity, transform;
+.workbook .reveal-on-scroll {
+  transition-delay: 0s !important;
 }
 .workbook--turning .workbook__controls {
   cursor: progress;
