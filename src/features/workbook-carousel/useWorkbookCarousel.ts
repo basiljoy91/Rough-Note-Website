@@ -1,4 +1,4 @@
-import { toCanvas } from 'html-to-image';
+import html2canvas from 'html2canvas';
 import { useEffect, type RefObject } from 'react';
 
 const pages = ['web', 'brand', 'poster', 'logo', 'motion', 'video', 'erp'];
@@ -9,6 +9,7 @@ type TurnDirection = 'next' | 'previous';
 
 type TurningCanvas = {
   element: HTMLCanvasElement;
+  front: HTMLElement;
   source: HTMLCanvasElement;
 };
 
@@ -77,8 +78,31 @@ const drawPageCurl = (
   const normalizedProgress = clamp(progress, 0, 1);
   context.clearRect(0, 0, width, height);
 
+  const flatBoundary = clamp(
+    1 - normalizedProgress * (1 + curlWidth),
+    0,
+    1
+  );
+  const flatBoundaryPercent = flatBoundary * 100;
+  const turnStrength = Math.sin(normalizedProgress * Math.PI);
+  const edgeBend = turnStrength * 4.25;
+  const edgeAt = (offset: number) =>
+    clamp(flatBoundaryPercent + edgeBend * offset, 0, 100);
+  const edgeTop = edgeAt(0.15);
+  const edgeUpper = edgeAt(0.95);
+  const edgeMiddle = edgeAt(0.35);
+  const edgeLower = edgeAt(-0.5);
+  const edgeBottom = edgeAt(-0.85);
+
+  if (direction === 'next') {
+    turningCanvas.front.style.clipPath = `polygon(0 0, ${edgeTop}% 0, ${edgeUpper}% 20%, ${edgeMiddle}% 50%, ${edgeLower}% 80%, ${edgeBottom}% 100%, 0 100%)`;
+    turningCanvas.front.style.filter = `drop-shadow(${8 + turnStrength * 17}px 2px ${7 + turnStrength * 13}px rgba(55, 35, 19, ${0.12 + turnStrength * 0.24}))`;
+  } else {
+    turningCanvas.front.style.clipPath = `polygon(${100 - edgeTop}% 0, 100% 0, 100% 100%, ${100 - edgeBottom}% 100%, ${100 - edgeLower}% 80%, ${100 - edgeMiddle}% 50%, ${100 - edgeUpper}% 20%)`;
+    turningCanvas.front.style.filter = `drop-shadow(${-8 - turnStrength * 17}px 2px ${7 + turnStrength * 13}px rgba(55, 35, 19, ${0.12 + turnStrength * 0.24}))`;
+  }
+
   if (normalizedProgress <= 0.0001) {
-    context.drawImage(source, 0, 0, width, height);
     return;
   }
 
@@ -87,7 +111,6 @@ const drawPageCurl = (
   const foldFront = 1 - normalizedProgress * (1 + curlWidth);
   const foldPosition =
     (direction === 'next' ? foldFront : 1 - foldFront) * width;
-  const turnStrength = Math.sin(normalizedProgress * Math.PI);
   const shadowWidth = width * (0.075 + turnStrength * 0.085);
   const shadow = context.createLinearGradient(
     foldPosition - shadowWidth,
@@ -146,6 +169,7 @@ const drawPageCurl = (
 
   columns.forEach((column) => {
     if (
+      column.angle <= 0.0001 ||
       column.destinationLeft > width + 3 ||
       column.destinationLeft + column.destinationWidth < -3
     ) {
@@ -278,6 +302,9 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
     let isTurning = false;
     let disposed = false;
     let turnRequest = 0;
+    let cachedCapture: { index: number; source: HTMLCanvasElement } | null =
+      null;
+    let captureRequest = 0;
 
     const renderPage = (index: number) => {
       intros.forEach((item, itemIndex) =>
@@ -314,67 +341,41 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       });
     };
 
-    const prepareCaptureClone = () => {
-      const sectionRect = section.getBoundingClientRect();
-      const sheetRect = sheet.getBoundingClientRect();
-      const host = document.createElement('div');
-      const clone = sheet.cloneNode(true) as HTMLElement;
-
-      host.className = section.className;
-      host.setAttribute('aria-hidden', 'true');
-      Object.assign(host.style, {
-        height: `${sectionRect.height}px`,
-        left: '-20000px',
-        minHeight: '0',
-        pointerEvents: 'none',
-        position: 'fixed',
-        top: '0',
-        width: `${sectionRect.width}px`,
-        zIndex: '-1'
-      });
-      clone.setAttribute('inert', '');
-      clone
-        .querySelectorAll<HTMLElement>(
-          '.workbook__intro-item:not(.is-visible), .workbook__art:not(.is-visible), .workbook__sticky-item:not(.is-visible)'
-        )
-        .forEach((element) => element.remove());
-      clone.querySelectorAll<HTMLElement>('[id]').forEach((element) => {
-        element.removeAttribute('id');
-      });
-      clone.querySelectorAll('video').forEach((video) => video.remove());
-      Object.assign(clone.style, {
-        height: `${sheetRect.height}px`,
-        left: `${sheetRect.left - sectionRect.left}px`,
-        margin: '0',
-        minHeight: '0',
-        position: 'absolute',
-        top: `${sheetRect.top - sectionRect.top}px`,
-        width: `${sheetRect.width}px`
-      });
-      host.append(clone);
-      document.body.append(host);
-      return { clone, host, sheetRect };
-    };
-
     const capturePage = async () => {
-      const { clone, host, sheetRect } = prepareCaptureClone();
+      const sheetRect = sheet.getBoundingClientRect();
       const pixelRatio = Math.min(
         1.5,
         Math.max(1, window.devicePixelRatio || 1)
       );
 
+      return await html2canvas(sheet, {
+        backgroundColor: null,
+        height: sheetRect.height,
+        logging: false,
+        removeContainer: true,
+        scale: pixelRatio,
+        useCORS: true,
+        width: sheetRect.width
+      });
+    };
+
+    const warmCapture = async (index: number) => {
+      const requestId = ++captureRequest;
+      await document.fonts.ready;
+      if (disposed || index !== current) return;
+
       try {
-        return await toCanvas(clone, {
-          cacheBust: false,
-          canvasHeight: Math.round(sheetRect.height * pixelRatio),
-          canvasWidth: Math.round(sheetRect.width * pixelRatio),
-          height: sheetRect.height,
-          pixelRatio,
-          skipAutoScale: true,
-          width: sheetRect.width
-        });
-      } finally {
-        host.remove();
+        const source = await capturePage();
+        if (
+          !disposed &&
+          requestId === captureRequest &&
+          index === current &&
+          !isTurning
+        ) {
+          cachedCapture = { index, source };
+        }
+      } catch {
+        // A click can retry the capture if an asset was still loading here.
       }
     };
 
@@ -382,18 +383,21 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       window.clearTimeout(transitionTimer);
       window.cancelAnimationFrame(animationFrame);
       turningCanvas?.element.remove();
+      turningCanvas?.front.remove();
       turningCanvas = null;
       animationFrame = 0;
       isTurning = false;
       section.classList.remove('workbook--turning');
       section.removeAttribute('aria-busy');
       setControlsDisabled(false);
+      window.setTimeout(() => void warmCapture(current), 120);
     };
 
     const buildTurningCanvas = (source: HTMLCanvasElement) => {
       const sectionRect = section.getBoundingClientRect();
       const sheetRect = sheet.getBoundingClientRect();
       const canvas = document.createElement('canvas');
+      const front = sheet.cloneNode(true) as HTMLElement;
 
       canvas.className = 'workbook__turn-canvas';
       canvas.setAttribute('aria-hidden', 'true');
@@ -405,9 +409,24 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
         top: `${sheetRect.top - sectionRect.top}px`,
         width: `${sheetRect.width}px`
       });
+      front.classList.add('workbook__turn-front');
+      front.setAttribute('aria-hidden', 'true');
+      front.setAttribute('inert', '');
+      front.querySelectorAll<HTMLElement>('[id]').forEach((element) => {
+        element.removeAttribute('id');
+      });
+      Object.assign(front.style, {
+        height: `${sheetRect.height}px`,
+        left: `${sheetRect.left - sectionRect.left}px`,
+        margin: '0',
+        minHeight: '0',
+        top: `${sheetRect.top - sectionRect.top}px`,
+        width: `${sheetRect.width}px`
+      });
       section.append(canvas);
+      section.append(front);
 
-      return { element: canvas, source } satisfies TurningCanvas;
+      return { element: canvas, front, source } satisfies TurningCanvas;
     };
 
     const animateTurningCanvas = (
@@ -458,7 +477,12 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       delete section.dataset.pageTurnError;
 
       try {
-        const source = await capturePage();
+        const source =
+          cachedCapture?.index === current
+            ? cachedCapture.source
+            : await capturePage();
+        cachedCapture = null;
+        captureRequest += 1;
         if (disposed || requestId !== turnRequest) return;
 
         const canvas = buildTurningCanvas(source);
@@ -516,6 +540,8 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       section
         .querySelectorAll<HTMLElement>('.reveal-on-scroll')
         .forEach((item) => item.classList.add('visible'));
+      // Let the opening reveal finish so the cached frame is fully opaque.
+      window.setTimeout(() => void warmCapture(current), 950);
     }, 100);
 
     const observer = new IntersectionObserver(
@@ -530,6 +556,7 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
     return () => {
       disposed = true;
       turnRequest += 1;
+      captureRequest += 1;
       window.clearTimeout(initialTimer);
       finishTurn();
       observer.disconnect();

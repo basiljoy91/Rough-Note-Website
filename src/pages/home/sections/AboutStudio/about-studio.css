@@ -126,7 +126,8 @@
 .d3-paragraphs {
   font: 400 clamp(15px, 1.15vw, 20px)/1.72 var(--d3-body-font);
   margin-top: clamp(38px, 3vw, 54px);
-  max-width: 94%;
+  max-width: 86%;
+  overflow-wrap: break-word;
 }
 
 .d3-paragraphs p {
