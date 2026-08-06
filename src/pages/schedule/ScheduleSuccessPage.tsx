@@ -148,7 +148,7 @@ export function ScheduleSuccessPage() {
 
   return (
     <SiteLayout
-      activeItem=""
+      activeItem="contact"
       pageLabel="Success"
       pageTitle="Meeting Confirmed"
     >

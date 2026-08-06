@@ -98,7 +98,7 @@ export function ScheduleStep1Page() {
 
   return (
     <SiteLayout
-      activeItem=""
+      activeItem="contact"
       pageLabel="Step 1"
       pageTitle="Schedule a Meeting"
     >

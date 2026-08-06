@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './dynamic-journey.css';
 import { ServiceCard } from './components/ServiceCard';
-import { JourneyTimeline, JourneyData } from './components/JourneyTimeline';
+import { JourneyTimeline } from './components/JourneyTimeline';
 import { useScrollReveal } from '../../../../shared/hooks/useScrollReveal';
 
 const servicesList = [
@@ -14,7 +14,7 @@ const servicesList = [
   { id: 'ai', title: 'AI<br/>Automation', icon: '🤖', pinColor: '#00acc1' },
 ];
 
-import { brandJourneyData, motionJourneyData, webDesignData, threeDModelingData, erpSoftwareData, customSoftwareData, aiAutomationData, fallbackJourneyData } from './data';
+import { brandJourneyData, motionJourneyData, webDesignData, threeDModelingData, erpSoftwareData, customSoftwareData, aiAutomationData, fallbackJourneyData, type JourneyData } from './data';
 
 export const DynamicJourney: React.FC = () => {
   const [activeService, setActiveService] = useState('brand');
@@ -22,7 +22,7 @@ export const DynamicJourney: React.FC = () => {
 
   useScrollReveal(sectionRef);
 
-  const getJourneyData = () => {
+  const getJourneyData = (): JourneyData => {
     if (activeService === 'brand') return brandJourneyData;
     if (activeService === 'motion') return motionJourneyData;
     if (activeService === 'web') return webDesignData;

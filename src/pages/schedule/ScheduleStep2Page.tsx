@@ -140,7 +140,7 @@ export function ScheduleStep2Page() {
 
   return (
     <SiteLayout
-      activeItem=""
+      activeItem="contact"
       pageLabel="Step 2"
       pageTitle="Select a Date"
     >

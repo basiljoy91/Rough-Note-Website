@@ -191,7 +191,7 @@ export function ScheduleStep3Page() {
 
   return (
     <SiteLayout
-      activeItem=""
+      activeItem="contact"
       pageLabel="Step 3"
       pageTitle="Select a Time"
     >

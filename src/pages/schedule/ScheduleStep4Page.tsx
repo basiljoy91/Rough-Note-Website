@@ -229,7 +229,7 @@ export function ScheduleStep4Page() {
 
   return (
     <SiteLayout
-      activeItem=""
+      activeItem="contact"
       pageLabel="Step 4"
       pageTitle="Confirm Your Meeting"
     >

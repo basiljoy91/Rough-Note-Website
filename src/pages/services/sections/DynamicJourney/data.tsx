@@ -551,8 +551,8 @@ export const threeDModelingData: JourneyData = {
     <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
       <svg width="120" height="60" viewBox="0 0 160 80">
         <rect x="5" y="5" width="150" height="70" fill="none" stroke="#e65100" strokeWidth="3" strokeDasharray="5,2" />
-        <text stroke="none" fill="#333" x="80" y="38" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">RENDER</text>
-        <text stroke="none" fill="#333" x="80" y="60" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+        <text stroke="none" x="80" y="38" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">RENDER</text>
+        <text stroke="none" x="80" y="60" textAnchor="middle" fill="#e65100" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
       </svg>
     </div>
   ),
@@ -926,8 +926,8 @@ export const erpSoftwareData: JourneyData = {
     <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
       <svg width="120" height="60" viewBox="0 0 160 80">
         <rect x="5" y="5" width="150" height="70" fill="none" stroke="#43a047" strokeWidth="3" strokeDasharray="5,2" />
-        <text stroke="none" fill="#333" x="80" y="38" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">PROCESS</text>
-        <text stroke="none" fill="#333" x="80" y="60" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+        <text stroke="none" x="80" y="38" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">PROCESS</text>
+        <text stroke="none" x="80" y="60" textAnchor="middle" fill="#43a047" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
       </svg>
       <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#43a047" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
@@ -1133,7 +1133,7 @@ export const erpSoftwareData: JourneyData = {
           <svg viewBox="0 0 380 220" width="100%" height="100%" fill="none" stroke="#333" strokeWidth="1.2">
             {/* Center Box (ERP SYSTEM) */}
             <rect x="130" y="80" width="120" height="40" fill="#e8f5e9" stroke="#4caf50" strokeWidth="2" rx="2" />
-            <text stroke="none" fill="#333" x="190" y="105" textAnchor="middle" fontSize="14" fontFamily="sans-serif" fontWeight="bold" fill="#333">ERP SYSTEM</text>
+            <text stroke="none" fill="#333" x="190" y="105" textAnchor="middle" fontSize="14" fontFamily="sans-serif" fontWeight="bold">ERP SYSTEM</text>
             
             {/* Sales - top left */}
             <rect x="40" y="25" width="70" height="25" fill="#fff" stroke="#555" />
@@ -1233,8 +1233,8 @@ export const customSoftwareData: JourneyData = {
     <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
       <svg width="180" height="60" viewBox="0 0 200 80">
         <rect x="5" y="5" width="190" height="70" fill="none" stroke="#673ab7" strokeWidth="3" strokeDasharray="5,2" />
-        <text stroke="none" fill="#333" x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">CODE QUALITY</text>
-        <text stroke="none" fill="#333" x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+        <text stroke="none" x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">CODE QUALITY</text>
+        <text stroke="none" x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
       </svg>
       <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#673ab7" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
@@ -1535,8 +1535,8 @@ export const aiAutomationData: JourneyData = {
     <div className="dj-stamp dj-stamp--brand" style={{ top: '-40px', right: '-10px', transform: 'rotate(-5deg)', opacity: 0.8 }}>
       <svg width="180" height="60" viewBox="0 0 200 80">
         <rect x="5" y="5" width="190" height="70" fill="none" stroke="#673ab7" strokeWidth="3" strokeDasharray="5,2" />
-        <text stroke="none" fill="#333" x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">AUTOMATION</text>
-        <text stroke="none" fill="#333" x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
+        <text stroke="none" x="100" y="38" textAnchor="middle" fill="#673ab7" fontSize="16" fontWeight="bold" fontFamily="sans-serif">AUTOMATION</text>
+        <text stroke="none" x="100" y="60" textAnchor="middle" fill="#673ab7" fontSize="18" fontWeight="bold" fontFamily="sans-serif">APPROVED</text>
       </svg>
       <svg style={{ position: 'absolute', top: '15px', right: '-25px' }} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#673ab7" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
