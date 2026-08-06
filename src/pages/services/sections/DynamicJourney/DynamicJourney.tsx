@@ -96,6 +96,7 @@ export function DynamicJourney() {
 
   return (
     <section
+      id="dynamic-product-journey"
       className="dynamic-journey"
       data-service={currentJourneyData.id}
       ref={sectionRef}
