@@ -1,9 +1,9 @@
-import React from 'react';
+import type { LucideIcon } from 'lucide-react';
 
 interface ServiceCardProps {
   id: string;
   title: string;
-  icon: string;
+  icon: LucideIcon;
   pinColor: string;
   isActive: boolean;
   onClick: (id: string) => void;
@@ -17,17 +17,23 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   isActive,
   onClick
 }) => {
+  const Icon = icon;
+
   return (
-    <div 
+    <button
+      type="button"
       className={`dj-card ${isActive ? 'dj-card--active' : ''}`}
       onClick={() => onClick(id)}
+      aria-pressed={isActive}
+      aria-label={`Show the ${title.replace('<br/>', ' ')} journey`}
     >
       <img src="/assets/images/sti-1.png" alt="Paper" className="dj-card__bg" />
-      <div className="dj-card__pin" style={{ backgroundColor: pinColor }}></div>
+      <span className="dj-card__tape" aria-hidden="true" />
+      <span className="dj-card__pin" style={{ backgroundColor: pinColor }} aria-hidden="true" />
       <div className="dj-card__content">
-        <div className="dj-card__icon">{icon}</div>
+        <Icon className="dj-card__icon" aria-hidden="true" />
         <h4 className="dj-card__title" dangerouslySetInnerHTML={{ __html: title }} />
       </div>
-    </div>
+    </button>
   );
 };

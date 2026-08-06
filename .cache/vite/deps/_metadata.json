@@ -1,49 +1,61 @@
 {
-  "hash": "e1c6a913",
-  "configHash": "ba03a83c",
-  "lockfileHash": "2eb4b59b",
-  "browserHash": "d7208eb9",
+  "hash": "90082a7c",
+  "configHash": "9fd39540",
+  "lockfileHash": "3130cdc5",
+  "browserHash": "ddc9308b",
   "optimized": {
     "gsap": {
       "src": "../../../node_modules/gsap/index.js",
       "file": "gsap.js",
-      "fileHash": "44f496e7",
+      "fileHash": "2c785c17",
+      "needsInterop": false
+    },
+    "html2canvas": {
+      "src": "../../../node_modules/html2canvas/dist/html2canvas.js",
+      "file": "html2canvas.js",
+      "fileHash": "2dfa88b0",
+      "needsInterop": true
+    },
+    "lucide-react": {
+      "src": "../../../node_modules/lucide-react/dist/esm/lucide-react.mjs",
+      "file": "lucide-react.js",
+      "fileHash": "48504d01",
       "needsInterop": false
     },
     "react-dom": {
       "src": "../../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "b050a519",
+      "fileHash": "231b2046",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "9ba9c852",
+      "fileHash": "919e64ac",
       "needsInterop": true
     },
     "react": {
       "src": "../../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "20617863",
+      "fileHash": "6b8f5cc4",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "b2c551d1",
+      "fileHash": "89e88c6f",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "60af6ad8",
+      "fileHash": "bb82a036",
       "needsInterop": true
     }
   },
   "chunks": {
-    "rolldown-runtime-BvCyGRYZ": {
-      "file": "rolldown-runtime-BvCyGRYZ.js",
+    "rolldown-runtime-EAsCxrDo": {
+      "file": "rolldown-runtime-EAsCxrDo.js",
       "isDynamicEntry": false
     }
   }

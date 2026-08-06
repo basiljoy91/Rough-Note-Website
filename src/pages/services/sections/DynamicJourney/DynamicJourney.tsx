@@ -1,101 +1,156 @@
-import React, { useState, useRef } from 'react';
+import { useRef, useState, type CSSProperties } from 'react';
+import type { LucideIcon } from 'lucide-react';
+import {
+  Bot,
+  Box,
+  ChartNoAxesCombined,
+  Check,
+  Clapperboard,
+  CodeXml,
+  Globe,
+  Lightbulb,
+  PenTool,
+  Sparkles,
+} from 'lucide-react';
 import './dynamic-journey.css';
+import { useScrollReveal } from '../../../../shared/hooks/useScrollReveal';
 import { ServiceCard } from './components/ServiceCard';
 import { JourneyTimeline } from './components/JourneyTimeline';
-import { useScrollReveal } from '../../../../shared/hooks/useScrollReveal';
+import { journeyDataById, type JourneyData } from './data';
 
-const servicesList = [
-  { id: 'brand', title: 'Brand<br/>Identity', icon: '🖋️', pinColor: '#e65100' },
-  { id: 'motion', title: 'Motion<br/>Graphics', icon: '🎬', pinColor: '#1e88e5' },
-  { id: 'web', title: 'Website<br/>Design', icon: '🌐', pinColor: '#43a047' },
-  { id: '3d', title: '3D<br/>Modeling', icon: '🧊', pinColor: '#fdd835' },
-  { id: 'erp', title: 'ERP<br/>Software', icon: '💻', pinColor: '#8e24aa' },
-  { id: 'custom', title: 'Custom<br/>Software', icon: '⌨️', pinColor: '#e91e63' },
-  { id: 'ai', title: 'AI<br/>Automation', icon: '🤖', pinColor: '#00acc1' },
+interface ServiceOption {
+  id: string;
+  title: string;
+  icon: LucideIcon;
+  pinColor: string;
+}
+
+const servicesList: ServiceOption[] = [
+  { id: 'brand', title: 'Brand<br/>Identity', icon: PenTool, pinColor: '#a85b08' },
+  { id: 'motion', title: 'Motion<br/>Graphics', icon: Clapperboard, pinColor: '#2b95c2' },
+  { id: 'web', title: 'Website<br/>Design', icon: Globe, pinColor: '#6caa54' },
+  { id: '3d', title: '3D<br/>Modeling', icon: Box, pinColor: '#f1b900' },
+  { id: 'erp', title: 'ERP<br/>Software', icon: ChartNoAxesCombined, pinColor: '#8b56b7' },
+  { id: 'custom', title: 'Custom<br/>Software', icon: CodeXml, pinColor: '#d64f7e' },
+  { id: 'ai', title: 'AI<br/>Automation', icon: Bot, pinColor: '#2bada8' },
 ];
 
-import { brandJourneyData, motionJourneyData, webDesignData, threeDModelingData, erpSoftwareData, customSoftwareData, aiAutomationData, fallbackJourneyData, type JourneyData } from './data';
+function SupportBoard({ data }: { data: JourneyData }) {
+  const DiagramIcon = data.diagramIcon;
 
-export const DynamicJourney: React.FC = () => {
+  if (data.bottomKind === 'cta') {
+    return (
+      <div className="dj-brand-footer">
+        <div className="dj-brand-footer__thought">
+          <Lightbulb aria-hidden="true" />
+          <p>{data.bottomTitle}<br /><strong>a clear story and a strong identity.</strong></p>
+        </div>
+        <a className="dj-brand-footer__cta" href="/html/connect.html">
+          <span>{data.bottomDiagram}</span>
+          <strong>Start Your Rough Note →</strong>
+        </a>
+        <div className="dj-support-note dj-support-note--blue">{data.bottomNote}<span>♛</span></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="dj-support-board">
+      <figure className="dj-support-visual">
+        <span className="dj-paperclip" aria-hidden="true" />
+        <img src={data.bottomVisual} alt="" />
+      </figure>
+
+      <div className="dj-support-list">
+        <h4>{data.bottomTitle}</h4>
+        <ul>
+          {data.bottomItems.map((item) => (
+            <li key={item}><Check aria-hidden="true" />{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="dj-support-note">
+        <span className="dj-tape" aria-hidden="true" />
+        {data.bottomNote}
+        <Sparkles aria-hidden="true" />
+      </div>
+
+      <div className="dj-support-diagram">
+        <DiagramIcon aria-hidden="true" />
+        <p>{data.bottomDiagram}</p>
+        <div className="dj-diagram-flow" aria-hidden="true">
+          <span>Plan</span><i>→</i><span>Build</span><i>→</i><span>Grow</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function DynamicJourney() {
   const [activeService, setActiveService] = useState('brand');
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const currentJourneyData = journeyDataById[activeService] ?? journeyDataById.brand;
 
   useScrollReveal(sectionRef);
 
-  const getJourneyData = (): JourneyData => {
-    if (activeService === 'brand') return brandJourneyData;
-    if (activeService === 'motion') return motionJourneyData;
-    if (activeService === 'web') return webDesignData;
-    if (activeService === '3d') return threeDModelingData;
-    if (activeService === 'erp') return erpSoftwareData;
-    if (activeService === 'custom') return customSoftwareData;
-    if (activeService === 'ai') return aiAutomationData;
-    const service = servicesList.find(s => s.id === activeService);
-    return fallbackJourneyData(activeService, service?.title || 'Service');
-  };
-  
-  const currentJourneyData = getJourneyData();
-
   return (
-    <section className="dynamic-journey" ref={sectionRef}>
-      {/* Decorative Doodles */}
-      <div className="dj-doodle dj-doodle--top-left">
-        ✨ Different idea,<br/>Different journey,<br/>Same commitment.<br/>
-        <span style={{ fontSize: '1.5rem', display: 'block', marginTop: '10px' }}>⤵</span>
-      </div>
-      
-      {/* Top Right Sticky */}
-      <div className="dj-sticky dj-sticky--top-right">
-        <img src="/assets/images/sticky-note-5-bg-clean.png" alt="Sticky Note" />
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          We don't follow<br/>a template.<br/>We follow your<br/>goals.<br/>
-          <span style={{ fontSize: '1.2rem', marginTop: '5px', display: 'block' }}>⭐</span>
-        </div>
+    <section
+      className="dynamic-journey"
+      data-service={currentJourneyData.id}
+      ref={sectionRef}
+      style={{ '--journey-accent': currentJourneyData.accent } as CSSProperties}
+    >
+      <div className="dj-paper-corner" aria-hidden="true" />
+
+      <div className="dj-top">
+        <aside className="dj-top__aside dj-top__aside--left">
+          <Sparkles aria-hidden="true" />
+          <p>Different idea,<br />Different journey,<br />Same commitment.</p>
+          <span className="dj-loop-arrow" aria-hidden="true">↷</span>
+        </aside>
+
+        <header className="dj-header">
+          <p className="dj-header__subtitle">Our Process</p>
+          <h2 className="dj-header__title">Dynamic Product Journey</h2>
+          <p className="dj-header__desc">
+            Every project is unique, and so is our approach. Select a service below<br />
+            to see how we turn your idea into a successful digital product.
+          </p>
+        </header>
+
+        <aside className="dj-top__aside dj-top__aside--right">
+          <div className="dj-top-note"><span className="dj-tape" aria-hidden="true" />{currentJourneyData.topNote}<Sparkles aria-hidden="true" /></div>
+          <div className="dj-right-promise">
+            <Lightbulb aria-hidden="true" />
+            {currentJourneyData.rightChecklist.map((line) => <span key={line}>{line}</span>)}
+          </div>
+        </aside>
       </div>
 
-      {/* Top Right Doodle under sticky */}
-      <div className="dj-doodle dj-doodle--mid-right" style={{ marginTop: '-70px',right:'50px' }}>
-    💡  <br/>
-        <span style={{ textDecoration: 'underline', textDecorationColor: '#e65100', textDecorationThickness: '2px' }}>Strategy first,</span><br/>
-        Execution next,<br/>
-        Impact always.<br/>
-        <span style={{ fontSize: '2rem', display: 'block', transform: 'rotate(-45deg)' }}>⤵</span>
-      </div>
-      
-      {/* Dynamic Decorations */}
-      {currentJourneyData.renderDecorations && currentJourneyData.renderDecorations()}
+      <p className="dj-selector-prompt">Select a service to explore its journey <span aria-hidden="true">↘</span></p>
 
-      <header className="dj-header">
-        <h4 className="dj-header__subtitle">Our Process</h4>
-        <h2 className="dj-header__title">Dynamic Product Journey</h2>
-        <p className="dj-header__desc">
-          Every project is unique, and so is our approach. Select a service below<br/>
-          to see how we turn your idea into a successful digital product.
-        </p>
-        <p style={{ marginTop: '2rem', fontStyle: 'italic', transform: 'translate(-180px, 20px)' }}>Select a service to explore its journey ↘</p>
-      </header>
-
-      {/* Service Selector */}
-      <div className="dj-selector">
-        {servicesList.map(service => (
+      <div className="dj-selector" role="group" aria-label="Choose a service journey">
+        {servicesList.map((service) => (
           <ServiceCard
             key={service.id}
-            id={service.id}
-            title={service.title}
-            icon={service.icon}
-            pinColor={service.pinColor}
+            {...service}
             isActive={activeService === service.id}
             onClick={setActiveService}
           />
         ))}
       </div>
 
-      {/* Journey Timeline */}
-      <JourneyTimeline data={currentJourneyData} />
+      <div className="dj-journey-row">
+        <aside className="dj-side-note">
+          <span className="dj-tape" aria-hidden="true" />
+          {currentJourneyData.sideNote}
+          <span className="dj-smile" aria-hidden="true">☺</span>
+        </aside>
+        <JourneyTimeline data={currentJourneyData} />
+      </div>
 
-      {/* Bottom CTA Area */}
-      {currentJourneyData.renderBottomCTA()}
-
+      <SupportBoard data={currentJourneyData} />
     </section>
   );
-};
+}
