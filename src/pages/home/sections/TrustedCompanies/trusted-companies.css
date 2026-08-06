@@ -366,12 +366,6 @@
 .trusted-review:nth-child(4) .trusted-review__sticky {
   transform: scale(1.1);
 }
-.trusted-review__work {
-  width: 84px;
-}
-.trusted-review__work {
-  bottom: 44px;
-}
 .trusted-review__pin {
   border-radius: 50%;
   box-shadow: 1px 2px 3px rgb(0 0 0 / 0.28);
@@ -463,22 +457,99 @@
 .trusted-review footer small {
   font-size: 12px;
 }
-.trusted-review__work {
-  aspect-ratio: 1;
-  bottom: 22px;
-  box-shadow: 2px 3px 4px rgb(0 0 0 / 0.22);
-  height: auto;
-  object-fit: cover;
+.trusted-review__laptop {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  bottom: 31px;
+  cursor: pointer;
+  padding: 0 0 17px;
   position: absolute;
-  right: 27px;
-  width: 112px;
-  z-index: 1;
+  right: 22px;
+  transform: rotate(-1.5deg);
+  transform-origin: 50% 100%;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+  width: clamp(104px, 9.2vw, 132px);
+  z-index: 4;
 }
-.trusted-review__work {
-  width: 84px;
+.trusted-review:nth-child(even) .trusted-review__laptop {
+  transform: rotate(1.3deg);
 }
-.trusted-review__work {
-  bottom: 44px;
+.trusted-review__laptop:hover,
+.trusted-review__laptop:focus-visible {
+  filter: drop-shadow(0 8px 7px rgb(36 27 18 / 0.28));
+  outline: none;
+  transform: rotate(0deg) translateY(-5px) scale(1.06);
+}
+.trusted-review__laptop:focus-visible .trusted-review__laptop-screen {
+  box-shadow:
+    0 0 0 3px #f2a31c,
+    0 5px 9px rgb(0 0 0 / 0.3);
+}
+.trusted-review__laptop-screen {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(145deg, #4a4a47, #11110f);
+  border: 1px solid #080807;
+  border-radius: 7px 7px 2px 2px;
+  box-shadow: 0 5px 9px rgb(0 0 0 / 0.3);
+  display: block;
+  padding: 6px 5px 5px;
+  position: relative;
+}
+.trusted-review__laptop-screen::before {
+  background: #9d9d98;
+  border-radius: 50%;
+  content: "";
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  top: 2px;
+  transform: translateX(-50%);
+  width: 2px;
+  z-index: 2;
+}
+.trusted-review__laptop-screen img {
+  background: #ede9df;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  width: 100%;
+}
+.trusted-review__laptop-base {
+  background: linear-gradient(180deg, #d9d7d0, #9e9d98 60%, #777772);
+  border-radius: 1px 1px 5px 5px;
+  box-shadow: 0 4px 5px rgb(0 0 0 / 0.2);
+  clip-path: polygon(4% 0, 96% 0, 100% 72%, 93% 100%, 7% 100%, 0 72%);
+  display: block;
+  height: 9px;
+  margin-left: -7%;
+  position: relative;
+  width: 114%;
+}
+.trusted-review__laptop-base::after {
+  background: #7c7b77;
+  border-radius: 0 0 3px 3px;
+  content: "";
+  height: 2px;
+  left: 44%;
+  position: absolute;
+  top: 0;
+  width: 12%;
+}
+.trusted-review__laptop-hint {
+  background: #fff7d4;
+  box-shadow: 1px 2px 3px rgb(0 0 0 / 0.16);
+  color: #25201a;
+  font: 700 12px/1 "Caveat", cursive;
+  left: 50%;
+  padding: 3px 8px 4px;
+  position: absolute;
+  top: calc(100% - 17px);
+  transform: translateX(-50%) rotate(-2deg);
+  white-space: nowrap;
 }
 .trusted-companies__side-note,
 .trusted-companies__impact,
@@ -518,6 +589,190 @@
   font-size: 21px;
   right: 6px;
   transform: rotate(-5deg);
+}
+
+.trusted-project-modal[hidden] {
+  display: none;
+}
+.trusted-project-modal {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 24px;
+  position: fixed;
+  z-index: 1200;
+}
+.trusted-project-modal__backdrop {
+  appearance: none;
+  background:
+    radial-gradient(circle at 50% 20%, rgb(49 39 26 / 0.48), rgb(19 15 10 / 0.77));
+  border: 0;
+  cursor: zoom-out;
+  inset: 0;
+  padding: 0;
+  position: absolute;
+}
+.trusted-project-modal__paper {
+  background-color: #f6efdf;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.22), rgb(108 80 43 / 0.04)),
+    radial-gradient(rgb(84 62 35 / 0.12) 0.65px, transparent 0.8px);
+  background-size: auto, 8px 8px;
+  box-shadow:
+    0 28px 80px rgb(0 0 0 / 0.46),
+    0 3px 0 rgb(255 255 255 / 0.52) inset;
+  box-sizing: border-box;
+  clip-path: polygon(0.6% 2%, 10% 0.8%, 22% 1.6%, 35% 0.4%, 48% 1.5%, 62% 0.5%, 76% 1.2%, 89% 0.4%, 99.4% 1.8%, 99% 98%, 88% 99%, 74% 98.3%, 60% 99.4%, 45% 98.5%, 31% 99.4%, 17% 98.3%, 1% 99%);
+  max-height: calc(100vh - 40px);
+  max-width: 620px;
+  overflow: auto;
+  padding: 43px clamp(25px, 5vw, 54px) 36px;
+  position: relative;
+  text-align: center;
+  transform: rotate(-0.35deg);
+  width: 100%;
+  z-index: 1;
+}
+.trusted-project-modal__tape {
+  background: rgb(218 190 135 / 0.66);
+  height: 31px;
+  left: 50%;
+  position: absolute;
+  top: -7px;
+  transform: translateX(-50%) rotate(1.4deg);
+  width: 116px;
+}
+.trusted-project-modal__close {
+  appearance: none;
+  background: #f4bd39;
+  border: 2px solid #28231d;
+  border-radius: 50%;
+  box-shadow: 2px 3px 0 #28231d;
+  color: #28231d;
+  cursor: pointer;
+  font: 700 26px/30px "Space Grotesk", sans-serif;
+  height: 36px;
+  padding: 0;
+  position: absolute;
+  right: 22px;
+  top: 20px;
+  transition: transform 150ms ease;
+  width: 36px;
+}
+.trusted-project-modal__close:hover,
+.trusted-project-modal__close:focus-visible {
+  outline: 2px dashed #28231d;
+  outline-offset: 3px;
+  transform: rotate(7deg) scale(1.07);
+}
+.trusted-project-modal__eyebrow,
+.trusted-project-modal__type,
+.trusted-project-modal__pending {
+  font-family: "Caveat", cursive;
+}
+.trusted-project-modal__eyebrow {
+  color: #df791a;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 1px;
+  text-transform: uppercase;
+}
+.trusted-project-modal h3 {
+  color: #1c1915;
+  font: 400 clamp(34px, 5vw, 52px)/0.98 "Caveat Brush", "Caveat", cursive;
+  margin: 0;
+}
+.trusted-project-modal__type {
+  color: #5b5043;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 6px 0 20px;
+}
+.trusted-project-modal__laptop {
+  filter: drop-shadow(0 16px 12px rgb(36 27 18 / 0.28));
+  margin: 0 auto 24px;
+  max-width: 470px;
+  width: 92%;
+}
+.trusted-project-modal__screen {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(145deg, #3d3d3a, #11110f);
+  border: 2px solid #090908;
+  border-radius: 14px 14px 3px 3px;
+  display: block;
+  padding: 13px 11px 10px;
+  position: relative;
+}
+.trusted-project-modal__screen::before {
+  background: #a8a8a3;
+  border-radius: 50%;
+  content: "";
+  height: 4px;
+  left: 50%;
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  width: 4px;
+}
+.trusted-project-modal__screen img {
+  background: #ede9df;
+  display: block;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+}
+.trusted-project-modal__base {
+  background: linear-gradient(180deg, #dddcd6, #aaa9a4 58%, #7b7a76);
+  border-radius: 2px 2px 10px 10px;
+  clip-path: polygon(4% 0, 96% 0, 100% 72%, 93% 100%, 7% 100%, 0 72%);
+  display: block;
+  height: 18px;
+  margin-left: -7%;
+  position: relative;
+  width: 114%;
+}
+.trusted-project-modal__base::after {
+  background: #7b7a76;
+  border-radius: 0 0 5px 5px;
+  content: "";
+  height: 4px;
+  left: 43%;
+  position: absolute;
+  top: 0;
+  width: 14%;
+}
+.trusted-project-modal__actions {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 46px;
+}
+.trusted-project-modal__visit {
+  background: #25221e;
+  border-radius: 4px;
+  box-shadow: 4px 5px 0 #efaa25;
+  color: #fff9ec;
+  font: 700 19px/1 "Caveat", cursive;
+  padding: 13px 22px;
+  text-decoration: none;
+  transition: transform 150ms ease;
+}
+.trusted-project-modal__visit:hover,
+.trusted-project-modal__visit:focus-visible {
+  outline: 2px dashed #25221e;
+  outline-offset: 5px;
+  transform: translate(-2px, -2px);
+}
+.trusted-project-modal__pending {
+  background: #f8d984;
+  box-shadow: 2px 3px 0 rgb(74 57 30 / 0.18);
+  color: #2f281f;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 9px 17px;
+  transform: rotate(-1.5deg);
 }
 
 @media (max-width: 680px) {
@@ -585,6 +840,11 @@
     height: 265px;
     min-height: 0;
   }
+  .trusted-review__laptop {
+    bottom: 28px;
+    right: 23px;
+    width: 122px;
+  }
   .trusted-companies__side-note,
   .trusted-companies__impact,
   .trusted-companies__thanks {
@@ -609,5 +869,37 @@
   }
   .trusted-companies__caption {
     font-size: 18px;
+  }
+  .trusted-review {
+    padding-inline: 25px;
+  }
+  .trusted-review__laptop {
+    right: 19px;
+    width: 112px;
+  }
+  .trusted-project-modal {
+    padding: 12px;
+  }
+  .trusted-project-modal__paper {
+    padding: 42px 20px 28px;
+  }
+  .trusted-project-modal__close {
+    right: 17px;
+    top: 17px;
+  }
+  .trusted-project-modal__laptop {
+    width: 94%;
+  }
+  .trusted-project-modal__screen {
+    border-radius: 9px 9px 2px 2px;
+    padding: 9px 7px 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trusted-review__laptop,
+  .trusted-project-modal__close,
+  .trusted-project-modal__visit {
+    transition: none;
   }
 }
