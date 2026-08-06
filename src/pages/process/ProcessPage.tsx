@@ -7,6 +7,7 @@ import { RoughNoteDrawingFeature } from '../../features/rough-note-drawing/Rough
 import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
 import { ourPlansMarkup } from './sections/OurPlans';
+import { howWeWorkMarkup } from './sections/HowWeWork';
 
 export function ProcessPage() {
   const mainRef = useRef<HTMLElement>(null);
@@ -26,6 +27,7 @@ export function ProcessPage() {
           data-rough-anchor="process-main"
         >
           <div dangerouslySetInnerHTML={{ __html: ourPlansMarkup }} />
+          <div dangerouslySetInnerHTML={{ __html: howWeWorkMarkup }} />
         </main>
         <div
           id="rough-note-footer-root"
