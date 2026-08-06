@@ -1,0 +1,597 @@
+/* ScheduleStep3Page.css */
+
+.schedule-step-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 2vw;
+  background-color: #fdfaf3;
+  overflow: hidden;
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  box-sizing: border-box;
+}
+
+.notebook-container {
+  position: relative;
+  height: 94vh;
+  display: inline-block;
+}
+
+.notebook-bg {
+  height: 100%;
+  width: auto;
+  max-height: 94vh;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.notebook-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 1;
+}
+
+/* Proportional Layout inside Notebook */
+.info-column {
+  position: absolute;
+  top: 15%;
+  left: 9%;
+  width: 35%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-column {
+  position: absolute;
+  top: 10%;
+  right: 3.5%;
+  width: 52%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* --- Left Column Elements --- */
+.top-info-block {
+  position: relative;
+  top: -50px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  color: #2c2c2c;
+  margin-bottom: 2vh;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.step-circle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.red-circle-sketch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.step-heading-container {
+  position: relative;
+  margin-bottom: 2vh;
+}
+
+.step-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: clamp(2rem, 3.5vw, 4rem);
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1;
+}
+
+.heading-underline-sketch {
+  width: 90%;
+  height: 2vh;
+  margin-top: -1vh;
+  margin-left: 2%;
+}
+
+.step-desc {
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  color: #2c2c2c;
+  line-height: 1.3;
+  margin-bottom: 4vh;
+}
+
+.pencil-sketch-wrapper {
+  width: clamp(70px, 9vw, 80px);
+  margin-bottom: 4vh;
+  margin-left: 10%;
+  position: relative;
+  top: -60px;
+}
+
+.inspirational-text {
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  color: #555;
+  line-height: 1.3;
+  margin-left: 10%;
+  position: relative;
+  top: -90px;
+  transform: rotate(-10deg);
+}
+
+/* --- Right Column Form Card --- */
+.form-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 0;
+}
+
+.form-tape {
+  position: absolute;
+  top: -3%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 15%;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.time-form-content {
+  position: relative;
+  z-index: 1;
+  width: 74%;
+  height: 72%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* --- Time & Mode Selection UI --- */
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1vh 0;
+}
+
+.time-selectors-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5vw;
+}
+
+.time-colon {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.2rem, 1.5vw, 1.8rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 0.5vh;
+}
+
+.time-spacer {
+  width: 1vw;
+}
+
+/* Custom Select Dropdown */
+.custom-select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.custom-select-button {
+  background-color: transparent;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  padding: 0.8vh 1vw;
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+  box-shadow: inset 1px 2px 4px rgba(0,0,0,0.02);
+  transition: all 0.2s ease;
+  min-width: 3.5vw;
+  justify-content: space-between;
+}
+
+.custom-select-button:focus-visible {
+  outline: 2px solid #1c1c1c;
+  outline-offset: 2px;
+}
+
+.custom-select-button.open {
+  border-color: #1a1a1a;
+  background-color: rgba(0,0,0,0.03);
+}
+
+.select-chevron {
+  width: 1em;
+  height: 1em;
+  color: #555;
+}
+
+.custom-select-label {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  color: #666;
+  margin-top: 0.5vh;
+}
+
+.custom-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: #fdfaf3;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  margin-top: 4px;
+  z-index: 10;
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+}
+
+.custom-select-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-select-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+.custom-select-option {
+  padding: 0.8vh 1vw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: center;
+}
+
+.custom-select-option:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.custom-select-option.selected {
+  background-color: #1a1a1a;
+  color: #fffaf0;
+}
+
+/* Meeting Mode Cards */
+.mode-cards-row {
+  display: flex;
+  gap: 1vw;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+
+.mode-card {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5vh 1vw;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.mode-card:hover {
+  background-color: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.3);
+}
+
+.mode-card:focus-visible {
+  outline: 2px solid #1c1c1c;
+  outline-offset: 2px;
+}
+
+.mode-card.selected {
+  border: 1.5px solid #1a1a1a;
+  background-color: rgba(0,0,0,0.02);
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.08);
+}
+
+.mode-check-badge {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background-color: #1a1a1a;
+  color: #fffaf0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+}
+
+.selected-check-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.mode-icon {
+  width: 2em;
+  height: 2em;
+  color: #1a1a1a;
+  margin-bottom: 0.5vh;
+}
+
+.mode-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.8rem, 1vw, 1.1rem);
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.mode-subtitle {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
+  color: #555;
+  text-align: center;
+}
+
+/* Schedule Summary */
+.schedule-summary-section {
+  background-color: rgba(0,0,0,0.03);
+  padding: 1.5vh 2vw;
+  border-radius: 6px;
+  border: 1px dashed rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+}
+
+.summary-title {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  color: #1a1a1a;
+  margin: 0 0 0.5vh 0;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.8rem, 1vw, 1.1rem);
+  font-weight: 500;
+  color: #333;
+}
+
+.summary-icon {
+  width: 1.2em;
+  height: 1.2em;
+  color: #555;
+}
+
+/* --- Navigation Buttons (Outside Card) --- */
+.step-navigation {
+  position: absolute;
+  bottom: 11%;
+  left: 9%;
+  width: 82%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.back-button {
+  background-color: #fdfaf3;
+  color: #1a1a1a;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+  padding: 1vh 2vw;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.12);
+}
+
+.step-continue-btn {
+  background-color: #1c1c1c;
+  color: #fffaf0;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+  padding: 1.2vh 3vw;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+}
+.step-continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 6px 15px rgba(0,0,0,0.25);
+}
+
+/* --- Notebook Footer --- */
+.notebook-footer {
+  position: absolute;
+  bottom: 2%;
+  left: 9%;
+  width: 82%;
+  display: flex;
+  align-items: center;
+}
+
+.footer-tab {
+  background-color: #e2d7c1;
+  padding: 0.5vh 0.8vw;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 1vw, 1.1rem);
+  color: #1a1a1a;
+  box-shadow: 2px 3px 6px rgba(0,0,0,0.12), inset 0 0 5px rgba(255,255,255,0.4);
+  border-radius: 2px 4px 8px 3px / 3px 10px 4px 2px;
+  transform: rotate(-1deg);
+  margin-right: 5%;
+  position: absolute;
+  left: -35px;
+}
+
+.footer-text {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1rem, 1.2vw, 1.3rem);
+  color: #4a4a4a;
+  letter-spacing: 0.5px;
+  flex-grow: 1;
+  text-align: center;
+  transform: translateX(-10%);
+}
+
+/* --- Mobile & Tablet Responsiveness --- */
+@media (max-width: 900px) {
+  .schedule-step-wrapper {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+    background-color: #fdfaf3; 
+    align-items: flex-start;
+  }
+
+  .notebook-container {
+    height: auto;
+    padding: 0;
+  }
+
+  .notebook-bg {
+    display: none;
+  }
+
+  .notebook-content {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fdfaf3;
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+  }
+
+  .info-column, .form-column {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 95%;
+    max-width: 500px;
+    height: auto;
+  }
+  
+  .form-card {
+    aspect-ratio: auto;
+    margin-top: 40px;
+    background-image: url('/assets/images/c-s-m.png');
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+
+  .form-card-bg {
+    display: none;
+  }
+  
+  .form-tape {
+    top: -10px;
+    width: 60px;
+  }
+
+  .time-form-content {
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .mode-cards-row {
+    flex-direction: column;
+  }
+
+  .step-navigation {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 40px;
+  }
+  
+  .notebook-footer {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 40px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .footer-text {
+    transform: none;
+  }
+}

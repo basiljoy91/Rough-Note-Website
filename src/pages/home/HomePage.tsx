@@ -17,6 +17,7 @@ import { useHeroInteractions } from './sections/Hero/useHeroInteractions';
 import { ourWorkMarkup } from './sections/OurWork';
 import { processMarkup } from './sections/Process';
 import { servicesWorkbookMarkup } from './sections/ServicesWorkbook';
+import { techStackMarkup } from './sections/TechStack';
 import { trustedCompaniesMarkup } from './sections/TrustedCompanies';
 import { useTrustedCompaniesInteractions } from './sections/TrustedCompanies/useTrustedCompaniesInteractions';
 
@@ -28,7 +29,8 @@ const homeMarkup = [
   servicesWorkbookMarkup,
   processMarkup,
   faqMarkup,
-  trustedCompaniesMarkup
+  trustedCompaniesMarkup,
+  techStackMarkup
 ].join('\n');
 
 export function HomePage() {

@@ -1,0 +1,702 @@
+/* ConnectPage.css */
+
+.connect-page-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Soft vignette and cream paper texture */
+  background: radial-gradient(circle at center, #fcfaf3 0%, #f1efe4 100%);
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  overflow: hidden; /* No overflow as requested */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.notebook-spread {
+  width: 100%;
+  max-width: 1300px;
+  height: 900px; /* fixed height to match a precise composition */
+  position: relative;
+  margin: 40px auto;
+  box-sizing: border-box;
+}
+
+/* Base typography */
+.connect-page-wrapper h1, 
+.connect-page-wrapper h2 {
+  font-family: 'Caveat Brush', 'Caveat', cursive;
+  margin: 0;
+  color: #1a1a1a;
+  line-height: 1.1;
+}
+
+.connect-page-wrapper p {
+  margin: 0;
+  color: #2c2c2c;
+  line-height: 1.4;
+  font-size: 1.25rem;
+}
+
+/* Helpers */
+.underline-red {
+  position: relative;
+}
+.underline-red::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: -2%;
+  width: 104%;
+  height: 2px;
+  background-color: #d45b5b;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+.dashed-divider {
+  border-top: 2px dashed #999;
+  margin: 15px 0;
+  width: 100%;
+  opacity: 0.5;
+}
+
+.sticky-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.tape {
+  position: absolute;
+  z-index: 10;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.push-pin {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+}
+.pin-head {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #a87e5b, #593922);
+  border-radius: 50%;
+  box-shadow: inset -2px -2px 4px rgba(0,0,0,0.4), 0 5px 5px rgba(0,0,0,0.5);
+}
+
+.paper-clip {
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  z-index: 10;
+  width: 30px;
+  filter: drop-shadow(2px 5px 3px rgba(0,0,0,0.3));
+}
+
+/* Header */
+.page-header {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-family: 'Kalam', cursive;
+  font-weight: 300;
+}
+.star-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Main Heading */
+.main-heading-container {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+}
+.main-heading {
+  font-size: 5rem;
+  letter-spacing: 1px;
+}
+.heading-underline {
+  width: 120%;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -5%;
+}
+
+/* Description */
+.description-container {
+  position: absolute;
+  top: 150px;
+  left: 25px;
+  font-size: 1.4rem;
+  font-family: 'Patrick Hand', cursive;
+}
+.love-word {
+  position: relative;
+  display: inline-block;
+  margin: 0 4px;
+}
+.love-circle {
+  position: absolute;
+  top: -12px;
+  left: 0px;
+  width: 400px;
+  height: 50px;
+  pointer-events: none;
+  transform: rotate(90deg);
+}
+.love-underline {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  pointer-events: none;
+}
+.heart-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Coffee Cup */
+.coffee-cup-container {
+  position: absolute;
+  top: -40px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  z-index: 20;
+}
+.svg-coffee-cup {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Steam Animation */
+.steam-trail {
+  opacity: 0.95;
+  transform-origin: center bottom;
+  animation: steamRise linear infinite;
+  filter: blur(3.5px) drop-shadow(0 0 5px rgba(255,255,255,0.9));
+}
+
+.steam-1 { animation-duration: 4.5s; animation-delay: -0.8s; }
+.steam-2 { animation-duration: 5.0s; animation-delay: -3.1s; }
+.steam-3 { animation-duration: 4.2s; animation-delay: -1.6s; }
+.steam-4 { animation-duration: 5.5s; animation-delay: -4.3s; }
+.steam-5 { animation-duration: 4.8s; animation-delay: -2.3s; }
+.steam-6 { animation-duration: 5.2s; animation-delay: -0.2s; }
+
+@keyframes steamRise {
+  0% {
+    opacity: 0.95;
+    transform: translateY(0) scaleX(1);
+    stroke-width: 3.5;
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateY(-25px) scaleX(1.3);
+    stroke-width: 5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scaleX(1.5);
+    stroke-width: 6;
+  }
+}
+
+/* Blue Sticky Note (Philosophy) */
+.sticky-philosophy {
+  position: absolute;
+  top: 40px;
+  right: 220px;
+  width: 220px;
+  height: 220px;
+  transform: rotate(-3deg);
+  z-index: 5;
+}
+.sticky-philosophy .top-tape {
+  width: 100px;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+}
+.sticky-philosophy .sticky-content {
+  padding: 40px 30px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sticky-philosophy p {
+  font-family: 'Kalam', cursive;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+.sticky-philosophy .smile-icon {
+  width: 30px;
+  height: 30px;
+  margin-top: 15px;
+}
+
+/* Call Us Sticky */
+.sticky-call {
+  position: absolute;
+  top: 260px;
+  left: 30px;
+  width: 240px;
+  height: 280px;
+  transform: rotate(1deg);
+  z-index: 5;
+}
+.sticky-call .sticky-content {
+  padding: 50px 30px;
+  width: 100%;
+}
+.sticky-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  margin-bottom: 15px;
+}
+.sticky-icon, .sticky-icon-svg {
+  width: 28px;
+  height: 28px;
+  z-index: 2;
+}
+.sticky-title h2 {
+  font-size: 2.2rem;
+  z-index: 2;
+}
+.yellow-highlight {
+  position: absolute;
+  bottom: 5px;
+  left: 30px;
+  width: 90px;
+  height: 15px;
+  background-color: #ffd966;
+  opacity: 0.6;
+  z-index: 1;
+  transform: rotate(-2deg);
+}
+.contact-detail {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.business-hours {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+/* Email Us Sticky */
+.sticky-email {
+  position: absolute;
+  top: 280px;
+  left: 310px;
+  width: 240px;
+  height: 280px;
+  transform: rotate(-1deg);
+  z-index: 5;
+}
+.sticky-email .sticky-content {
+  padding: 50px 30px;
+  width: 100%;
+  position: relative;
+}
+.blue-highlight {
+  position: absolute;
+  bottom: 5px;
+  left: 30px;
+  width: 100px;
+  height: 15px;
+  background-color: #a4c2f4;
+  opacity: 0.6;
+  z-index: 1;
+  transform: rotate(1deg);
+}
+.reply-text {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+.circle-red {
+  position: relative;
+  display: inline-block;
+  padding: 0 2px;
+}
+.circle-red::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #d45b5b;
+  border-radius: 50%;
+  transform: scale(1.3) rotate(-5deg);
+}
+.paper-plane {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+/* Coffee Meeting Card */
+.sticky-coffee-meeting {
+  position: absolute;
+  top: 280px;
+  right: -40px;
+  width: 480px;
+  height: 260px;
+  transform: rotate(1deg);
+  z-index: 5;
+}
+.sticky-coffee-meeting .sticky-content {
+  padding: 40px;
+  width: 100%;
+  position: relative;
+}
+.meeting-sketch {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 110px;
+  height: 90px;
+  z-index: 2;
+  transform: rotate(3deg);
+}
+.sketch-coffee-cup {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  position: absolute;
+  top: -10px;
+}
+.meeting-header {
+  position: relative;
+  margin-bottom: 20px;
+}
+.meeting-header h2 {
+  font-size: 2.5rem;
+  z-index: 2;
+  position: relative;
+}
+.peach-highlight-svg {
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  width: 250px;
+  height: 80px;
+  transform: rotate(-1deg);
+  pointer-events: none;
+}
+.meeting-desc {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+.schedule-btn {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: rotate(-1deg);
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+.schedule-btn:hover {
+  transform: scale(1.02) rotate(-1deg);
+}
+.calendar-icon {
+  width: 20px;
+  height: 20px;
+}
+.meeting-footer {
+  position: absolute;
+  bottom: 5px;
+  left: 100px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.curved-arrow {
+  width: 40px;
+  height: 40px;
+}
+.footer-text {
+  font-family: 'Kalam', cursive;
+  font-size: 1.2rem;
+  color: #d45b5b;
+}
+
+/* Bottom Left Margin */
+.bottom-margin-text {
+  position: absolute;
+  top: 600px;
+  left: 20px;
+  font-family: 'Kalam', cursive;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+.star-icon-small {
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+/* Unified Bottom Studio Section */
+.connect-page-wrapper .bottom-studio-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(calc(-50% + 50px));
+  width: 95%;
+  max-width: 900px;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 40px 60px;
+  box-sizing: border-box;
+  z-index: 5;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.15));
+}
+
+
+.connect-page-wrapper .studio-info-col {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.connect-page-wrapper .studio-map-col {
+  width: 60%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-left: 20px;
+}
+
+.connect-page-wrapper .chennai-map-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 250px;
+}
+
+/* Get Directions overlapping map */
+.connect-page-wrapper .get-directions {
+  position: absolute;
+  bottom: 10px;
+  right: -20px;
+  /* Vintage paper texture with darkened edges */
+  background: 
+    linear-gradient(to right, rgba(200, 180, 150, 0.05), transparent 10%, transparent 90%, rgba(200, 180, 150, 0.05)),
+    radial-gradient(ellipse at center, #fcf9ee 40%, #efe5cd 100%);
+  border: 1px solid rgba(220, 210, 190, 0.6);
+  /* Organic slightly irregular torn border */
+  border-radius: 3px 8px 4px 6px / 6px 3px 7px 2px;
+  padding: 12px 24px;
+  /* Soft drop shadow, edge shadow, and an inset vignette for depth */
+  box-shadow: 
+    2px 5px 8px rgba(0,0,0,0.12),
+    8px 12px 20px rgba(0,0,0,0.08),
+    inset 0 0 12px rgba(180, 160, 130, 0.2);
+  transform: rotate(2deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  text-decoration: none;
+  color: #111; /* Increased text contrast */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Subtle corner curl shadow */
+.connect-page-wrapper .get-directions::before {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  width: 40%;
+  height: 20%;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.25);
+  transform: skew(-10deg) rotate(5deg);
+  z-index: -1;
+  transition: box-shadow 0.3s ease;
+}
+
+.connect-page-wrapper .get-directions:hover,
+.connect-page-wrapper .get-directions:focus {
+  transform: rotate(2deg) translateY(-3px) scale(1.03);
+  box-shadow: 
+    3px 8px 15px rgba(0,0,0,0.18),
+    10px 15px 25px rgba(0,0,0,0.12),
+    inset 0 0 12px rgba(180, 160, 130, 0.2);
+  filter: brightness(1.03);
+  outline: none;
+}
+.connect-page-wrapper .get-directions:hover::before {
+  box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+}
+.connect-page-wrapper .directions-tape {
+  width: 80px;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  position: absolute;
+  z-index: 11;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+.connect-page-wrapper .directions-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.connect-page-wrapper .studio-desc {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+.connect-page-wrapper .smile-icon-small {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  bottom: 5px;
+  right: 50px;
+}
+
+/* Decorative Pencil */
+.connect-page-wrapper .decorative-pencil-right {
+  position: absolute;
+  top: 50%;
+  right: -50px;
+  width: 150px;
+  height: auto;
+  transform: translateY(-50%) rotate(170deg);
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.25));
+}
+
+/* Responsiveness */
+@media (max-width: 1300px) {
+  .notebook-spread {
+    transform: scale(0.9);
+    transform-origin: top center;
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 1100px) {
+  .notebook-spread {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-width: 900px) {
+  .notebook-spread {
+    transform: none;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .page-header,
+  .main-heading-container,
+  .description-container,
+  .coffee-cup-container,
+  .sticky-philosophy,
+  .sticky-call,
+  .sticky-email,
+  .sticky-coffee-meeting,
+  .bottom-margin-text,
+  .bottom-studio-wrapper {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .main-heading-container {
+    text-align: center;
+  }
+
+  .coffee-cup-container {
+    display: none; /* Hide cup on mobile to save space */
+  }
+
+  .bottom-margin-text {
+    display: none; /* Hide margin text on mobile */
+  }
+
+  .connect-page-wrapper .bottom-studio-wrapper {
+    height: auto;
+    flex-direction: column;
+    padding: 40px 30px;
+    margin-bottom: 20px;
+  }
+
+  .connect-page-wrapper .studio-info-col,
+  .connect-page-wrapper .studio-map-col {
+    width: 100%;
+    padding: 0;
+    left: 0;
+  }
+
+  .connect-page-wrapper .studio-map-col {
+    margin-top: 30px;
+    height: 250px;
+  }
+
+  .connect-page-wrapper .get-directions {
+    right: 0;
+    bottom: -10px;
+  }
+
+  .connect-page-wrapper .decorative-pencil-right {
+    display: none;
+  }
+}

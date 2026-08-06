@@ -1,0 +1,4 @@
+/* Services page global styles */
+body[data-active-nav="services"] {
+  background-color: var(--paper-cream, #f8f5f0);
+}

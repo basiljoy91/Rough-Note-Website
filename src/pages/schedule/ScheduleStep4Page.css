@@ -1,0 +1,616 @@
+/* ScheduleStep4Page.css */
+
+.schedule-step-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 2vw;
+  background-color: #fdfaf3;
+  overflow: hidden;
+  font-family: 'Patrick Hand', 'Caveat', cursive;
+  box-sizing: border-box;
+}
+
+.notebook-container-wide {
+  position: relative;
+  height: 94vh;
+  width: 92vw;
+  max-width: 1600px;
+  display: block;
+  margin: 0 auto;
+}
+
+.notebook-bg-split {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.notebook-bg-left {
+  width: 60%;
+  height: 100%;
+  background: url("/assets/images/notebook-paper.jpeg") left center / auto 100% no-repeat;
+}
+
+.notebook-bg-right {
+  width: 40%;
+  height: 100%;
+  background: url("/assets/images/notebook-paper.jpeg") right center / auto 100% no-repeat;
+}
+
+.notebook-inner-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: inline-block;
+}
+
+.notebook-bg-invisible {
+  height: 100%;
+  width: auto;
+  visibility: hidden;
+  pointer-events: none;
+  display: block;
+}
+
+.notebook-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 1;
+}
+
+/* Proportional Layout inside Notebook */
+.info-column {
+  position: absolute;
+  top: 15%;
+  left: 9%;
+  width: 25%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-column {
+  position: absolute;
+  top: 5%;
+  right: -8.5%;
+  width: 60%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* --- Left Column Elements --- */
+.top-info-block {
+  position: relative;
+  top: -50px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  color: #2c2c2c;
+  margin-bottom: 2vh;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.step-circle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.red-circle-sketch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.step-heading-container {
+  position: relative;
+  margin-bottom: 2vh;
+}
+
+.step-heading {
+  font-family: 'Caveat Brush', cursive;
+  font-size: clamp(2rem, 3.5vw, 4rem);
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.heading-underline-sketch {
+  width: 90%;
+  height: 2vh;
+  margin-top: -1vh;
+  margin-left: 2%;
+}
+
+.step-desc {
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  color: #2c2c2c;
+  line-height: 1.3;
+  margin-bottom: 4vh;
+}
+
+.handshake-sketch-wrapper {
+  width: clamp(70px, 9vw, 90px);
+  margin-bottom: 4vh;
+  margin-left: 10%;
+  position: relative;
+  top: -60px;
+}
+
+.inspirational-text {
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  color: #555;
+  line-height: 1.3;
+  margin-left: 10%;
+  position: relative;
+  top: -90px;
+  transform: rotate(-10deg);
+}
+
+/* --- Right Column Form Card --- */
+.form-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Stretch to fit increased width */
+  z-index: 0;
+}
+
+.form-tape {
+  position: absolute;
+  top: -3%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 10%;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.confirmation-content {
+  position: relative;
+  z-index: 1;
+  width: 85%;
+  height: 75%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Three Information Columns --- */
+.confirmation-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px dashed rgba(0,0,0,0.15);
+  padding-bottom: 3vh;
+  margin-bottom: 1vh;
+}
+
+.confirm-column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5vw;
+  position: relative;
+}
+
+.confirm-column:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(0,0,0,0.1) 4px, rgba(0,0,0,0.1) 8px);
+}
+
+.confirm-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 2vh 0;
+}
+
+.confirm-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5vw;
+  margin-bottom: 1.5vh;
+}
+
+.confirm-item-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.confirm-item-label {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  color: #555;
+  margin-bottom: 0.2vh;
+  line-height: 1.2;
+}
+
+.confirm-item-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.confirm-item-value.nowrap {
+  white-space: nowrap;
+}
+
+.confirm-item-value.confirm-item-email {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.confirm-item-value-small {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(0.8rem, 0.9vw, 1rem);
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.confirm-icon {
+  width: 1.3em;
+  height: 1.3em;
+  color: #333;
+}
+
+/* --- Before You Confirm --- */
+.before-confirm-section {
+  padding: 0.2vh 0.8vw 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.before-confirm-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1vh 0;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1vh 2vw;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  color: #2c2c2c;
+}
+
+.check-icon-green {
+  width: 1.2em;
+  height: 1.2em;
+  color: #3a8b50;
+}
+
+/* --- Blue Sticky Note --- */
+.blue-sticky-note {
+  position: absolute;
+  top: 7%;
+  right: -12%;
+  width: clamp(100px, 12vw, 100px);
+  aspect-ratio: 1;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(5deg);
+}
+
+.blue-sticky-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+}
+
+.blue-sticky-content {
+  position: relative;
+  z-index: 1;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(0.9rem, 1.1vw, 1.3rem);
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.paper-clip {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  width: 30px;
+  z-index: 2;
+  transform: rotate(15deg);
+}
+
+/* --- Arrow Sketch --- */
+.arrow-sketch {
+  position: absolute;
+  bottom: 12%;
+  right: -10%;
+  width: 4vw;
+  z-index: 2;
+  transform: rotate(80deg);
+}
+
+/* --- Navigation Buttons (Outside Card) --- */
+.step-navigation {
+  position: absolute;
+  bottom: 11%;
+  left: 9%;
+  width: 82%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 4;
+}
+
+.back-button {
+  background-color: #fdfaf3;
+  color: #1a1a1a;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+  padding: 1vh 2vw;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  position: absolute;
+  right:230px ;
+  top: -30px;
+}
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.12);
+}
+
+.step-confirm-btn {
+  background-color: #1c1c1c;
+  color: #fffaf0;
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1.1rem, 1.3vw, 1.5rem);
+  padding: 1.2vh 3vw;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5vw;
+  position: absolute;
+  right: -110px;
+  top: -30px;
+}
+.step-confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 6px 15px rgba(0,0,0,0.25);
+}
+
+.btn-icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* --- Notebook Footer --- */
+.notebook-footer {
+  position: absolute;
+  bottom: 2%;
+  left: 9%;
+  width: 82%;
+  display: flex;
+  align-items: center;
+}
+
+.footer-tab {
+  background-color: #e2d7c1;
+  padding: 0.5vh 0.8vw;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 1vw, 1.1rem);
+  color: #1a1a1a;
+  box-shadow: 2px 3px 6px rgba(0,0,0,0.12), inset 0 0 5px rgba(255,255,255,0.4);
+  border-radius: 2px 4px 8px 3px / 3px 10px 4px 2px;
+  transform: rotate(-1deg);
+  margin-right: 5%;
+  position: absolute;
+  left: -35px;
+}
+
+.footer-text {
+  font-family: 'Patrick Hand', cursive;
+  font-size: clamp(1rem, 1.2vw, 1.3rem);
+  color: #4a4a4a;
+  letter-spacing: 0.5px;
+  flex-grow: 1;
+  text-align: center;
+  transform: translateX(-10%);
+}
+
+/* --- Mobile & Tablet Responsiveness --- */
+@media (max-width: 900px) {
+  .schedule-step-wrapper {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+    background-color: #fdfaf3; 
+    align-items: flex-start;
+  }
+
+  .notebook-container {
+    height: auto;
+    padding: 0;
+  }
+
+  .notebook-bg {
+    display: none;
+  }
+
+  .notebook-content {
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fdfaf3;
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+  }
+
+  .info-column, .form-column {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 95%;
+    max-width: 700px;
+    height: auto;
+  }
+  
+  .form-card {
+    aspect-ratio: auto;
+    margin-top: 40px;
+    background-image: url('/assets/images/c-s-m.png');
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+
+  .form-card-bg {
+    display: none;
+  }
+  
+  .form-tape {
+    top: -10px;
+    width: 60px;
+  }
+
+  .confirmation-content {
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .confirmation-columns {
+    flex-direction: column;
+    height: auto;
+    border-bottom: none;
+  }
+
+  .confirm-column:not(:last-child)::after {
+    display: none;
+  }
+
+  .confirm-column {
+    border-bottom: 1px dashed rgba(0,0,0,0.15);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blue-sticky-note {
+    top: -20px;
+    right: -10px;
+  }
+
+  .arrow-sketch {
+    display: none;
+  }
+
+  .step-navigation {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 40px;
+  }
+  
+  .notebook-footer {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 40px;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .footer-text {
+    transform: none;
+  }
+}
