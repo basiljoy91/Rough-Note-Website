@@ -20,7 +20,7 @@ export function ServicesPage() {
       <SketchFilters />
       <SiteLayout
         activeItem="services"
-        pageLabel="Page 04"
+        pageLabel="Page 02"
         pageTitle="Our Services"
       >
         <main
