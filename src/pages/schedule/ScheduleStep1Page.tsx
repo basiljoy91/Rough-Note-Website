@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
 import './ScheduleStep1Page.css';
 
@@ -73,19 +73,16 @@ const IconBuilding = () => (
   </svg>
 );
 
-export function ScheduleStep1Page() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [company, setCompany] = useState('');
+const getInitialParam = (key: string) => {
+  if (typeof window === 'undefined') return '';
+  return new URLSearchParams(window.location.search).get(key) ?? '';
+};
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('name')) setName(params.get('name')!);
-    if (params.get('email')) setEmail(params.get('email')!);
-    if (params.get('phone')) setPhone(params.get('phone')!);
-    if (params.get('company')) setCompany(params.get('company')!);
-  }, []);
+export function ScheduleStep1Page() {
+  const [name, setName] = useState(() => getInitialParam('name'));
+  const [email, setEmail] = useState(() => getInitialParam('email'));
+  const [phone, setPhone] = useState(() => getInitialParam('phone'));
+  const [company, setCompany] = useState(() => getInitialParam('company'));
 
   const searchParams = new URLSearchParams();
   if (name.trim()) searchParams.set('name', name.trim());

@@ -108,12 +108,9 @@ const CustomSelect = ({ value, options, onChange, label }: CustomSelectProps) =>
     } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
       const currentIndex = options.indexOf(value);
-      let newIndex = currentIndex;
-      if (e.key === 'ArrowDown') {
-        newIndex = (currentIndex + 1) % options.length;
-      } else {
-        newIndex = (currentIndex - 1 + options.length) % options.length;
-      }
+      const newIndex = e.key === 'ArrowDown'
+        ? (currentIndex + 1) % options.length
+        : (currentIndex - 1 + options.length) % options.length;
       onChange(options[newIndex]);
     }
   };
@@ -158,33 +155,34 @@ const CustomSelect = ({ value, options, onChange, label }: CustomSelectProps) =>
   );
 };
 
+const getInitialSelectedDate = () => {
+  const fallbackDate = 'Saturday, 08 August 2026';
+  if (typeof window === 'undefined') return fallbackDate;
+
+  const dateParam = new URLSearchParams(window.location.search).get('date');
+  if (!dateParam) return fallbackDate;
+
+  const [year, month, day] = dateParam.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  return `${weekdays[date.getDay()]}, ${date.getDate().toString().padStart(2, '0')} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+};
+
 
 export function ScheduleStep3Page() {
   const [hour, setHour] = useState('10');
   const [minute, setMinute] = useState('30');
   const [ampm, setAmpm] = useState('AM');
   const [meetingMode, setMeetingMode] = useState<'online' | 'office'>('online');
-  const [selectedDateFormatted, setSelectedDateFormatted] = useState('Saturday, 08 August 2026');
-  const [rawDateParam, setRawDateParam] = useState('');
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const dateStr = params.get('date');
-    if (dateStr) {
-      setRawDateParam(dateStr);
-      const [y, m, d] = dateStr.split('-').map(Number);
-      const dateObj = new Date(y, m - 1, d);
-      const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      setSelectedDateFormatted(`${weekdays[dateObj.getDay()]}, ${dateObj.getDate().toString().padStart(2, '0')} ${monthNames[dateObj.getMonth()]} ${dateObj.getFullYear()}`);
-    }
-  }, []);
+  const [selectedDateFormatted] = useState(getInitialSelectedDate);
 
   const hoursOptions = Array.from({length: 12}, (_, i) => String(i + 1));
   const minutesOptions = Array.from({length: 60}, (_, i) => String(i).padStart(2, '0'));
   const ampmOptions = ['AM', 'PM'];
 
-  let searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
   searchParams.set('time', `${hour}:${minute} ${ampm}`);
   searchParams.set('mode', meetingMode);
   const continueUrl = `/html/schedule-step-4.html?${searchParams.toString()}`;

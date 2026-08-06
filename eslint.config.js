@@ -42,6 +42,16 @@ export default [
   },
   ...tseslint.configs.recommended,
   {
+    files: ['scripts/**/*.js'],
+    languageOptions: {
+      sourceType: 'commonjs',
+      globals: globals.node
+    },
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off'
+    }
+  },
+  {
     files: ['src/**/*.js', 'tests/**/*.js', 'tests/**/*.mjs'],
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',

@@ -3,7 +3,6 @@ import './ConnectPage.css';
 
 // Icons
 import phoneIcon from '../../assets/icons/contact.svg';
-import locationIcon from '../../assets/icons/house.svg'; // fallback since location is missing, or we can use inline SVG
 
 const EmailIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sticky-icon-svg">

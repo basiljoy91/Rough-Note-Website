@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
 import './ScheduleSuccessPage.css';
 
@@ -97,13 +96,6 @@ const IconClock = () => (
   </svg>
 );
 
-const IconDuration = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="summary-icon">
-    <path d="M12 2v20"></path>
-    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-  </svg>
-);
-
 const IconMonitor = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="summary-icon">
     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -119,22 +111,25 @@ const IconHome = () => (
   </svg>
 );
 
-export function ScheduleSuccessPage() {
-  const [meetingData, setMeetingData] = useState({
+const getInitialMeetingData = () => {
+  const defaults = {
     date: 'Saturday, 08 August 2026',
     time: '10:30 AM',
     mode: 'online'
-  });
+  };
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    
-    setMeetingData(prev => ({
-      date: params.get('date') || prev.date,
-      time: params.get('time') || prev.time,
-      mode: params.get('mode') || prev.mode
-    }));
-  }, []);
+  if (typeof window === 'undefined') return defaults;
+
+  const params = new URLSearchParams(window.location.search);
+  return {
+    date: params.get('date') || defaults.date,
+    time: params.get('time') || defaults.time,
+    mode: params.get('mode') || defaults.mode
+  };
+};
+
+export function ScheduleSuccessPage() {
+  const meetingData = getInitialMeetingData();
 
   const handleHome = () => {
     window.location.href = '/html/index.html';

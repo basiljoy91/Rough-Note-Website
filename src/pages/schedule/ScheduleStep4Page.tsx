@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
 import './ScheduleStep4Page.css';
 
@@ -120,13 +119,6 @@ const IconClock = () => (
   </svg>
 );
 
-const IconDuration = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="confirm-icon">
-    <path d="M12 2v20"></path>
-    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-  </svg>
-);
-
 const IconGlobe = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="confirm-icon">
     <circle cx="12" cy="12" r="10"></circle>
@@ -190,14 +182,8 @@ const SvgCurvedArrow = () => (
   </svg>
 );
 
-const SvgPaperClip = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="#2c2c2c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="paper-clip">
-    <path d="M13.5 13.5l4.5-4.5a3.5 3.5 0 0 0-5-5l-8 8a2.5 2.5 0 0 0 3.5 3.5l7-7a1.5 1.5 0 0 0-2-2l-6 6"></path>
-  </svg>
-);
-
-export function ScheduleStep4Page() {
-  const [meetingData, setMeetingData] = useState({
+const getInitialMeetingData = () => {
+  const defaults = {
     name: 'Not Provided',
     email: 'Not Provided',
     phone: 'Not Provided',
@@ -205,27 +191,28 @@ export function ScheduleStep4Page() {
     date: 'Saturday, 08 August 2026',
     time: '10:30 AM',
     mode: 'online'
-  });
+  };
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    
-    setMeetingData(prev => ({
-      name: params.get('name') || 'Not Provided',
-      email: params.get('email') || 'Not Provided',
-      phone: params.get('phone') || 'Not Provided',
-      company: params.get('company') || 'Not Provided',
-      date: params.get('date') || prev.date,
-      time: params.get('time') || prev.time,
-      mode: params.get('mode') || prev.mode
-    }));
-  }, []);
+  if (typeof window === 'undefined') return defaults;
+
+  const params = new URLSearchParams(window.location.search);
+  return {
+    name: params.get('name') || defaults.name,
+    email: params.get('email') || defaults.email,
+    phone: params.get('phone') || defaults.phone,
+    company: params.get('company') || defaults.company,
+    date: params.get('date') || defaults.date,
+    time: params.get('time') || defaults.time,
+    mode: params.get('mode') || defaults.mode
+  };
+};
+
+export function ScheduleStep4Page() {
+  const meetingData = getInitialMeetingData();
 
   const handleConfirm = () => {
     window.location.href = '/html/schedule-success.html' + window.location.search;
   };
-
-  const modeText = meetingData.mode === 'online' ? 'Online Meeting\n(Google Meet)' : 'Office Visit\n(at Our Studio)';
 
   return (
     <SiteLayout
@@ -285,7 +272,6 @@ export function ScheduleStep4Page() {
                 <img src="/assets/images/c-s-m.png" alt="Form Card Background" className="form-card-bg" />
                 
                 <div className="blue-sticky-note">
-                  {/* <SvgPaperClip /> */}
                   <img src="/assets/images/sticky-note-1-bg-clean.png" alt="Sticky Note" className="blue-sticky-bg" />
                   <div className="blue-sticky-content">
                     We value your<br/>

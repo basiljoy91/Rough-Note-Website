@@ -64,7 +64,7 @@ export function ScheduleStep2Page() {
   
   const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
   const getFirstDayOfMonth = (year: number, month: number) => {
-    let day = new Date(year, month, 1).getDay();
+    const day = new Date(year, month, 1).getDay();
     return day === 0 ? 6 : day - 1; // Monday = 0, Sunday = 6
   };
   
@@ -83,7 +83,7 @@ export function ScheduleStep2Page() {
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>, year: number, month: number, day: number) => {
-    let newDate = new Date(year, month, day);
+    const newDate = new Date(year, month, day);
     if (e.key === 'ArrowRight') newDate.setDate(day + 1);
     else if (e.key === 'ArrowLeft') newDate.setDate(day - 1);
     else if (e.key === 'ArrowDown') newDate.setDate(day + 7);

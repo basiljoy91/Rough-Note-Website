@@ -47,7 +47,7 @@ function localNotFoundFallback() {
             }
             
             // Otherwise, it is a genuine 404 missing route
-            let content = readFileSync(resolve(server.config.root, 'html/pagenotfound.html'), 'utf-8');
+            const content = readFileSync(resolve(server.config.root, 'html/pagenotfound.html'), 'utf-8');
             const transformed = await server.transformIndexHtml(req.url || '/', content);
             res.statusCode = 404;
             res.setHeader('Content-Type', 'text/html');
