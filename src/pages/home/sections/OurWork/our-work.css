@@ -17,7 +17,7 @@
 }
 
 .d4-board {
-  aspect-ratio: 1328 / 1024;
+  aspect-ratio: 1328 / 900;
   background:
     radial-gradient(circle at 1px 1px, rgb(79 65 47 / 8%) 0 0.65px, transparent 0.9px) 0 0 / 14px 14px,
     linear-gradient(103deg, rgb(255 255 255 / 18%), transparent 46% 76%, rgb(98 66 36 / 5%)),
@@ -33,7 +33,7 @@
 }
 
 .d4-board::before {
-  background: linear-gradient(180deg, transparent 0 37%, rgb(74 45 26 / 8%) 37.5%, transparent 38.2%);
+  background: linear-gradient(180deg, transparent 0 25%, rgb(74 45 26 / 8%) 25.5%, transparent 26.2%);
   content: "";
   inset: 0;
   pointer-events: none;
@@ -90,18 +90,6 @@
   width: 104%;
 }
 
-.d4-board-header p {
-  font: 500 1.02cqi/1.42 "Patrick Hand", "Kalam", cursive;
-  letter-spacing: 0.01em;
-  margin: 1.2cqi 0 0;
-}
-
-.d4-board-header p strong {
-  background: #efdca0;
-  font-weight: 500;
-  padding: 0 0.35cqi;
-}
-
 .d4-header-bulb {
   border: 0.19cqi solid currentColor;
   border-radius: 52% 52% 43% 43%;
@@ -155,64 +143,6 @@
   clip-path: polygon(1% 2%, 15% 0, 29% 2%, 44% 0, 58% 2%, 73% 0, 88% 2%, 99% 1%, 100% 96%, 84% 98%, 68% 96%, 51% 99%, 34% 97%, 17% 99%, 1% 97%);
 }
 
-.d4-promise-note {
-  --d4-note-color: #eed16d;
-  height: 14.5%;
-  left: 58.7%;
-  padding: 2.15cqi 2.2cqi 1.2cqi;
-  position: absolute;
-  top: 1.2%;
-  transform: rotate(-1.8deg);
-  width: 15.5%;
-  z-index: 12;
-}
-
-.d4-promise-note h3 {
-  border-bottom: 0.13cqi solid currentColor;
-  font: 600 1.35cqi/1 "Caveat", cursive;
-  margin: 0 0 0.85cqi;
-  width: max-content;
-}
-
-.d4-promise-note ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.d4-promise-note li {
-  font: 500 0.93cqi/1.22 "Patrick Hand", cursive;
-  margin: 0.12cqi 0;
-  padding-left: 1.35cqi;
-  position: relative;
-}
-
-.d4-promise-note li::before {
-  content: "☑";
-  left: 0;
-  position: absolute;
-}
-
-.d4-heart {
-  bottom: 0.8cqi;
-  font: 500 1.8cqi/1 "Caveat", cursive;
-  position: absolute;
-  right: 1.25cqi;
-}
-
-.d4-note-tape {
-  background:
-    repeating-linear-gradient(90deg, transparent 0 0.48cqi, rgb(111 83 48 / 10%) 0.52cqi 0.62cqi),
-    rgb(211 179 126 / 62%);
-  height: 2.1cqi;
-  position: absolute;
-  top: -1.05cqi;
-  width: 4cqi;
-}
-
-.d4-note-tape--left { left: -0.5cqi; transform: rotate(-24deg); }
-.d4-note-tape--right { right: -0.5cqi; transform: rotate(23deg); }
-
 .d4-impact-note {
   font: 500 1.68cqi/1.15 "Caveat", cursive;
   left: 76.7%;
@@ -239,250 +169,11 @@
   transform: rotate(-10deg);
 }
 
-.d4-strategy-paper {
-  background:
-    repeating-linear-gradient(0deg, transparent 0 3.25cqi, rgb(91 75 53 / 4%) 3.33cqi 3.43cqi),
-    linear-gradient(103deg, rgb(255 255 255 / 27%), transparent 43%, rgb(103 76 42 / 6%)),
-    url("../../../../assets/textures/wrinkled-paper.webp") center / cover,
-    #eee4d2;
-  background-blend-mode: normal, normal, soft-light, normal;
-  clip-path: polygon(0 5%, 3% 2%, 7% 5%, 12% 2%, 18% 5%, 24% 2%, 30% 5%, 36% 2%, 42% 5%, 48% 2%, 54% 5%, 61% 2%, 68% 5%, 75% 2%, 82% 5%, 89% 2%, 96% 5%, 100% 3%, 100% 95%, 95% 98%, 89% 95%, 82% 98%, 75% 95%, 68% 98%, 61% 95%, 54% 98%, 47% 95%, 40% 98%, 33% 95%, 26% 98%, 19% 95%, 12% 98%, 5% 95%, 0 98%);
-  filter: drop-shadow(0 0.65cqi 0.55cqi rgb(67 45 25 / 20%));
-  height: 18.4%;
-  left: 8.4%;
-  padding: 3.6cqi 2.2cqi 1.3cqi;
-  position: absolute;
-  top: 19.8%;
-  transform: rotate(0.15deg);
-  width: 80.8%;
-  z-index: 9;
-}
-
-.d4-strategy-paper h3 {
-  background:
-    linear-gradient(90deg, rgb(255 255 255 / 25%), transparent),
-    #d9c19d;
-  clip-path: polygon(1% 8%, 99% 0, 97% 92%, 0 100%);
-  font: 600 1.45cqi/1 "Caveat", cursive;
-  left: 2.8%;
-  margin: 0;
-  padding: 0.55cqi 1.55cqi 0.45cqi;
-  position: absolute;
-  top: 1.8%;
-  transform: rotate(-1.4deg);
-  width: 17.5%;
-}
-
-.d4-strategy-pin,
 .d4-fastener--red,
 .d4-fastener--blue {
   background: radial-gradient(circle at 30% 25%, #f9a4a0, #b92524 70%);
   border-radius: 50%;
   box-shadow: 0.18cqi 0.3cqi 0.38cqi rgb(45 30 21 / 35%);
-}
-
-.d4-strategy-pin {
-  height: 0.72cqi;
-  left: 28.5%;
-  position: absolute;
-  top: 1.5%;
-  width: 0.72cqi;
-}
-
-.d4-strategy-steps {
-  align-items: flex-start;
-  display: flex;
-  height: 78%;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.d4-strategy-step {
-  align-items: center;
-  display: flex;
-  flex: 1 1 0;
-  flex-direction: column;
-  min-width: 0;
-  text-align: center;
-}
-
-.d4-strategy-step strong {
-  font: 600 1.08cqi/1 "Caveat", cursive;
-  margin: 0.25cqi 0 0.35cqi;
-}
-
-.d4-strategy-step small {
-  font: 500 0.69cqi/1.22 "Patrick Hand", cursive;
-}
-
-.d4-strategy-icon {
-  color: #33312d;
-  display: block;
-  height: 3.4cqi;
-  position: relative;
-  width: 3.7cqi;
-}
-
-.d4-icon-discover {
-  border: 0.17cqi solid currentColor;
-  border-radius: 50%;
-  height: 2.4cqi;
-  margin-top: 0.3cqi;
-  width: 2.4cqi;
-}
-
-.d4-icon-discover::after {
-  border-top: 0.22cqi solid currentColor;
-  content: "";
-  left: 1.8cqi;
-  position: absolute;
-  top: 1.9cqi;
-  transform: rotate(43deg);
-  width: 1.5cqi;
-}
-
-.d4-icon-research {
-  border: 0.17cqi solid currentColor;
-  margin-top: 0.15cqi;
-}
-
-.d4-icon-research::before {
-  background:
-    linear-gradient(90deg, currentColor 0 0.14cqi, transparent 0.14cqi 0.95cqi, currentColor 0.95cqi 1.09cqi, transparent 1.09cqi 1.9cqi, currentColor 1.9cqi 2.04cqi),
-    linear-gradient(currentColor 0 0.14cqi, transparent 0.14cqi 1.25cqi, currentColor 1.25cqi 1.39cqi, transparent 1.39cqi 2.5cqi, currentColor 2.5cqi 2.64cqi);
-  content: "";
-  inset: 0.38cqi;
-  position: absolute;
-}
-
-.d4-icon-sketch {
-  border: 0.17cqi solid currentColor;
-  border-radius: 0.3cqi;
-  height: 3.5cqi;
-  margin-top: -0.1cqi;
-  transform: rotate(38deg);
-  width: 0.88cqi;
-}
-
-.d4-icon-sketch::after {
-  border-left: 0.42cqi solid transparent;
-  border-right: 0.42cqi solid transparent;
-  border-top: 0.78cqi solid currentColor;
-  bottom: -0.82cqi;
-  content: "";
-  left: 0;
-  position: absolute;
-}
-
-.d4-icon-design,
-.d4-icon-develop {
-  border: 0.17cqi solid currentColor;
-  border-radius: 0.18cqi;
-}
-
-.d4-icon-design::before {
-  background:
-    linear-gradient(90deg, transparent 48%, currentColor 49% 52%, transparent 53%),
-    linear-gradient(transparent 48%, currentColor 49% 52%, transparent 53%);
-  content: "";
-  inset: 0.45cqi;
-  position: absolute;
-}
-
-.d4-icon-develop {
-  align-items: center;
-  display: flex;
-  font: 600 1.35cqi/1 monospace;
-  justify-content: center;
-}
-
-.d4-icon-test {
-  border: 0.17cqi solid currentColor;
-  border-radius: 50%;
-}
-
-.d4-icon-test::after {
-  border-bottom: 0.18cqi solid currentColor;
-  border-right: 0.18cqi solid currentColor;
-  content: "";
-  height: 1.55cqi;
-  left: 1.45cqi;
-  position: absolute;
-  top: 0.62cqi;
-  transform: rotate(41deg);
-  width: 0.72cqi;
-}
-
-.d4-icon-launch {
-  border: 0.17cqi solid currentColor;
-  border-radius: 55% 55% 42% 42%;
-  height: 3cqi;
-  margin-top: -0.05cqi;
-  transform: rotate(35deg);
-  width: 1.55cqi;
-}
-
-.d4-icon-launch::before {
-  border: 0.14cqi solid currentColor;
-  border-radius: 50%;
-  content: "";
-  height: 0.5cqi;
-  left: 0.36cqi;
-  position: absolute;
-  top: 0.55cqi;
-  width: 0.5cqi;
-}
-
-.d4-icon-launch::after {
-  border-left: 0.46cqi solid transparent;
-  border-right: 0.46cqi solid transparent;
-  border-top: 0.75cqi solid currentColor;
-  bottom: -0.72cqi;
-  content: "";
-  left: 0.15cqi;
-  position: absolute;
-}
-
-.d4-icon-support {
-  border-left: 0.2cqi solid currentColor;
-  border-radius: 50% 50% 0 0;
-  border-right: 0.2cqi solid currentColor;
-  border-top: 0.2cqi solid currentColor;
-  height: 2.6cqi;
-  margin-top: 0.25cqi;
-}
-
-.d4-icon-support::before,
-.d4-icon-support::after {
-  background: currentColor;
-  border-radius: 0.3cqi;
-  bottom: -0.15cqi;
-  content: "";
-  height: 1.15cqi;
-  position: absolute;
-  width: 0.42cqi;
-}
-
-.d4-icon-support::before { left: -0.28cqi; }
-.d4-icon-support::after { right: -0.28cqi; }
-
-.d4-step-arrow {
-  border-top: 0.14cqi solid currentColor;
-  flex: 0 0 2.1cqi;
-  margin-top: 1.45cqi;
-  position: relative;
-}
-
-.d4-step-arrow::after {
-  border-right: 0.14cqi solid currentColor;
-  border-top: 0.14cqi solid currentColor;
-  content: "";
-  height: 0.48cqi;
-  position: absolute;
-  right: 0;
-  top: -0.31cqi;
-  transform: rotate(45deg);
-  width: 0.48cqi;
 }
 
 .d4-side-note {
@@ -497,7 +188,7 @@
   --d4-note-color: #eaa1ad;
   height: 13%;
   left: 0.75%;
-  top: 20.8%;
+  top: 13%;
   transform: rotate(-5deg);
   width: 7.5%;
 }
@@ -507,7 +198,7 @@
   height: 13.2%;
   padding-top: 3cqi;
   right: 0.8%;
-  top: 21.2%;
+  top: 13.2%;
   transform: rotate(5deg);
   width: 8.6%;
 }
@@ -556,13 +247,12 @@
   left: 0;
   position: absolute;
   right: 0;
-  top: 37.5%;
+  top: 25.5%;
   z-index: 0;
 }
 
 .d4-service-card,
-.d4-lined-paper,
-.d4-notebook {
+.d4-lined-paper {
   background:
     repeating-linear-gradient(0deg, transparent 0 2.15cqi, rgb(87 91 82 / 8%) 2.2cqi 2.28cqi),
     linear-gradient(106deg, rgb(255 255 255 / 28%), transparent 46%, rgb(88 66 39 / 6%)),
@@ -588,8 +278,7 @@
 }
 
 .d4-service-card h3,
-.d4-lined-paper h3,
-.d4-notebook h3 {
+.d4-lined-paper h3 {
   font: 600 1.25cqi/1 "Caveat", cursive;
   margin: 0 0 0.75cqi;
 }
@@ -602,8 +291,7 @@
 }
 
 .d4-service-card ul,
-.d4-project-checklist ul,
-.d4-notebook ul {
+.d4-project-checklist ul {
   font: 500 0.76cqi/1.38 "Patrick Hand", cursive;
   margin: 0;
   padding-left: 1.35cqi;
@@ -618,13 +306,13 @@
   width: calc(100% - 2.7cqi);
 }
 
-.d4-service-card--brand { --card-tilt: -0.5deg; height: 26.5%; left: 1.5%; top: 39%; width: 17%; }
-.d4-service-card--motion { --card-tilt: 0.4deg; height: 26.2%; left: 19.2%; top: 39.2%; width: 17%; }
-.d4-service-card--website { --card-tilt: -0.25deg; height: 26.5%; left: 37%; top: 39%; width: 19%; }
-.d4-service-card--modeling { --card-tilt: 0.45deg; height: 26.3%; left: 57.5%; top: 39.1%; width: 17%; }
-.d4-service-card--erp { --card-tilt: 0.2deg; height: 25.2%; left: 4%; top: 69%; width: 19.5%; }
-.d4-service-card--software { --card-tilt: -0.3deg; height: 25.5%; left: 25.4%; top: 68.6%; width: 20%; }
-.d4-service-card--ai { --card-tilt: 0.35deg; height: 25%; left: 47.4%; top: 69%; width: 18%; }
+.d4-service-card--brand { --card-tilt: -0.5deg; height: 28%; left: 2%; top: 27.5%; width: 18%; }
+.d4-service-card--motion { --card-tilt: 0.4deg; height: 28%; left: 21.5%; top: 27.5%; width: 18%; }
+.d4-service-card--website { --card-tilt: -0.25deg; height: 28%; left: 41%; top: 27.5%; width: 18%; }
+.d4-service-card--modeling { --card-tilt: 0.45deg; height: 28%; left: 60.5%; top: 27.5%; width: 18%; }
+.d4-service-card--erp { --card-tilt: 0.2deg; height: 27.3%; left: 6%; top: 62%; width: 20%; }
+.d4-service-card--software { --card-tilt: -0.3deg; height: 27.3%; left: 29%; top: 62%; width: 20%; }
+.d4-service-card--ai { --card-tilt: 0.35deg; height: 27.3%; left: 52%; top: 62%; width: 20%; }
 
 .d4-fastener {
   height: 0.72cqi;
@@ -664,13 +352,13 @@
 .d4-mini-note--green { background: #bed493; left: 1cqi; transform: rotate(-1deg); }
 
 .d4-idea-flow {
-  height: 24%;
+  height: 28%;
   padding: 1.35cqi 1.5cqi;
-  right: 9%;
+  right: 1.5%;
   text-align: center;
-  top: 39.5%;
+  top: 27.5%;
   transform: rotate(4deg);
-  width: 12.7%;
+  width: 16.5%;
 }
 
 .d4-idea-flow .d4-paperclip {
@@ -692,12 +380,12 @@
 }
 
 .d4-project-checklist {
-  height: 25.5%;
-  left: 66.6%;
+  height: 27.3%;
+  left: 75%;
   padding: 1.65cqi 1.45cqi;
-  top: 69.2%;
+  top: 62%;
   transform: rotate(5deg);
-  width: 13.2%;
+  width: 18.5%;
 }
 
 .d4-project-checklist .d4-paperclip {
@@ -730,51 +418,6 @@
   transform: rotate(-8deg);
 }
 
-.d4-notebook {
-  background:
-    repeating-linear-gradient(0deg, transparent 0 2cqi, rgb(89 101 110 / 15%) 2.05cqi 2.13cqi),
-    linear-gradient(90deg, transparent 0 2.4cqi, rgb(191 91 84 / 18%) 2.45cqi 2.55cqi, transparent 2.6cqi),
-    url("../../../../assets/textures/wrinkled-paper.webp") center / cover,
-    #e9e1d3;
-  height: 31.5%;
-  padding: 2.3cqi 2.2cqi 1.2cqi 3.2cqi;
-  right: 1.1%;
-  top: 65.4%;
-  transform: rotate(-1deg);
-  width: 17%;
-}
-
-.d4-notebook-rings {
-  background: repeating-linear-gradient(0deg, #383630 0 0.26cqi, transparent 0.28cqi 1.22cqi);
-  bottom: 0.5cqi;
-  left: 0.6cqi;
-  position: absolute;
-  top: 0.5cqi;
-  width: 1.7cqi;
-}
-
-.d4-notebook h3 {
-  border-bottom: 0.13cqi solid currentColor;
-  margin-left: 2.1cqi;
-  text-align: center;
-  width: 5.2cqi;
-}
-
-.d4-notebook p {
-  bottom: 2.3cqi;
-  font: 500 0.9cqi/1.2 "Caveat", cursive;
-  position: absolute;
-  right: 2.6cqi;
-  text-align: center;
-}
-
-.d4-notebook-star {
-  bottom: 4.3cqi;
-  font: 500 2cqi/1 "Caveat", cursive;
-  position: absolute;
-  right: 1.1cqi;
-}
-
 .d4-red-arrow {
   border-top: 0.18cqi solid #b74938;
   height: 2.7cqi;
@@ -796,16 +439,16 @@
   width: 0.65cqi;
 }
 
-.d4-red-arrow--one { left: 15.5%; top: 63.6%; }
-.d4-red-arrow--two { left: 34.8%; top: 63.6%; }
-.d4-red-arrow--three { left: 55.3%; top: 63.8%; }
-.d4-red-arrow--four { left: 64%; top: 73.2%; transform: rotate(-18deg); }
+.d4-red-arrow--one { left: 16%; top: 57.8%; }
+.d4-red-arrow--two { left: 35.5%; top: 57.8%; }
+.d4-red-arrow--three { left: 55%; top: 57.8%; }
+.d4-red-arrow--four { left: 73%; top: 59%; transform: rotate(-18deg); }
 
 .d4-bottom-message {
   --d4-note-color: #efe6d5;
   bottom: 0.8%;
   font: 500 1.25cqi/1.2 "Caveat", cursive;
-  left: 14%;
+  left: 32.5%;
   padding: 1cqi 4cqi 0.7cqi 5.8cqi;
   position: absolute;
   text-align: center;

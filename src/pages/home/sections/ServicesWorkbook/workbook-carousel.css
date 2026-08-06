@@ -6,23 +6,63 @@
   position: relative;
   min-height: 690px;
   overflow: hidden;
-  padding: 62px clamp(34px, 7vw, 122px) 42px;
+  isolation: isolate;
+  padding: 14px 14px 58px;
   color: var(--wb-ink);
-  background-color: var(--wb-paper);
+  background-color: #b57f4e;
   background-image:
-    linear-gradient(rgba(105, 85, 47, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(105, 85, 47, 0.025) 1px, transparent 1px);
-  background-size: 23px 23px;
+    radial-gradient(circle at 2px 2px, rgba(72, 42, 20, 0.22) 0 1px, transparent 1.25px),
+    linear-gradient(112deg, rgba(255, 255, 255, 0.08), transparent 42%, rgba(65, 35, 14, 0.1));
+  background-size: 14px 14px, cover;
+  perspective: 2400px;
 }
 .workbook::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.18;
+  z-index: -1;
+  opacity: 0.2;
   background-image: url("../../../../assets/textures/paper-texture.jpg");
   background-size: cover;
   mix-blend-mode: multiply;
+}
+.workbook__sheet {
+  position: relative;
+  min-height: 618px;
+  box-sizing: border-box;
+  padding: 48px clamp(34px, 7vw, 122px) 42px;
+  overflow: hidden;
+  background-color: var(--wb-paper);
+  background-image:
+    linear-gradient(rgba(105, 85, 47, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(105, 85, 47, 0.03) 1px, transparent 1px),
+    linear-gradient(108deg, rgba(255, 255, 255, 0.35), transparent 45%, rgba(84, 55, 25, 0.035));
+  background-size: 23px 23px, 23px 23px, cover;
+  border: 1px solid rgba(96, 68, 37, 0.18);
+  box-shadow:
+    0 13px 20px rgba(69, 42, 20, 0.25),
+    inset 0 0 30px rgba(111, 78, 38, 0.045);
+  transform-style: preserve-3d;
+}
+.workbook__sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background: url("../../../../assets/textures/paper-texture.jpg") center / cover;
+  mix-blend-mode: multiply;
+}
+.workbook__sheet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  box-shadow:
+    inset 1px 0 rgba(255, 255, 255, 0.7),
+    inset -1px 0 rgba(73, 47, 21, 0.1);
 }
 .workbook__page-count {
   position: relative;
@@ -153,26 +193,113 @@
     rgba(80, 50, 20, 0.04)
   );
 }
-.workbook__paper.is-turning {
-  animation: workbook-page-turn 0.68s cubic-bezier(0.55, 0.02, 0.25, 1) both;
+.workbook__spiral {
+  position: absolute;
+  z-index: 32;
+  top: 5.5%;
+  bottom: 13.5%;
+  left: 0;
+  display: flex;
+  width: 38px;
+  flex-direction: column;
+  justify-content: space-around;
+  pointer-events: none;
 }
-@keyframes workbook-page-turn {
-  0% {
-    transform: rotateY(0);
-    filter: brightness(1);
-  }
-  46% {
-    transform: rotateY(-83deg);
-    filter: brightness(0.62);
-  }
-  54% {
-    transform: rotateY(-96deg);
-    filter: brightness(0.55);
-  }
-  100% {
-    transform: rotateY(0);
-    filter: brightness(1);
-  }
+.workbook__spiral::before {
+  content: "";
+  position: absolute;
+  top: 1%;
+  bottom: 1%;
+  left: 18px;
+  width: 3px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #766f65, #ddd8cc 44%, #5d574f);
+  box-shadow: 1px 0 3px rgba(40, 33, 25, 0.28);
+}
+.workbook__spiral span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 36px;
+  height: 13px;
+  flex: 0 0 13px;
+  border: 3px solid #555149;
+  border-left-color: #aaa69c;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow:
+    inset -1px 1px 0 rgba(255, 255, 255, 0.75),
+    1px 2px 3px rgba(47, 37, 25, 0.24);
+  transform: translateX(-5px) rotate(-5deg);
+}
+.workbook__spiral span::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #716a60;
+  box-shadow: inset 1px 1px 2px rgba(31, 26, 21, 0.55);
+}
+.workbook__turn-mesh {
+  position: absolute;
+  z-index: 22;
+  overflow: visible;
+  pointer-events: none;
+  perspective: 2100px;
+  transform-style: preserve-3d;
+}
+.workbook__page-strip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.workbook__page-strip-content {
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  max-width: none;
+  border-radius: 0;
+  box-shadow: none;
+  backface-visibility: hidden;
+  transform: none;
+}
+.workbook__page-strip-shade {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(73, 45, 20, 0.5) 58%, rgba(255, 253, 239, 0.34));
+  mix-blend-mode: multiply;
+  will-change: opacity;
+}
+.workbook__mesh-shadow {
+  position: absolute;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(51, 31, 14, 0.34), rgba(51, 31, 14, 0.16) 35%, transparent 72%);
+  filter: blur(9px);
+  transform-origin: center;
+  will-change: left, opacity, transform;
+}
+.workbook--turning .workbook__controls {
+  cursor: progress;
+}
+.workbook--turning .workbook__arrow,
+.workbook--turning .workbook__dots button {
+  cursor: progress;
+  opacity: 0.55;
 }
 .workbook__clip {
   position: absolute;
@@ -440,13 +567,15 @@
   transform: rotate(5deg);
 }
 .workbook__controls {
-  position: relative;
-  z-index: 3;
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  bottom: 13px;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 19px;
-  margin-top: -5px;
 }
 .workbook__arrow {
   border: 0;
@@ -482,7 +611,27 @@
 @media (max-width: 760px) {
   .workbook {
     min-height: 0;
-    padding: 45px 25px 28px;
+    padding: 9px 9px 54px;
+  }
+  .workbook__sheet {
+    min-height: 0;
+    padding: 38px 16px 34px;
+  }
+  .workbook__spiral {
+    top: 4%;
+    bottom: 10%;
+    left: -3px;
+    width: 31px;
+  }
+  .workbook__spiral::before {
+    left: 15px;
+    width: 2px;
+  }
+  .workbook__spiral span {
+    width: 30px;
+    height: 11px;
+    flex-basis: 11px;
+    border-width: 2px;
   }
   .workbook__spread {
     grid-template-columns: 1fr;
@@ -506,7 +655,7 @@
     bottom: 19px;
   }
   .workbook__controls {
-    margin-top: 4px;
+    bottom: 11px;
   }
 
   /* Reset desktop transforms for Div-5 content on mobile and align left */
@@ -536,8 +685,9 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .workbook__paper.is-turning {
-    animation: none;
+  .workbook__turn-mesh,
+  .workbook__mesh-shadow {
+    display: none;
   }
 }
 

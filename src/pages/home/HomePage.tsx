@@ -18,6 +18,7 @@ import { ourWorkMarkup } from './sections/OurWork';
 import { processMarkup } from './sections/Process';
 import { servicesWorkbookMarkup } from './sections/ServicesWorkbook';
 import { trustedCompaniesMarkup } from './sections/TrustedCompanies';
+import { useTrustedCompaniesInteractions } from './sections/TrustedCompanies/useTrustedCompaniesInteractions';
 
 const homeMarkup = [
   heroMarkup,
@@ -38,6 +39,7 @@ export function HomePage() {
   useFaq(mainRef);
   useHeroInteractions(mainRef);
   useAboutStudioInteractions(mainRef);
+  useTrustedCompaniesInteractions(mainRef);
 
   return (
     <>
