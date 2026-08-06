@@ -6,6 +6,7 @@ import { FooterPaper } from '../../features/notebook-footer/components/FooterPap
 import { RoughNoteDrawingFeature } from '../../features/rough-note-drawing/RoughNoteDrawingFeature';
 import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
+import { techStackMarkup } from '../home/sections/TechStack';
 import { ourServicesMarkup } from './sections/OurServices';
 import { HeroSection } from './sections/HeroSection';
 import { DynamicJourney } from './sections/DynamicJourney/DynamicJourney';
@@ -30,6 +31,7 @@ export function ServicesPage() {
           <HeroSection />
           <div dangerouslySetInnerHTML={{ __html: ourServicesMarkup }} />
           <DynamicJourney />
+          <div dangerouslySetInnerHTML={{ __html: techStackMarkup }} />
         </main>
         <div
           id="rough-note-footer-root"
