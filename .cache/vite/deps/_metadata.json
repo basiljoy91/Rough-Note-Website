@@ -1,55 +1,55 @@
 {
-  "hash": "90082a7c",
-  "configHash": "9fd39540",
+  "hash": "e2f250c4",
+  "configHash": "9346a972",
   "lockfileHash": "3130cdc5",
-  "browserHash": "ddc9308b",
+  "browserHash": "60d2303f",
   "optimized": {
     "gsap": {
       "src": "../../../node_modules/gsap/index.js",
       "file": "gsap.js",
-      "fileHash": "2c785c17",
+      "fileHash": "fcb291c6",
       "needsInterop": false
     },
     "html2canvas": {
       "src": "../../../node_modules/html2canvas/dist/html2canvas.js",
       "file": "html2canvas.js",
-      "fileHash": "2dfa88b0",
+      "fileHash": "6b7fe6f0",
       "needsInterop": true
     },
     "lucide-react": {
       "src": "../../../node_modules/lucide-react/dist/esm/lucide-react.mjs",
       "file": "lucide-react.js",
-      "fileHash": "48504d01",
+      "fileHash": "d6a1eb9f",
       "needsInterop": false
     },
     "react-dom": {
       "src": "../../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "231b2046",
+      "fileHash": "38531604",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "919e64ac",
+      "fileHash": "a1ecaf7a",
       "needsInterop": true
     },
     "react": {
       "src": "../../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "6b8f5cc4",
+      "fileHash": "a116e4f2",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "89e88c6f",
+      "fileHash": "99cd3e2c",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "bb82a036",
+      "fileHash": "ccec9b00",
       "needsInterop": true
     }
   },
