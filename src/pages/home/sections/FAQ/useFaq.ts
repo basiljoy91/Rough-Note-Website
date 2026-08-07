@@ -11,14 +11,6 @@ export function useFaq(rootRef: RefObject<HTMLElement | null>) {
     const toggle = (control: HTMLElement) => {
       const item = control.closest<HTMLElement>('.d8-faq-item');
       if (!item) return;
-      root.querySelectorAll('.d8-faq-item').forEach((candidate) => {
-        if (candidate !== item) {
-          candidate.classList.remove('active');
-          candidate
-            .querySelector<HTMLElement>('.d8-faq-content')
-            ?.setAttribute('aria-expanded', 'false');
-        }
-      });
       const active = item.classList.toggle('active');
       control.setAttribute('aria-expanded', String(active));
     };
