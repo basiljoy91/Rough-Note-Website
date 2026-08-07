@@ -57,10 +57,12 @@
   align-items: flex-start;
   display: flex;
   gap: 2.5cqi;
-  left: 4.1%;
+  justify-content: center;
+  left: 50%;
   position: absolute;
   top: 3.8%;
-  width: 49%;
+  transform: translateX(-50%);
+  width: 72%;
   z-index: 10;
 }
 
@@ -68,6 +70,7 @@
   font: 600 3.05cqi/1.08 "Caveat", "Kalam", cursive;
   letter-spacing: 0.01em;
   margin: 0;
+  text-align: center;
   transform: rotate(-0.4deg);
 }
 
