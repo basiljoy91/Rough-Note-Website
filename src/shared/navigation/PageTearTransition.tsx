@@ -1,7 +1,14 @@
 import { useEffect } from 'react';
 
-const FALLBACK_DURATION = 760;
-const FALLBACK_STORAGE_KEY = 'rough-note-page-tear';
+export const PAGE_TEAR_EXIT_DURATION = 520;
+export const PAGE_TEAR_ENTER_DURATION = 620;
+export const PAGE_TEAR_STORAGE_KEY = 'rough-note-page-tear';
+
+const TRANSITION_CLASSES = [
+  'rn-page-tear-locked',
+  'rn-page-tear-fallback-exit',
+  'rn-page-tear-fallback-enter'
+] as const;
 
 function isPlainPrimaryClick(event: MouseEvent) {
   return (
@@ -49,15 +56,35 @@ export function PageTearTransition() {
   useEffect(() => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const supportsViewTransitions =
-      typeof document.startViewTransition === 'function';
+    const timers = new Set<number>();
+    let navigationLocked = false;
 
-    if (window.sessionStorage.getItem(FALLBACK_STORAGE_KEY) === 'enter') {
-      window.sessionStorage.removeItem(FALLBACK_STORAGE_KEY);
-      root.classList.add('rn-page-tear-fallback-enter');
-      window.setTimeout(() => {
-        root.classList.remove('rn-page-tear-fallback-enter');
-      }, FALLBACK_DURATION);
+    const schedule = (callback: () => void, delay: number) => {
+      const timer = window.setTimeout(() => {
+        timers.delete(timer);
+        callback();
+      }, delay);
+      timers.add(timer);
+      return timer;
+    };
+
+    const clearTransition = () => {
+      root.classList.remove(...TRANSITION_CLASSES);
+      root.removeAttribute('aria-busy');
+      navigationLocked = false;
+    };
+
+    const beginEnter = () => {
+      root.classList.remove('rn-page-tear-fallback-exit');
+      root.classList.add('rn-page-tear-locked', 'rn-page-tear-fallback-enter');
+      root.setAttribute('aria-busy', 'true');
+      schedule(clearTransition, PAGE_TEAR_ENTER_DURATION);
+    };
+
+    if (window.sessionStorage.getItem(PAGE_TEAR_STORAGE_KEY) === 'enter') {
+      window.sessionStorage.removeItem(PAGE_TEAR_STORAGE_KEY);
+      navigationLocked = true;
+      beginEnter();
     }
 
     const onNavigationClick = (event: MouseEvent) => {
@@ -73,39 +100,46 @@ export function PageTearTransition() {
         destination.pathname === window.location.pathname &&
         destination.search === window.location.search;
 
-      if (sameDocument) {
-        if (destination.hash === window.location.hash) return;
-        event.preventDefault();
-
-        if (reducedMotion.matches || !supportsViewTransitions) {
-          moveWithinPage(destination);
-          return;
-        }
-
-        root.classList.add('rn-page-tear-in-progress');
-        const transition = document.startViewTransition(() => {
-          moveWithinPage(destination);
-        });
-        void transition.finished.finally(() => {
-          root.classList.remove('rn-page-tear-in-progress');
-        });
-        return;
-      }
-
-      if (reducedMotion.matches || supportsViewTransitions) {
-        return;
-      }
+      if (sameDocument && destination.hash === window.location.hash) return;
 
       event.preventDefault();
-      root.classList.add('rn-page-tear-fallback-exit');
-      window.sessionStorage.setItem(FALLBACK_STORAGE_KEY, 'enter');
-      window.setTimeout(() => {
+      if (navigationLocked) return;
+
+      if (reducedMotion.matches) {
+        if (sameDocument) {
+          moveWithinPage(destination);
+        } else {
+          window.location.assign(destination.href);
+        }
+        return;
+      }
+
+      navigationLocked = true;
+      root.classList.remove('rn-page-tear-fallback-enter');
+      root.classList.add('rn-page-tear-locked', 'rn-page-tear-fallback-exit');
+      root.setAttribute('aria-busy', 'true');
+
+      if (sameDocument) {
+        schedule(() => {
+          moveWithinPage(destination);
+          beginEnter();
+        }, PAGE_TEAR_EXIT_DURATION);
+        return;
+      }
+
+      window.sessionStorage.setItem(PAGE_TEAR_STORAGE_KEY, 'enter');
+      schedule(() => {
         window.location.assign(destination.href);
-      }, FALLBACK_DURATION - 80);
+      }, PAGE_TEAR_EXIT_DURATION);
     };
 
     document.addEventListener('click', onNavigationClick);
-    return () => document.removeEventListener('click', onNavigationClick);
+    return () => {
+      document.removeEventListener('click', onNavigationClick);
+      timers.forEach((timer) => window.clearTimeout(timer));
+      timers.clear();
+      clearTransition();
+    };
   }, []);
 
   return (
