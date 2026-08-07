@@ -12,7 +12,9 @@
     13px 13px;
   color: #15120f;
   overflow: visible;
-  padding: clamp(58px, 7vw, 100px) 20px clamp(72px, 8vw, 116px);
+  margin-top: -18px;
+  padding: calc(clamp(58px, 7vw, 100px) + 18px) 20px clamp(72px, 8vw, 116px);
+  clip-path: var(--rn-paper-tear-top);
 }
 
 .trusted-companies__inner {

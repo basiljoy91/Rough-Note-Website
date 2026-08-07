@@ -8,12 +8,14 @@
   width: 100%;
   min-height: 1080px;
   overflow: hidden;
-  padding: clamp(24px, 2.2vw, 42px) clamp(24px, 3.2vw, 58px) clamp(54px, 5vw, 86px);
+  margin-top: -18px;
+  padding: calc(clamp(24px, 2.2vw, 42px) + 18px) clamp(24px, 3.2vw, 58px) clamp(54px, 5vw, 86px);
   color: var(--journey-ink);
   background:
     linear-gradient(rgb(250 247 239 / 80%), rgb(250 247 239 / 80%)),
     url('/assets/images/Services_Div1_Background.png') center / cover;
   font-family: 'Kalam', 'Caveat', cursive;
+  clip-path: var(--rn-paper-tear-top);
 }
 
 .dynamic-journey::before {
@@ -885,7 +887,7 @@
 
 @media (max-width: 760px) {
   .dynamic-journey {
-    padding: 30px 16px 60px;
+    padding: 48px 16px 60px;
   }
 
   .dj-paper-corner {

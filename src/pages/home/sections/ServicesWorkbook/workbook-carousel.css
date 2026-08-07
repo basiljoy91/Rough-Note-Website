@@ -33,16 +33,21 @@
   box-sizing: border-box;
   padding: 48px clamp(34px, 7vw, 122px) 42px;
   overflow: hidden;
+  clip-path: var(--rn-paper-tear-top);
   background-color: var(--wb-paper);
   background-image:
+    url('/assets/torn-edge-bottom.jpg'),
     linear-gradient(rgba(105, 85, 47, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(105, 85, 47, 0.03) 1px, transparent 1px),
     linear-gradient(108deg, rgba(255, 255, 255, 0.35), transparent 45%, rgba(84, 55, 25, 0.035));
-  background-size: 23px 23px, 23px 23px, cover;
+  background-position: center -29px, 0 0, 0 0, center;
+  background-repeat: no-repeat, repeat, repeat, no-repeat;
+  background-size: 108% 78px, 23px 23px, 23px 23px, cover;
   border: 1px solid rgba(96, 68, 37, 0.18);
   box-shadow:
     0 13px 20px rgba(69, 42, 20, 0.25),
     inset 0 0 30px rgba(111, 78, 38, 0.045);
+  filter: drop-shadow(0 5px 4px rgb(66 45 25 / 18%));
   transform-style: preserve-3d;
 }
 .workbook__sheet::before {
