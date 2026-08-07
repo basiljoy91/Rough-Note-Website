@@ -846,15 +846,15 @@
 /* Torn journey sheet */
 #div-3 > .d3-timeline-container {
   background:
-    linear-gradient(90deg, transparent 0 14.8%, rgb(89 67 39 / 5%) 15%, transparent 15.24% 48.8%, rgb(89 67 39 / 4%) 49%, transparent 49.24% 82.8%, rgb(89 67 39 / 4%) 83%, transparent 83.24%),
+    linear-gradient(90deg, transparent 0 14.8%, rgb(89 67 39 / 2.8%) 15%, transparent 15.2% 48.8%, rgb(89 67 39 / 2.5%) 49%, transparent 49.2% 82.8%, rgb(89 67 39 / 2.5%) 83%, transparent 83.2%),
     repeating-linear-gradient(0deg, transparent 0 56px, rgb(101 77 45 / 2.5%) 57px, transparent 58px),
     radial-gradient(circle at 1px 1px, rgb(69 58 42 / 10%) 0 0.65px, transparent 0.9px) 0 0 / 16px 16px,
     linear-gradient(100deg, rgb(255 255 255 / 28%), transparent 36%, rgb(108 79 45 / 6%) 72%, rgb(255 255 255 / 16%)),
-    #eadfc9;
+    #eee1c8;
   bottom: 0;
   clip-path: polygon(0 5%, 2.5% 2.7%, 5.4% 5.4%, 8.2% 2.9%, 11.5% 5.8%, 14.7% 2.8%, 18% 5.2%, 21.2% 2.9%, 24.5% 5.7%, 28% 3.1%, 31.5% 5.1%, 35% 2.7%, 38.5% 5.6%, 42% 3%, 45.5% 5.4%, 49% 2.8%, 52.5% 5.6%, 56% 3.1%, 59.5% 5.1%, 63% 2.7%, 66.5% 5.7%, 70% 2.9%, 73.5% 5.3%, 77% 2.8%, 80.5% 5.5%, 84% 3%, 87.5% 5.6%, 91% 2.7%, 94.5% 5.2%, 97.4% 2.9%, 100% 5%, 100% 94%, 97.3% 96.8%, 94.1% 94.1%, 90.7% 97.2%, 87.3% 94.3%, 83.8% 97.4%, 80.2% 94.5%, 76.7% 97.3%, 73.1% 94.2%, 69.6% 97.1%, 66% 94.3%, 62.5% 97.4%, 59% 94.4%, 55.5% 97.3%, 52% 94.3%, 48.5% 97.5%, 45% 94.4%, 41.5% 97.2%, 38% 94.3%, 34.5% 97.3%, 31% 94.2%, 27.5% 97.5%, 24% 94.5%, 20.5% 97.2%, 17% 94.1%, 13.5% 97.4%, 10% 94.4%, 6.5% 97.2%, 3.1% 94.2%, 0 96.9%);
   filter: drop-shadow(0 -5px 5px rgb(76 58 35 / 16%)) drop-shadow(0 8px 8px rgb(76 58 35 / 16%));
-  height: 19.5%;
+  height: 18.5%;
   left: 0;
   margin: 0;
   max-width: none;
@@ -865,14 +865,16 @@
 }
 
 .d3-timeline-container::before {
-  border-top: 1.5px solid rgb(79 61 39 / 11%);
-  box-shadow: 0 -5px 9px rgb(79 61 39 / 11%);
+  background: #f5efe4;
+  box-shadow: 0 3px 8px rgb(79 61 39 / 17%);
+  clip-path: polygon(0 0, 100% 0, 100% 46%, 97% 69%, 93% 47%, 89% 72%, 85% 50%, 81% 75%, 77% 49%, 73% 72%, 69% 51%, 65% 76%, 61% 48%, 57% 73%, 53% 50%, 49% 76%, 45% 48%, 41% 73%, 37% 49%, 33% 75%, 29% 48%, 25% 72%, 21% 50%, 17% 74%, 13% 48%, 9% 71%, 5% 49%, 0 70%);
   content: "";
+  height: 9%;
   left: 0;
   position: absolute;
-  top: 7.5%;
-  transform: rotate(0.15deg);
+  top: 0;
   width: 100%;
+  z-index: 2;
 }
 
 .d3-timeline-inner {
@@ -883,9 +885,9 @@
 
 .d3-timeline-inner::before {
   background:
-    linear-gradient(90deg, transparent 14.9%, rgb(75 57 37 / 5%) 15%, rgb(255 255 255 / 17%) 15.12%, transparent 15.3%),
-    linear-gradient(90deg, transparent 48.9%, rgb(75 57 37 / 4%) 49%, rgb(255 255 255 / 15%) 49.12%, transparent 49.3%),
-    linear-gradient(90deg, transparent 82.9%, rgb(75 57 37 / 4%) 83%, rgb(255 255 255 / 14%) 83.12%, transparent 83.3%);
+    linear-gradient(90deg, transparent 14.9%, rgb(75 57 37 / 2.7%) 15%, rgb(255 255 255 / 11%) 15.1%, transparent 15.25%),
+    linear-gradient(90deg, transparent 48.9%, rgb(75 57 37 / 2.3%) 49%, rgb(255 255 255 / 10%) 49.1%, transparent 49.25%),
+    linear-gradient(90deg, transparent 82.9%, rgb(75 57 37 / 2.3%) 83%, rgb(255 255 255 / 9%) 83.1%, transparent 83.25%);
   content: "";
   inset: 6% 0 5%;
   pointer-events: none;
@@ -896,9 +898,9 @@
   color: rgb(54 51 46 / 86%);
   content: "☆";
   font: 400 clamp(26px, 2.2vw, 38px)/1 var(--d3-clean-font);
-  left: 1.8%;
+  left: 2%;
   position: absolute;
-  bottom: 17%;
+  bottom: 23%;
   transform: rotate(-12deg);
 }
 
@@ -906,8 +908,8 @@
   align-items: center;
   display: flex;
   font: 500 clamp(18px, 1.8vw, 30px)/1 var(--d3-clean-font);
-  gap: 2.05vw;
-  left: 2.45%;
+  gap: 2.8vw;
+  left: 3.1%;
   position: absolute;
   text-decoration: underline;
   text-underline-offset: 7px;
@@ -917,11 +919,12 @@
 }
 
 .d3-journey-paperclip {
-  border: 2px solid rgb(65 63 58 / 72%);
+  border: 2.4px solid rgb(55 53 49 / 79%);
   border-radius: 14px;
   height: clamp(44px, 4vw, 68px);
   position: relative;
-  transform: rotate(-5deg);
+  filter: drop-shadow(1.5px 2px 1.5px rgb(66 54 39 / 18%));
+  transform: rotate(-3deg);
   width: clamp(15px, 1.3vw, 22px);
 }
 
@@ -942,7 +945,7 @@
   justify-content: space-between;
   left: 7.5%;
   position: absolute;
-  top: 31.5%;
+  top: 24.8%;
   width: 72.2%;
 }
 
