@@ -149,7 +149,7 @@
 
 .paperTexture {
   inset: 0;
-  mix-blend-mode: normal;
+  mix-blend-mode: multiply;
   opacity: 0.68;
   overflow: hidden;
   pointer-events: none;
@@ -730,7 +730,7 @@
   color: var(--footer-ink);
   mix-blend-mode: multiply;
   object-fit: contain;
-  opacity: 1;
+  opacity: 0.94;
   overflow: visible;
   transform: rotate(-0.4deg);
   transform-origin: 50% 70%;
