@@ -2,11 +2,10 @@
 .dynamic-journey {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem 2rem 8rem 2rem;
+  padding: 4rem 2rem 2rem 2rem; /* Reduced bottom padding to remove gap */
   background-color: var(--paper-cream, #f8f5f0);
   font-family: var(--font-handwriting, 'Kalam', cursive);
   color: #3e2723;

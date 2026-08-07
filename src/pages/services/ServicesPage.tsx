@@ -8,6 +8,7 @@ import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
 import { ourServicesMarkup } from './sections/OurServices';
 import { DynamicJourney } from './sections/DynamicJourney/DynamicJourney';
+import { WhyRoughNote } from './sections/WhyRoughNote/WhyRoughNote';
 
 export function ServicesPage() {
   const mainRef = useRef<HTMLElement>(null);
@@ -28,6 +29,7 @@ export function ServicesPage() {
         >
           <div dangerouslySetInnerHTML={{ __html: ourServicesMarkup }} />
           <DynamicJourney />
+          <WhyRoughNote />
         </main>
         <div
           id="rough-note-footer-root"
