@@ -6,7 +6,6 @@ export function HeroSection() {
   return (
     <section className="services-hero reveal-on-scroll" aria-label="What We Build">
       <div className="services-hero__binding" aria-hidden="true" />
-      <div className="services-hero__page-note"><span>Page 02</span><strong>What We Build</strong></div>
       <div className="services-hero__conversation">Every product begins<br />as a conversation.<i /></div>
       <div className="services-hero__version">Version 0.1<i /></div>
       <div className="services-hero__clip" aria-hidden="true"><i /><i /></div>
