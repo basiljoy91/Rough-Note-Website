@@ -6,10 +6,12 @@
   background-color: #f7f5ef; /* Warm off-white notebook */
   position: relative;
   overflow: hidden;
-  padding: 80px 0 0 0;
+  margin-top: -18px;
+  padding: 98px 0 0;
   font-family: var(--font-note), 'Kalam', cursive, sans-serif;
   color: #2a2a2a;
   z-index: 1;
+  clip-path: var(--rn-paper-tear-top);
 }
 
 /* Subtle paper texture overlay */
@@ -779,7 +781,7 @@
 
 @media (max-width: 767px) {
   .div6-process {
-    padding: 60px 0 0 0;
+    padding: 78px 0 0;
     margin-bottom: -50px; /* Pulls up the next section to remove the visual gap */
   }
   

@@ -889,8 +889,8 @@
 /* Reference composition: compact studio board with layered desk props. */
 .tech-stack {
   max-width: none;
-  margin: 0;
-  padding: clamp(2.25rem, 3.5vw, 4rem) clamp(1.5rem, 4vw, 5rem) clamp(3rem, 5vw, 5rem);
+  margin: -18px 0 0;
+  padding: calc(clamp(2.25rem, 3.5vw, 4rem) + 18px) clamp(1.5rem, 4vw, 5rem) clamp(3rem, 5vw, 5rem);
   overflow: hidden;
   background:
     radial-gradient(circle at 12% 24%, rgba(136, 87, 35, 0.055) 0 1px, transparent 1.5px),
@@ -898,6 +898,7 @@
     linear-gradient(105deg, rgba(255, 255, 255, 0.58), transparent 42%),
     #f5f0e5;
   background-size: 29px 31px, 37px 35px, auto, auto;
+  clip-path: var(--rn-paper-tear-top);
   isolation: isolate;
 }
 
