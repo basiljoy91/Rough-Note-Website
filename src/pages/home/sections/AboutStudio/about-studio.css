@@ -624,10 +624,11 @@
   filter:
     drop-shadow(0.45cqi 0.65cqi 0.3cqi rgb(61 46 29 / 28%))
     drop-shadow(0.8cqi 1.35cqi 0.85cqi rgb(61 46 29 / 16%));
-  left: 65%;
+  /* Keep the entire cup beyond the notebook's 78% right edge. */
+  left: 81.5%;
   position: absolute;
-  top: 61.5%;
-  width: 28%;
+  top: 71.5%;
+  width: 17%;
   z-index: 8;
 }
 
@@ -722,12 +723,12 @@
   border: 0.5cqi solid rgb(142 91 44 / 39%);
   border-left-color: rgb(142 91 44 / 12%);
   border-radius: 50%;
-  height: 7.5cqi;
-  left: 78%;
+  height: 5.4cqi;
+  left: 86%;
   position: absolute;
-  top: 82%;
+  top: 88.5%;
   transform: rotate(12deg) scaleX(1.35);
-  width: 7.5cqi;
+  width: 5.4cqi;
   z-index: 5;
 }
 
@@ -740,8 +741,8 @@
   z-index: 5;
 }
 
-.d3-coffee-drop-one { left: 88%; top: 78%; }
-.d3-coffee-drop-two { left: 91%; top: 79.8%; transform: scale(0.68); }
+.d3-coffee-drop-one { left: 96%; top: 84.5%; }
+.d3-coffee-drop-two { left: 98%; top: 86.3%; transform: scale(0.68); }
 
 /* Notes and pencil annotations */
 .d3-paper-note {
