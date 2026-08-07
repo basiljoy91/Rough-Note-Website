@@ -1,0 +1,181 @@
+/* Cross-document page snapshots let the destination sit beneath the tearing page. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation-duration: 940ms;
+  animation-timing-function: cubic-bezier(0.55, 0.06, 0.18, 0.98);
+}
+
+::view-transition-image-pair(root) {
+  background:
+    radial-gradient(circle at 1px 1px, rgb(79 57 34 / 9%) 0 0.7px, transparent 0.9px) 0 0 / 13px 13px,
+    #f4eddf;
+  isolation: isolate;
+  overflow: clip;
+}
+
+::view-transition-old(root) {
+  animation: rn-page-tear-away 940ms cubic-bezier(0.55, 0.06, 0.18, 0.98) both;
+  filter:
+    drop-shadow(8px 0 2px rgb(255 251 240 / 82%))
+    drop-shadow(18px 0 11px rgb(55 34 18 / 34%));
+  transform-origin: left center;
+  z-index: 2;
+}
+
+::view-transition-new(root) {
+  animation: rn-page-settle 940ms cubic-bezier(0.18, 0.78, 0.2, 1) both;
+  z-index: 1;
+}
+
+@keyframes rn-page-tear-away {
+  0%,
+  9% {
+    clip-path: polygon(
+      0 0, 100% 0, 100% 6%, 100% 12%, 100% 18%, 100% 24%, 100% 30%,
+      100% 36%, 100% 42%, 100% 48%, 100% 54%, 100% 60%, 100% 66%,
+      100% 72%, 100% 78%, 100% 84%, 100% 90%, 100% 96%, 100% 100%, 0 100%
+    );
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+
+  34% {
+    clip-path: polygon(
+      0 0, 83% 0, 81.8% 6%, 83.5% 12%, 81.4% 18%, 83.2% 24%, 81.7% 30%,
+      83.6% 36%, 81.3% 42%, 83.1% 48%, 81.5% 54%, 83.4% 60%, 81.2% 66%,
+      83.3% 72%, 81.6% 78%, 83.5% 84%, 81.4% 90%, 83.1% 96%, 82% 100%, 0 100%
+    );
+    transform: translate3d(-0.25vw, 0, 0) rotate(-0.04deg);
+  }
+
+  67% {
+    clip-path: polygon(
+      0 0, 43% 0, 41.6% 6%, 43.4% 12%, 41.2% 18%, 43.1% 24%, 41.5% 30%,
+      43.5% 36%, 41.1% 42%, 43% 48%, 41.4% 54%, 43.3% 60%, 41% 66%,
+      43.2% 72%, 41.5% 78%, 43.4% 84%, 41.2% 90%, 43% 96%, 41.8% 100%, 0 100%
+    );
+    transform: translate3d(-1.05vw, -0.08vh, 0) rotate(-0.12deg);
+  }
+
+  100% {
+    clip-path: polygon(
+      -3% 0, 1% 0, -0.4% 6%, 1.3% 12%, -0.7% 18%, 1.1% 24%, -0.5% 30%,
+      1.4% 36%, -0.9% 42%, 0.9% 48%, -0.6% 54%, 1.2% 60%, -1% 66%,
+      1.1% 72%, -0.5% 78%, 1.3% 84%, -0.7% 90%, 1% 96%, -0.2% 100%, -3% 100%
+    );
+    opacity: 0.98;
+    transform: translate3d(-2.3vw, -0.2vh, 0) rotate(-0.24deg);
+  }
+}
+
+@keyframes rn-page-settle {
+  0% {
+    filter: sepia(0.12) brightness(0.94);
+    transform: scale(1.012) translate3d(0.35vw, 0, 0);
+  }
+  56% {
+    filter: sepia(0.035) brightness(0.985);
+  }
+  100% {
+    filter: none;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+/* Fallback for engines without native document view transitions. */
+.rn-page-tear-fallback {
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  visibility: hidden;
+  z-index: 2200;
+}
+
+.rn-page-tear-fallback__paper {
+  background:
+    linear-gradient(102deg, rgb(255 255 255 / 32%), transparent 38%, rgb(92 65 35 / 5%)),
+    url('/assets/torn-edge-bottom.jpg') center / cover,
+    #f4eddf;
+  bottom: 0;
+  box-shadow: 0 0 28px rgb(52 32 15 / 32%);
+  position: absolute;
+  top: 0;
+  width: 51%;
+}
+
+.rn-page-tear-fallback__paper--left {
+  clip-path: polygon(0 0, 100% 0, 97.8% 7%, 100% 14%, 97.1% 21%, 99.5% 28%, 97.4% 35%, 100% 42%, 97.2% 49%, 99.6% 56%, 97.1% 63%, 100% 70%, 97.3% 77%, 99.5% 84%, 97% 91%, 99% 100%, 0 100%);
+  left: 0;
+}
+
+.rn-page-tear-fallback__paper--right {
+  clip-path: polygon(1% 0, 100% 0, 100% 100%, 1% 100%, 3% 91%, 0.5% 84%, 2.7% 77%, 0 70%, 2.9% 63%, 0.4% 56%, 2.8% 49%, 0 42%, 2.6% 35%, 0.5% 28%, 2.9% 21%, 0 14%, 2.2% 7%);
+  right: 0;
+}
+
+.rn-page-tear-fallback__fibres {
+  background: linear-gradient(90deg, transparent, rgb(255 252 242 / 88%) 42% 58%, transparent);
+  bottom: 0;
+  filter: blur(0.7px) drop-shadow(0 0 5px rgb(65 42 21 / 44%));
+  left: 50%;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 18px;
+}
+
+html.rn-page-tear-fallback-exit .rn-page-tear-fallback,
+html.rn-page-tear-fallback-enter .rn-page-tear-fallback {
+  opacity: 1;
+  visibility: visible;
+}
+
+html.rn-page-tear-fallback-exit .rn-page-tear-fallback__paper--left,
+html.rn-page-tear-fallback-enter .rn-page-tear-fallback__paper--left {
+  animation: rn-fallback-left 760ms cubic-bezier(0.55, 0.06, 0.18, 0.98) both;
+}
+
+html.rn-page-tear-fallback-exit .rn-page-tear-fallback__paper--right,
+html.rn-page-tear-fallback-enter .rn-page-tear-fallback__paper--right {
+  animation: rn-fallback-right 760ms cubic-bezier(0.55, 0.06, 0.18, 0.98) both;
+}
+
+html.rn-page-tear-fallback-exit .rn-page-tear-fallback__fibres,
+html.rn-page-tear-fallback-enter .rn-page-tear-fallback__fibres {
+  animation: rn-fallback-fibres 760ms ease-out both;
+}
+
+@keyframes rn-fallback-left {
+  0% { transform: translateX(-101%); }
+  18%, 55% { transform: translateX(0); }
+  100% { transform: translateX(-105%) rotate(-0.4deg); }
+}
+
+@keyframes rn-fallback-right {
+  0% { transform: translateX(101%); }
+  18%, 55% { transform: translateX(0); }
+  100% { transform: translateX(105%) rotate(0.4deg); }
+}
+
+@keyframes rn-fallback-fibres {
+  0%, 12% { opacity: 0; transform: translateX(-50%) scaleY(0); }
+  24%, 58% { opacity: 1; transform: translateX(-50%) scaleY(1); }
+  100% { opacity: 0; transform: translateX(-50%) scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 1ms;
+  }
+
+  .rn-page-tear-fallback__paper,
+  .rn-page-tear-fallback__fibres {
+    animation-duration: 1ms !important;
+  }
+}
