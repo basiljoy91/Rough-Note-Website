@@ -728,9 +728,9 @@
   display: block;
   height: 100%;
   color: var(--footer-ink);
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
   object-fit: contain;
-  opacity: 0.94;
+  opacity: 1;
   overflow: visible;
   transform: rotate(-0.4deg);
   transform-origin: 50% 70%;
