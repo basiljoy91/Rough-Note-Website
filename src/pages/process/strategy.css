@@ -77,6 +77,8 @@
   color: inherit;
 }
 
+
+
 .circle-doodle-red {
   position: absolute;
   top: -60px;
@@ -796,4 +798,25 @@
   .turn-around-arrow { transform: rotate(90deg); margin: 20px 0; }
   .strategy-main-columns { grid-template-columns: 1fr; }
   .strategy-bottom-row { flex-direction: column; align-items: center; }
+}
+
+
+.strategy-coffee-container {
+  position: absolute;
+  bottom: 270px;
+  left: -80px;
+  width: 100px;
+  height: 100px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.strategy-right-pencil {
+  position: absolute;
+  bottom: 200px;
+  right: -80px;
+  width: 180px;
+  transform: rotate(15deg);
+  z-index: 5;
+  pointer-events: none;
 }

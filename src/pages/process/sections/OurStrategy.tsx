@@ -385,6 +385,22 @@ export const ourStrategyMarkup = `
       </div>
     </div>
 
+    <!-- Decorative Elements (Coffee & Pencil) -->
+    <div class="strategy-coffee-container">
+      <div class="plans-coffee-stain"></div>
+      <div class="plans-coffee-cup">
+        <div class="plans-cup-handle"></div>
+        <div class="plans-cup-body">
+          <div class="plans-cup-inner">
+            <div class="plans-coffee-liquid">
+              <div class="plans-coffee-bubble"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img src="/assets/images/pencil-left.png" class="strategy-right-pencil" alt="" aria-hidden="true" />
+
   </div>
 </section>
 `;
