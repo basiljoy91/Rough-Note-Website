@@ -2523,3 +2523,140 @@
 .step2 .tapeStrip {
   display: none !important;
 }
+
+/* =========================================================================
+   STEP 03 REFINEMENTS
+   ========================================================================= */
+
+/* 1. Main Form Paper Replacement */
+.step3 .tornFormPaper {
+  background: url("/assets/images/new.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  mask-image: none !important;
+  filter: 
+    drop-shadow(0 25px 24px rgb(62 42 22 / 25%))
+    drop-shadow(0 8px 10px rgb(62 42 22 / 15%)) !important;
+}
+.step3 .tornFormPaper .punchedEdge,
+.step3 .tornFormPaper .formCreases {
+  display: none !important;
+}
+
+/* 2. Step 03 Label Refinement */
+.step3 .stepLabel {
+  background: 
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    var(--contact-orange) !important;
+  background-blend-mode: soft-light, normal !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  transform: perspective(800px) rotate(-3deg) rotateX(12deg) rotateY(-8deg) !important;
+  box-shadow: 
+    inset 0 0 10px rgba(90, 45, 10, 0.25),
+    inset -3px -5px 12px rgba(255, 255, 255, 0.4) !important;
+  filter: 
+    drop-shadow(0 22px 18px rgb(58 39 20 / 40%)) 
+    drop-shadow(0 10px 10px rgb(58 39 20 / 25%))
+    drop-shadow(0 4px 5px rgb(58 39 20 / 45%)) !important;
+  z-index: 50 !important;
+}
+
+/* 3. Sticky Note Replacement */
+.step3 .routingNote {
+  background: url("/assets/images/sticky-note-5-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: 
+    drop-shadow(0 20px 20px rgb(50 33 17 / 35%)) 
+    drop-shadow(0 8px 10px rgb(50 33 17 / 25%)) !important;
+  transform: perspective(800px) translateZ(50px) rotate(4deg) rotateX(10deg) rotateY(-5deg) !important;
+}
+
+/* 4. Tape Handling */
+.step3 .routingNote .tapeStrip {
+  display: none !important;
+}
+
+
+/* Move the star inside the Step 03 sticky note */
+.step3 .routingNote svg {
+  bottom: 15px !important;
+  right: 55px !important;
+}
+
+/* =========================================================================
+   STEP 04 REFINEMENTS
+   ========================================================================= */
+
+/* 2. Show Final Image After Animation Completes */
+.finalInvitation {
+  margin: -30px auto 20px;
+  max-width: 580px;
+  width: 92%;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.finalInvitation img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: rotate(-2deg);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Replace Working Hours Paper */
+.workingHours {
+  background: url("/assets/images/sticky-note-2-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
+}
+.workingHours::before {
+  display: none !important;
+}
+
+/* 4. Replace Blue Sticky Note */
+.responseNote {
+  background: url("/assets/images/sticky-note-6-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
+}
+.responseNote p {
+  transform: translateX(50px) !important;
+}
+.responseNote svg {
+  right: 81px !important;
+  bottom: 39px !important;
+}
+.responseNote .tapeStrip {
+  display: none !important;
+}
+
+/* 5. Replace Yellow Sticky Note */
+.quoteNote {
+  background: url("/assets/images/sticky-note-div3-bg.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
+  padding: 55px 25px 35px !important;
+}
+.quoteNote p {
+  margin-top: 5px !important;
+  transform: translateX(100px) !important;
+}
+.quoteNote svg:first-of-type {
+  left: 60px !important;
+  top: 61px !important;
+}
+.quoteNote svg:last-of-type {
+  right: 81px !important;
+  bottom: 29px !important;
+}
+.quoteNote .tapeStrip {
+  display: none !important;
+}

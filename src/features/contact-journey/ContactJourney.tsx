@@ -80,14 +80,45 @@ async function positionPaperForTransition(element: HTMLElement): Promise<void> {
   }
 }
 
+const TESTING_MODE = true;
+const LOCAL_STORAGE_KEY = 'rough_note_contact_state_v1';
+
+function getInitialState() {
+  if (TESTING_MODE && typeof window !== 'undefined') {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (e) {
+      console.warn('Failed to parse saved state', e);
+    }
+  }
+  return initialContactState;
+}
+
 export function ContactJourney({
   transitions = DEFAULT_TRANSITIONS,
-  submitRequest = submitContactRequest
+  submitRequest = TESTING_MODE
+    ? async () => {
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        return { submissionId: 'TEST-' + Math.random().toString(36).slice(2, 9).toUpperCase() };
+      }
+    : submitContactRequest
 }: ContactJourneyProps = {}) {
   const [state, dispatch] = useReducer(
     contactJourneyReducer,
-    initialContactState
+    initialContactState,
+    getInitialState
   );
+
+  useEffect(() => {
+    if (TESTING_MODE && typeof window !== 'undefined') {
+      if (state.transitionState === 'idle') {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+      }
+    }
+  }, [state]);
   const [announcement, setAnnouncement] = useState(STEP_ANNOUNCEMENTS[1]);
   const [resetConfirmation, setResetConfirmation] = useState(false);
   const journeyRef = useRef<HTMLDivElement>(null);
