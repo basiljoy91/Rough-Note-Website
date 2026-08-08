@@ -820,3 +820,234 @@
   z-index: 5;
   pointer-events: none;
 }
+
+/* --- STRICT MOBILE OVERRIDES (max-width: 767px) --- */
+@media (max-width: 767px) {
+  /* 8. Zero horizontal overflow */
+  body, html {
+    overflow-x: hidden !important;
+  }
+
+  /* 1. Top heading */
+  .our-strategy {
+    margin-top: -4rem !important; /* Prevent top edge clipping */
+    padding-top: 4rem !important;
+    overflow-x: hidden !important;
+  }
+  .strategy-header {
+    padding: 0 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Subtitle */
+  .strategy-subtitle {
+    white-space: normal !important;
+    font-size: 1.1rem !important;
+    padding: 0 10px !important;
+    margin-top: 15px !important;
+  }
+  .circled-red {
+    white-space: nowrap !important; /* Keep circle intact */
+  }
+
+  /* 3. Pink sticky note */
+  .strategy-sticky-top-right {
+    width: 200px !important;
+    margin: 20px auto 0 !important;
+    right: 0 !important;
+    transform: rotate(2deg) !important;
+    display: block !important;
+  }
+  .sticky-text {
+    padding: 25px 20px !important;
+  }
+
+  /* 4. What's Holding Your Business Back? (2x3 Grid) */
+  .strategy-problems-row {
+    margin-top: 10px !important;
+    padding: 0 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .strategy-problems-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .problems-strip {
+    height: auto !important;
+    min-height: 250px !important;
+  }
+
+  .problems-strip-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    object-fit: fill !important; /* Stretch to cover 2-row grid */
+  }
+
+  .problems-content {
+    position: relative !important;
+    padding: 30px 10px 20px 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* 5. Heading inside top-6 section */
+  .problems-title {
+    font-size: 1.2rem !important;
+    text-align: center !important;
+    padding-left: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 25px !important;
+    white-space: normal !important;
+  }
+
+  .problems-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px 5px !important; /* 20px vertical, 5px horizontal */
+    width: 100% !important;
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .problem-item {
+    padding: 0 !important;
+  }
+
+  /* 6. Blue "Here's How We Turn It Around." */
+  .strategy-turn-around {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 15px !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  .turn-around-label {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 15px !important;
+    font-size: 1.1rem !important;
+    justify-content: center !important;
+  }
+  
+  .turn-around-text {
+    white-space: normal !important;
+    text-align: center !important;
+  }
+  
+  /* 7. Arrow */
+  .turn-around-arrow {
+    transform: rotate(90deg) !important;
+    margin: 15px 0 !important;
+    width: 60px !important;
+  }
+
+  /* 8. Process Section Heading */
+  .process-content h3 {
+    top: 0 !important;
+    margin-bottom: 15px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    display: block !important; 
+    padding: 0 10px !important;
+    line-height: 1.4 !important;
+  }
+  
+  .heading-highlight {
+    white-space: normal !important;
+    display: inline-block !important; 
+  }
+  
+  .process-subtitle {
+    display: block !important;
+    margin-top: 5px !important;
+  }
+
+  /* 9. Six-step Process (Vertical Timeline) */
+  .process-steps {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px 0 30px !important; /* Bottom padding for gap before sticky note */
+  }
+
+  .process-step {
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 280px !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 15px !important;
+  }
+
+  .process-num {
+    width: 25px !important;
+    text-align: right !important;
+  }
+
+  .process-icon {
+    flex-shrink: 0 !important;
+  }
+
+  .process-text {
+    flex: 1 !important;
+    font-size: 1.05rem !important;
+    text-align: left !important;
+  }
+  
+  .process-text br {
+    display: none !important; /* Remove breaks so text flows naturally horizontally */
+  }
+
+  .process-arrow {
+    transform: rotate(90deg) !important;
+    margin: 5px 0 !important;
+  }
+
+  /* 10. Sticky Note */
+  .strategy-cta-sticky {
+    width: 280px !important;
+    margin: 0 auto 40px !important; /* Centered, gap preserved */
+    top: 0 !important; /* Remove negative top overlap */
+    transform: rotate(2deg) !important;
+    display: block !important;
+    left: 0 !important;
+    position: relative !important;
+  }
+  
+  .cta-sticky-content {
+    padding: 30px 20px !important;
+  }
+  
+  .cta-sticky-content h3 {
+    font-size: 1rem !important;
+  }
+  
+  .cta-heart {
+    top: 40px !important;
+    right: 30px !important;
+  }
+  
+  /* 11. Increase Height of Process Paper Background */
+  .process-bg {
+    height: 100% !important; /* Expand background to fully contain the vertical process steps */
+  }
+
+  /* 12. Adjust Coffee Cup Position */
+  .strategy-coffee-container {
+    left: 5px !important; /* Move inward to the right so it remains completely inside viewport */
+  }
+}
