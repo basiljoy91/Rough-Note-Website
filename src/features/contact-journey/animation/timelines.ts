@@ -19,6 +19,13 @@ export function unfoldChallengePaper(
 ): Promise<void> {
   const stage = root.querySelector<HTMLElement>('[data-paper-ball]');
   if (!stage) return Promise.resolve();
+  const realisticBall = stage.querySelector<HTMLElement>('[data-realistic-ball]');
+  const facetStage = stage.querySelector<HTMLElement>('[data-facet-stage]');
+  
+  if (facetStage) {
+    gsap.set(facetStage, { opacity: 0 });
+  }
+
   const facets = Array.from(
     stage.querySelectorAll<HTMLElement>('[data-paper-facet]')
   );
@@ -54,10 +61,26 @@ export function unfoldChallengePaper(
       timeline.to(formImpression, { opacity: 0.34, duration: 0.06 }, 0.12);
     }
     timeline.to(crumpleShards, { opacity: 0, duration: 0.06 }, 0.08);
+    if (realisticBall && facetStage) {
+      timeline
+        .to(realisticBall, { opacity: 0, duration: 0.08 }, 0)
+        .to(facetStage, { opacity: 1, duration: 0.08 }, 0);
+    } else if (facetStage) {
+      timeline.set(facetStage, { opacity: 1 }, 0);
+    }
     return timelinePromise(timeline);
   }
 
   const timeline = gsap.timeline();
+  
+  if (realisticBall && facetStage) {
+    timeline
+      .to(realisticBall, { opacity: 0, duration: 0.2, ease: 'power1.inOut' }, 0.32)
+      .to(facetStage, { opacity: 1, duration: 0.2, ease: 'power1.inOut' }, 0.32);
+  } else if (facetStage) {
+    timeline.set(facetStage, { opacity: 1 }, 0);
+  }
+
   timeline
     .to(surrounding, {
       autoAlpha: 0,
@@ -65,7 +88,7 @@ export function unfoldChallengePaper(
       duration: 0.35,
       stagger: 0.035,
       ease: 'power2.in'
-    })
+    }, 0)
     .to(
       arrows,
       {
@@ -102,7 +125,7 @@ export function unfoldChallengePaper(
       duration: 1.6,
       ease: OPEN_EASE
     }, 0.42);
-  const facetStage = stage.querySelector<HTMLElement>('[class*="facetStage"]');
+  
   if (facetStage) {
     timeline.to(
       facetStage,

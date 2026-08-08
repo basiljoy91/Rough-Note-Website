@@ -323,7 +323,13 @@ export function CrumpledPaper({ transitioning = false }: { transitioning?: boole
       aria-label="A crumpled sheet stamped RN"
       role="img"
     >
-      <div className={styles.facetStage}>
+      <img
+        src="/assets/images/paper-ball.png"
+        alt=""
+        className={styles.realisticPaperBall}
+        data-realistic-ball
+      />
+      <div className={styles.facetStage} data-facet-stage>
         {PAPER_FACETS.map((facet, index) => (
           <span
             key={facet.id}

@@ -2660,3 +2660,23 @@
 .quoteNote .tapeStrip {
   display: none !important;
 }
+
+/* =========================================================================
+   STEP 01 REFINEMENTS
+   ========================================================================= */
+
+.realisticPaperBall {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 106%; 
+  height: 106%;
+  object-fit: contain;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.crumpledPaper:not(.crumpledTransitioning) [data-facet-stage] {
+  opacity: 0;
+}
