@@ -1,4 +1,5 @@
 import './process-page.global.css';
+import './strategy.css';
 import '../../features/notebook-footer/notebook-footer-placeholder.global.css';
 import { useRef } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
@@ -8,6 +9,7 @@ import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
 import { ourPlansMarkup } from './sections/OurPlans';
 import { howWeWorkMarkup } from './sections/HowWeWork';
+import { ourStrategyMarkup } from './sections/OurStrategy';
 
 export function ProcessPage() {
   const mainRef = useRef<HTMLElement>(null);
@@ -28,6 +30,7 @@ export function ProcessPage() {
         >
           <div dangerouslySetInnerHTML={{ __html: ourPlansMarkup }} />
           <div dangerouslySetInnerHTML={{ __html: howWeWorkMarkup }} />
+          <div dangerouslySetInnerHTML={{ __html: ourStrategyMarkup }} />
         </main>
         <div
           id="rough-note-footer-root"

@@ -1124,6 +1124,15 @@
   min-height: max(1120px, calc(100svh - 36px));
 }
 
+.stepTwo .formActions {
+  margin-top: -80px !important;
+}
+
+.stepTwo .specificNote {
+  bottom: -30px !important;
+  transform: rotate(-5deg) !important;
+}
+
 .challengeForm {
   --fold-shadow: 0 12px 21px rgb(66 44 23 / 9%);
   background:
