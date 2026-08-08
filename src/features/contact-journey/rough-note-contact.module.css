@@ -1261,7 +1261,7 @@
   font-size: 22px;
   padding: 42px 24px 22px;
   position: absolute;
-  right: 1%;
+  right: -5%;
   top: 64px;
   transform: rotate(2deg);
   width: 225px;
@@ -2396,4 +2396,130 @@
   .paperButton:hover:not(:disabled) {
     transform: none;
   }
+}
+
+/* Step 02 Specific Enhancements */
+.step2 {
+  background:
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    url("../../assets/textures/paper-texture.jpg") center/cover no-repeat,
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.4), transparent 70%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.05) 100%),
+    var(--contact-grain),
+    linear-gradient(99deg, #f2e3cb, #fdf6e6 50%, #ecdab7) !important;
+  background-blend-mode: soft-light, soft-light, normal, overlay, normal, normal !important;
+  box-shadow: inset 0 0 40px rgba(80, 50, 20, 0.08), inset 0 0 10px rgba(255, 255, 255, 0.3);
+  /* Lowered SVG mask path to move torn edge downward */
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='18' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L998,2 L998,990 L940,992 L880,985 L850,988 L810,975 L780,970 L760,930 L740,910 L710,905 L680,915 L660,900 L630,910 L610,940 L580,965 L540,975 L500,972 L450,980 L400,978 L350,985 L300,982 L250,990 L200,988 L150,970 L120,965 L90,975 L50,985 L2,980 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E") !important;
+}
+
+.step2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../../assets/textures/TrustedCompanyPaperTextur.jpg") center/cover no-repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+  display: block !important;
+}
+
+.step2 .stickyNote.blue {
+  background: url("/assets/images/sticky-note-philosophy-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 14px 19px rgb(50 33 17 / 18%)) drop-shadow(0 3px 5px rgb(50 33 17 / 12%));
+  transform: perspective(800px) translateZ(50px) rotate(4deg) rotateX(8deg) rotateY(-5deg) !important;
+  padding: 30px 10px 25px 40px !important; /* Shifted text right */
+  z-index: 50 !important; /* Renders above background multiply shadows */
+}
+
+.step2 .stickyNote.blue svg {
+  right: 35px !important; /* Shifted star towards left */
+}
+
+.step2 .stickyNote.green {
+  background: 
+    url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat,
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat !important;
+  background-blend-mode: multiply, normal !important;
+  -webkit-mask: url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat !important;
+  mask: url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: 
+    drop-shadow(0 22px 22px rgb(50 33 17 / 35%)) 
+    drop-shadow(0 8px 10px rgb(50 33 17 / 25%)) !important;
+  transform: perspective(800px) translateZ(50px) rotate(-3deg) rotateX(15deg) rotateY(10deg) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 40px 20px 30px 20px !important; 
+  width: 175px !important;
+  z-index: 50 !important; 
+}
+
+/* 1. Step 02 Label Refinements */
+.step2 .stepLabel {
+  background: 
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    var(--contact-orange) !important;
+  background-blend-mode: soft-light, normal !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  transform: perspective(800px) rotate(-3deg) rotateX(12deg) rotateY(-8deg) !important;
+  box-shadow: 
+    inset 0 0 10px rgba(90, 45, 10, 0.25),
+    inset -3px -5px 12px rgba(255, 255, 255, 0.4) !important;
+  filter: 
+    drop-shadow(0 22px 18px rgb(58 39 20 / 40%)) 
+    drop-shadow(0 10px 10px rgb(58 39 20 / 25%))
+    drop-shadow(0 4px 5px rgb(58 39 20 / 45%)) !important;
+  z-index: 50 !important;
+}
+
+/* 3. Continue Button Refinements */
+.step2 .paperButton {
+  background: 
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    var(--contact-blue) !important;
+  background-blend-mode: soft-light, normal !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M10,15 L990,15 L990,985 L10,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M10,15 L990,15 L990,985 L10,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  transform: perspective(800px) rotate(-1.5deg) rotateX(10deg) rotateY(4deg) !important;
+  box-shadow: 
+    inset 0 0 15px rgba(20, 40, 70, 0.4),
+    inset -2px -6px 12px rgba(255, 255, 255, 0.25) !important;
+  filter: 
+    drop-shadow(0 25px 20px rgb(62 39 17 / 40%)) 
+    drop-shadow(0 12px 12px rgb(62 39 17 / 25%))
+    drop-shadow(0 4px 6px rgb(62 39 17 / 50%)) !important;
+  z-index: 50 !important;
+}
+
+.step2 .paperButton:hover {
+  transform: perspective(800px) translateZ(10px) rotate(-1deg) rotateX(6deg) rotateY(2deg) !important;
+  filter: 
+    drop-shadow(0 30px 25px rgb(62 39 17 / 35%)) 
+    drop-shadow(0 15px 15px rgb(62 39 17 / 20%))
+    drop-shadow(0 6px 8px rgb(62 39 17 / 45%)) !important;
+}
+
+.step2 .stickyNote.green p {
+  margin-bottom: 5px !important;
+  margin-top: 0 !important;
+  text-align: center !important;
+}
+
+.step2 .stickyNote.green .noteSmile {
+  line-height: 1.5 !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 5px !important;
+  display: block !important;
+}
+
+.step2 .tapeStrip {
+  display: none !important;
 }
