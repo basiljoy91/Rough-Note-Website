@@ -850,98 +850,6 @@
   min-height: 2.85em;
 }
 
-.d1-idea-bulb {
-  align-items: center;
-  appearance: none;
-  background: transparent;
-  border: 0;
-  box-sizing: border-box;
-  color: inherit;
-  display: flex;
-  height: clamp(84px, 19cqw, 112px);
-  justify-content: center;
-  margin: 0 0 4px;
-  padding: 0;
-  pointer-events: auto;
-  position: relative;
-  width: clamp(68px, 16cqw, 94px);
-}
-
-.d1-idea-bulb:focus-visible {
-  outline: none;
-}
-
-.d1-idea-bulb:focus-visible .d1-bulb-line-art {
-  filter: drop-shadow(0 0 3px rgb(121 87 24 / 48%));
-}
-
-.d1-bulb-line-art {
-  fill: none;
-  height: 100%;
-  overflow: visible;
-  position: relative;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.35;
-  transition:
-    color 230ms ease,
-    filter 230ms ease;
-  width: 100%;
-  z-index: 2;
-}
-
-.d1-bulb-glow {
-  background: radial-gradient(circle, rgb(255 211 77 / 42%) 0 20%, rgb(255 211 77 / 18%) 45%, transparent 72%);
-  border-radius: 50%;
-  height: 122%;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  top: -10%;
-  transform: scale(0.7);
-  transition:
-    opacity 260ms ease,
-    transform 350ms ease;
-  width: 150%;
-  z-index: 1;
-}
-
-.d1-bulb-message {
-  font: 500 clamp(13px, 2.8cqw, 18px)/0.9 "Reenie Beanie", cursive;
-  left: 50%;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  text-align: center;
-  top: 29%;
-  transform: translate(-50%, 3px) rotate(-2deg);
-  transition:
-    opacity 200ms ease,
-    transform 250ms ease;
-  white-space: nowrap;
-  z-index: 3;
-}
-
-.d1-idea-bulb[aria-pressed="true"] .d1-bulb-glow {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.d1-idea-bulb[aria-pressed="true"] .d1-bulb-line-art {
-  color: #6a5218;
-  filter: drop-shadow(0 0 2px rgb(250 197 52 / 42%));
-}
-
-.d1-idea-bulb[aria-pressed="true"] .d1-bulb-filament {
-  opacity: 0;
-}
-
-.d1-idea-bulb[aria-pressed="true"] .d1-bulb-message {
-  opacity: 1;
-  transform: translate(-50%, 0) rotate(-2deg);
-}
-
 .d1-process-arrow,
 .d1-process-bracket {
   fill: none;
@@ -1060,11 +968,6 @@
     font-size: clamp(20px, 6cqw, 27px);
   }
 
-  .d1-idea-bulb {
-    height: clamp(70px, 21cqw, 92px);
-    width: clamp(57px, 17cqw, 77px);
-  }
-
   .d1-process-bracket {
     height: clamp(96px, 29cqw, 126px);
   }
@@ -1080,12 +983,6 @@
 @media (prefers-reduced-motion: reduce) {
   .d1-idea-button i,
   .d1-idea-glow,
-  .d1-bulb-line-art,
-  .d1-bulb-glow,
-  .d1-bulb-message {
-    transition: none;
-  }
-
   .d1-needs-ai-note .is-typing::after,
   .d1-mvp-note .is-typing::after,
   .d1-type-copy.is-typing::after {

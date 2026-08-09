@@ -1,4 +1,5 @@
 import { SiteLayout } from '../../app/layouts/SiteLayout';
+import { CoffeeSteam } from '../../shared/ui/CoffeeSteam';
 import './ConnectPage.css';
 
 // Icons
@@ -80,15 +81,6 @@ const SvgCoffeeCup = () => (
       <ellipse cx="100" cy="92" rx="40" ry="12" fill="none" stroke="#5a4030" strokeWidth="1" opacity="0.5" />
     </g>
 
-    {/* Steam Trails */}
-    <g stroke="#ffffff" fill="none" strokeWidth="3" strokeLinecap="round" className="steam-group">
-      <path className="steam-trail steam-1" d="M 85 85 C 50 45 120 25 75 -25" />
-      <path className="steam-trail steam-2" d="M 100 85 C 145 45 60 15 120 -30" />
-      <path className="steam-trail steam-3" d="M 115 85 C 80 40 150 10 100 -35" />
-      <path className="steam-trail steam-4" d="M 90 85 C 130 45 55 15 105 -25" />
-      <path className="steam-trail steam-5" d="M 110 85 C 65 50 145 20 90 -30" />
-      <path className="steam-trail steam-6" d="M 95 85 C 135 55 70 25 115 -20" />
-    </g>
   </svg>
 );
 
@@ -218,6 +210,7 @@ export function ConnectPage() {
           {/* Coffee Cup */}
           <div className="coffee-cup-container">
             <SvgCoffeeCup />
+            <CoffeeSteam className="contact-coffee-steam" />
           </div>
 
           {/* Blue Sticky Note */}

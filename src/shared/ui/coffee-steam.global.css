@@ -1,0 +1,78 @@
+.rough-coffee-steam {
+  color: rgb(255 255 255 / 96%);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.rough-steam-group {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+
+.rough-steam-trail {
+  animation: rough-steam-rise linear infinite;
+  filter: blur(3.5px) drop-shadow(0 0 5px rgb(255 255 255 / 90%));
+  opacity: 0.95;
+  stroke-width: 3;
+  transform-origin: center bottom;
+  will-change: opacity, transform, stroke-width;
+}
+
+.rough-steam-1 {
+  animation-delay: -0.8s;
+  animation-duration: 4.5s;
+}
+
+.rough-steam-2 {
+  animation-delay: -3.1s;
+  animation-duration: 5s;
+}
+
+.rough-steam-3 {
+  animation-delay: -1.6s;
+  animation-duration: 4.2s;
+}
+
+.rough-steam-4 {
+  animation-delay: -4.3s;
+  animation-duration: 5.5s;
+}
+
+.rough-steam-5 {
+  animation-delay: -2.3s;
+  animation-duration: 4.8s;
+}
+
+.rough-steam-6 {
+  animation-delay: -0.2s;
+  animation-duration: 5.2s;
+}
+
+@keyframes rough-steam-rise {
+  0% {
+    opacity: 0.95;
+    stroke-width: 3.5;
+    transform: translateY(0) scaleX(1);
+  }
+
+  60% {
+    opacity: 0.9;
+    stroke-width: 5;
+    transform: translateY(-25px) scaleX(1.3);
+  }
+
+  100% {
+    opacity: 0;
+    stroke-width: 6;
+    transform: translateY(-60px) scaleX(1.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rough-steam-trail {
+    animation: none;
+    opacity: 0.3;
+    transform: translateY(-18px) scaleX(1.15);
+  }
+}

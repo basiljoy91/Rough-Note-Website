@@ -356,38 +356,14 @@
   z-index: 1;
 }
 
-.css-coffee-steam {
+.tech-stack__coffee-steam {
+  bottom: 0;
+  color: rgb(255 255 255 / 94%);
+  height: 150%;
+  left: -25%;
   position: absolute;
-  width: 8px;
-  height: 30px;
-  background: rgba(255,255,255,0.4);
-  border-radius: 50%;
-  filter: blur(4px);
+  width: 150%;
   z-index: 4;
-  opacity: 0;
-  animation: riseSteam 3s infinite ease-in;
-}
-
-.steam-1 {
-  bottom: 60px;
-  left: 30px;
-  animation-delay: 0s;
-}
-.steam-2 {
-  bottom: 55px;
-  left: 45px;
-  animation-delay: 1s;
-}
-.steam-3 {
-  bottom: 65px;
-  left: 20px;
-  animation-delay: 2s;
-}
-
-@keyframes riseSteam {
-  0% { transform: translateY(0) scale(1); opacity: 0; }
-  20% { opacity: 0.6; }
-  100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
 }
 
 /* Top Decorative Elements */

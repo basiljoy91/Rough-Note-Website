@@ -655,67 +655,13 @@
 }
 
 .d3-steam-cloud {
-  height: 27%;
+  color: rgb(255 255 255 / 94%);
+  height: 38%;
   left: 27%;
-  pointer-events: none;
   position: absolute;
-  top: -3%;
+  top: -10%;
   width: 46%;
   z-index: 2;
-}
-
-.d3-steam-strand {
-  animation: d3-steam-rise 5.4s cubic-bezier(0.36, 0.02, 0.3, 1) infinite;
-  background:
-    radial-gradient(ellipse at 52% 86%, rgb(55 50 43 / 29%) 0 7%, transparent 31%),
-    radial-gradient(ellipse at 31% 62%, rgb(55 50 43 / 24%) 0 8%, transparent 34%),
-    radial-gradient(ellipse at 66% 38%, rgb(55 50 43 / 19%) 0 7%, transparent 32%),
-    radial-gradient(ellipse at 43% 14%, rgb(55 50 43 / 13%) 0 5%, transparent 29%);
-  bottom: -8%;
-  filter: blur(max(0.7px, 0.08cqi));
-  height: 96%;
-  opacity: 0;
-  position: absolute;
-  transform-origin: center bottom;
-  width: 34%;
-  will-change: opacity, transform;
-}
-
-.d3-steam-strand::before,
-.d3-steam-strand::after {
-  border-left: max(0.8px, 0.08cqi) solid rgb(55 50 43 / 17%);
-  border-radius: 48% 58% 44% 62%;
-  content: "";
-  inset: 12% 30% 9% 32%;
-  position: absolute;
-  transform: rotate(7deg) skewX(-7deg);
-}
-
-.d3-steam-strand::after {
-  border-left-color: rgb(255 255 255 / 22%);
-  inset: 25% 17% 23% 47%;
-  transform: rotate(-11deg) skewX(8deg);
-}
-
-.d3-steam-strand-one {
-  animation-delay: -1.1s;
-  animation-duration: 5.15s;
-  height: 84%;
-  left: 0;
-}
-
-.d3-steam-strand-two {
-  animation-delay: -3.85s;
-  animation-duration: 5.8s;
-  height: 104%;
-  left: 33%;
-}
-
-.d3-steam-strand-three {
-  animation-delay: -2.45s;
-  animation-duration: 6.15s;
-  height: 88%;
-  right: -1%;
 }
 
 .d3-coffee-ring {
@@ -1401,33 +1347,6 @@
   to { translate: 0 -6px; }
 }
 
-@keyframes d3-steam-rise {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 18%, 0) scale(0.5, 0.42) rotate(-4deg);
-  }
-
-  17% {
-    opacity: 0.48;
-    transform: translate3d(-6%, 5%, 0) scale(0.72, 0.78) rotate(2deg);
-  }
-
-  43% {
-    opacity: 0.38;
-    transform: translate3d(8%, -14%, 0) scale(0.94, 1.08) rotate(6deg);
-  }
-
-  72% {
-    opacity: 0.22;
-    transform: translate3d(-11%, -38%, 0) scale(1.18, 1.35) rotate(-5deg);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(13%, -68%, 0) scale(1.46, 1.62) rotate(7deg);
-  }
-}
-
 /* Compact desktop/tablet: retain the same composition at a smaller scale. */
 @media (max-width: 1180px) {
   #div-3 {
@@ -1551,8 +1470,7 @@
   }
 
   .d3-lamp-glow,
-  .d3-note-love,
-  .d3-steam-strand {
+  .d3-note-love {
     animation: none;
     opacity: 0.2;
     transform: translateY(-14%) scale(0.9, 1.08);

@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { useRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { heroMarkup } from '../../src/pages/home/sections/Hero';
+import { processMarkup } from '../../src/pages/home/sections/Process';
 import { useHeroInteractions } from '../../src/pages/home/sections/Hero/useHeroInteractions';
 
 function HeroHarness() {
@@ -49,6 +50,11 @@ describe('hero interactions', () => {
   it('renders separate closed and open artwork for the work-link eye', () => {
     expect(heroMarkup).toContain('d1-eye-closed');
     expect(heroMarkup).toContain('d1-eye-open');
+  });
+
+  it('uses the interactive idea bulb in the project selector section', () => {
+    expect(processMarkup).toContain('class="d1-idea-bulb d6-lightbulb"');
+    expect(processMarkup).toContain('data-idea-bulb');
   });
 
   it('types the process note after its entrance delay', () => {

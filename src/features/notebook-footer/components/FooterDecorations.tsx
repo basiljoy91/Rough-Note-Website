@@ -1,4 +1,5 @@
 import styles from './notebook-footer.module.css';
+import { InteractiveIdeaBulb } from '../../../shared/ui/InteractiveIdeaBulb';
 
 interface PencilDecorationProps {
   inviting: boolean;
@@ -139,12 +140,7 @@ export function FooterDoodles() {
         <path d="M50 89C14 108 25 138 4 154" strokeDasharray="2 12" />
       </svg>
 
-      <svg className={styles.ideaBulb} viewBox="0 0 125 155" aria-hidden="true">
-        <path d="M62 29c-24 0-39 18-37 43 2 17 13 24 19 34l3 14 33-5 1-13c5-11 16-21 14-39-2-22-14-34-33-34Z" />
-        <path d="m47 120 34-5M49 128l30-5M54 136l22-4M55 139c7 5 15 3 20-4" />
-        <path d="M45 76c5-8 10-7 14 2 4-13 10-13 14-1 4-9 8-10 13-4M59 79l3 34M73 78l-2 36" />
-        <path d="M62 9V0M28 18l-8-10M96 18l8-11M111 47l12-4M14 52 2 48" />
-      </svg>
+      <InteractiveIdeaBulb className={styles.ideaBulb} />
 
       <svg className={styles.rightCurve} viewBox="0 0 90 180" aria-hidden="true">
         <path d="M15 165c54-6 38-52 25-58 34-9 36-55 3-74" />
@@ -170,7 +166,7 @@ export function FooterDecorations({
   pencilInviting
 }: FooterDecorationsProps) {
   return (
-    <div className={styles.decorations} aria-hidden="true">
+    <div className={styles.decorations}>
       <FooterDoodles />
       <BinderClip />
       <PencilDecoration inviting={pencilInviting} />

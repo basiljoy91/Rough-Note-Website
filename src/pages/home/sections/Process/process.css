@@ -128,13 +128,22 @@
 
 /* Lightbulb */
 .d6-lightbulb-wrapper {
+  height: 94px;
   position: absolute;
-  right: 23%;
-  
+  right: 21%;
   top: 70%;
-  width: 45px;
-  height: 55px;
   transform: rotate(5deg);
+  width: 72px;
+}
+
+.d6-lightbulb-wrapper .d1-idea-bulb {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.d6-lightbulb-wrapper .d1-bulb-message {
+  font-size: 14px;
 }
 
 /* Pink Sticky Note */
@@ -816,12 +825,12 @@
   }
   
   .d6-lightbulb-wrapper {
+    height: 82px !important;
     position: relative !important;
     right: 90px !important;
     top: 50px !important;
     margin: 20px auto 0 !important;
-    width: 40px !important;
-    height: 50px !important;
+    width: 64px !important;
   }
   
   .d6-header-right {

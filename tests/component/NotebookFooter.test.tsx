@@ -13,6 +13,9 @@ describe('Notebook footer', () => {
     ).toBeInTheDocument();
     expect(screen.getByTestId('newsletter-card')).toBeInTheDocument();
     expect(screen.getByTestId('coffee-card')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('coffee-card').querySelector('[data-coffee-steam]')
+    ).toBeInTheDocument();
     expect(screen.getByTestId('sticky-note')).toBeInTheDocument();
     expect(
       screen.getByRole('img', {
@@ -30,6 +33,9 @@ describe('Notebook footer', () => {
     expect(
       document.querySelector('[data-drawing-toolbar-boundary]')
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Light up your brain' })
+    ).toHaveAttribute('aria-pressed', 'false');
   });
 
   it('moves the resting pencil toward the email strip while writing', async () => {

@@ -1,15 +1,12 @@
 import coffeeRn from '../../../assets/illustrations/coffee-rn.svg';
+import { CoffeeSteam } from '../../../shared/ui/CoffeeSteam';
 import { HandDrawnUnderline } from './FooterTypography';
 import styles from './notebook-footer.module.css';
 
 export function CoffeeCupIllustration() {
   return (
     <div className={styles.coffeeCupWrap}>
-      <span className={styles.animatedSteam} aria-hidden="true">
-        <span className={`${styles.steamStrand} ${styles.steamOne}`} />
-        <span className={`${styles.steamStrand} ${styles.steamTwo}`} />
-        <span className={`${styles.steamStrand} ${styles.steamThree}`} />
-      </span>
+      <CoffeeSteam className={styles.animatedSteam} />
       <img
         className={styles.coffeeDrawing}
         src={coffeeRn}
