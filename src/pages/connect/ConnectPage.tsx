@@ -1,4 +1,5 @@
 import { SiteLayout } from '../../app/layouts/SiteLayout';
+import coffeeRn from '../../assets/illustrations/coffee-rn.svg';
 import { CoffeeSteam } from '../../shared/ui/CoffeeSteam';
 import './ConnectPage.css';
 
@@ -16,71 +17,6 @@ const LocationIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sticky-icon-svg">
     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
     <circle cx="12" cy="10" r="3"></circle>
-  </svg>
-);
-
-const SvgCoffeeCup = () => (
-  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="svg-coffee-cup">
-    <defs>
-      <radialGradient id="coffeeGradient" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#3d2314"/>
-        <stop offset="70%" stopColor="#221008"/>
-        <stop offset="100%" stopColor="#110804"/>
-      </radialGradient>
-      <linearGradient id="cupShading" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#fcfaf3"/>
-        <stop offset="30%" stopColor="#fffcf5"/>
-        <stop offset="70%" stopColor="#e8dec6"/>
-        <stop offset="100%" stopColor="#d1c5a9"/>
-      </linearGradient>
-      <radialGradient id="saucerShading" cx="50%" cy="50%" r="50%">
-        <stop offset="60%" stopColor="#fffaf0"/>
-        <stop offset="95%" stopColor="#d1c5a9"/>
-        <stop offset="100%" stopColor="#bfae8e"/>
-      </radialGradient>
-      <filter id="handDrawn" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
-      </filter>
-    </defs>
-
-    {/* Shadow */}
-    <ellipse cx="95" cy="165" rx="75" ry="15" fill="rgba(0,0,0,0.12)" filter="url(#handDrawn)" />
-
-    <g filter="url(#handDrawn)">
-      {/* Saucer */}
-      <ellipse cx="100" cy="155" rx="70" ry="20" fill="url(#saucerShading)" stroke="#332a24" strokeWidth="1.5" />
-      <path d="M 50 155 Q 100 170 150 155" fill="none" stroke="#aa9d85" strokeWidth="1" opacity="0.6"/>
-
-      {/* Handle */}
-      <path d="M 140 100 C 180 90, 180 140, 135 140" fill="none" stroke="#fffcf5" strokeWidth="12" strokeLinecap="round" />
-      <path d="M 140 100 C 180 90, 180 140, 135 140" fill="none" stroke="#332a24" strokeWidth="1.5" strokeLinecap="round" />
-
-      {/* Cup Body */}
-      <path d="M 55 90 C 55 160, 75 155, 100 155 C 125 155, 145 160, 145 90 Z" fill="url(#cupShading)" stroke="#332a24" strokeWidth="1.5" strokeLinejoin="round" />
-      
-      {/* Texture speckles */}
-      <circle cx="70" cy="110" r="0.6" fill="#888" opacity="0.5"/>
-      <circle cx="120" cy="125" r="0.8" fill="#777" opacity="0.4"/>
-      <circle cx="95" cy="135" r="0.6" fill="#999" opacity="0.6"/>
-      <circle cx="130" cy="105" r="0.5" fill="#666" opacity="0.5"/>
-      <circle cx="85" cy="140" r="0.7" fill="#888" opacity="0.4"/>
-      <circle cx="110" cy="115" r="0.6" fill="#555" opacity="0.4"/>
-
-      {/* Cup Rim Outer */}
-      <ellipse cx="100" cy="90" rx="45" ry="15" fill="#fffcf5" stroke="#332a24" strokeWidth="1.5" />
-
-      {/* Coffee Liquid */}
-      <ellipse cx="100" cy="92" rx="40" ry="12" fill="url(#coffeeGradient)" />
-      
-      {/* Liquid reflection */}
-      <ellipse cx="115" cy="90" rx="15" ry="3" fill="#ffffff" opacity="0.15" transform="rotate(-15 115 90)" />
-      <ellipse cx="80" cy="95" rx="5" ry="1.5" fill="#ffffff" opacity="0.1" transform="rotate(-10 80 95)" />
-
-      {/* Cup Rim Inner border */}
-      <ellipse cx="100" cy="92" rx="40" ry="12" fill="none" stroke="#5a4030" strokeWidth="1" opacity="0.5" />
-    </g>
-
   </svg>
 );
 
@@ -209,7 +145,11 @@ export function ConnectPage() {
 
           {/* Coffee Cup */}
           <div className="coffee-cup-container">
-            <SvgCoffeeCup />
+            <img
+              className="contact-coffee-cup"
+              src={coffeeRn}
+              alt="A hand-drawn coffee cup marked RN"
+            />
             <CoffeeSteam className="contact-coffee-steam" />
           </div>
 
