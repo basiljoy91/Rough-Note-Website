@@ -1,9 +1,10 @@
 .why-rough-note {
+  --wrn-accent: #c75b31;
   position: relative;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1480px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: clamp(3rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 3rem) clamp(4rem, 5vw, 5.5rem);
   font-family: 'Kalam', 'Caveat', cursive;
   color: #2c2c2c;
   box-sizing: border-box;
@@ -16,16 +17,18 @@
 /* Header Section */
 .wrn-header {
   position: relative;
-  margin-bottom: 3rem;
-  padding-top: 1rem;
+  min-height: 260px;
+  margin-bottom: clamp(2.25rem, 3vw, 3.25rem);
+  padding-top: 0.5rem;
 }
 
 .wrn-page-num {
-  font-size: 1.1rem;
-  color: #e65100;
+  position: absolute;
+  top: 0.75rem;
+  left: 0;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  color: var(--wrn-accent);
   display: inline-block;
-  position: relative;
-  margin-bottom: 1.5rem;
   font-weight: 600;
 }
 
@@ -35,43 +38,40 @@
   left: 0;
   width: 100%;
   height: 8px;
-  stroke: #e65100;
+  stroke: var(--wrn-accent);
   fill: none;
   stroke-width: 2;
 }
 
 .wrn-title-area {
-  text-align: center;
   position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 1.5rem;
+  width: min(100%, 820px);
+  margin: 0 auto 1.4rem;
+  text-align: center;
 }
 
 .wrn-title {
-  font-size: 2.8rem;
+  font-size: clamp(3rem, 4vw, 4rem);
   font-weight: 700;
   margin: 0;
   color: #111;
   letter-spacing: -1px;
-  position: relative;
-  left: -50px;
+  line-height: 1.05;
 }
 
 .wrn-title-underline {
   position: absolute;
   bottom: -5px;
-  left: 45%;
+  left: 50%;
   transform: translateX(-50%);
-  width: 80%;
+  width: min(76%, 430px);
   height: 12px;
 }
 
 .wrn-title-deco-left {
   position: absolute;
-  left: -300px;
-  top: 100px;
+  left: -180px;
+  top: 112px;
 }
 
 .wrn-lightbulb-wrapper {
@@ -106,9 +106,9 @@
 
 .wrn-subtitle {
   text-align: center;
-  font-size: 1rem;
-  line-height: 1.4;
-  max-width: 520px;
+  font-size: clamp(0.98rem, 1.2vw, 1.14rem);
+  line-height: 1.5;
+  max-width: 680px;
   margin: 0 auto;
 }
 
@@ -133,15 +133,15 @@
 /* Top Right Sticky Note */
 .wrn-top-sticky {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 180px;
+  top: 2.1rem;
+  right: 1.5rem;
+  width: 190px;
 }
 
 .wrn-client-success {
   position: absolute;
-  top: 150px;
-  right: -2px;
+  top: 148px;
+  right: -6px;
   font-size: 0.9rem;
   text-align: center;
   transform: rotate(10deg);
@@ -167,15 +167,15 @@
 
 .wrn-sticky-note-wrapper {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 148px;
+  height: 148px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  left: -50px;
-  transform: rotate(-7deg);
-  top: 50px;
+  left: -42px;
+  transform: rotate(-4deg);
+  top: 30px;
 }
 
 .wrn-sticky-bg {
@@ -206,34 +206,29 @@
 /* Main Cards Grid */
 .wrn-cards-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.8rem; /* reduced horizontal gap */
-  row-gap: 0.8rem; /* reduced vertical gap */
-  margin-bottom: 4rem; /* ensure bottom stickies aren't clipped */
-  align-items: stretch; /* ensure identical height within rows */
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+  width: min(100%, 1380px);
+  margin: 0 auto clamp(3rem, 4vw, 4.5rem);
+  align-items: stretch;
 }
 
-/* Center the last 3 cards in the second row for desktop */
 @media (min-width: 1201px) {
-  .wrn-cards-grid > .wrn-card:nth-child(5),
-  .wrn-cards-grid > .wrn-card:nth-child(6),
-  .wrn-cards-grid > .wrn-card:nth-child(7) {
-    transform: translateX(calc(50% + 0.4rem));
-  }
+  .wrn-cards-grid > .wrn-card:nth-child(1) { grid-column: 1 / span 2; }
+  .wrn-cards-grid > .wrn-card:nth-child(2) { grid-column: 3 / span 2; }
+  .wrn-cards-grid > .wrn-card:nth-child(3) { grid-column: 5 / span 2; }
+  .wrn-cards-grid > .wrn-card:nth-child(4) { grid-column: 7 / span 2; }
+  .wrn-cards-grid > .wrn-card:nth-child(5) { grid-column: 2 / span 2; }
+  .wrn-cards-grid > .wrn-card:nth-child(6) { grid-column: 4 / span 2; }
+  .wrn-cards-grid > .wrn-card:nth-child(7) { grid-column: 6 / span 2; }
 }
 
 .wrn-card {
   position: relative;
   width: 100%;
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
-}
-
-/* Increase height for sticky notes 5, 6, and 7 specially */
-.wrn-card:nth-child(5),
-.wrn-card:nth-child(6),
-.wrn-card:nth-child(7) {
-  min-height: 220px;
 }
 
 .wrn-card-bg {
@@ -242,26 +237,26 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   z-index: 1;
-  filter: drop-shadow(3px 6px 10px rgba(0,0,0,0.12));
+  filter: drop-shadow(3px 7px 9px rgba(49, 37, 24, 0.14));
 }
 
 .wrn-card-content {
   position: relative;
   z-index: 2;
-  padding: 1.25rem 1.25rem 2.5rem 1.25rem;
+  padding: clamp(2rem, 2.2vw, 2.5rem) clamp(1.2rem, 1.65vw, 1.75rem) clamp(3.6rem, 4vw, 4.3rem);
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .wrn-card-num {
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 0.95vw, 1rem);
   font-weight: 700;
   position: absolute;
-  top: 0.8rem;
-  left: 1rem;
+  top: 1.25rem;
+  left: 1.2rem;
   z-index: 6; /* Stay above tape if tape is 5 */
 }
 
@@ -299,23 +294,24 @@
 
 
 .wrn-card-icon {
-  width: 36px;
-  height: 36px;
-  margin: 0.2rem auto 0.4rem auto;
+  width: clamp(42px, 3.3vw, 52px);
+  height: clamp(42px, 3.3vw, 52px);
+  margin: 0.5rem auto 0.8rem;
   color: #333;
 }
 
 .wrn-card-title {
-  font-size: 0.95rem;
+  font-size: clamp(1rem, 1.15vw, 1.2rem);
   font-weight: 700;
   text-align: center;
-  margin-bottom: 0.4rem;
+  margin: 0 0 0.8rem;
   line-height: 1.15;
 }
 
 .wrn-card-body {
-  font-size: 0.75rem;
-  line-height: 1.35;
+  font-size: clamp(0.76rem, 0.85vw, 0.9rem);
+  line-height: 1.5;
+  margin: 0;
   text-align: center;
   flex-grow: 1;
 }
@@ -325,9 +321,9 @@
 /* Card Add-ons */
 .wrn-card-sticky {
   position: absolute;
-  bottom: 0px;
-  padding: 5px 8px;
-  font-size: 0.75rem;
+  bottom: 1.25rem;
+  padding: 7px 10px;
+  font-size: clamp(0.7rem, 0.78vw, 0.8rem);
   line-height: 1.2;
   transform: rotate(-3deg);
   box-shadow: 1px 2px 4px rgba(0,0,0,0.15);
@@ -338,25 +334,25 @@
 
 .wrn-card-sticky.blue {
   background-color: #b3cde0;
-  left: 6px;
+  left: 1rem;
 }
 
 .wrn-card-sticky.yellow {
   background-color: #f6e58d;
-  right: 0px;
-  transform: rotate(5deg);
+  right: 1rem;
+  transform: rotate(2deg);
 }
 
 .wrn-card-sticky.green {
   background-color: #b8e994;
-  right: 0px;
-  transform: rotate(-2deg);
+  right: 1rem;
+  transform: rotate(-1deg);
 }
 
 .wrn-card-sticky.pink {
   background-color: #fab1a0;
-  right: 0px;
-  transform: rotate(4deg);
+  right: 1rem;
+  transform: rotate(2deg);
 }
 
 .wrn-card-star {
@@ -374,13 +370,13 @@
 
 .wrn-stamp {
   position: absolute;
-  bottom: 2px;
+  bottom: 1.35rem;
   left: 50%;
-  transform: translateX(-50%) rotate(-10deg);
+  transform: translateX(-50%) rotate(-4deg);
   border: 2px solid;
-  padding: 2px 4px;
+  padding: 4px 7px;
   font-weight: 700;
-  font-size: 0.65rem;
+  font-size: clamp(0.62rem, 0.7vw, 0.74rem);
   text-align: center;
   border-radius: 4px;
   z-index: 4;
@@ -550,9 +546,6 @@
   .wrn-cards-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .wrn-cards-grid > .wrn-card:nth-child(5) {
-    grid-column: auto;
-  }
   .wrn-top-sticky {
     right: 0rem;
   }
@@ -586,6 +579,21 @@
   .wrn-title {
     font-size: 2.2rem;
   }
+
+  .wrn-header {
+    min-height: 0;
+  }
+
+  .wrn-page-num {
+    position: relative;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .wrn-card {
+    max-width: 360px;
+    margin-inline: auto;
+  }
 }
 
 
@@ -615,8 +623,8 @@
 /* Sticker Checklist on Card 05 */
 .wrn-card-sticky.white {
   background-color: #fcfcfc;
-  right: -5px;
-  bottom: -25px; /* move small sticky note down */
+  right: 1rem;
+  bottom: 1rem;
   transform: rotate(2deg);
 }
 .wrn-sticker-checklist {

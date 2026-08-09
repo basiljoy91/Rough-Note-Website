@@ -10,7 +10,7 @@ export const ourPlansMarkup = `
 
     <!-- Top Left Sticky Note -->
     <div class="plans-sticky plans-sticky--left">
-      <img src="/assets/images/sticky-note-6-bg-clean.png" class="plans-sticky__bg" alt="" aria-hidden="true" />
+      <img src="/assets/images/sticky-note-5-bg-clean.png" class="plans-sticky__bg" alt="" aria-hidden="true" />
       <div class="plans-sticky__content">
         <p>Different<br/> starting points. <br/> Same mission:<br/><span class="plans-sticky-underline">Your growth.<svg class="plans-hand-underline" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 8 100 2 M5 8 Q 50 10 95 6" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg></span></p>
       </div>

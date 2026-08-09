@@ -1508,3 +1508,197 @@
   .hww-center-note { width: 100%; height: auto; padding: 10px; box-sizing: border-box; }
   .hww-center-note__content { flex-direction: column; text-align: center; gap: 10px; padding: 20px; }
 }
+
+/* Reference-matched desktop composition. These rules intentionally replace the
+   earlier absolute-offset experiments while leaving the compact layouts intact. */
+@media (min-width: 1025px) {
+  .our-plans,
+  .how-we-work {
+    max-width: none;
+    padding: 4rem clamp(2rem, 4vw, 5rem) 3rem;
+  }
+
+  .our-plans__inner,
+  .how-we-work__inner {
+    width: min(100%, 1440px);
+    margin-inline: auto;
+  }
+
+  /* Page 05 — two paths */
+  .plans-header {
+    width: min(100%, 1040px);
+    min-height: 225px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .plans-pre-title,
+  .plans-title,
+  .plans-subtitle {
+    position: relative;
+    inset: auto;
+  }
+
+  .plans-pre-title {
+    top: auto;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .plans-title {
+    margin: 0 auto;
+    font-size: clamp(3rem, 4.5vw, 4.5rem);
+    line-height: 1.05;
+  }
+
+  .plans-title-underline {
+    left: 50%;
+    bottom: 104px;
+    width: min(72%, 720px);
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+
+  .plans-subtitle {
+    right: auto;
+    max-width: 760px;
+    margin: 1.7rem auto 0;
+    font-size: 1.15rem;
+  }
+
+  .plans-page-tag { top: -2rem; left: 1rem; }
+  .plans-sticky--left { top: 5.75rem; left: 1.25rem; width: 160px; height: 160px; }
+  .plans-sticky--right { top: -1.5rem; right: 1rem; width: 180px; height: 180px; }
+
+  .plans-columns-wrapper {
+    max-width: 1320px;
+    gap: 96px;
+    margin-bottom: 2rem;
+  }
+
+  .plans-column {
+    top: auto;
+    min-height: 570px;
+    padding: 42px 30px 28px;
+  }
+
+  .plans-column__header { top: -19px; }
+  .plans-column__desc { margin: 8px 0 24px; }
+  .plans-steps { width: calc(100% - 160px); gap: 3px; }
+  .plans-step { gap: 12px; }
+  .plans-step__content h3 { font-size: 0.92rem; }
+  .plans-step__content p { font-size: 0.82rem; }
+
+  .plans-transform-card,
+  .plans-transform-card--right {
+    top: 155px;
+    right: 18px;
+    width: 145px;
+    padding: 18px 12px;
+  }
+
+  .plans-divider {
+    top: 190px;
+    width: 90px;
+  }
+
+  .plans-bottom {
+    max-width: 1160px;
+    margin-top: 0;
+  }
+
+  .plans-bottom-box {
+    width: 100%;
+    justify-content: space-between;
+    padding: 16px 28px;
+  }
+
+  .plans-bottom-text { font-size: 1.05rem; }
+  .plans-right-pen { top: -260px; right: -20px; width: 185px; }
+  .plans-bottom-pencil { bottom: 80px; left: -65px; width: 185px; }
+
+  /* Page 07 — engagement model */
+  .hww-header {
+    width: min(100%, 900px);
+    margin: 0 auto 3.5rem;
+  }
+
+  .hww-title {
+    top: auto;
+    font-size: clamp(3rem, 4.3vw, 4.25rem);
+    line-height: 1.08;
+  }
+
+  .hww-title-underline {
+    bottom: 74px;
+    width: min(78%, 650px);
+    z-index: 0;
+  }
+
+  .hww-subtitle {
+    top: auto;
+    max-width: 720px;
+    margin-top: 1.7rem;
+    font-size: 1.12rem;
+  }
+
+  .hww-page-tag { top: -2rem; left: 1rem; }
+  .hww-sticky--top-right { top: -1.25rem; right: 1rem; width: 175px; height: 175px; }
+
+  .hww-columns-wrapper {
+    top: auto;
+    max-width: 1320px;
+    gap: 96px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hww-column {
+    min-height: 585px;
+    padding: 42px 30px 28px;
+  }
+
+  .hww-service-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 18px;
+  }
+
+  .hww-service-item {
+    min-height: 86px;
+    padding: 10px 4px;
+  }
+
+  .hww-column__desc { margin: 8px 0 20px; }
+  .hww-green-note { margin-bottom: 18px; }
+  .hww-step { padding: 10px 0; }
+  .hww-step__content h3 { font-size: 1rem; }
+  .hww-step__content p { font-size: 0.78rem; }
+  .hww-badge { top: 4px; right: -8px; }
+
+  .hww-bottom-area {
+    height: 185px;
+    margin-top: 0;
+  }
+
+  .hww-sticky--bottom-left {
+    top: 10px;
+    left: 0;
+    width: 150px;
+    height: 150px;
+  }
+
+  .hww-center-note {
+    top: 22px;
+    width: min(54%, 700px);
+    height: 105px;
+  }
+
+  .hww-pinned-note {
+    top: 8px;
+    right: 0;
+    width: 190px;
+    height: 140px;
+  }
+
+  .hww-right-pencil { top: -570px; right: -45px; width: 190px; }
+  .hww-paper-clip--1 { top: -130px; right: 8px; }
+  .hww-paper-clip--2 { top: -100px; right: 42px; }
+}
