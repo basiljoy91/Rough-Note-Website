@@ -1,11 +1,11 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { MobileNavigation } from '../../shared/navigation/MobileNavigation';
-import { PageTearTransition } from '../../shared/navigation/PageTearTransition';
+import { PageTurnTransition } from '../../shared/navigation/PageTurnTransition';
 import { SidebarNavigation } from '../../shared/navigation/SidebarNavigation';
 import type { NavigationKey } from '../../shared/navigation/navigation.data';
 import '../../shared/navigation/navigation.global.css';
 import '../../shared/navigation/navigation-responsive.global.css';
-import '../../shared/navigation/page-tear-transition.global.css';
+import '../../shared/navigation/page-turn-transition.global.css';
 
 interface SiteLayoutProps {
   activeItem: NavigationKey;
@@ -39,7 +39,7 @@ export function SiteLayout({
 
   return (
     <>
-      <PageTearTransition />
+      <PageTurnTransition />
       <SidebarNavigation
         activeItem={activeItem}
         pageLabel={pageLabel}

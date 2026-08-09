@@ -2,12 +2,12 @@ import html2canvas from 'html2canvas';
 import { useEffect, type RefObject } from 'react';
 
 const pages = ['web', 'brand', 'poster', 'logo', 'motion', 'video', 'erp'];
-const pageTurnDuration = 1480;
+export const pageTurnDuration = 1480;
 const curlWidth = 0.26;
 
-type TurnDirection = 'next' | 'previous';
+export type TurnDirection = 'next' | 'previous';
 
-type TurningCanvas = {
+export type TurningCanvas = {
   element: HTMLCanvasElement;
   front: HTMLElement;
   source: HTMLCanvasElement;
@@ -29,10 +29,10 @@ type CurlColumn = {
   sourceWidth: number;
 };
 
-const clamp = (value: number, minimum: number, maximum: number) =>
+export const clamp = (value: number, minimum: number, maximum: number) =>
   Math.min(maximum, Math.max(minimum, value));
 
-const easePageTurn = (progress: number) =>
+export const easePageTurn = (progress: number) =>
   progress < 0.5
     ? 2 * progress * progress
     : 1 - Math.pow(-2 * progress + 2, 2) / 2;
@@ -64,7 +64,7 @@ const getCurlPoint = (
   };
 };
 
-const drawPageCurl = (
+export const drawPageCurl = (
   turningCanvas: TurningCanvas,
   progress: number,
   direction: TurnDirection

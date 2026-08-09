@@ -66,6 +66,9 @@ class TestResizeObserver {
 const canvasContext = {
   beginPath: vi.fn(),
   clearRect: vi.fn(),
+  createLinearGradient: vi.fn(() => ({ addColorStop: vi.fn() })),
+  drawImage: vi.fn(),
+  fillRect: vi.fn(),
   setTransform: vi.fn(),
   save: vi.fn(),
   restore: vi.fn(),
