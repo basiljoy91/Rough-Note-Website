@@ -792,7 +792,7 @@
 /* Torn journey sheet */
 #div-3 > .d3-timeline-container {
   aspect-ratio: 2308 / 384;
-  background: #eee1c8 url('/assets/images/about-journey-reference.png') center / 100% 100% no-repeat;
+  background: #eee1c8 url('/assets/images/about-journey-reference.webp') center / 100% 100% no-repeat;
   bottom: 0;
   clip-path: none;
   filter: none;
