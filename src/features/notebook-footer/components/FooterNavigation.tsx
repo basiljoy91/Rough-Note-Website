@@ -10,9 +10,11 @@ function FooterSeparator() {
 }
 
 export function FooterCopyright() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <p className={styles.copyright}>
-      © 2026 Rough Note. All rights reserved.
+    <p className={styles.copyright} data-testid="footer-copyright">
+      © {currentYear} Rough Note. All rights reserved.
       <svg viewBox="0 0 110 18" aria-hidden="true">
         <path d="M3 7c25 1 50-2 101 0M31 11c18-2 37-1 49 3-9 1-16 2-23 4" />
       </svg>
@@ -28,6 +30,7 @@ export function FooterNavigation() {
         viewBox="0 0 1400 12"
         preserveAspectRatio="none"
         aria-hidden="true"
+        data-drawing-toolbar-boundary
       >
         <path d="M3 6c172 2 353-2 526 0 203 3 397-2 590 0 100 1 190-1 278 0" />
         <path d="M4 8c190 1 370-1 550 0 201 1 394-1 586 0 91 1 177 0 257 1" opacity=".28" />

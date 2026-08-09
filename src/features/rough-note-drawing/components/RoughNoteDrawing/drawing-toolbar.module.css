@@ -64,6 +64,7 @@
   position: fixed;
   transform: translateX(-50%) scale(var(--toolbar-scale));
   transform-origin: bottom center;
+  translate: 0 calc(-1 * var(--drawing-footer-lift, 0px));
   user-select: none;
   width: max-content;
   z-index: var(--z-drawing-toolbar);

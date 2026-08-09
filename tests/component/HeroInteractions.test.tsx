@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
+import { heroMarkup } from '../../src/pages/home/sections/Hero';
 import { useHeroInteractions } from '../../src/pages/home/sections/Hero/useHeroInteractions';
 
 function HeroHarness() {
@@ -45,6 +46,11 @@ function HeroHarness() {
 }
 
 describe('hero interactions', () => {
+  it('renders separate closed and open artwork for the work-link eye', () => {
+    expect(heroMarkup).toContain('d1-eye-closed');
+    expect(heroMarkup).toContain('d1-eye-open');
+  });
+
   it('types the process note after its entrance delay', () => {
     vi.useFakeTimers();
     render(<HeroHarness />);

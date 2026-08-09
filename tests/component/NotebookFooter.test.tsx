@@ -24,6 +24,12 @@ describe('Notebook footer', () => {
       screen.getByRole('navigation', { name: 'Footer navigation' })
     ).toBeInTheDocument();
     expect(screen.getAllByRole('link')).toHaveLength(3);
+    expect(screen.getByTestId('footer-copyright')).toHaveTextContent(
+      `© ${new Date().getFullYear()} Rough Note. All rights reserved.`
+    );
+    expect(
+      document.querySelector('[data-drawing-toolbar-boundary]')
+    ).toBeInTheDocument();
   });
 
   it('moves the resting pencil toward the email strip while writing', async () => {

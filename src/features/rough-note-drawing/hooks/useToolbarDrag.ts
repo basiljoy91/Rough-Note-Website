@@ -41,12 +41,19 @@ export function useToolbarDrag(
       event.preventDefault();
       event.stopPropagation();
       event.currentTarget.setPointerCapture(event.pointerId);
-      const rect = toolbarRef.current.getBoundingClientRect();
+      const toolbar = toolbarRef.current;
+      const rect = toolbar.getBoundingClientRect();
+      const footerLift =
+        Number.parseFloat(
+          window
+            .getComputedStyle(toolbar)
+            .getPropertyValue('--drawing-footer-lift')
+        ) || 0;
       dragOrigin.current = {
         pointerX: event.clientX,
         pointerY: event.clientY,
         toolbarX: rect.left,
-        toolbarY: rect.top,
+        toolbarY: rect.top + footerLift,
         pointerId: event.pointerId
       };
     },

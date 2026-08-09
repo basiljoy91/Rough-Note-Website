@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useFooterToolbarBoundary } from '../../hooks/useFooterToolbarBoundary';
 import { useToolbarDrag } from '../../hooks/useToolbarDrag';
 import type { DrawingAction, DrawingState, DrawingTool } from '../../types/drawing';
 import { ColorPicker } from './ColorPicker';
@@ -33,6 +34,7 @@ export function DrawingToolbar({
   const collapseTimer = useRef<number | null>(null);
   const [clearOpen, setClearOpen] = useState(false);
   const [isCollapsing, setIsCollapsing] = useState(false);
+  useFooterToolbarBoundary(toolbarRef, !state.isToolbarCollapsed);
   const dragHandlers = useToolbarDrag(
     toolbarRef,
     state.toolbarPosition,

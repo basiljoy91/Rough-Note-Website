@@ -145,8 +145,37 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.8;
-  transition: transform 180ms ease;
+  transition: transform 220ms ease;
   width: 28px;
+}
+
+.div-1-hero .d1-buttons .d1-eye-open,
+.div-1-hero .d1-buttons .d1-eye-closed {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 180ms ease,
+    transform 260ms cubic-bezier(0.22, 0.78, 0.25, 1);
+}
+
+.div-1-hero .d1-buttons .d1-eye-open {
+  opacity: 0;
+  transform: scaleY(0.06);
+}
+
+.div-1-hero .d1-buttons .d1-eye-closed {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.div-1-hero .d1-buttons .d1-eye-closed-sketch {
+  opacity: 0.36;
+  transform: translateY(0.8px);
+}
+
+.div-1-hero .d1-buttons .d1-eye-pupil {
+  fill: currentColor;
+  stroke: none;
 }
 
 .div-1-hero .d1-buttons .d1-eye-sketch-line {
@@ -158,8 +187,18 @@
   transform: translateX(5px);
 }
 
-.div-1-hero .d1-buttons .d1-btn:hover .d1-eye-icon {
+.div-1-hero .d1-buttons .d1-btn:is(:hover, :focus-visible) .d1-eye-icon {
   transform: scale(1.08) rotate(-2deg);
+}
+
+.div-1-hero .d1-buttons .d1-btn:is(:hover, :focus-visible) .d1-eye-open {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.div-1-hero .d1-buttons .d1-btn:is(:hover, :focus-visible) .d1-eye-closed {
+  opacity: 0;
+  transform: scaleY(0.08);
 }
 
 @media (max-width: 767px) {
@@ -190,7 +229,9 @@
 @media (prefers-reduced-motion: reduce) {
   .div-1-hero .d1-buttons .d1-btn,
   .div-1-hero .d1-buttons .d1-arrow-icon,
-  .div-1-hero .d1-buttons .d1-eye-icon {
+  .div-1-hero .d1-buttons .d1-eye-icon,
+  .div-1-hero .d1-buttons .d1-eye-open,
+  .div-1-hero .d1-buttons .d1-eye-closed {
     transition: none;
   }
 }

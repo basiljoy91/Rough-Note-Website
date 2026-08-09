@@ -1139,12 +1139,14 @@
 }
 
 .copyright {
+  color: var(--footer-ink);
   display: inline-block;
   font-family: "Kalam", cursive;
   font-size: clamp(15px, 1.27vw, 20px);
   font-weight: 300;
   line-height: 1.2;
   margin: 0;
+  opacity: 0.88;
   position: relative;
 }
 
