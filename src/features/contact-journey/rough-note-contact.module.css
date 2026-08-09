@@ -58,52 +58,48 @@
   position: relative;
   transform-style: preserve-3d;
   width: 100%;
+  filter:
+    drop-shadow(0 35px 25px rgb(59 39 19 / 20%))
+    drop-shadow(0 15px 12px rgb(59 39 19 / 15%))
+    drop-shadow(0 3px 4px rgb(59 39 19 / 35%));
 }
 
 .stepShell {
   background:
-    radial-gradient(ellipse at 50% -5%, rgb(255 255 255 / 52%), transparent 42%),
-    radial-gradient(circle at 8% 33%, rgb(140 96 47 / 5%) 0 1px, transparent 1.3px)
-      0 0 / 17px 19px,
-    radial-gradient(circle at 90% 72%, rgb(86 55 29 / 4.5%) 0 0.7px, transparent 1.1px)
-      0 0 / 13px 15px,
+    linear-gradient(to right, transparent 48%, rgb(0 0 0 / 2.5%) 50%, rgb(255 255 255 / 15%) 52%, transparent 54%),
+    linear-gradient(135deg, transparent 20%, rgb(255 255 255 / 15%) 45%, rgb(0 0 0 / 3%) 65%, transparent 85%),
+    radial-gradient(ellipse at 50% -5%, rgb(255 255 255 / 55%), transparent 42%),
+    radial-gradient(circle at 8% 33%, rgb(140 96 47 / 8%) 0 1px, transparent 1.3px) 0 0 / 17px 19px,
+    radial-gradient(circle at 90% 72%, rgb(86 55 29 / 6%) 0 0.7px, transparent 1.1px) 0 0 / 13px 15px,
+    radial-gradient(ellipse at 95% 90%, rgb(112 79 42 / 12%), transparent 30%),
+    radial-gradient(ellipse at 5% 85%, rgb(105 75 40 / 10%), transparent 25%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
     var(--contact-grain),
-    linear-gradient(99deg, #f2e6d4, #fbf4e7 50%, #eee0ca);
-  border-radius: 18px 15px 19px 14px / 15px 19px 14px 17px;
-  box-shadow:
-    0 28px 50px rgb(59 39 19 / 12%),
-    0 7px 15px rgb(59 39 19 / 8%),
-    inset 0 0 42px rgb(115 79 42 / 8%);
+    linear-gradient(99deg, #eedbc1, #faf2e1 50%, #e7d6b9);
   isolation: isolate;
   margin: 0 auto;
   min-height: max(920px, calc(100svh - 36px));
-  overflow: hidden;
-  padding: clamp(72px, 6vw, 96px) clamp(32px, 5vw, 86px) 84px;
+  padding: clamp(72px, 6vw, 96px) clamp(32px, 5vw, 86px) 200px;
   position: relative;
   transform-style: preserve-3d;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='18' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L998,2 L998,970 L940,972 L880,965 L850,968 L810,955 L780,950 L760,910 L740,890 L710,885 L680,895 L660,880 L630,890 L610,920 L580,945 L540,955 L500,952 L450,960 L400,958 L350,965 L300,962 L250,970 L200,968 L150,950 L120,945 L90,955 L50,965 L2,960 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E");
 }
 
 .stepShell::before,
 .paperPerimeter {
-  border: 1.3px solid rgb(71 52 31 / 52%);
-  border-radius: 17px 14px 20px 13px / 14px 20px 13px 18px;
-  content: "";
-  inset: 9px 8px 10px 9px;
-  pointer-events: none;
-  position: absolute;
-  z-index: 20;
-}
-
-.paperPerimeter {
-  border-color: rgb(255 255 255 / 34%);
-  inset: 11px 10px 8px 7px;
-  transform: rotate(0.05deg);
+  display: none !important;
 }
 
 .stepShell::after {
   background:
-    linear-gradient(95deg, transparent 0 12%, rgb(104 69 37 / 4%) 12.2%, transparent 12.7%),
-    linear-gradient(8deg, transparent 0 64%, rgb(98 69 42 / 3%) 64.5%, transparent 65%);
+    linear-gradient(95deg, transparent 0 12%, rgb(104 69 37 / 6%) 12.2%, transparent 12.7%),
+    linear-gradient(8deg, transparent 0 64%, rgb(98 69 42 / 5%) 64.5%, transparent 65%),
+    linear-gradient(to top, rgb(60 40 20 / 15%) 0%, transparent 4%),
+    linear-gradient(to right, rgb(60 40 20 / 10%) 0%, transparent 3%),
+    linear-gradient(to left, rgb(60 40 20 / 12%) 0%, transparent 4%),
+    linear-gradient(to bottom, rgb(60 40 20 / 8%) 0%, transparent 3%),
+    radial-gradient(ellipse at 98% 98%, rgb(80 50 20 / 25%), transparent 10%),
+    radial-gradient(ellipse at 2% 98%, rgb(80 50 20 / 20%), transparent 10%);
   content: "";
   inset: 0;
   mix-blend-mode: multiply;
@@ -159,9 +155,10 @@
 }
 
 .stepLabel {
-  box-shadow:
-    0 7px 9px rgb(58 39 20 / 18%),
-    inset 0 1px rgb(255 255 255 / 46%);
+  filter:
+    drop-shadow(0 18px 15px rgb(58 39 20 / 28%))
+    drop-shadow(0 6px 8px rgb(58 39 20 / 18%))
+    drop-shadow(0 2px 3px rgb(58 39 20 / 30%));
   color: var(--contact-ink);
   font: 600 clamp(18px, 1.5vw, 24px)/1 "Patrick Hand", cursive;
   left: clamp(26px, 3vw, 48px);
@@ -169,17 +166,20 @@
   padding: 15px 24px 13px;
   position: absolute;
   top: clamp(25px, 3vw, 44px);
-  transform: rotate(-5deg);
+  transform: rotate(-3deg);
   z-index: 22;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.4' numOctaves='4' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='10' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M12,25 L150,5 L400,18 L600,10 L850,22 L985,15 L995,200 L970,400 L985,600 L990,800 L980,985 L800,995 L600,975 L400,990 L200,980 L15,990 L25,800 L5,600 L20,400 L8,200 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E");
 }
 
 .stepLabel::before {
-  background: rgb(255 255 255 / 28%);
   content: "";
-  inset: 4px 7px auto;
-  height: 3px;
   position: absolute;
-  transform: rotate(1deg);
+  inset: 0;
+  box-shadow:
+    inset 2px 2px 4px rgb(255 255 255 / 60%),
+    inset -2px -2px 5px rgb(0 0 0 / 14%);
+  pointer-events: none;
+  z-index: 10;
 }
 
 .yellow {
@@ -213,8 +213,12 @@
 
 .stepLabel.yellow {
   background:
+    linear-gradient(110deg, transparent 35%, rgb(255 255 255 / 45%) 37%, rgb(0 0 0 / 6%) 38%, transparent 40%),
+    linear-gradient(-60deg, transparent 65%, rgb(0 0 0 / 6%) 67%, rgb(255 255 255 / 35%) 68%, transparent 70%),
+    linear-gradient(15deg, transparent 80%, rgb(0 0 0 / 8%) 82%, rgb(255 255 255 / 40%) 84%, transparent 85%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
     var(--contact-grain),
-    linear-gradient(103deg, #f3d77b, #e7c05a);
+    linear-gradient(103deg, #f6e088, #e7c05a);
 }
 
 .stepLabel.blue {
@@ -352,7 +356,7 @@
 }
 
 .pageNumber {
-  bottom: 28px;
+  bottom: 150px;
   color: var(--contact-ink);
   font: 500 23px/1 "Caveat", cursive;
   left: 50%;
@@ -374,11 +378,12 @@
 
 .paperPanel {
   background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
     var(--contact-grain),
     linear-gradient(98deg, #f8efe0, #fcf6ea 52%, #eee0ca);
   box-shadow:
-    0 9px 14px rgb(65 44 23 / 12%),
-    inset 0 0 18px rgb(120 86 48 / 5%);
+    0 12px 18px rgb(65 44 23 / 15%),
+    inset 0 0 24px rgb(120 86 48 / 8%);
   color: var(--contact-ink);
   position: relative;
 }
@@ -422,13 +427,14 @@
 
 .tapeStrip {
   background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E"),
     repeating-linear-gradient(
       93deg,
       transparent 0 12px,
-      rgb(126 93 52 / 10%) 13px 14px
+      rgb(126 93 52 / 12%) 13px 14px
     ),
-    linear-gradient(100deg, rgb(235 215 176 / 75%), var(--contact-tape));
-  box-shadow: 0 3px 5px rgb(70 47 24 / 10%);
+    linear-gradient(100deg, rgb(235 215 176 / 85%), var(--contact-tape));
+  box-shadow: 0 4px 6px rgb(70 47 24 / 15%);
   height: 31px;
   left: 50%;
   mask-image: linear-gradient(
@@ -440,18 +446,17 @@
   );
   position: absolute;
   top: -14px;
-  transform: translateX(-50%) rotate(-2deg);
+  transform: translateX(-50%) rotate(-3deg);
   width: 92px;
 }
 
 .paperButton {
   align-items: center;
   border: 0;
-  border-radius: 4px 7px 5px 3px;
-  box-shadow:
-    0 10px 13px rgb(62 39 17 / 22%),
-    0 3px 4px rgb(62 39 17 / 15%),
-    inset 0 1px rgb(255 255 255 / 30%);
+  filter:
+    drop-shadow(0 20px 18px rgb(62 39 17 / 25%))
+    drop-shadow(0 8px 8px rgb(62 39 17 / 18%))
+    drop-shadow(0 2px 3px rgb(62 39 17 / 35%));
   color: #fff8ed;
   cursor: pointer;
   display: inline-flex;
@@ -462,22 +467,35 @@
   padding: 16px 32px;
   position: relative;
   text-shadow: 0 1px rgb(52 31 15 / 30%);
-  transform: rotate(-0.7deg);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+  transform: rotate(-1.5deg);
+  transition: transform 180ms ease;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.4' numOctaves='4' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='10' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M12,25 L150,5 L400,18 L600,10 L850,22 L985,15 L995,200 L970,400 L985,600 L990,800 L980,985 L800,995 L600,975 L400,990 L200,980 L15,990 L25,800 L5,600 L20,400 L8,200 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E");
+}
+
+.paperButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 2px 3px 5px rgb(255 255 255 / 55%),
+    inset -2px -3px 6px rgb(0 0 0 / 18%);
+  pointer-events: none;
+  z-index: 5;
 }
 
 .paperButton::after {
   background:
+    linear-gradient(110deg, transparent 40%, rgb(255 255 255 / 15%) 42%, rgb(0 0 0 / 4%) 43%, transparent 45%),
+    linear-gradient(-70deg, transparent 65%, rgb(0 0 0 / 5%) 67%, rgb(255 255 255 / 12%) 68%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E"),
     var(--contact-grain),
-    linear-gradient(105deg, rgb(255 255 255 / 7%), transparent);
-  border-radius: inherit;
+    linear-gradient(105deg, rgb(255 255 255 / 15%), transparent);
   content: "";
   inset: 0;
   mix-blend-mode: multiply;
   pointer-events: none;
   position: absolute;
+  z-index: 1;
 }
 
 .paperButton.orange {
@@ -709,10 +727,9 @@
 }
 
 .crumpledPaper {
-  border-radius: 44% 52% 47% 55% / 52% 43% 56% 48%;
   filter:
-    drop-shadow(0 20px 14px rgb(55 37 18 / 20%))
-    drop-shadow(0 5px 4px rgb(55 37 18 / 12%));
+    drop-shadow(0 20px 24px rgb(41 27 15 / 35%))
+    drop-shadow(0 5px 6px rgb(41 27 15 / 25%));
   height: 286px;
   left: 50%;
   position: absolute;
@@ -729,39 +746,9 @@
 
 .facetStage {
   border-radius: inherit;
-  clip-path: polygon(
-    18% 7%,
-    27% 3%,
-    39% 5%,
-    49% 0,
-    59% 5%,
-    71% 3%,
-    78% 9%,
-    90% 14%,
-    94% 26%,
-    100% 38%,
-    96% 50%,
-    99% 63%,
-    91% 72%,
-    88% 84%,
-    74% 88%,
-    63% 98%,
-    51% 94%,
-    39% 100%,
-    29% 93%,
-    17% 94%,
-    12% 84%,
-    3% 77%,
-    5% 64%,
-    0 53%,
-    5% 42%,
-    2% 30%,
-    11% 23%,
-    10% 14%
-  );
   height: 100%;
-  overflow: hidden;
-  perspective: 1200px;
+  overflow: visible; /* Let overlapping shards bleed out and get masked by crumpledPaper */
+  perspective: 1400px;
   position: relative;
   transform-style: preserve-3d;
   width: 100%;
@@ -769,16 +756,28 @@
 
 .paperFacet {
   background:
+    radial-gradient(
+      ellipse at 30% 30%,
+      rgba(255, 253, 245, 0.95) 0%,
+      rgba(238, 220, 190, 0.3) 40%,
+      rgba(130, 90, 50, 0.6) 100%
+    ),
     linear-gradient(
-      calc(25deg + var(--facet-index) * 17deg),
-      rgb(255 255 255 / 72%),
-      rgb(228 210 180 / 42%) 48%,
-      rgb(255 250 237 / 72%)
+      calc(35deg + var(--facet-index) * 11deg),
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(200, 180, 150, 0.1) 50%,
+      rgba(100, 70, 40, 0.4) 100%
     ),
     var(--contact-grain),
-    #f4ead8;
-  filter: drop-shadow(0 8px 6px rgb(61 43 23 / 24%));
-  inset: 0;
+    #e3d4bd;
+  filter:
+    drop-shadow(0 12px 20px rgba(25, 15, 5, 0.6))
+    drop-shadow(0 4px 8px rgba(25, 15, 5, 0.45));
+  box-shadow:
+    inset 1px 2px 2px rgba(255, 255, 255, 0.8),
+    inset -1px -2px 3px rgba(100, 70, 30, 0.4);
+  border-radius: 4px; /* subtle soft edge rounding */
+  inset: -20px;
   position: absolute;
   transform: var(--facet-initial-transform);
   transform-style: preserve-3d;
@@ -786,15 +785,37 @@
 
 .paperFacet:nth-of-type(3n + 1) {
   background:
-    linear-gradient(128deg, rgb(255 255 255 / 80%), rgb(211 188 151 / 38%) 52%, rgb(250 241 225 / 70%)),
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(228, 210, 180, 0.15) 50%,
+      rgba(100, 70, 30, 0.7) 100%
+    ),
+    linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(150, 110, 60, 0.5) 100%
+    ),
     var(--contact-grain),
-    #f4ead8;
+    #dfcbae;
 }
 
 .paperFacet:nth-of-type(4n + 2) {
   filter:
-    brightness(0.94)
-    drop-shadow(0 9px 5px rgb(61 43 23 / 28%));
+    drop-shadow(0 18px 25px rgba(25, 15, 5, 0.65))
+    drop-shadow(0 6px 12px rgba(25, 15, 5, 0.5));
+  box-shadow:
+    inset 1px 1px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 6px rgba(80, 50, 20, 0.5);
+  background:
+    radial-gradient(
+      ellipse at 50% 80%,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(238, 220, 190, 0.2) 40%,
+      rgba(80, 50, 20, 0.75) 100%
+    ),
+    var(--contact-grain),
+    #dbcaab;
 }
 
 .crumpleShards {
@@ -968,14 +989,16 @@
   display: grid;
   font: 600 43px/1 "Caveat", cursive;
   height: 96px;
-  left: 50%;
-  opacity: 0.88;
+  left: 55%;
+  opacity: 0.92;
   place-items: center;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%) rotate(-2deg);
+  transform: translate(-50%, -50%) rotate(-4deg);
   width: 96px;
-  z-index: 33;
+  z-index: 50; /* Ensure it stays on top of its facet layer */
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 1px 0px rgba(255, 255, 255, 0.3));
 }
 
 .rnStamp::before,
@@ -1020,31 +1043,57 @@
 }
 
 .noPressureNote {
-  bottom: 0;
-  font-size: 25px;
-  padding: 42px 25px 22px;
+  bottom: 30px;
+  font-size: 22px;
+  padding: 50px 20px 28px 40px; /* Increased left padding to push text right */
   position: absolute;
   right: 3%;
   width: 188px;
   z-index: 12;
+  background: url('/assets/images/sticky-note-philosophy-bg-clean.png') center / 100% 100% no-repeat !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter:
+    drop-shadow(0 15px 12px rgb(50 33 17 / 20%))
+    drop-shadow(0 5px 6px rgb(50 33 17 / 15%));
+  transform: rotate(4deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.45;
+}
+
+.noPressureNote .tapeStrip {
+  display: none !important;
+}
+
+.noPressureNote p {
+  margin: 0;
+  z-index: 2;
 }
 
 .noPressureNote svg {
   color: var(--contact-ink);
-  float: right;
-  height: 31px;
-  margin-top: -8px;
-  width: 31px;
+  position: absolute;
+  bottom: 22px;
+  right: 40px; /* Moved left */
+  height: 15px;
+  width: 15px;
+  transform: rotate(-5deg);
+  z-index: 2;
 }
 
 .ideaExplanation {
-  border: 1.5px dashed rgb(59 48 35 / 58%);
-  box-shadow: none;
+  border: 2px dashed rgb(59 48 35 / 75%);
+  border-radius: 7px 14px 9px 18px / 13px 9px 17px 7px;
+  box-shadow:
+    inset 0 0 20px rgb(139 90 43 / 8%),
+    0 5px 12px rgb(0 0 0 / 6%);
   font: 500 21px/1.45 "Kalam", cursive;
   margin: 5px auto 0;
   max-width: 510px;
   padding: 20px 50px;
-  transform: rotate(-0.25deg);
+  transform: rotate(-0.5deg);
 }
 
 .ideaExplanation p + p {
@@ -1064,15 +1113,24 @@
 .explanationStar {
   bottom: 23px;
   height: 42px;
-  right: -20px;
+  left: 350px;
   top: auto;
-  transform: rotate(7deg);
+  transform: rotate(-12deg);
   width: 42px;
 }
 
 /* Step 2 */
 .stepTwo {
   min-height: max(1120px, calc(100svh - 36px));
+}
+
+.stepTwo .formActions {
+  margin-top: -80px !important;
+}
+
+.stepTwo .specificNote {
+  bottom: -30px !important;
+  transform: rotate(-5deg) !important;
 }
 
 .challengeForm {
@@ -1212,7 +1270,7 @@
   font-size: 22px;
   padding: 42px 24px 22px;
   position: absolute;
-  right: 1%;
+  right: -5%;
   top: 64px;
   transform: rotate(2deg);
   width: 225px;
@@ -2019,7 +2077,7 @@
 
   .specificNote {
     bottom: 40px;
-    left: -20px;
+    right: 50px;
   }
 
   .routingNote {
@@ -2347,4 +2405,287 @@
   .paperButton:hover:not(:disabled) {
     transform: none;
   }
+}
+
+/* Step 02 Specific Enhancements */
+.step2 {
+  background:
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    url("../../assets/textures/paper-texture.jpg") center/cover no-repeat,
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.4), transparent 70%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0.05) 100%),
+    var(--contact-grain),
+    linear-gradient(99deg, #f2e3cb, #fdf6e6 50%, #ecdab7) !important;
+  background-blend-mode: soft-light, soft-light, normal, overlay, normal, normal !important;
+  box-shadow: inset 0 0 40px rgba(80, 50, 20, 0.08), inset 0 0 10px rgba(255, 255, 255, 0.3);
+  /* Lowered SVG mask path to move torn edge downward */
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='18' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L998,2 L998,990 L940,992 L880,985 L850,988 L810,975 L780,970 L760,930 L740,910 L710,905 L680,915 L660,900 L630,910 L610,940 L580,965 L540,975 L500,972 L450,980 L400,978 L350,985 L300,982 L250,990 L200,988 L150,970 L120,965 L90,975 L50,985 L2,980 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E") !important;
+}
+
+.step2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../../assets/textures/TrustedCompanyPaperTextur.jpg") center/cover no-repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+  display: block !important;
+}
+
+.step2 .stickyNote.blue {
+  background: url("/assets/images/sticky-note-philosophy-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 14px 19px rgb(50 33 17 / 18%)) drop-shadow(0 3px 5px rgb(50 33 17 / 12%));
+  transform: perspective(800px) translateZ(50px) rotate(4deg) rotateX(8deg) rotateY(-5deg) !important;
+  padding: 30px 10px 25px 40px !important; /* Shifted text right */
+  z-index: 50 !important; /* Renders above background multiply shadows */
+}
+
+.step2 .stickyNote.blue svg {
+  right: 35px !important; /* Shifted star towards left */
+}
+
+.step2 .stickyNote.green {
+  background:
+    url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat,
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat !important;
+  background-blend-mode: multiply, normal !important;
+  -webkit-mask: url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat !important;
+  mask: url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter:
+    drop-shadow(0 22px 22px rgb(50 33 17 / 35%))
+    drop-shadow(0 8px 10px rgb(50 33 17 / 25%)) !important;
+  transform: perspective(800px) translateZ(50px) rotate(-3deg) rotateX(15deg) rotateY(10deg) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 40px 20px 30px 20px !important;
+  width: 175px !important;
+  z-index: 50 !important;
+}
+
+/* 1. Step 02 Label Refinements */
+.step2 .stepLabel {
+  background:
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    var(--contact-orange) !important;
+  background-blend-mode: soft-light, normal !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  transform: perspective(800px) rotate(-3deg) rotateX(12deg) rotateY(-8deg) !important;
+  box-shadow:
+    inset 0 0 10px rgba(90, 45, 10, 0.25),
+    inset -3px -5px 12px rgba(255, 255, 255, 0.4) !important;
+  filter:
+    drop-shadow(0 22px 18px rgb(58 39 20 / 40%))
+    drop-shadow(0 10px 10px rgb(58 39 20 / 25%))
+    drop-shadow(0 4px 5px rgb(58 39 20 / 45%)) !important;
+  z-index: 50 !important;
+}
+
+/* 3. Continue Button Refinements */
+.step2 .paperButton {
+  background:
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    var(--contact-blue) !important;
+  background-blend-mode: soft-light, normal !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M10,15 L990,15 L990,985 L10,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M10,15 L990,15 L990,985 L10,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  transform: perspective(800px) rotate(-1.5deg) rotateX(10deg) rotateY(4deg) !important;
+  box-shadow:
+    inset 0 0 15px rgba(20, 40, 70, 0.4),
+    inset -2px -6px 12px rgba(255, 255, 255, 0.25) !important;
+  filter:
+    drop-shadow(0 25px 20px rgb(62 39 17 / 40%))
+    drop-shadow(0 12px 12px rgb(62 39 17 / 25%))
+    drop-shadow(0 4px 6px rgb(62 39 17 / 50%)) !important;
+  z-index: 50 !important;
+}
+
+.step2 .paperButton:hover {
+  transform: perspective(800px) translateZ(10px) rotate(-1deg) rotateX(6deg) rotateY(2deg) !important;
+  filter:
+    drop-shadow(0 30px 25px rgb(62 39 17 / 35%))
+    drop-shadow(0 15px 15px rgb(62 39 17 / 20%))
+    drop-shadow(0 6px 8px rgb(62 39 17 / 45%)) !important;
+}
+
+.step2 .stickyNote.green p {
+  margin-bottom: 5px !important;
+  margin-top: 0 !important;
+  text-align: center !important;
+}
+
+.step2 .stickyNote.green .noteSmile {
+  line-height: 1.5 !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 5px !important;
+  display: block !important;
+}
+
+.step2 .tapeStrip {
+  display: none !important;
+}
+
+/* =========================================================================
+   STEP 03 REFINEMENTS
+   ========================================================================= */
+
+/* 1. Main Form Paper Replacement */
+.step3 .tornFormPaper {
+  background: url("/assets/images/new.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  mask-image: none !important;
+  filter:
+    drop-shadow(0 25px 24px rgb(62 42 22 / 25%))
+    drop-shadow(0 8px 10px rgb(62 42 22 / 15%)) !important;
+}
+.step3 .tornFormPaper .punchedEdge,
+.step3 .tornFormPaper .formCreases {
+  display: none !important;
+}
+
+/* 2. Step 03 Label Refinement */
+.step3 .stepLabel {
+  background:
+    url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat,
+    var(--contact-orange) !important;
+  background-blend-mode: soft-light, normal !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E") !important;
+  transform: perspective(800px) rotate(-3deg) rotateX(12deg) rotateY(-8deg) !important;
+  box-shadow:
+    inset 0 0 10px rgba(90, 45, 10, 0.25),
+    inset -3px -5px 12px rgba(255, 255, 255, 0.4) !important;
+  filter:
+    drop-shadow(0 22px 18px rgb(58 39 20 / 40%))
+    drop-shadow(0 10px 10px rgb(58 39 20 / 25%))
+    drop-shadow(0 4px 5px rgb(58 39 20 / 45%)) !important;
+  z-index: 50 !important;
+}
+
+/* 3. Sticky Note Replacement */
+.step3 .routingNote {
+  background: url("/assets/images/sticky-note-5-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter:
+    drop-shadow(0 20px 20px rgb(50 33 17 / 35%))
+    drop-shadow(0 8px 10px rgb(50 33 17 / 25%)) !important;
+  transform: perspective(800px) translateZ(50px) rotate(4deg) rotateX(10deg) rotateY(-5deg) !important;
+}
+
+/* 4. Tape Handling */
+.step3 .routingNote .tapeStrip {
+  display: none !important;
+}
+
+
+/* Move the star inside the Step 03 sticky note */
+.step3 .routingNote svg {
+  bottom: 15px !important;
+  right: 55px !important;
+}
+
+/* =========================================================================
+   STEP 04 REFINEMENTS
+   ========================================================================= */
+
+/* 2. Show Final Image After Animation Completes */
+.finalInvitation {
+  margin: -30px auto 20px;
+  max-width: 580px;
+  width: 92%;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.finalInvitation img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: rotate(-2deg);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Replace Working Hours Paper */
+.workingHours {
+  background: url("/assets/images/sticky-note-2-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
+}
+.workingHours::before {
+  display: none !important;
+}
+
+/* 4. Replace Blue Sticky Note */
+.responseNote {
+  background: url("/assets/images/sticky-note-6-bg-clean.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
+}
+.responseNote p {
+  transform: translateX(50px) !important;
+}
+.responseNote svg {
+  right: 81px !important;
+  bottom: 39px !important;
+}
+.responseNote .tapeStrip {
+  display: none !important;
+}
+
+/* 5. Replace Yellow Sticky Note */
+.quoteNote {
+  background: url("/assets/images/sticky-note-div3-bg.png") center/100% 100% no-repeat !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
+  padding: 55px 25px 35px !important;
+}
+.quoteNote p {
+  margin-top: 5px !important;
+  transform: translateX(100px) !important;
+}
+.quoteNote svg:first-of-type {
+  left: 60px !important;
+  top: 61px !important;
+}
+.quoteNote svg:last-of-type {
+  right: 81px !important;
+  bottom: 29px !important;
+}
+.quoteNote .tapeStrip {
+  display: none !important;
+}
+
+/* =========================================================================
+   STEP 01 REFINEMENTS
+   ========================================================================= */
+
+.realisticPaperBall {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 106%;
+  height: 106%;
+  object-fit: contain;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.crumpledPaper:not(.crumpledTransitioning) [data-facet-stage] {
+  opacity: 0;
 }

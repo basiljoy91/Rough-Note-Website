@@ -11,7 +11,6 @@ import {
 } from '../components/Doodles';
 import { ContactStepShell } from '../components/ContactStepShell';
 import { PaperButton, PaperPanel, StickyNote } from '../components/PaperUI';
-import { Envelope } from '../paper/PaperObjects';
 import styles from '../rough-note-contact.module.css';
 
 interface StepFourSuccessProps {
@@ -45,15 +44,9 @@ export function StepFourSuccess({
       headingAdornment={<SmileDoodle className={styles.headingSmile} />}
     >
       <div className={styles.successComposition}>
-        <Envelope />
-        <p className={styles.receivedCopy}>Your rough note has been received.</p>
-        <p className={styles.successIntro}>
-          Thank you for sharing your challenge with us.
-          <br />
-          We&apos;ll review it carefully and sketch an initial
-          <br />
-          solution tailored to your business.
-        </p>
+        <div className={styles.finalInvitation}>
+          <img src="/assets/images/invt.png" alt="Your rough note has been received." />
+        </div>
         {submissionId && (
           <p className={styles.confirmationNumber}>
             Confirmation: <strong>{submissionId}</strong>

@@ -1,4 +1,5 @@
-import './services-page.global.css';
+import './process-page.global.css';
+import './strategy.css';
 import '../../features/notebook-footer/notebook-footer-placeholder.global.css';
 import { useRef } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
@@ -6,13 +7,11 @@ import { FooterPaper } from '../../features/notebook-footer/components/FooterPap
 import { RoughNoteDrawingFeature } from '../../features/rough-note-drawing/RoughNoteDrawingFeature';
 import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
-import { techStackMarkup } from '../home/sections/TechStack';
-import { ourServicesMarkup } from './sections/OurServices';
-import { HeroSection } from './sections/HeroSection';
-import { DynamicJourney } from './sections/DynamicJourney/DynamicJourney';
-import { WhyRoughNote } from './sections/WhyRoughNote/WhyRoughNote';
+import { ourPlansMarkup } from './sections/OurPlans';
+import { howWeWorkMarkup } from './sections/HowWeWork';
+import { ourStrategyMarkup } from './sections/OurStrategy';
 
-export function ServicesPage() {
+export function ProcessPage() {
   const mainRef = useRef<HTMLElement>(null);
 
   useScrollReveal(mainRef);
@@ -21,19 +20,17 @@ export function ServicesPage() {
     <>
       <SketchFilters />
       <SiteLayout
-        activeItem="services"
-        pageLabel="Page 02"
-        pageTitle="Our Services"
+        activeItem="process"
+        pageLabel="Page 05"
+        pageTitle="Our Plans"
       >
         <main
           ref={mainRef}
-          data-rough-anchor="services-main"
+          data-rough-anchor="process-main"
         >
-          <HeroSection />
-          <div dangerouslySetInnerHTML={{ __html: ourServicesMarkup }} />
-          <DynamicJourney />
-          <WhyRoughNote />
-          <div dangerouslySetInnerHTML={{ __html: techStackMarkup }} />
+          <div dangerouslySetInnerHTML={{ __html: ourPlansMarkup }} />
+          <div dangerouslySetInnerHTML={{ __html: howWeWorkMarkup }} />
+          <div dangerouslySetInnerHTML={{ __html: ourStrategyMarkup }} />
         </main>
         <div
           id="rough-note-footer-root"
