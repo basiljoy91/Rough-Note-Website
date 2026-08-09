@@ -32,6 +32,14 @@ function HeroHarness() {
       >
         Board idea light
       </button>
+      <button
+        type="button"
+        data-idea-bulb
+        aria-label="Light up your brain"
+        aria-pressed="false"
+      >
+        Our Work idea light
+      </button>
     </main>
   );
 }
@@ -53,10 +61,10 @@ describe('hero interactions', () => {
     expect(note).not.toHaveClass('is-typing');
   });
 
-  it('toggles both bulb lights without changing the page', () => {
+  it('toggles every bulb light without changing the page', () => {
     render(<HeroHarness />);
     const bulbs = screen.getAllByRole('button', { name: 'Light up your brain' });
-    expect(bulbs).toHaveLength(2);
+    expect(bulbs).toHaveLength(3);
 
     bulbs.forEach((bulb) => {
       fireEvent.click(bulb);

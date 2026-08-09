@@ -94,47 +94,15 @@
   width: 104%;
 }
 
-.d4-header-bulb {
-  border: 0.19cqi solid currentColor;
-  border-radius: 52% 52% 43% 43%;
+.d4-board-header .d1-idea-bulb {
   flex: 0 0 auto;
-  height: 3.55cqi;
-  margin-top: 0.55cqi;
-  position: relative;
-  transform: rotate(-5deg);
-  width: 2.45cqi;
+  height: clamp(84px, 8.6cqi, 116px);
+  margin: -1.1cqi 0 0;
+  width: clamp(68px, 6.5cqi, 96px);
 }
 
-.d4-header-bulb::before {
-  border-bottom: 0.18cqi solid currentColor;
-  border-left: 0.16cqi solid currentColor;
-  border-right: 0.16cqi solid currentColor;
-  bottom: -1.05cqi;
-  content: "";
-  height: 1.1cqi;
-  left: 0.65cqi;
-  position: absolute;
-  width: 0.95cqi;
-}
-
-.d4-header-bulb::after {
-  border-bottom: 0.16cqi solid currentColor;
-  border-top: 0.16cqi solid currentColor;
-  bottom: -1.32cqi;
-  content: "";
-  height: 0.34cqi;
-  left: 0.52cqi;
-  position: absolute;
-  width: 1.2cqi;
-}
-
-.d4-header-bulb i {
-  border-top: 0.16cqi solid currentColor;
-  left: 50%;
-  position: absolute;
-  top: -0.8cqi;
-  transform: translateX(-50%) rotate(90deg);
-  width: 0.7cqi;
+.d4-board-header .d1-bulb-message {
+  font-size: clamp(12px, 1.05cqi, 17px);
 }
 
 .d4-paper-note {
