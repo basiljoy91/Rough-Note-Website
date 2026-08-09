@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { LucideIcon } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -26,6 +27,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       onClick={() => onClick(id)}
       aria-pressed={isActive}
       aria-label={`Show the ${title.replace('<br/>', ' ')} journey`}
+      style={{ '--card-accent': pinColor } as CSSProperties}
     >
       <img src="/assets/images/sti-1.png" alt="Paper" className="dj-card__bg" />
       <span className="dj-card__tape" aria-hidden="true" />

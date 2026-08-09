@@ -26,13 +26,13 @@ interface ServiceOption {
 }
 
 const servicesList: ServiceOption[] = [
-  { id: 'brand', title: 'Brand<br/>Identity', icon: PenTool, pinColor: '#a85b08' },
-  { id: 'motion', title: 'Motion<br/>Graphics', icon: Clapperboard, pinColor: '#2b95c2' },
-  { id: 'web', title: 'Website<br/>Design', icon: Globe, pinColor: '#6caa54' },
-  { id: '3d', title: '3D<br/>Modeling', icon: Box, pinColor: '#f1b900' },
-  { id: 'erp', title: 'ERP<br/>Software', icon: ChartNoAxesCombined, pinColor: '#8b56b7' },
-  { id: 'custom', title: 'Custom<br/>Software', icon: CodeXml, pinColor: '#d64f7e' },
-  { id: 'ai', title: 'AI<br/>Automation', icon: Bot, pinColor: '#2bada8' },
+  { id: 'brand', title: 'Brand<br/>Identity', icon: PenTool, pinColor: '#b75b38' },
+  { id: 'motion', title: 'Motion<br/>Graphics', icon: Clapperboard, pinColor: '#b64b63' },
+  { id: 'web', title: 'Website<br/>Design', icon: Globe, pinColor: '#2f7f91' },
+  { id: '3d', title: '3D<br/>Modeling', icon: Box, pinColor: '#b98526' },
+  { id: 'erp', title: 'ERP<br/>Software', icon: ChartNoAxesCombined, pinColor: '#668447' },
+  { id: 'custom', title: 'Custom<br/>Software', icon: CodeXml, pinColor: '#5e659e' },
+  { id: 'ai', title: 'AI<br/>Automation', icon: Bot, pinColor: '#2f8d82' },
 ];
 
 function SupportBoard({ data }: { data: JourneyData }) {
