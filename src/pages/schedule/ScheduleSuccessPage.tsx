@@ -1,5 +1,4 @@
 import { SiteLayout } from '../../app/layouts/SiteLayout';
-import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleSuccessPage.css';
 
 // SVG Confetti
@@ -145,7 +144,6 @@ export function ScheduleSuccessPage() {
       pageTitle="Meeting Confirmed"
     >
       <div className="schedule-step-wrapper">
-        <NotebookPageTransition pageSelector=".notebook-container-wide" />
         <div className="notebook-container-wide">
           <div className="notebook-bg-split">
             <div className="notebook-bg-left"></div>

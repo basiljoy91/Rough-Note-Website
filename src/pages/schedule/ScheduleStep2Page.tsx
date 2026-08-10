@@ -1,6 +1,5 @@
 import { useState, KeyboardEvent } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
-import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleStep2Page.css';
 
 // SVG Assets from Step 1
@@ -147,7 +146,6 @@ export function ScheduleStep2Page() {
       pageTitle="Select a Date"
     >
       <div className="schedule-step-wrapper">
-        <NotebookPageTransition pageSelector=".notebook-container" />
         <div className="notebook-container">
           <img src="/assets/images/notebook-paper.jpeg" alt="Notebook Background" className="notebook-bg" />
           

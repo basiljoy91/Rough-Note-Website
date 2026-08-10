@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { MobileNavigation } from '../../shared/navigation/MobileNavigation';
-import { PageTurnTransition } from '../../shared/navigation/PageTurnTransition';
+import { PageTurnProvider } from '../../shared/navigation/PageTurnTransition';
 import { SidebarNavigation } from '../../shared/navigation/SidebarNavigation';
 import type { NavigationKey } from '../../shared/navigation/navigation.data';
 import '../../shared/navigation/navigation.global.css';
@@ -39,7 +39,7 @@ export function SiteLayout({
 
   return (
     <>
-      <PageTurnTransition />
+      <PageTurnProvider />
       <SidebarNavigation
         activeItem={activeItem}
         pageLabel={pageLabel}

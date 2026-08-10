@@ -40,7 +40,7 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     key: 'about',
-    label: 'About',
+    label: 'Our Story',
     href: '/html/about.html',
     icon: aboutIcon,
     dividerBefore: true
