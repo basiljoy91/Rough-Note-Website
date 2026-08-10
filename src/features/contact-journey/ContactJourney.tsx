@@ -175,7 +175,6 @@ export function ContactJourney({
     if (state.transitionState !== 'idle' && state.transitionState !== 'complete') {
       return;
     }
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     headingRef.current?.focus({ preventScroll: true });
   }, [state.currentStep, state.transitionState]);
 
@@ -265,11 +264,15 @@ export function ContactJourney({
       return;
     }
     actionLockedRef.current = true;
-    await positionPaperForTransition(form);
-    dispatch({ type: 'SET_TRANSITION', value: 'folding' });
-    await transitions.foldToContact(journeyRef.current);
-    commitStep(3);
-    actionLockedRef.current = false;
+    try {
+      await positionPaperForTransition(form);
+      dispatch({ type: 'SET_TRANSITION', value: 'folding' });
+      await transitions.foldToContact(journeyRef.current);
+      commitStep(3);
+      dispatch({ type: 'SET_TRANSITION', value: 'idle' });
+    } finally {
+      actionLockedRef.current = false;
+    }
   };
 
   const submitJourney = async (event: FormEvent<HTMLFormElement>) => {
@@ -322,10 +325,14 @@ export function ContactJourney({
   const goBack = async (step: 1 | 2) => {
     if (actionLockedRef.current || !journeyRef.current) return;
     actionLockedRef.current = true;
-    dispatch({ type: 'SET_TRANSITION', value: 'folding' });
-    await transitions.reverse(journeyRef.current);
-    commitStep(step);
-    actionLockedRef.current = false;
+    try {
+      dispatch({ type: 'SET_TRANSITION', value: 'folding' });
+      await transitions.reverse(journeyRef.current);
+      commitStep(step);
+      dispatch({ type: 'SET_TRANSITION', value: 'idle' });
+    } finally {
+      actionLockedRef.current = false;
+    }
   };
 
   const handleFile = (file: File) => {
