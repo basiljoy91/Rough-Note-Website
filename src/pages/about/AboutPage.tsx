@@ -19,14 +19,19 @@ import {
   type TurnDirection,
   type TurningCanvas
 } from '../../shared/navigation/pageTurnPhysics';
+import {
+  founderContent,
+  founderCutoutSource,
+  founderNarrative,
+  type FounderKey
+} from './founders-scene.manifest';
 import './about-page.global.css';
 
 const storyAssets = {
   classroom: '/assets/images/our-story/scene-classrooms.webp',
   design: '/assets/images/our-story/scene-design.webp',
   technology: '/assets/images/our-story/scene-technology.webp',
-  kannan: '/assets/images/our-story/kannan-bs.webp',
-  ganeish: '/assets/images/our-story/ganeish-ratanam.webp'
+  founders: founderCutoutSource
 } as const;
 
 const storyPages = [
@@ -38,7 +43,7 @@ const storyPages = [
 const pageAssets: readonly (readonly string[])[] = [
   [],
   [storyAssets.classroom, storyAssets.design, storyAssets.technology],
-  [storyAssets.kannan, storyAssets.ganeish]
+  [storyAssets.founders]
 ];
 
 function preloadPageAssets(pageIndex: number) {
@@ -188,87 +193,288 @@ function ChapterPage() {
   );
 }
 
-interface FounderProfileProps {
-  bio: string;
-  className: string;
-  focusAreas: string[];
-  image: string;
-  imageAlt: string;
-  name: string;
-  role: string;
+function useFounderSceneMotion(rootRef: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-story-panel]'));
+    const frame = window.requestAnimationFrame(() => root.classList.add('is-scene-ready'));
+
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      panels.forEach((panel) => panel.classList.add('is-visible'));
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    const scrollRoot = root.closest<HTMLElement>('.story-book__page');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { root: scrollRoot, rootMargin: '0px 0px -12% 0px', threshold: 0.16 });
+
+    panels.forEach((panel) => observer.observe(panel));
+    return () => {
+      window.cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [rootRef]);
 }
 
-function FounderProfile({ bio, className, focusAreas, image, imageAlt, name, role }: FounderProfileProps) {
+function FounderCutout({ founder, className = '' }: { founder: FounderKey; className?: string }) {
+  const profile = founderContent[founder];
   return (
-    <article className={`story-founder ${className}`}>
-      <header className="story-founder__heading">
-        <span aria-hidden="true">♕</span>
-        <h3>{name}</h3>
-        <p>{role}</p>
-      </header>
+    <figure className={`character-cutout character-cutout--${founder} ${className}`}>
+      <img
+        src={founderCutoutSource}
+        alt={profile.imageAlt}
+        loading="eager"
+        decoding="async"
+        width="1422"
+        height="636"
+      />
+    </figure>
+  );
+}
 
-      <p className="story-founder__bio">{bio}</p>
+function FounderHeading({ founder }: { founder: FounderKey }) {
+  const profile = founderContent[founder];
+  return (
+    <header className={`character-founder-heading character-founder-heading--${founder}`}>
+      <span className="character-founder-heading__doodle" aria-hidden="true">{founder === 'kannan' ? '♕' : '☆'}</span>
+      <h3>{profile.name}</h3>
+      <span className="character-founder-heading__underline" aria-hidden="true" />
+      <p>{profile.role}</p>
+    </header>
+  );
+}
 
-      <figure className="story-founder__portrait">
-        <img src={image} alt={imageAlt} loading="eager" decoding="async" width="1080" height="990" />
-      </figure>
+function FocusAreasNote({ founder, className = '' }: { founder: FounderKey; className?: string }) {
+  const profile = founderContent[founder];
+  return (
+    <aside className={`character-focus-note character-focus-note--${founder} ${className}`} tabIndex={0}>
+      <span className="character-pushpin" aria-hidden="true" />
+      <h4>Focus Areas</h4>
+      <ul>
+        {profile.focusAreas.map((area) => (
+          <li key={area}><span aria-hidden="true">{founder === 'kannan' ? '</>' : '☆'}</span>{area}</li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
 
-      <PaperNote className="story-founder__focus">
-        <span className="story-pin" aria-hidden="true" />
-        <h4>Focus Areas</h4>
-        <ul>
-          {focusAreas.map((area) => <li key={area}>{area}</li>)}
-        </ul>
-      </PaperNote>
-    </article>
+function SceneTitle() {
+  return (
+    <header className="character-title" aria-hidden="true">
+      <span>Meet Our Story’s</span>
+      <strong>Main Characters</strong>
+      <i />
+      <p>and the Founders</p>
+      <b>☆</b>
+    </header>
+  );
+}
+
+function NarrativeNote({ className = '' }: { className?: string }) {
+  return (
+    <aside className={`character-narrative ${className}`}>
+      <PaperTape />
+      <p>{founderNarrative.first}</p>
+      <i />
+      <p>{founderNarrative.second}</p>
+      <strong>Together,<br />they became <em>Rough Note.</em></strong>
+    </aside>
+  );
+}
+
+function CodeCard({ className = '' }: { className?: string }) {
+  return (
+    <div className={`character-code-card character-research-card ${className}`} tabIndex={0}>
+      <code>function solve(problem)&#123;<br />&nbsp; think();<br />&nbsp; plan();<br />&nbsp; build();<br />&nbsp; optimize();<br />&nbsp; return solution;<br />&#125;</code>
+      <small>systems become simple when the thinking is clear.</small>
+    </div>
+  );
+}
+
+function ApiDiagram({ className = '' }: { className?: string }) {
+  return (
+    <div className={`character-api-sheet character-sketch-sheet ${className}`} aria-hidden="true">
+      <span className="character-cloud">API</span>
+      <i /><i /><i />
+      <b>ERP</b><b>AI</b><b>WEB</b>
+    </div>
+  );
+}
+
+function WireframeSheet({ className = '' }: { className?: string }) {
+  return (
+    <div className={`character-wireframe character-sketch-sheet ${className}`} aria-hidden="true">
+      <span /><span /><span /><span /><span /><span />
+    </div>
+  );
+}
+
+function LogoStudies({ className = '' }: { className?: string }) {
+  return (
+    <div className={`character-logo-studies character-research-card ${className}`} tabIndex={0}>
+      <small>LOGO IDEAS</small>
+      <div aria-hidden="true"><b>R</b><b>R</b><b>R</b><b>R</b><b>R</b><b>R</b></div>
+      <em>six sketches. one memorable mark.</em>
+    </div>
+  );
+}
+
+function ColorSwatches({ className = '' }: { className?: string }) {
+  return (
+    <div className={`character-swatches ${className}`} aria-hidden="true">
+      <i /><i /><i /><i /><i />
+    </div>
+  );
+}
+
+function ProcessNote({ kind, className = '' }: { kind: 'build' | 'ideas'; className?: string }) {
+  return kind === 'build' ? (
+    <aside className={`character-process-note character-process-note--build ${className}`}>BUILD<br />· AUTOMATE<br />· SCALE<br />IMPACT</aside>
+  ) : (
+    <aside className={`character-process-note character-process-note--ideas ${className}`}>ideas<br />→ sketches<br />→ design<br />→ impact</aside>
+  );
+}
+
+function SceneDeskProps({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={`character-desk-props${compact ? ' character-desk-props--compact' : ''}`} aria-hidden="true">
+      <span className="character-camera"><i /><b /></span>
+      <span className="character-notebook"><i /><i /><i /></span>
+      <span className="character-color-sheet"><i /><i /><i /><i /><i /><i /></span>
+      <span className="character-tablet"><i /><b /></span>
+      <span className="character-logo-papers"><i>R</i><i>R</i><i>R</i></span>
+      <span className="character-books"><i>LOGO DESIGN</i><i>BRANDING</i><i>DESIGN OF EVERYDAY THINGS</i></span>
+      <span className="character-pen-cup"><i /><i /><i /><i /><i /></span>
+    </div>
+  );
+}
+
+function BrandCard({ className = '' }: { className?: string }) {
+  return (
+    <a className={`character-brand-card ${className}`} href="/html/contact.html" data-page-turn aria-label="Continue the story with Rough Note">
+      <span aria-hidden="true">♕</span>
+      <strong>Rough Note</strong>
+      <i />
+      <p>Ideas. Designed. Built. For Impact.</p>
+      <b aria-hidden="true" />
+    </a>
+  );
+}
+
+function DesktopFoundersScene() {
+  return (
+    <section className="character-scene character-scene--desktop" aria-label="Founders editorial spread">
+      <div className="character-scene__paper" aria-hidden="true" />
+      <div className="character-scene__light" aria-hidden="true" />
+      <div className="character-scene__desk" aria-hidden="true" />
+
+      <SceneTitle />
+      <FounderHeading founder="kannan" />
+      <FounderHeading founder="ganeish" />
+
+      <p className="character-bio character-bio--kannan">{founderContent.kannan.bio}</p>
+      <p className="character-bio character-bio--ganeish">{founderContent.ganeish.bio}</p>
+
+      <ApiDiagram className="character-api-sheet--desktop" />
+      <CodeCard className="character-code-card--desktop" />
+      <WireframeSheet className="character-wireframe--left" />
+      <WireframeSheet className="character-wireframe--right" />
+      <LogoStudies className="character-logo-studies--desktop" />
+      <ColorSwatches className="character-swatches--desktop" />
+      <NarrativeNote className="character-narrative--desktop" />
+      <span className="character-connection-arrow" aria-hidden="true">⌄</span>
+
+      <FounderCutout founder="kannan" className="character-cutout--desktop" />
+      <FounderCutout founder="ganeish" className="character-cutout--desktop" />
+      <FocusAreasNote founder="kannan" />
+      <FocusAreasNote founder="ganeish" />
+      <ProcessNote kind="build" />
+      <ProcessNote kind="ideas" />
+
+      <SceneDeskProps />
+      <BrandCard />
+    </section>
+  );
+}
+
+function TabletFounderPanel({ founder }: { founder: FounderKey }) {
+  return (
+    <section className={`character-tablet-founder character-tablet-founder--${founder}`} data-story-panel>
+      <FounderHeading founder={founder} />
+      <p className="character-bio">{founderContent[founder].bio}</p>
+      {founder === 'kannan' ? <CodeCard /> : <LogoStudies />}
+      {founder === 'kannan' ? <ApiDiagram /> : <ColorSwatches />}
+      <FounderCutout founder={founder} />
+      <FocusAreasNote founder={founder} />
+    </section>
+  );
+}
+
+function TabletFoundersScene() {
+  return (
+    <section className="character-scene character-scene--tablet" aria-label="Founders vertical editorial spread">
+      <div className="character-tablet-title" data-story-panel><SceneTitle /></div>
+      <TabletFounderPanel founder="kannan" />
+      <div className="character-tablet-bridge" data-story-panel><NarrativeNote /><span aria-hidden="true">↘</span></div>
+      <TabletFounderPanel founder="ganeish" />
+      <div className="character-tablet-finale" data-story-panel><SceneDeskProps compact /><BrandCard /></div>
+    </section>
+  );
+}
+
+function MobileFounderIntro({ founder }: { founder: FounderKey }) {
+  return (
+    <section className={`character-mobile-panel character-mobile-panel--intro character-mobile-panel--${founder}`} data-story-panel>
+      <FounderHeading founder={founder} />
+      <p className="character-bio">{founderContent[founder].bio}</p>
+      <FounderCutout founder={founder} />
+    </section>
+  );
+}
+
+function MobileFounderFocus({ founder }: { founder: FounderKey }) {
+  return (
+    <section className={`character-mobile-panel character-mobile-panel--focus character-mobile-panel--${founder}`} data-story-panel>
+      {founder === 'kannan' ? <><CodeCard /><ApiDiagram /></> : <><LogoStudies /><ColorSwatches /></>}
+      <FocusAreasNote founder={founder} />
+      <ProcessNote kind={founder === 'kannan' ? 'build' : 'ideas'} />
+    </section>
+  );
+}
+
+function MobileFoundersScene() {
+  return (
+    <section className="character-scene character-scene--mobile" aria-label="Founders anime storyboard">
+      <section className="character-mobile-panel character-mobile-panel--title" data-story-panel><SceneTitle /></section>
+      <MobileFounderIntro founder="kannan" />
+      <MobileFounderFocus founder="kannan" />
+      <section className="character-mobile-panel character-mobile-panel--narrative" data-story-panel><NarrativeNote /></section>
+      <MobileFounderIntro founder="ganeish" />
+      <MobileFounderFocus founder="ganeish" />
+      <section className="character-mobile-panel character-mobile-panel--finale" data-story-panel><SceneDeskProps compact /><BrandCard /></section>
+    </section>
   );
 }
 
 function FoundersPage() {
+  const sceneRef = useRef<HTMLElement>(null);
+  useFounderSceneMotion(sceneRef);
+
   return (
-    <article className="story-page story-page--founders" data-page-index="2" aria-labelledby="founders-title">
-      <header className="founders-heading">
-        <span>Meet Our Story’s</span>
-        <h2 id="founders-title" data-page-heading tabIndex={-1}>Main Characters</h2>
-        <p>and the Founders</p>
-      </header>
-
-      <div className="founders-grid">
-        <FounderProfile
-          bio="Kannan sees every problem as a system waiting to be improved. He enjoys breaking complex challenges into simple, scalable digital solutions through software, automation, and technology."
-          className="story-founder--tech"
-          focusAreas={['ERP Software', 'Custom Software', 'AI Automation', 'System Architecture', 'Web Development', 'Business Solutions']}
-          image={storyAssets.kannan}
-          imageAlt="Anime-style portrait of Kannan B S sketching beside his laptop."
-          name="Kannan B S"
-          role="The Tech Architect"
-        />
-
-        <PaperNote className="founders-narrative">
-          <PaperTape />
-          <p>One imagined what products could look like.</p>
-          <i />
-          <p>The other figured out how to build them.</p>
-          <strong>Together, they became <em>Rough Note.</em></strong>
-        </PaperNote>
-
-        <FounderProfile
-          bio="Ganeish sees every challenge as an opportunity to create meaningful experiences. His passion lies in branding, visual identity, user experience, and transforming rough ideas into designs that people remember."
-          className="story-founder--design"
-          focusAreas={['Brand Identity', 'UI/UX Design', 'Website Design', 'Motion Graphics', 'Creative Direction', 'Visual Storytelling']}
-          image={storyAssets.ganeish}
-          imageAlt="Anime-style portrait of Ganeish Ratanam smiling while sketching an interface."
-          name="Ganeish Ratanam"
-          role="The Design Thinker"
-        />
-      </div>
-
-      <footer className="story-signature">
-        <span aria-hidden="true">♕</span>
-        <strong>Rough Note</strong>
-        <i />
-        <p>Ideas. Designed. Built. For Impact.</p>
-      </footer>
+    <article ref={sceneRef} className="story-page story-page--founders" data-page-index="2" aria-labelledby="founders-title">
+      <h2 id="founders-title" className="character-scene__semantic-title" data-page-heading tabIndex={-1}>
+        Main Characters
+      </h2>
+      <DesktopFoundersScene />
+      <TabletFoundersScene />
+      <MobileFoundersScene />
     </article>
   );
 }

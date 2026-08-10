@@ -62,6 +62,39 @@ test('keeps the book inside every configured viewport without page-level overflo
   expect(layout.book!.bottom).toBeLessThanOrEqual(layout.viewportHeight + 1);
 });
 
+test('uses a dedicated founders composition and the immutable alpha cutout at each breakpoint', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto(`${STORY_PAGE}#founders`);
+
+  const expectedScene = testInfo.project.name.includes('mobile')
+    ? '.character-scene--mobile'
+    : testInfo.project.name.includes('tablet')
+      ? '.character-scene--tablet'
+      : '.character-scene--desktop';
+
+  await expect(page.locator(expectedScene)).toBeVisible();
+  await expect(page.locator(`${expectedScene} img[src$="founders-cutouts.png"]`)).toHaveCount(2);
+  await expect(page.locator(`${expectedScene} .character-cutout`).first()).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+
+  const layout = await page.evaluate((sceneSelector) => {
+    const scene = document.querySelector(sceneSelector);
+    const pageElement = document.querySelector('.story-book__page');
+    const sceneRect = scene?.getBoundingClientRect();
+    return {
+      horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      mobilePanels: document.querySelectorAll('.character-mobile-panel').length,
+      pageScrollWidth: pageElement?.scrollWidth,
+      pageClientWidth: pageElement?.clientWidth,
+      sceneWidth: sceneRect?.width
+    };
+  }, expectedScene);
+
+  expect(layout.horizontalOverflow).toBe(false);
+  expect(layout.pageScrollWidth).toBeLessThanOrEqual((layout.pageClientWidth ?? 0) + 1);
+  expect(layout.sceneWidth).toBeGreaterThan(0);
+  expect(layout.mobilePanels).toBe(7);
+});
+
 test('uses the shared curl renderer and ignores repeated activation while turning', async ({ page }, testInfo) => {
   test.skip(
     !testInfo.project.name.includes('desktop'),
