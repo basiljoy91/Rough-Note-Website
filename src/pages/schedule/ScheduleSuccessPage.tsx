@@ -1,4 +1,5 @@
 import { SiteLayout } from '../../app/layouts/SiteLayout';
+import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleSuccessPage.css';
 
 // SVG Confetti
@@ -131,10 +132,6 @@ const getInitialMeetingData = () => {
 export function ScheduleSuccessPage() {
   const meetingData = getInitialMeetingData();
 
-  const handleHome = () => {
-    window.location.href = '/html/index.html';
-  };
-
   const modeText = meetingData.mode === 'online' ? (
     <>Online Meeting<br/>(Google Meet)</>
   ) : (
@@ -148,6 +145,7 @@ export function ScheduleSuccessPage() {
       pageTitle="Meeting Confirmed"
     >
       <div className="schedule-step-wrapper">
+        <NotebookPageTransition pageSelector=".notebook-container-wide" />
         <div className="notebook-container-wide">
           <div className="notebook-bg-split">
             <div className="notebook-bg-left"></div>
@@ -221,9 +219,9 @@ export function ScheduleSuccessPage() {
                 
                 {/* Back to Home Button */}
                 <div className="success-action-container">
-                  <button onClick={handleHome} className="back-home-btn">
+                  <a href="/html/index.html" className="back-home-btn" data-notebook-turn>
                     <IconHome /> Back to Home
-                  </button>
+                  </a>
                 </div>
               </div>
               

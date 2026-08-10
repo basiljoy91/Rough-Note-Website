@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
+import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleStep1Page.css';
 
 // SVG Assets
@@ -100,6 +101,7 @@ export function ScheduleStep1Page() {
       pageTitle="Schedule a Meeting"
     >
       <div className="schedule-step-wrapper">
+        <NotebookPageTransition pageSelector=".notebook-container" />
         <div className="notebook-container">
           <img src="/assets/images/notebook-paper.jpeg" alt="Notebook Background" className="notebook-bg" />
           
@@ -188,7 +190,7 @@ export function ScheduleStep1Page() {
                     <input type="text" placeholder="Enter your company name" className="notebook-input" value={company} onChange={e => setCompany(e.target.value)} />
                   </div>
                   
-                  <a href={continueUrl} className="continue-button" style={{textDecoration: 'none'}}>
+                  <a href={continueUrl} className="continue-button" style={{textDecoration: 'none'}} data-notebook-turn>
                     Continue &rarr;
                   </a>
                   

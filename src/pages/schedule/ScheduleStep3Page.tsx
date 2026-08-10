@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
+import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleStep3Page.css';
 
 // Reused SVG Assets
@@ -186,6 +187,7 @@ export function ScheduleStep3Page() {
   searchParams.set('time', `${hour}:${minute} ${ampm}`);
   searchParams.set('mode', meetingMode);
   const continueUrl = `/html/schedule-step-4.html?${searchParams.toString()}`;
+  const backUrl = `/html/schedule-step-2.html${window.location.search}`;
 
   return (
     <SiteLayout
@@ -194,6 +196,7 @@ export function ScheduleStep3Page() {
       pageTitle="Select a Time"
     >
       <div className="schedule-step-wrapper">
+        <NotebookPageTransition pageSelector=".notebook-container" />
         <div className="notebook-container">
           <img src="/assets/images/notebook-paper.jpeg" alt="Notebook Background" className="notebook-bg" />
           
@@ -321,10 +324,10 @@ export function ScheduleStep3Page() {
             
             {/* Page Navigation Buttons */}
             <div className="step-navigation">
-              <button onClick={() => window.history.back()} className="back-button">
+              <a href={backUrl} className="back-button" data-notebook-turn>
                 &larr; Back
-              </button>
-              <a href={continueUrl} className="continue-button step-continue-btn">
+              </a>
+              <a href={continueUrl} className="continue-button step-continue-btn" data-notebook-turn>
                 Continue &rarr;
               </a>
             </div>

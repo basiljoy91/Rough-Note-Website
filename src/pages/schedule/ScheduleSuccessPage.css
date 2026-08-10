@@ -161,6 +161,7 @@
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  text-decoration: none;
 }
 
 .back-home-btn:hover {

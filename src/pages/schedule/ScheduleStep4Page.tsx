@@ -1,4 +1,5 @@
 import { SiteLayout } from '../../app/layouts/SiteLayout';
+import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleStep4Page.css';
 
 // SVGs
@@ -209,10 +210,8 @@ const getInitialMeetingData = () => {
 
 export function ScheduleStep4Page() {
   const meetingData = getInitialMeetingData();
-
-  const handleConfirm = () => {
-    window.location.href = '/html/schedule-success.html' + window.location.search;
-  };
+  const backUrl = `/html/schedule-step-3.html${window.location.search}`;
+  const confirmUrl = `/html/schedule-success.html${window.location.search}`;
 
   return (
     <SiteLayout
@@ -221,6 +220,7 @@ export function ScheduleStep4Page() {
       pageTitle="Confirm Your Meeting"
     >
       <div className="schedule-step-wrapper">
+        <NotebookPageTransition pageSelector=".notebook-container-wide" />
         <div className="notebook-container-wide">
           <div className="notebook-bg-split">
             <div className="notebook-bg-left"></div>
@@ -422,12 +422,12 @@ export function ScheduleStep4Page() {
 
             {/* Page Navigation Buttons */}
             <div className="step-navigation">
-              <button onClick={() => window.history.back()} className="back-button">
+              <a href={backUrl} className="back-button" data-notebook-turn>
                 &larr; Back
-              </button>
-              <button onClick={handleConfirm} className="step-confirm-btn">
+              </a>
+              <a href={confirmUrl} className="step-confirm-btn" data-notebook-turn>
                 <IconCalendarBtn /> Confirm My Meeting
-              </button>
+              </a>
             </div>
             
             {/* Notebook Footer */}
