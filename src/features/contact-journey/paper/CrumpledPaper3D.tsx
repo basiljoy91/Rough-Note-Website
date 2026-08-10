@@ -1,11 +1,12 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { ContactShadows } from '@react-three/drei';
+import { ContactShadows, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { createNoise3D } from 'simplex-noise';
 
 function PaperMesh({ transitioning = false }: { transitioning?: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const logoRef = useRef<THREE.Group>(null);
   const progressRef = useRef(0);
   
   const { geometry, crumpledPositions, flatPositions, unfoldDelays } = useMemo(() => {
@@ -142,6 +143,11 @@ function PaperMesh({ transitioning = false }: { transitioning?: boolean }) {
           ? 2 * globalProgress * globalProgress 
           : 1 - Math.pow(-2 * globalProgress + 2, 2) / 2;
 
+      if (logoRef.current) {
+        // Keeps the RN logo attached to the front of the paper as it flattens
+        logoRef.current.position.z = 1.2 - (easedGlobal * 1.15);
+      }
+
       const posAttribute = geometry.attributes.position;
       
       for (let i = 0; i < posAttribute.count; i++) {
@@ -179,15 +185,46 @@ function PaperMesh({ transitioning = false }: { transitioning?: boolean }) {
   });
 
   return (
-    <mesh ref={meshRef} geometry={geometry} castShadow receiveShadow>
-      <meshStandardMaterial 
-        color="#eaddcf" // Warm kraft paper beige
-        roughness={0.95} // Matte paper feel
-        metalness={0.02} // Very slight edge highlight
-        flatShading={true} // Essential for angular, geometric paper folds
-        side={THREE.DoubleSide} // Crucial: tangential displacement creates inverted overlapping triangles that must remain visible
-      />
-    </mesh>
+    <group>
+      <mesh ref={meshRef} geometry={geometry} castShadow receiveShadow>
+        <meshStandardMaterial 
+          color="#eaddcf" // Warm kraft paper beige
+          roughness={0.95} // Matte paper feel
+          metalness={0.02} // Very slight edge highlight
+          flatShading={true} // Essential for angular, geometric paper folds
+          side={THREE.DoubleSide} // Crucial: tangential displacement creates inverted overlapping triangles that must remain visible
+        />
+      </mesh>
+      
+      {/* RN Logo attached to the paper */}
+      <group ref={logoRef} position={[0, 0, 1.2]}>
+        <Html transform scale={0.4} style={{ pointerEvents: 'none' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '70px',
+            height: '70px',
+            borderRadius: '50%',
+            border: '4px solid #3d2118',
+            color: '#3d2118',
+            fontFamily: '"Patrick Hand", "Caveat", cursive',
+            fontSize: '32px',
+            fontWeight: 'bold',
+            position: 'relative',
+            opacity: 0.85
+          }}>
+            <div style={{
+              position: 'absolute',
+              inset: '-8px',
+              borderRadius: '50%',
+              border: '2px solid #3d2118',
+            }} />
+            RN
+          </div>
+        </Html>
+      </group>
+    </group>
   );
 }
 
