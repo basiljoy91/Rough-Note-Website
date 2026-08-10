@@ -8,8 +8,9 @@ function PaperMesh() {
   const meshRef = useRef<THREE.Mesh>(null);
   
   const geometry = useMemo(() => {
-    // Icosahedron provides a nice uniform geodesic sphere, detail 16 gives plenty of vertices for dense folds
-    const geo = new THREE.IcosahedronGeometry(1.2, 16); 
+    // Icosahedron provides a nice uniform geodesic sphere
+    // Detail 32 provides enough vertex density for sharp, thin paper folds without looking like low-poly triangles.
+    const geo = new THREE.IcosahedronGeometry(1.2, 32); 
     const posAttribute = geo.attributes.position;
     const vertex = new THREE.Vector3();
     const noise3D = createNoise3D();
@@ -21,43 +22,60 @@ function PaperMesh() {
       const py = vertex.y;
       const pz = vertex.z;
       
-      // Base noise for fine wrinkles
-      let n1 = noise3D(px * 3.0, py * 3.0, pz * 3.0) * 0.08;
+      const originalNormal = vertex.clone().normalize();
       
-      // Sharp ridges (using absolute value of noise)
-      // Math.abs creates sharp valleys, 1.0 - Math.abs creates sharp ridges
-      let rawN2 = noise3D(px * 1.8, py * 1.8, pz * 1.8);
-      let n2 = (1.0 - Math.abs(rawN2)) * 0.2;
+      // Calculate tangent vectors for lateral displacement (this creates overlapping folds)
+      const up = Math.abs(originalNormal.y) > 0.99 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 1, 0);
+      const tangent1 = new THREE.Vector3().crossVectors(originalNormal, up).normalize();
+      const tangent2 = new THREE.Vector3().crossVectors(originalNormal, tangent1).normalize();
       
-      // Large structural folds
-      let n3 = noise3D(px * 0.9, py * 0.9, pz * 0.9) * 0.3;
+      // 1. TANGENTIAL FOLDS (Causes vertices to slide over each other, creating true overlapping layers)
+      // Large folding motions
+      let tanNoise1 = noise3D(px * 1.1, py * 1.1, pz * 1.1) * 0.45;
+      let tanNoise2 = noise3D(px * 1.1 + 10, py * 1.1 + 10, pz * 1.1 + 10) * 0.45;
       
-      let displacement = n1 + n2 + n3;
+      // Secondary tangential folds for smaller overlapping edges
+      let tanNoise3 = noise3D(px * 2.2, py * 2.2, pz * 2.2) * 0.18;
+      let tanNoise4 = noise3D(px * 2.2 + 20, py * 2.2 + 20, pz * 2.2 + 20) * 0.18;
       
-      // Central Recessed/Crater Structure (Prominent on front face: z > 0)
+      vertex.add(tangent1.multiplyScalar(tanNoise1 + tanNoise3));
+      vertex.add(tangent2.multiplyScalar(tanNoise2 + tanNoise4));
+      
+      // 2. RADIAL MACRO DEPTH (Pushing the folded clumps inward and outward)
+      // Using Math.abs to create sharp valleys where folds meet
+      let radNoisePrimary = noise3D(px * 1.0 + 30, py * 1.0 + 30, pz * 1.0 + 30);
+      let radialDisp = Math.abs(radNoisePrimary) * 0.25; 
+      
+      // 3. CENTRAL FRONT STRUCTURE
+      // Broad flattened paper surface overlaid with folds
       const craterDist = Math.sqrt(px * px + py * py);
-      if (pz > 0 && craterDist < 0.7) {
-        // Deepen the crater towards the center
-        const depth = Math.max(0, 0.7 - craterDist) * 1.1;
-        // Add stepped folds inside the crater
-        const craterSteps = Math.abs(Math.sin(craterDist * 12)) * 0.08;
-        displacement -= (depth + craterSteps);
+      if (pz > 0.3 && craterDist < 0.85) {
+        // Flatten and push inward
+        let depth = Math.max(0, 0.85 - craterDist) * 0.5;
+        
+        // Add overlapping planar steps
+        let layerNoise = noise3D(px * 1.8, py * 1.8, pz * 1.8);
+        let steps = (Math.floor(craterDist * 2.5 + layerNoise) / 2.5) * 0.15;
+        
+        radialDisp -= (depth + steps);
       }
       
-      // Irregular, asymmetrical silhouette overall
-      const shapeNoiseX = noise3D(py * 0.5, pz * 0.5, 0) * 0.15;
-      const shapeNoiseY = noise3D(px * 0.5, 0, pz * 0.5) * 0.15;
+      // 4. OVERALL SILHOUETTE (Keep it compact and dense)
+      const shapeNoiseX = noise3D(py * 0.6, pz * 0.6, 0) * 0.05;
+      const shapeNoiseY = noise3D(px * 0.6, 0, pz * 0.6) * 0.05;
+      const shapeNoiseZ = noise3D(px * 0.6, py * 0.6, 0) * 0.05;
       
-      vertex.x *= 0.95 + shapeNoiseX;
-      vertex.y *= 0.90 + shapeNoiseY;
+      vertex.x *= 1.0 + shapeNoiseX;
+      vertex.y *= 1.0 + shapeNoiseY;
+      vertex.z *= 1.0 + shapeNoiseZ;
       
-      // Apply displacement along normal
-      vertex.add(vertex.clone().normalize().multiplyScalar(displacement));
+      // Apply radial displacement along the original normal
+      vertex.add(originalNormal.multiplyScalar(radialDisp));
       
       posAttribute.setXYZ(i, vertex.x, vertex.y, vertex.z);
     }
     
-    // Crucial for flat shading lighting calculation
+    // Crucial for flat shading lighting calculation and sharp paper edges
     geo.computeVertexNormals();
     return geo;
   }, []);
@@ -65,10 +83,11 @@ function PaperMesh() {
   return (
     <mesh ref={meshRef} geometry={geometry} castShadow receiveShadow>
       <meshStandardMaterial 
-        color="#e6d4ba" // Warm kraft paper cream/beige
-        roughness={0.9} 
-        metalness={0.0} 
-        flatShading={true} // Creates the angular, faceted crumpled planes
+        color="#eaddcf" // Warm kraft paper beige
+        roughness={0.95} // Matte paper feel
+        metalness={0.02} // Very slight edge highlight
+        flatShading={true} // Essential for angular, geometric paper folds
+        side={THREE.DoubleSide} // Crucial: tangential displacement creates inverted overlapping triangles that must remain visible
       />
     </mesh>
   );
@@ -77,21 +96,21 @@ function PaperMesh() {
 export default function CrumpledPaper3D() {
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-      <Canvas shadows camera={{ position: [0, 0, 4.2], fov: 45 }}>
+      <Canvas shadows camera={{ position: [0, 0, 4.4], fov: 40 }}>
         {/* Ambient Fill Light */}
-        <ambientLight intensity={0.6} color="#ffe8cc" />
+        <ambientLight intensity={0.5} color="#ffe8cc" />
         
         {/* Soft Directional Key Light from above/front matching reference */}
         <directionalLight 
-          position={[2, 3.5, 3]} 
-          intensity={1.2} 
+          position={[2.5, 3.5, 3.0]} 
+          intensity={1.1} 
           castShadow 
-          shadow-mapSize-width={1024} 
-          shadow-mapSize-height={1024} 
-          shadow-bias={-0.0005}
+          shadow-mapSize-width={2048} // High-res shadows for crisp paper edges
+          shadow-mapSize-height={2048} 
+          shadow-bias={-0.0003}
         />
         
-        {/* Subdued fill light to reveal details in shadows */}
+        {/* Subdued fill light from opposite side to reveal fold details in shadows */}
         <directionalLight 
           position={[-3, -1, 1]} 
           intensity={0.4} 
@@ -103,12 +122,12 @@ export default function CrumpledPaper3D() {
         
         {/* Realistic ground contact shadow */}
         <ContactShadows 
-          position={[0, -1.3, 0]} 
+          position={[0, -1.25, 0]} 
           opacity={0.8} 
           scale={3.5} 
           blur={1.8} 
           far={2.5} 
-          color="#382512" // Deep warm brown shadow
+          color="#382512" // Deep warm brown shadow to ground the object
         />
       </Canvas>
     </div>
