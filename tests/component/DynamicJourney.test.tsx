@@ -10,11 +10,14 @@ describe('DynamicJourney', () => {
     const { container } = render(<DynamicJourney />);
 
     for (const journey of Object.values(journeyDataById)) {
-      await user.click(
-        screen.getByRole('button', {
-          name: `Show the ${journey.title} journey`
-        })
-      );
+      const selectedTab = screen.getByRole('button', {
+        name: `Show the ${journey.title} journey`
+      });
+      await user.click(selectedTab);
+
+      expect(selectedTab).toHaveAttribute('aria-pressed', 'true');
+      expect(selectedTab).toHaveClass('dj-card--active');
+      expect(container.querySelectorAll('.dj-card--active')).toHaveLength(1);
 
       expect(
         screen.getByRole('heading', { name: `${journey.title} Journey` })

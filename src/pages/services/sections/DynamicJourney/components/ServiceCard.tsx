@@ -31,7 +31,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
     >
       <img src="/assets/images/sti-1.png" alt="Paper" className="dj-card__bg" />
       <span className="dj-card__tape" aria-hidden="true" />
-      <span className="dj-card__pin" style={{ backgroundColor: pinColor }} aria-hidden="true" />
+      <span
+        className="dj-card__pin"
+        style={{ '--pin-color': pinColor } as CSSProperties}
+        aria-hidden="true"
+      />
       <div className="dj-card__content">
         <Icon className="dj-card__icon" aria-hidden="true" />
         <h4 className="dj-card__title" dangerouslySetInnerHTML={{ __html: title }} />

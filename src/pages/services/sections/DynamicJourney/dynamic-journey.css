@@ -3,6 +3,8 @@
 .dynamic-journey {
   --journey-accent: #b75b38;
   --journey-ink: #1f1b17;
+  --selector-active-gold: #c38a2d;
+  --selector-active-gold-deep: #8b552c;
   position: relative;
   isolation: isolate;
   width: 100%;
@@ -278,8 +280,8 @@
   pointer-events: none;
   background: linear-gradient(
     145deg,
-    color-mix(in srgb, var(--card-accent) 18%, #fff3c8),
-    color-mix(in srgb, var(--card-accent) 34%, #edcf8c)
+    color-mix(in srgb, var(--selector-active-gold) 22%, #fff3c8),
+    color-mix(in srgb, var(--selector-active-gold) 42%, #edcf8c)
   );
   clip-path: polygon(1% 2%, 97% 0, 100% 93%, 93% 100%, 49% 97%, 4% 100%, 0 7%);
   mix-blend-mode: multiply;
@@ -335,8 +337,8 @@
 }
 
 .dj-card--active .dj-card__title {
-  color: color-mix(in srgb, var(--card-accent) 72%, #211c18);
-  text-decoration: underline 2px var(--card-accent);
+  color: var(--selector-active-gold-deep);
+  text-decoration: underline 2px var(--selector-active-gold);
   text-underline-offset: 6px;
 }
 
@@ -348,6 +350,7 @@
   width: 17px;
   height: 17px;
   border-radius: 50%;
+  background-color: var(--pin-color);
   opacity: 0;
   transform: translateX(-50%);
   box-shadow: inset -3px -3px 5px rgb(0 0 0 / 30%), 2px 6px 4px rgb(0 0 0 / 25%);
@@ -378,6 +381,7 @@
 }
 
 .dj-card--active .dj-card__pin {
+  background-color: var(--selector-active-gold);
   opacity: 1;
 }
 
