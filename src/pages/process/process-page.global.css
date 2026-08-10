@@ -1746,3 +1746,395 @@
   .hww-paper-clip--1 { top: -112px; right: 18px; }
   .hww-paper-clip--2 { top: -86px; right: 48px; }
 }
+
+/* --------------------------------------------------------------------------
+   Notebook spread calibration — Pages 05 and 07
+
+   The supplied art direction is a 3:2 notebook spread, not a conventional
+   vertically flowing web section. Keeping every object inside one responsive
+   aspect-ratio canvas makes the composition scale as a single illustration and
+   prevents the notes, headings and paper cards from drifting apart.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  .our-plans,
+  .how-we-work {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 14px clamp(18px, 2.25vw, 36px);
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, rgba(84, 57, 27, 0.08), transparent 5%, transparent 95%, rgba(84, 57, 27, 0.08)),
+      linear-gradient(rgba(255, 252, 244, 0.83), rgba(247, 239, 224, 0.83)),
+      url('/assets/images/notebook-paper.jpeg') center / cover;
+    border-block: 8px solid rgba(76, 45, 20, 0.72);
+    box-shadow: inset 0 2px 15px rgba(77, 48, 25, 0.16), inset 0 -2px 15px rgba(77, 48, 25, 0.13);
+  }
+
+  .our-plans__inner,
+  .how-we-work__inner {
+    container-type: inline-size;
+    position: relative;
+    width: min(100%, 1536px);
+    aspect-ratio: 3 / 2;
+    margin-inline: auto;
+    background:
+      radial-gradient(circle at 16% 32%, rgba(93, 63, 31, 0.055) 0 1px, transparent 1.5px) 0 0 / 19px 19px,
+      linear-gradient(96deg, transparent 49.75%, rgba(108, 83, 54, 0.07) 50%, transparent 50.25%);
+  }
+
+  .our-plans::before,
+  .how-we-work::before {
+    width: 52px;
+    background:
+      radial-gradient(ellipse 40px 14px at -2px 26px, transparent 55%, #171410 58% 66%, transparent 69%) 0 0 / 52px 58px repeat-y,
+      linear-gradient(90deg, rgba(51, 38, 24, 0.22), transparent 78%);
+  }
+
+  /* Page 05 --------------------------------------------------------------- */
+  .plans-page-tag {
+    top: 1.6cqi;
+    left: 4.4cqi;
+    padding: 0.4cqi 1.9cqi 0.4cqi 3.1cqi;
+    font-size: 1.2cqi;
+  }
+
+  .plans-page-tag .paper-clip {
+    width: 1cqi;
+    height: 3.2cqi;
+  }
+
+  .plans-header {
+    position: absolute;
+    top: 3.5cqi;
+    left: 18cqi;
+    width: 64cqi;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .plans-pre-title {
+    margin: 0 0 0.45cqi;
+    font-size: 1.5cqi;
+    line-height: 1;
+  }
+
+  .plans-title {
+    margin: 0;
+    font-family: 'Caveat Brush', 'Kalam', cursive;
+    font-size: 5.4cqi;
+    font-weight: 400;
+    line-height: 0.93;
+    letter-spacing: 0;
+  }
+
+  .plans-title-underline {
+    width: 72%;
+    height: 1cqi;
+    margin: 0.1cqi auto 0.55cqi;
+  }
+
+  .plans-subtitle {
+    max-width: none;
+    margin: 0;
+    font-size: 1.25cqi;
+    line-height: 1.35;
+  }
+
+  .plans-star-doodle-header {
+    top: 10.8cqi;
+    right: 5.2cqi;
+    width: 1.65cqi;
+    height: 1.65cqi;
+  }
+
+  .plans-sticky {
+    filter: drop-shadow(0 0.35cqi 0.3cqi rgba(53, 39, 20, 0.2)) drop-shadow(0 0.9cqi 1cqi rgba(53, 39, 20, 0.12));
+  }
+
+  .plans-sticky--left {
+    top: 8.6cqi;
+    left: 4.8cqi;
+    width: 13.4cqi;
+    height: 13.4cqi;
+  }
+
+  .plans-sticky--right {
+    top: 2.4cqi;
+    right: 3.1cqi;
+    width: 14.2cqi;
+    height: 14.2cqi;
+  }
+
+  .plans-sticky__content {
+    padding: 2.35cqi 1.25cqi 1.25cqi;
+    font-size: 1.12cqi;
+    line-height: 1.35;
+  }
+
+  .plans-sticky--right .plans-sticky__content { padding-top: 2.8cqi; }
+  .plans-sticky--right .binder-clip { top: 0.6cqi; transform: translateX(-50%) scale(0.72); transform-origin: top center; }
+
+  .plans-columns-wrapper {
+    position: absolute;
+    top: 19.6cqi;
+    left: 6.7cqi;
+    right: 6.7cqi;
+    width: auto;
+    max-width: none;
+    height: 35.7cqi;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 6.7cqi;
+    margin: 0;
+  }
+
+  .plans-column {
+    top: 0;
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 0;
+    padding: 3.2cqi 2.35cqi 1.5cqi;
+    border-width: 1.5px;
+    border-radius: 1.6cqi;
+    background: rgba(255, 253, 248, 0.38);
+  }
+
+  .plans-column__header {
+    top: -1.55cqi;
+    min-width: 28cqi;
+    justify-content: center;
+    gap: 0.75cqi;
+    padding: 0.35cqi 1.2cqi;
+    background: transparent;
+  }
+
+  .plans-tape { width: 29cqi; height: 2.8cqi; }
+  .plans-tape--yellow { width: 31cqi; }
+  .plans-icon-small { width: 1.65cqi; height: 1.65cqi; min-width: 0; min-height: 0; }
+  .plans-column__header h2 { font-size: 1.42cqi; }
+  .plans-column__desc { margin: 0 0 1.2cqi; font-size: 1.05cqi; line-height: 1.3; }
+
+  .plans-steps {
+    width: calc(100% - 13.2cqi);
+    gap: 0.08cqi;
+  }
+
+  .plans-step { gap: 0.75cqi; }
+  .plans-step__icon { width: 3cqi; height: 3cqi; }
+  .plans-step__icon svg { width: 1.65cqi; height: 1.65cqi; }
+  .plans-step-arrow { width: 0.7cqi; height: 1.35cqi; margin-left: 1.15cqi; }
+  .plans-step__content h3 { margin-bottom: 0.08cqi; font-size: 1.02cqi; }
+  .plans-step__content p { font-size: 0.78cqi; line-height: 1.24; }
+
+  .plans-transform-card,
+  .plans-transform-card--right {
+    top: 9.3cqi;
+    right: 1.45cqi;
+    width: 11.1cqi;
+    min-height: 24.8cqi;
+    box-sizing: border-box;
+    padding: 1.7cqi 0.85cqi 1cqi;
+    gap: 0.45cqi;
+  }
+
+  .plans-transform-card h4 { font-size: 1.05cqi; }
+  .plans-tape--small { width: 6.8cqi; height: 1.75cqi; top: -0.8cqi; }
+  .plans-step-arrow-small { width: 0.55cqi; height: 1.35cqi; }
+  .plans-sketch-icon { width: 3.6cqi; height: 3.6cqi; }
+  .plans-sketch-wireframe { width: 8.5cqi; height: 5.2cqi; }
+
+  .plans-divider {
+    top: 11.6cqi;
+    left: 50%;
+    width: 6.4cqi;
+    gap: 0.45cqi;
+  }
+
+  .plans-divider-rays { width: 3.1cqi; height: 1.45cqi; }
+  .plans-divider-circle { width: 5.6cqi; height: 5.6cqi; font-size: 2.15cqi; }
+  .plans-divider-arrow { width: 2cqi; height: 3cqi; }
+  .plans-divider-text { font-size: 0.88cqi; }
+  .plans-star-doodle-divider { bottom: -3.2cqi; width: 1.45cqi; height: 1.45cqi; }
+
+  .plans-bottom {
+    position: absolute;
+    left: 10.5cqi;
+    bottom: 1.3cqi;
+    width: 78cqi;
+    max-width: none;
+    height: 9.4cqi;
+    margin: 0;
+  }
+
+  .plans-bottom-box {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    padding: 1cqi 2cqi;
+    gap: 2cqi;
+    justify-content: space-between;
+    background: rgba(255, 253, 248, 0.28);
+  }
+
+  .plans-coffee-container { width: 6.6cqi; height: 6.6cqi; margin: 0; }
+  .plans-coffee-cup { top: 0.35cqi; left: 0.35cqi; width: 5.8cqi; height: 5.8cqi; }
+  .plans-coffee-stain { left: -1.4cqi; width: 7cqi; height: 7cqi; }
+  .plans-bottom-text { font-size: 1.15cqi; line-height: 1.3; white-space: nowrap; }
+  .plans-features { flex: 1; justify-content: flex-end; gap: 0.35cqi; }
+  .plans-feature { min-width: 7.8cqi; padding: 0 0.85cqi; gap: 0.3cqi; }
+  .plans-feature__icon { width: 3.2cqi; height: 3.2cqi; padding: 0.5cqi; }
+  .plans-feature__text { font-size: 0.67cqi; }
+  .plans-right-pen { top: -28cqi; right: -3.4cqi; width: 9.5cqi; }
+  .plans-bottom-pencil { top: auto; bottom: -1.8cqi; left: -1.8cqi; width: 10cqi; }
+
+  /* Page 07 --------------------------------------------------------------- */
+  .hww-page-tag {
+    top: 1.7cqi;
+    left: 4.4cqi;
+    padding: 0.4cqi 1.9cqi 0.4cqi 3.1cqi;
+    font-size: 1.2cqi;
+  }
+
+  .hww-header {
+    position: absolute;
+    top: 3.6cqi;
+    left: 23cqi;
+    width: 54cqi;
+    margin: 0;
+  }
+
+  .hww-title {
+    margin: 0;
+    font-family: 'Caveat Brush', 'Kalam', cursive;
+    font-size: 5.05cqi;
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: 0;
+  }
+
+  .hww-title-underline { width: 70%; height: 1cqi; margin: 0.2cqi auto 0.6cqi; }
+  .hww-subtitle { max-width: none; margin: 0; font-size: 1.18cqi; line-height: 1.35; }
+
+  .hww-sticky--top-right {
+    top: 3.8cqi;
+    right: 5.6cqi;
+    width: 16.5cqi;
+    height: 16.5cqi;
+  }
+
+  .hww-sticky__content { top: 1.3cqi; padding: 2cqi 1.5cqi; font-size: 1.18cqi; line-height: 1.4; }
+
+  .hww-columns-wrapper {
+    position: absolute;
+    top: 20.2cqi;
+    left: 6.6cqi;
+    right: 6.6cqi;
+    width: auto;
+    max-width: none;
+    height: 38.4cqi;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 7.6cqi;
+    margin: 0;
+  }
+
+  .hww-column {
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 0;
+    padding: 3.3cqi 2.45cqi 1.2cqi;
+    border-radius: 1.6cqi;
+    background: rgba(255, 253, 248, 0.32);
+  }
+
+  .hww-column__header {
+    top: -1.55cqi;
+    min-width: 28cqi;
+    justify-content: center;
+    gap: 0.8cqi;
+    padding: 0.38cqi 1.3cqi;
+    background: transparent;
+  }
+
+  .hww-tape { width: 29cqi; height: 2.8cqi; }
+  .hww-tape--yellow { width: 31cqi; }
+  .hww-icon-small { width: 1.8cqi; height: 1.8cqi; }
+  .hww-column__header h2 { font-size: 1.45cqi; }
+  .hww-column__desc { margin: 0 0 1.3cqi; font-size: 0.95cqi; line-height: 1.32; }
+
+  .hww-service-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 1cqi;
+  }
+
+  .hww-service-item { min-height: 0; padding: 0.48cqi 0.2cqi; gap: 0.35cqi; }
+  .hww-service-icon { width: 2.05cqi; height: 2.05cqi; }
+  .hww-service-item span { font-size: 0.64cqi; line-height: 1.16; }
+  .hww-green-note { margin-bottom: 0.75cqi; padding: 0.35cqi 0.9cqi; }
+  .hww-note-text { font-size: 0.67cqi; }
+  .hww-btn { padding: 0.6cqi 1.8cqi; font-size: 0.82cqi; }
+
+  .hww-badge { top: 0.4cqi; right: -0.7cqi; padding: 0.5cqi 0.8cqi; font-size: 0.45cqi; }
+  .hww-steps { flex: 1; min-height: 0; margin-bottom: 0.75cqi; }
+  .hww-step { flex: 1; min-height: 0; padding: 0.45cqi 0; gap: 0.8cqi; }
+  .hww-step__icon { width: 3.2cqi; height: 3.2cqi; }
+  .hww-step__icon svg { width: 1.7cqi; height: 1.7cqi; }
+  .hww-step__content h3 { margin-bottom: 0.18cqi; font-size: 1cqi; }
+  .hww-step__content p { font-size: 0.66cqi; line-height: 1.3; }
+
+  .hww-divider { top: 50%; width: 9.3cqi; height: 9.3cqi; }
+  .hww-divider-circle { width: 5.7cqi; height: 5.7cqi; font-size: 2.05cqi; }
+  .hww-divider-arrow-left,
+  .hww-divider-arrow-right { width: 3cqi; height: 1.3cqi; }
+
+  .hww-bottom-area {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  .hww-sticky--bottom-left {
+    top: 52.4cqi;
+    left: -0.8cqi;
+    width: 12.8cqi;
+    height: 12.8cqi;
+    margin: 0;
+  }
+
+  .hww-sticky__content--list { left: 0.7cqi; padding: 2.3cqi 1.2cqi; }
+  .hww-checklist li { margin-bottom: 0.2cqi; font-size: 0.65cqi; }
+  .hww-heart-doodle { bottom: 0.7cqi; right: 2.4cqi; width: 1.4cqi; height: 1.4cqi; }
+
+  .hww-center-note {
+    top: 59.2cqi;
+    left: 50%;
+    width: 62cqi;
+    height: 8cqi;
+    margin: 0;
+  }
+
+  .hww-center-note__content { flex-direction: row; gap: 1.2cqi; padding: 1.6cqi 3cqi; text-align: left; }
+  .hww-bulb-icon { width: 2.8cqi; height: 2.8cqi; }
+  .hww-center-note__content p { font-size: 1cqi; }
+
+  .hww-pinned-note {
+    top: 56cqi;
+    right: 2.2cqi;
+    width: 15cqi;
+    height: 10.5cqi;
+    margin: 0;
+  }
+
+  .hww-pinned-note__content { padding: 3cqi 1.4cqi 1cqi; }
+  .hww-pinned-note__content p { font-size: 1cqi; }
+  .hww-right-pencil { top: 27cqi; right: -1.7cqi; width: 9.5cqi; }
+  .hww-paper-clip--1 { top: 55.5cqi; right: 2.8cqi; }
+  .hww-paper-clip--2 { top: 58cqi; right: 5.2cqi; }
+}
