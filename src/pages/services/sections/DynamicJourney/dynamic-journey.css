@@ -237,6 +237,7 @@
 .dj-selector {
   display: grid;
   grid-template-columns: repeat(7, minmax(118px, 1fr));
+  align-items: start;
   gap: clamp(10px, 1.1vw, 18px);
   width: min(100%, 1360px);
   margin: 0 auto 28px;
@@ -245,9 +246,10 @@
 .dj-card {
   appearance: none;
   position: relative;
+  aspect-ratio: 1037 / 1280;
   min-width: 0;
-  min-height: clamp(166px, 11.2vw, 192px);
-  padding: 20px 11px 14px;
+  min-height: 0;
+  padding: clamp(27px, 2vw, 35px) clamp(13px, 1vw, 18px) clamp(22px, 1.6vw, 29px);
   overflow: visible;
   border: 0;
   color: inherit;
@@ -306,7 +308,8 @@
   position: relative;
   z-index: 3;
   height: 100%;
-  padding-top: 13px;
+  min-width: 0;
+  padding-top: clamp(8px, 0.7vw, 13px);
 }
 
 .dj-card__icon {
@@ -317,12 +320,18 @@
 }
 
 .dj-card__title {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 2.16em;
   margin: 0;
   font-family: 'Caveat', cursive;
-  font-size: clamp(1.25rem, 1.45vw, 1.62rem);
+  font-size: clamp(1.14rem, 1.3vw, 1.48rem);
   font-weight: 600;
-  line-height: 1.05;
+  line-height: 1.08;
+  overflow-wrap: anywhere;
   text-align: center;
+  text-wrap: balance;
 }
 
 .dj-card--active .dj-card__title {
@@ -410,28 +419,29 @@
 .dj-timeline-wrapper {
   position: relative;
   width: 100%;
-  min-height: 405px;
+  min-height: clamp(335px, 23vw, 380px);
   filter: drop-shadow(2px 6px 6px rgb(54 40 25 / 14%));
 }
 
 .dj-timeline-wrapper--sheet {
-  min-height: 425px;
+  min-height: 470px;
   background: url('/assets/images/sti-2.png') center / 100% 100% no-repeat;
 }
 
 .dj-timeline__content {
   width: 100%;
   min-height: inherit;
-  padding: 22px 18px 28px;
+  padding: 26px 22px 38px;
 }
 
 .dj-timeline-wrapper--sheet .dj-timeline__content {
-  padding: 30px 38px 34px;
+  /* The source image has transparent torn edges; keep text inside its paper area. */
+  padding: clamp(42px, 3vw, 54px) clamp(58px, 5.4%, 82px) clamp(62px, 4vw, 76px);
 }
 
 .dj-timeline__header {
   display: grid;
-  grid-template-columns: minmax(290px, 0.9fr) minmax(360px, 1.35fr) 155px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr) minmax(120px, 155px);
   align-items: center;
   gap: 26px;
   min-height: 78px;
@@ -441,20 +451,24 @@
 .dj-timeline__title {
   display: inline-block;
   position: relative;
-  width: max-content;
+  width: 100%;
   max-width: 100%;
   margin: 0;
   padding-bottom: 4px;
   font-family: 'Caveat', cursive;
-  font-size: clamp(2.05rem, 2.5vw, 3rem);
+  font-size: clamp(1.88rem, 2.25vw, 2.72rem);
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.04;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .dj-timeline__subtitle {
+  min-width: 0;
   margin: 0;
   font-size: clamp(0.92rem, 1vw, 1.12rem);
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .dj-timeline__stamp {
@@ -478,7 +492,7 @@
   display: grid;
   grid-template-columns: repeat(var(--step-count), minmax(0, 1fr));
   align-items: stretch;
-  gap: 10px;
+  gap: clamp(8px, 0.75vw, 12px);
   width: 100%;
 }
 
@@ -488,16 +502,16 @@
   align-items: center;
   position: relative;
   min-width: 0;
-  min-height: 285px;
-  padding: 22px 12px 14px;
+  min-height: clamp(320px, 21vw, 355px);
+  padding: 28px 16px 27px;
   color: #24201c;
   background: url('/assets/images/d-3-p-2-2.png') center / 100% 100% no-repeat;
   text-align: center;
 }
 
 .dj-timeline-wrapper--sheet .dj-step {
-  min-height: 255px;
-  padding: 12px 10px 8px;
+  min-height: 270px;
+  padding: 16px 9px 18px;
   background: none;
 }
 
@@ -505,7 +519,7 @@
   display: grid;
   place-items: center;
   position: absolute;
-  top: -6px;
+  top: 15px;
   left: 50%;
   width: 34px;
   height: 34px;
@@ -519,29 +533,47 @@
   transform: translateX(-50%) rotate(-3deg);
 }
 
+.dj-timeline-wrapper--sheet .dj-step__num {
+  top: 0;
+}
+
 .dj-step__icon {
   flex: none;
   width: clamp(42px, 3.4vw, 60px);
   height: clamp(42px, 3.4vw, 60px);
-  margin: 24px 0 8px;
+  margin: 50px 0 10px;
   stroke-width: 1.55;
 }
 
+.dj-timeline-wrapper--sheet .dj-step__icon {
+  margin: 31px 0 9px;
+}
+
 .dj-step__title {
-  min-height: 42px;
+  display: grid;
+  place-items: start center;
+  width: 100%;
+  min-height: 3.2em;
   margin: 0 0 7px;
   font-family: 'Caveat', cursive;
-  font-size: clamp(1.15rem, 1.28vw, 1.46rem);
+  font-size: clamp(1.04rem, 1.12vw, 1.3rem);
   font-weight: 600;
-  line-height: 1.05;
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.dj-timeline-wrapper--sheet .dj-step__title {
+  min-height: 2.3em;
 }
 
 .dj-step__list {
   width: 100%;
   margin: 0;
-  padding-left: 18px;
-  font-size: clamp(0.67rem, 0.72vw, 0.82rem);
+  padding-left: 15px;
+  font-size: clamp(0.65rem, 0.68vw, 0.78rem);
   line-height: 1.45;
+  overflow-wrap: anywhere;
   text-align: left;
 }
 
@@ -551,7 +583,7 @@
 
 .dj-step__arrow {
   position: absolute;
-  top: 118px;
+  top: 132px;
   right: -16px;
   z-index: 5;
   display: grid;
@@ -803,7 +835,7 @@
   }
 
   .dj-timeline__header {
-    grid-template-columns: minmax(235px, 0.8fr) minmax(280px, 1.15fr) 130px;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr) 130px;
     gap: 16px;
   }
 
@@ -838,7 +870,7 @@
   }
 
   .dj-card {
-    min-height: 178px;
+    min-height: 0;
   }
 
   .dj-journey-row {
@@ -917,17 +949,18 @@
   }
 
   .dj-selector {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 210px));
+    justify-content: center;
     gap: 12px;
   }
 
   .dj-card {
-    min-height: 180px;
+    min-height: 0;
   }
 
   .dj-card:last-child {
     grid-column: 1 / -1;
-    width: 50%;
+    width: 100%;
     justify-self: center;
   }
 
@@ -944,6 +977,10 @@
 
   .dj-timeline-wrapper--sheet {
     background-size: cover;
+  }
+
+  .dj-timeline-wrapper--sheet .dj-timeline__content {
+    padding: 46px 30px 54px;
   }
 
   .dj-timeline__header {
@@ -976,9 +1013,21 @@
 
   .dj-step,
   .dj-timeline-wrapper--sheet .dj-step {
-    min-height: 285px;
-    padding: 24px 34px 20px;
+    min-height: 330px;
+    padding: 30px 38px 34px;
     background: url('/assets/images/d-3-p-2-2.png') center / 100% 100% no-repeat;
+  }
+
+  .dj-timeline-wrapper--sheet .dj-step__num {
+    top: 15px;
+  }
+
+  .dj-timeline-wrapper--sheet .dj-step__icon {
+    margin-top: 50px;
+  }
+
+  .dj-timeline-wrapper--sheet .dj-step__title {
+    min-height: 3.2em;
   }
 
   .dj-step__arrow {
