@@ -512,8 +512,120 @@
 }
 
 @media (min-width: 1025px) {
+  .services-wall {
+    min-height: auto;
+    padding: calc(2rem + 18px) clamp(2.5rem, 4vw, 4.5rem) 2.25rem;
+  }
+
+  .services-wall__board {
+    width: min(100%, 1420px);
+    max-width: 1420px;
+    aspect-ratio: 1.46 / 1;
+  }
+
   .services-wall__pin {
     display: none;
+  }
+
+  .services-wall__card {
+    width: 25.5%;
+  }
+
+  .services-wall__card--1,
+  .services-wall__card--2,
+  .services-wall__card--3 {
+    top: 2%;
+  }
+
+  .services-wall__card--1 {
+    left: 2.25%;
+    width: 25.5%;
+  }
+
+  .services-wall__card--2 {
+    left: 37%;
+    width: 26%;
+  }
+
+  .services-wall__card--3 {
+    left: auto;
+    right: 2.25%;
+    width: 25.5%;
+  }
+
+  .services-wall__card--4,
+  .services-wall__card--6 {
+    top: 39%;
+    width: 25.5%;
+  }
+
+  .services-wall__card--4 { left: 2.25%; }
+  .services-wall__card--6 { left: auto; right: 2.25%; }
+
+  .services-wall__card--5,
+  .services-wall__card--7 {
+    top: 67%;
+    width: 25.5%;
+  }
+
+  .services-wall__card--5 { left: 2.25%; }
+  .services-wall__card--7 { left: auto; right: 2.25%; }
+
+  .services-wall__board.visible .services-wall__card--1 { transform: rotate(-0.35deg); }
+  .services-wall__board.visible .services-wall__card--2 { transform: rotate(0.15deg); }
+  .services-wall__board.visible .services-wall__card--3 { transform: rotate(0.35deg); }
+  .services-wall__board.visible .services-wall__card--4 { transform: rotate(0.2deg); }
+  .services-wall__board.visible .services-wall__card--5 { transform: rotate(-0.15deg); }
+  .services-wall__board.visible .services-wall__card--6 { transform: rotate(-0.2deg); }
+  .services-wall__board.visible .services-wall__card--7 { transform: rotate(0.25deg); }
+
+  .services-wall__notebook-wrapper {
+    top: 33.5%;
+    left: 40.25%;
+    width: 19.5%;
+    height: 45.5%;
+  }
+
+  .services-wall__notebook-title {
+    font-size: clamp(1.15rem, 1.5vw, 1.75rem);
+    margin-bottom: 0.7rem;
+    padding-top: 8px;
+    transform: translateY(-10px);
+  }
+
+  .services-wall__workflow {
+    margin-top: -18px;
+    font-size: clamp(8px, 0.62vw, 10px);
+  }
+
+  .services-wall__bottom {
+    top: 79%;
+    left: 37%;
+    width: 26%;
+  }
+
+  .services-wall__bottom-content {
+    font-size: clamp(0.72rem, 0.85vw, 1rem);
+  }
+
+  .services-wall__pencil {
+    max-width: 112px;
+  }
+
+  .services-wall__pencil--left {
+    top: 43%;
+    left: -3.25%;
+  }
+
+  .services-wall__pencil--right {
+    top: 43%;
+    right: -3.25%;
+  }
+
+  .services-wall__clip {
+    right: 1%;
+    bottom: 3%;
+    width: 58px;
   }
 }
 
