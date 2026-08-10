@@ -17,69 +17,18 @@ export function unfoldChallengePaper(
   root: HTMLElement,
   reducedMotion = prefersReducedContactMotion()
 ): Promise<void> {
-  const stage = root.querySelector<HTMLElement>('[data-paper-ball]');
-  if (!stage) return Promise.resolve();
-  const realisticBall = stage.querySelector<HTMLElement>('[data-realistic-ball]');
-  const facetStage = stage.querySelector<HTMLElement>('[data-facet-stage]');
-  
-  if (facetStage) {
-    gsap.set(facetStage, { opacity: 0 });
-  }
-
-  const facets = Array.from(
-    stage.querySelectorAll<HTMLElement>('[data-paper-facet]')
-  );
   const surrounding = root.querySelectorAll<HTMLElement>(
     '[data-step-one-surrounding], [class*="noPressureNote"], [class*="ideaExplanation"]'
   );
   const arrows = root.querySelectorAll<HTMLElement>('[class*="ballArrow"]');
-  const stamp = stage.querySelector<HTMLElement>('[data-rn-stamp]');
-  const formImpression =
-    stage.querySelector<HTMLElement>('[data-unfold-content]');
-  const crumpleShards = stage.querySelectorAll<HTMLElement>(
-    '[data-crumple-shard]'
-  );
-  const availableWidth = Math.min(
-    780,
-    Math.max(300, document.documentElement.clientWidth - 80)
-  );
-  const availableHeight = Math.min(590, availableWidth * 0.74);
 
   if (reducedMotion) {
     const timeline = gsap.timeline();
-    timeline
-      .to(surrounding, { opacity: 0, duration: 0.08 })
-      .to(stage, {
-        width: availableWidth,
-        height: availableHeight,
-        borderRadius: '2%',
-        scale: 1,
-        duration: 0.14,
-        ease: 'power1.out'
-      });
-    if (formImpression) {
-      timeline.to(formImpression, { opacity: 0.34, duration: 0.06 }, 0.12);
-    }
-    timeline.to(crumpleShards, { opacity: 0, duration: 0.06 }, 0.08);
-    if (realisticBall && facetStage) {
-      timeline
-        .to(realisticBall, { opacity: 0, duration: 0.08 }, 0)
-        .to(facetStage, { opacity: 1, duration: 0.08 }, 0);
-    } else if (facetStage) {
-      timeline.set(facetStage, { opacity: 1 }, 0);
-    }
+    timeline.to(surrounding, { opacity: 0, duration: 0.08 });
     return timelinePromise(timeline);
   }
 
   const timeline = gsap.timeline();
-  
-  if (realisticBall && facetStage) {
-    timeline
-      .to(realisticBall, { opacity: 0, duration: 0.2, ease: 'power1.inOut' }, 0.32)
-      .to(facetStage, { opacity: 1, duration: 0.2, ease: 'power1.inOut' }, 0.32);
-  } else if (facetStage) {
-    timeline.set(facetStage, { opacity: 1 }, 0);
-  }
 
   timeline
     .to(surrounding, {
@@ -99,101 +48,7 @@ export function unfoldChallengePaper(
         ease: 'power1.in'
       },
       0.04
-    )
-    .to(
-      stage,
-      {
-        y: -24,
-        rotate: 8,
-        rotateX: -7,
-        rotateY: 12,
-        scale: 1.08,
-        transformPerspective: 1200,
-        duration: 0.42,
-        ease: 'power2.out'
-      },
-      0.15
-    )
-    .to(stage, {
-      width: availableWidth,
-      height: availableHeight,
-      borderRadius: '2%',
-      rotate: 0,
-      rotateX: 0,
-      rotateY: 0,
-      y: -30,
-      duration: 1.6,
-      ease: OPEN_EASE
-    }, 0.42);
-  
-  if (facetStage) {
-    timeline.to(
-      facetStage,
-      {
-        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-        duration: 1.45,
-        ease: OPEN_EASE
-      },
-      0.42
     );
-  }
-
-  facets.forEach((facet, index) => {
-    timeline.fromTo(
-      facet,
-      {
-        transform: facet.style.getPropertyValue('--facet-initial-transform'),
-        filter: `drop-shadow(0 8px 6px rgb(61 43 23 / ${
-          0.18 + (index % 4) * 0.03
-        }))`
-      },
-      {
-        transform: facet.style.getPropertyValue('--facet-final-transform'),
-        filter: 'drop-shadow(0 1px 1px rgb(61 43 23 / 8%))',
-        duration: 1.05,
-        ease: OPEN_EASE
-      },
-      0.42 + (index % 5) * 0.12
-    );
-  });
-
-  timeline.to(
-    crumpleShards,
-    {
-      opacity: 0,
-      scale: 1.08,
-      duration: 0.62,
-      stagger: 0.025,
-      ease: 'power2.in'
-    },
-    0.62
-  );
-
-  if (stamp) {
-    timeline.fromTo(
-      stamp,
-      { scale: 0.72, rotate: -16 },
-      { scale: 1, rotate: -2, duration: 1.35, ease: OPEN_EASE },
-      0.62
-    );
-  }
-
-  if (formImpression) {
-    timeline.to(
-      formImpression,
-      { opacity: 0.38, duration: 0.48, ease: 'power1.out' },
-      1.72
-    );
-  }
-
-  timeline
-    .to(stage, {
-      y: 0,
-      scale: 1.015,
-      duration: 0.32,
-      ease: SETTLE_EASE
-    }, 2.1)
-    .to(stage, { scale: 1, duration: 0.22, ease: 'power1.out' }, 2.36);
 
   return timelinePromise(timeline);
 }

@@ -1,50 +1,90 @@
 {
-  "hash": "e1c6a913",
+  "hash": "7a918208",
   "configHash": "ba03a83c",
-  "lockfileHash": "2eb4b59b",
-  "browserHash": "d7208eb9",
+  "lockfileHash": "966cc644",
+  "browserHash": "7930fa72",
   "optimized": {
+    "@react-three/drei": {
+      "src": "../../../node_modules/@react-three/drei/index.js",
+      "file": "@react-three_drei.js",
+      "fileHash": "7c36951b",
+      "needsInterop": false
+    },
+    "@react-three/fiber": {
+      "src": "../../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "752c91df",
+      "needsInterop": false
+    },
     "gsap": {
       "src": "../../../node_modules/gsap/index.js",
       "file": "gsap.js",
-      "fileHash": "44f496e7",
+      "fileHash": "491bb4f9",
       "needsInterop": false
     },
     "react-dom": {
       "src": "../../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "b050a519",
+      "fileHash": "58c12c6f",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "9ba9c852",
+      "fileHash": "14f0f2a6",
       "needsInterop": true
     },
     "react": {
       "src": "../../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "20617863",
+      "fileHash": "9df475b1",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "b2c551d1",
+      "fileHash": "b15c9081",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "60af6ad8",
+      "fileHash": "cd6c5bc4",
       "needsInterop": true
+    },
+    "simplex-noise": {
+      "src": "../../../node_modules/simplex-noise/dist/esm/simplex-noise.js",
+      "file": "simplex-noise.js",
+      "fileHash": "69aef049",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "72cabbed",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "rolldown-runtime-BvCyGRYZ": {
-      "file": "rolldown-runtime-BvCyGRYZ.js",
+    "react-three-fiber.esm-D3TWuu4L": {
+      "file": "react-three-fiber.esm-D3TWuu4L.js",
       "isDynamicEntry": false
+    },
+    "rolldown-runtime-B-1-B7_t": {
+      "file": "rolldown-runtime-B-1-B7_t.js",
+      "isDynamicEntry": false
+    },
+    "scheduler-CKa81V9t": {
+      "file": "scheduler-CKa81V9t.js",
+      "isDynamicEntry": false
+    },
+    "three.module-omPc_b5b": {
+      "file": "three.module-omPc_b5b.js",
+      "isDynamicEntry": false
+    },
+    "vision_bundle-DowfnE8O": {
+      "file": "vision_bundle-DowfnE8O.js",
+      "isDynamicEntry": true
     }
   }
 }
