@@ -31,20 +31,25 @@ function PaperMesh() {
       
       // 1. TANGENTIAL FOLDS (Causes vertices to slide over each other, creating true overlapping layers)
       // Large folding motions
-      let tanNoise1 = noise3D(px * 1.1, py * 1.1, pz * 1.1) * 0.45;
-      let tanNoise2 = noise3D(px * 1.1 + 10, py * 1.1 + 10, pz * 1.1 + 10) * 0.45;
+      let rawTan1 = noise3D(px * 1.1, py * 1.1, pz * 1.1);
+      let rawTan2 = noise3D(px * 1.1 + 10, py * 1.1 + 10, pz * 1.1 + 10);
+      
+      // Applying a power function tightens the fold zones, making the overlapping paper edges sharper and thinner
+      let tanNoise1 = Math.sign(rawTan1) * Math.pow(Math.abs(rawTan1), 1.4) * 0.45;
+      let tanNoise2 = Math.sign(rawTan2) * Math.pow(Math.abs(rawTan2), 1.4) * 0.45;
       
       // Secondary tangential folds for smaller overlapping edges
-      let tanNoise3 = noise3D(px * 2.2, py * 2.2, pz * 2.2) * 0.18;
-      let tanNoise4 = noise3D(px * 2.2 + 20, py * 2.2 + 20, pz * 2.2 + 20) * 0.18;
+      let tanNoise3 = noise3D(px * 2.2, py * 2.2, pz * 2.2) * 0.15;
+      let tanNoise4 = noise3D(px * 2.2 + 20, py * 2.2 + 20, pz * 2.2 + 20) * 0.15;
       
       vertex.add(tangent1.multiplyScalar(tanNoise1 + tanNoise3));
       vertex.add(tangent2.multiplyScalar(tanNoise2 + tanNoise4));
       
       // 2. RADIAL MACRO DEPTH (Pushing the folded clumps inward and outward)
-      // Using Math.abs to create sharp valleys where folds meet
+      // Using Math.pow(abs(noise), < 1) flattens the "inflated blobs" into broad planar paper sheets,
+      // while keeping the deep V-shaped valleys sharp.
       let radNoisePrimary = noise3D(px * 1.0 + 30, py * 1.0 + 30, pz * 1.0 + 30);
-      let radialDisp = Math.abs(radNoisePrimary) * 0.25; 
+      let radialDisp = Math.pow(Math.abs(radNoisePrimary), 0.4) * 0.20; 
       
       // 3. CENTRAL FRONT STRUCTURE
       // Broad flattened paper surface overlaid with folds
