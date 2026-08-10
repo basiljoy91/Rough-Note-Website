@@ -188,7 +188,7 @@ function PaperMesh({ transitioning = false }: { transitioning?: boolean }) {
     <group>
       <mesh ref={meshRef} geometry={geometry} castShadow receiveShadow>
         <meshStandardMaterial 
-          color="#eaddcf" // Warm kraft paper beige
+          color="#f4e8d4" // Brighter warm cream / cleaner natural beige
           roughness={0.95} // Matte paper feel
           metalness={0.02} // Very slight edge highlight
           flatShading={true} // Essential for angular, geometric paper folds
@@ -233,23 +233,24 @@ export default function CrumpledPaper3D({ transitioning = false }: { transitioni
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <Canvas shadows camera={{ position: [0, 0, 4.4], fov: 40 }}>
         {/* Ambient Fill Light */}
-        <ambientLight intensity={0.5} color="#ffe8cc" />
+        <ambientLight intensity={0.65} color="#fff5e8" />
         
         {/* Soft Directional Key Light from above/front matching reference */}
         <directionalLight 
           position={[2.5, 3.5, 3.0]} 
-          intensity={1.1} 
+          intensity={1.15} 
           castShadow 
           shadow-mapSize-width={2048} // High-res shadows for crisp paper edges
           shadow-mapSize-height={2048} 
           shadow-bias={-0.0003}
+          color="#ffffff"
         />
         
-        {/* Subdued fill light from opposite side to reveal fold details in shadows */}
+        {/* Subdued fill light from opposite side to reveal fold details in warm tan shadows */}
         <directionalLight 
           position={[-3, -1, 1]} 
-          intensity={0.4} 
-          color="#a18b70"
+          intensity={0.5} 
+          color="#aa8c6e"
         />
 
         {/* Real 3D generated paper mesh */}
