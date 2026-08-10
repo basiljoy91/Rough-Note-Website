@@ -10,11 +10,20 @@ import {
 } from '../../features/workbook-carousel/useWorkbookCarousel';
 
 export const PAGE_TURN_DURATION = pageTurnDuration;
+export const PAGE_NOTE_SETTLE_DURATION = 720;
+export const PAGE_NOTE_ARRIVAL_KEY = 'rough-note-page-note-arrival';
 
 const TRANSITION_CLASSES = [
   'rn-page-turn-locked',
   'rn-page-turn-capturing',
   'rn-page-turn-active'
+] as const;
+
+const PAGE_NOTE_CLASSES = [
+  'page-note--departing',
+  'page-note--fall-next',
+  'page-note--fall-previous',
+  'page-note--arriving'
 ] as const;
 
 function isPlainPrimaryClick(event: MouseEvent) {
@@ -155,6 +164,44 @@ export function PageTurnTransition() {
       turningCanvas = null;
     };
 
+    const getPageNote = () =>
+      document.querySelector<HTMLElement>('[data-page-note]');
+
+    const clearPageNoteMotion = () => {
+      getPageNote()?.classList.remove(...PAGE_NOTE_CLASSES);
+    };
+
+    const beginPageNoteArrival = () => {
+      const pageNote = getPageNote();
+      if (!pageNote) return;
+
+      pageNote.classList.remove(
+        'page-note--departing',
+        'page-note--fall-next',
+        'page-note--fall-previous'
+      );
+      pageNote.classList.add('page-note--arriving');
+      schedule(() => {
+        pageNote.classList.remove('page-note--arriving');
+      }, PAGE_NOTE_SETTLE_DURATION);
+    };
+
+    const beginPageNoteDeparture = (direction: TurnDirection) => {
+      const pageNote = getPageNote();
+      if (!pageNote) return;
+
+      pageNote.classList.remove(...PAGE_NOTE_CLASSES);
+      pageNote.classList.add(
+        'page-note--departing',
+        `page-note--fall-${direction}`
+      );
+    };
+
+    if (window.sessionStorage.getItem(PAGE_NOTE_ARRIVAL_KEY) === 'enter') {
+      window.sessionStorage.removeItem(PAGE_NOTE_ARRIVAL_KEY);
+      beginPageNoteArrival();
+    }
+
     const clearTransition = () => {
       window.cancelAnimationFrame(animationFrame);
       animationFrame = 0;
@@ -228,6 +275,7 @@ export function PageTurnTransition() {
       if (sameDocument) {
         moveWithinPage(destination);
         clearTransition();
+        beginPageNoteArrival();
         return;
       }
 
@@ -318,6 +366,11 @@ export function PageTurnTransition() {
       }
 
       navigationLocked = true;
+      const direction = getTurnDirection(destination);
+      beginPageNoteDeparture(direction);
+      if (!sameDocument) {
+        window.sessionStorage.setItem(PAGE_NOTE_ARRIVAL_KEY, 'enter');
+      }
       root.classList.add('rn-page-turn-locked', 'rn-page-turn-capturing');
       root.setAttribute('aria-busy', 'true');
       schedule(
@@ -325,7 +378,7 @@ export function PageTurnTransition() {
           void beginTurn(
             destination,
             sameDocument,
-            getTurnDirection(destination)
+            direction
           ),
         0
       );
@@ -338,6 +391,7 @@ export function PageTurnTransition() {
       timers.forEach((timer) => window.clearTimeout(timer));
       timers.clear();
       clearTransition();
+      clearPageNoteMotion();
     };
   }, []);
 

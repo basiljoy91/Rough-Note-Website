@@ -1,6 +1,8 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
+  PAGE_NOTE_ARRIVAL_KEY,
+  PAGE_NOTE_SETTLE_DURATION,
   PAGE_TURN_DURATION,
   PageTurnTransition
 } from '../../src/shared/navigation/PageTurnTransition';
@@ -60,6 +62,7 @@ describe('PageTurnTransition', () => {
     document.body.innerHTML = `
       <header class="header">
         <a href="/html/index.html?animated=true#div-3">About</a>
+        <div class="page-note" data-page-note></div>
       </header>
       <section id="div-3"></section>
       <div id="transition-root"></div>
@@ -75,6 +78,10 @@ describe('PageTurnTransition', () => {
 
     expect(clickCompleted).toBe(false);
     expect(document.documentElement).toHaveClass('rn-page-turn-capturing');
+    expect(document.querySelector('[data-page-note]')).toHaveClass(
+      'page-note--departing',
+      'page-note--fall-next'
+    );
     expect(window.location.hash).toBe('');
 
     await resolveCapture();
@@ -90,6 +97,14 @@ describe('PageTurnTransition', () => {
     expect(HTMLElement.prototype.scrollIntoView).toHaveBeenCalledOnce();
     expect(document.documentElement).not.toHaveClass('rn-page-turn-locked');
     expect(document.documentElement).not.toHaveAttribute('aria-busy');
+    expect(document.querySelector('[data-page-note]')).toHaveClass(
+      'page-note--arriving'
+    );
+
+    act(() => vi.advanceTimersByTime(PAGE_NOTE_SETTLE_DURATION));
+    expect(document.querySelector('[data-page-note]')).not.toHaveClass(
+      'page-note--arriving'
+    );
   });
 
   it('ignores repeated navigation clicks while the page is turning', async () => {
@@ -121,5 +136,26 @@ describe('PageTurnTransition', () => {
     expect(container.querySelector('.rn-page-turn__underlay')).toBeInTheDocument();
     expect(container.querySelectorAll('.rn-page-turn__binding i')).toHaveLength(12);
     expect(container.querySelector('[class*="page-tear"]')).not.toBeInTheDocument();
+  });
+
+  it('settles the new page note after a cross-page navigation arrives', () => {
+    document.body.innerHTML = `
+      <header class="header">
+        <div class="page-note" data-page-note></div>
+      </header>
+      <div id="transition-root"></div>
+    `;
+    window.sessionStorage.setItem(PAGE_NOTE_ARRIVAL_KEY, 'enter');
+
+    render(<PageTurnTransition />, {
+      container: document.getElementById('transition-root') as HTMLElement
+    });
+
+    const pageNote = document.querySelector('[data-page-note]');
+    expect(window.sessionStorage.getItem(PAGE_NOTE_ARRIVAL_KEY)).toBeNull();
+    expect(pageNote).toHaveClass('page-note--arriving');
+
+    act(() => vi.advanceTimersByTime(PAGE_NOTE_SETTLE_DURATION));
+    expect(pageNote).not.toHaveClass('page-note--arriving');
   });
 });

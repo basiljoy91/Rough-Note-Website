@@ -90,7 +90,7 @@ export function SidebarNavigation({
         <Brand />
         <NavigationLinks activeItem={activeItem} />
         <div className="nav-footer">
-          <div className="page-note">
+          <div className="page-note" data-page-note aria-live="polite">
             <span>{pageLabel}</span>
             <strong>{pageTitle}</strong>
           </div>
