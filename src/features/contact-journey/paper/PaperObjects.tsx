@@ -38,7 +38,7 @@ export function CrumpledPaper({ transitioning = false }: { transitioning?: boole
     >
       <div className={styles.crumpledPaperVolume}>
         <Suspense fallback={null}>
-          <CrumpledPaper3D />
+          <CrumpledPaper3D transitioning={transitioning} />
         </Suspense>
       </div>
     </div>

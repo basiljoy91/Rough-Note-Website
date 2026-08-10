@@ -1,17 +1,24 @@
 import React, { useRef, useMemo } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import { createNoise3D } from 'simplex-noise';
 
-function PaperMesh() {
+function PaperMesh({ transitioning = false }: { transitioning?: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const progressRef = useRef(0);
   
-  const geometry = useMemo(() => {
+  const { geometry, crumpledPositions, flatPositions, unfoldDelays } = useMemo(() => {
     // Icosahedron provides a nice uniform geodesic sphere
     // Detail 32 provides enough vertex density for sharp, thin paper folds without looking like low-poly triangles.
     const geo = new THREE.IcosahedronGeometry(1.2, 32); 
     const posAttribute = geo.attributes.position;
+    
+    // Arrays for animation
+    const crumpledPositions = new Float32Array(posAttribute.count * 3);
+    const flatPositions = new Float32Array(posAttribute.count * 3);
+    const unfoldDelays = new Float32Array(posAttribute.count);
+    
     const vertex = new THREE.Vector3();
     const noise3D = createNoise3D();
     
@@ -22,6 +29,33 @@ function PaperMesh() {
       const py = vertex.y;
       const pz = vertex.z;
       
+      // Calculate Flat Positions (Mapping Sphere to Flat Disc using polar coordinates)
+      // Base radius is 1.2. The front is pz = 1.2 (phi = 0), the back is pz = -1.2 (phi = PI)
+      let phi = Math.acos(pz / 1.2); 
+      let theta = Math.atan2(py, px);
+      
+      // Outer edges of the flat sheet unfold first, center last
+      let delay = (1.0 - (phi / Math.PI)) * 0.4;
+      
+      // Unfold radius
+      let flatR = phi * 1.5; 
+      
+      // Irregular paper edges and wrinkles
+      let edgeNoise = noise3D(Math.cos(theta), Math.sin(theta), 0);
+      flatR *= 1.0 + edgeNoise * 0.1;
+      
+      let fx = flatR * Math.cos(theta);
+      let fy = flatR * Math.sin(theta);
+      let fz = noise3D(fx * 1.5, fy * 1.5, 0) * 0.15; // natural planar wrinkles
+      // Slight macro bend
+      fz += Math.sin(fx * 1.0) * Math.cos(fy * 1.0) * 0.15;
+      
+      flatPositions[i * 3] = fx;
+      flatPositions[i * 3 + 1] = fy;
+      flatPositions[i * 3 + 2] = fz;
+      unfoldDelays[i] = delay;
+      
+      // Calculate Crumpled Stage-02 Positions (Unchanged algorithm)
       const originalNormal = vertex.clone().normalize();
       
       // Calculate tangent vectors for lateral displacement (this creates overlapping folds)
@@ -77,13 +111,72 @@ function PaperMesh() {
       // Apply radial displacement along the original normal
       vertex.add(originalNormal.multiplyScalar(radialDisp));
       
+      crumpledPositions[i * 3] = vertex.x;
+      crumpledPositions[i * 3 + 1] = vertex.y;
+      crumpledPositions[i * 3 + 2] = vertex.z;
+      
       posAttribute.setXYZ(i, vertex.x, vertex.y, vertex.z);
     }
     
     // Crucial for flat shading lighting calculation and sharp paper edges
     geo.computeVertexNormals();
-    return geo;
+    return { geometry: geo, crumpledPositions, flatPositions, unfoldDelays };
   }, []);
+
+  useFrame((state, delta) => {
+    if (!meshRef.current) return;
+    
+    const targetProgress = transitioning ? 1 : 0;
+    const speed = 0.5; // Smooth cinematic unfold
+    
+    if (progressRef.current !== targetProgress) {
+      if (progressRef.current < targetProgress) {
+        progressRef.current = Math.min(1, progressRef.current + delta * speed);
+      } else {
+        progressRef.current = Math.max(0, progressRef.current - delta * speed * 2.0); // closes slightly faster
+      }
+      
+      const globalProgress = progressRef.current;
+      // easeInOut for natural momentum
+      const easedGlobal = globalProgress < 0.5 
+          ? 2 * globalProgress * globalProgress 
+          : 1 - Math.pow(-2 * globalProgress + 2, 2) / 2;
+
+      const posAttribute = geometry.attributes.position;
+      
+      for (let i = 0; i < posAttribute.count; i++) {
+        const cx = crumpledPositions[i * 3];
+        const cy = crumpledPositions[i * 3 + 1];
+        const cz = crumpledPositions[i * 3 + 2];
+        
+        const fx = flatPositions[i * 3];
+        const fy = flatPositions[i * 3 + 1];
+        const fz = flatPositions[i * 3 + 2];
+        
+        const delay = unfoldDelays[i];
+        
+        // Map global progress to a local window based on the vertex delay
+        // Sequential cascading release
+        let localT = (easedGlobal - delay) / 0.6;
+        localT = Math.max(0, Math.min(1, localT));
+        
+        // smoothstep local transition
+        let localProgress = localT * localT * (3 - 2 * localT);
+        
+        // Push outward (bulge) during the unfold to simulate hinges rotating
+        let hingeArc = Math.sin(localProgress * Math.PI) * 0.5;
+        
+        let currentX = cx + (fx - cx) * localProgress;
+        let currentY = cy + (fy - cy) * localProgress;
+        let currentZ = cz + (fz - cz) * localProgress + hingeArc;
+        
+        posAttribute.setXYZ(i, currentX, currentY, currentZ);
+      }
+      
+      posAttribute.needsUpdate = true;
+      geometry.computeVertexNormals();
+    }
+  });
 
   return (
     <mesh ref={meshRef} geometry={geometry} castShadow receiveShadow>
@@ -98,7 +191,7 @@ function PaperMesh() {
   );
 }
 
-export default function CrumpledPaper3D() {
+export default function CrumpledPaper3D({ transitioning = false }: { transitioning?: boolean }) {
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <Canvas shadows camera={{ position: [0, 0, 4.4], fov: 40 }}>
@@ -123,13 +216,13 @@ export default function CrumpledPaper3D() {
         />
 
         {/* Real 3D generated paper mesh */}
-        <PaperMesh />
+        <PaperMesh transitioning={transitioning} />
         
         {/* Realistic ground contact shadow */}
         <ContactShadows 
           position={[0, -1.25, 0]} 
           opacity={0.8} 
-          scale={3.5} 
+          scale={12.0} // Large enough to cover the unfolded sheet
           blur={1.8} 
           far={2.5} 
           color="#382512" // Deep warm brown shadow to ground the object
