@@ -1,21 +1,11 @@
-import html2canvas from 'html2canvas';
-import { useEffect, useRef } from 'react';
-import {
-  clamp,
-  drawPageCurl,
-  easePageTurn,
-  pageTurnDuration,
-  type TurnDirection,
-  type TurningCanvas
-} from '../../features/workbook-carousel/useWorkbookCarousel';
+import { useEffect } from 'react';
 
-export const PAGE_TURN_DURATION = pageTurnDuration;
+export const PAGE_TURN_DURATION = 760;
 export const PAGE_NOTE_SETTLE_DURATION = 720;
 export const PAGE_NOTE_ARRIVAL_KEY = 'rough-note-page-note-arrival';
 
 const TRANSITION_CLASSES = [
   'rn-page-turn-locked',
-  'rn-page-turn-capturing',
   'rn-page-turn-active'
 ] as const;
 
@@ -68,86 +58,54 @@ function moveWithinPage(url: URL) {
   target?.scrollIntoView({ block: 'start', behavior: 'auto' });
 }
 
-function navigationPosition(url: URL) {
-  const pathname = url.pathname.replace(/\/+$/, '') || '/';
+function prefetchNavigationPages() {
+  const current = new URL(window.location.href);
+  const urls = new Set<string>();
 
-  if (
-    url.hash === '#div-3' &&
-    (pathname === '/' || pathname.endsWith('/index.html'))
-  ) {
-    return 2;
-  }
-  if (pathname === '/' || pathname.endsWith('/index.html')) return 0;
-  if (pathname.endsWith('/services.html')) return 1;
-  if (pathname.endsWith('/process.html')) return 3;
-  if (pathname.endsWith('/connect.html')) return 4;
-  if (pathname.endsWith('/contact.html')) return 5;
-  if (pathname.endsWith('/projects.html')) return 6;
-  return null;
+  document
+    .querySelectorAll<HTMLAnchorElement>(
+      '.header a[href], .mobile-menu a[href], .menu-toggle a[href]'
+    )
+    .forEach((anchor) => {
+      const destination = new URL(anchor.href, current);
+      if (
+        destination.origin !== current.origin ||
+        (destination.pathname === current.pathname &&
+          destination.search === current.search)
+      ) {
+        return;
+      }
+
+      destination.hash = '';
+      urls.add(destination.href);
+    });
+
+  urls.forEach((href) => {
+    if (document.head.querySelector(`link[data-rn-prefetch][href="${href}"]`)) {
+      return;
+    }
+
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = 'document';
+    link.href = href;
+    link.dataset.rnPrefetch = 'true';
+    document.head.append(link);
+  });
 }
 
-function getTurnDirection(destination: URL): TurnDirection {
-  const currentPosition = navigationPosition(new URL(window.location.href));
-  const destinationPosition = navigationPosition(destination);
-
-  if (
-    currentPosition !== null &&
-    destinationPosition !== null &&
-    destinationPosition < currentPosition
-  ) {
-    return 'previous';
-  }
-
-  return 'next';
-}
-
-function getContentBounds() {
-  const header = document.querySelector<HTMLElement>('.header');
-  const headerRect = header?.getBoundingClientRect();
-  const headerVisible =
-    header &&
-    headerRect &&
-    getComputedStyle(header).display !== 'none' &&
-    headerRect.width > 0;
-  const left = headerVisible
-    ? clamp(headerRect.right, 0, window.innerWidth - 1)
-    : 0;
-
-  return {
-    height: Math.max(1, window.innerHeight),
-    left,
-    width: Math.max(1, window.innerWidth - left)
-  };
-}
-
-function createPaperFallback(width: number, height: number) {
-  const pixelRatio = Math.min(1.35, Math.max(1, window.devicePixelRatio || 1));
-  const canvas = document.createElement('canvas');
-  canvas.width = Math.round(width * pixelRatio);
-  canvas.height = Math.round(height * pixelRatio);
-  const context = canvas.getContext('2d');
-  if (context) {
-    context.fillStyle = '#f7f0df';
-    context.fillRect(0, 0, canvas.width, canvas.height);
-  }
-  return canvas;
-}
-
+/**
+ * Coordinates native same-origin View Transitions for notebook navigation.
+ * The browser supplies the real destination page as the lower layer, avoiding
+ * the expensive html2canvas capture and white-paper interstitial used before.
+ */
 export function PageTurnTransition() {
-  const overlayRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const root = document.documentElement;
-    const overlay = overlayRef.current;
-    const stage = overlay?.querySelector<HTMLElement>('.rn-page-turn__stage');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const timers = new Set<number>();
-    let animationFrame = 0;
     let navigationLocked = false;
     let disposed = false;
-    let turningCanvas: TurningCanvas | null = null;
-
-    if (!overlay || !stage) return;
 
     const schedule = (callback: () => void, delay: number) => {
       const timer = window.setTimeout(() => {
@@ -156,12 +114,6 @@ export function PageTurnTransition() {
       }, delay);
       timers.add(timer);
       return timer;
-    };
-
-    const removeTurningCanvas = () => {
-      turningCanvas?.element.remove();
-      turningCanvas?.front.remove();
-      turningCanvas = null;
     };
 
     const getPageNote = () =>
@@ -186,15 +138,24 @@ export function PageTurnTransition() {
       }, PAGE_NOTE_SETTLE_DURATION);
     };
 
-    const beginPageNoteDeparture = (direction: TurnDirection) => {
+    const beginPageNoteDeparture = () => {
       const pageNote = getPageNote();
       if (!pageNote) return;
 
       pageNote.classList.remove(...PAGE_NOTE_CLASSES);
-      pageNote.classList.add(
-        'page-note--departing',
-        `page-note--fall-${direction}`
-      );
+      pageNote.classList.add('page-note--departing', 'page-note--fall-next');
+    };
+
+    const lockNavigation = () => {
+      navigationLocked = true;
+      root.classList.add(...TRANSITION_CLASSES);
+      root.setAttribute('aria-busy', 'true');
+    };
+
+    const clearTransition = () => {
+      root.classList.remove(...TRANSITION_CLASSES);
+      root.removeAttribute('aria-busy');
+      navigationLocked = false;
     };
 
     if (window.sessionStorage.getItem(PAGE_NOTE_ARRIVAL_KEY) === 'enter') {
@@ -202,141 +163,7 @@ export function PageTurnTransition() {
       beginPageNoteArrival();
     }
 
-    const clearTransition = () => {
-      window.cancelAnimationFrame(animationFrame);
-      animationFrame = 0;
-      removeTurningCanvas();
-      root.classList.remove(...TRANSITION_CLASSES);
-      root.removeAttribute('aria-busy');
-      stage.removeAttribute('style');
-      navigationLocked = false;
-    };
-
-    const captureViewport = async (left: number, width: number, height: number) => {
-      const pixelRatio = Math.min(
-        1.35,
-        Math.max(1, window.devicePixelRatio || 1)
-      );
-
-      return await html2canvas(document.documentElement, {
-        backgroundColor: null,
-        height,
-        ignoreElements: (element) =>
-          element === overlay ||
-          element.classList.contains('header') ||
-          element.classList.contains('mobile-menu') ||
-          element.classList.contains('menu-toggle') ||
-          element.classList.contains('menu-backdrop'),
-        logging: false,
-        removeContainer: true,
-        scale: pixelRatio,
-        scrollX: window.scrollX,
-        scrollY: window.scrollY,
-        useCORS: true,
-        width,
-        windowHeight: height,
-        windowWidth: window.innerWidth,
-        x: window.scrollX + left,
-        y: window.scrollY
-      });
-    };
-
-    const buildTurningCanvas = (
-      source: HTMLCanvasElement,
-      left: number,
-      width: number,
-      height: number
-    ) => {
-      const canvas = document.createElement('canvas');
-      const front = document.createElement('canvas');
-      canvas.className = 'rn-page-turn__curl';
-      front.className = 'rn-page-turn__front';
-      canvas.setAttribute('aria-hidden', 'true');
-      front.setAttribute('aria-hidden', 'true');
-      canvas.width = source.width;
-      canvas.height = source.height;
-      front.width = source.width;
-      front.height = source.height;
-      front.getContext('2d')?.drawImage(source, 0, 0);
-
-      Object.assign(stage.style, {
-        height: `${height}px`,
-        left: `${left}px`,
-        width: `${width}px`
-      });
-      stage.append(front, canvas);
-
-      return { element: canvas, front, source } satisfies TurningCanvas;
-    };
-
-    const finishNavigation = (destination: URL, sameDocument: boolean) => {
-      if (disposed) return;
-
-      if (sameDocument) {
-        moveWithinPage(destination);
-        clearTransition();
-        beginPageNoteArrival();
-        return;
-      }
-
-      window.location.assign(destination.href);
-    };
-
-    const animatePageTurn = (
-      canvas: TurningCanvas,
-      direction: TurnDirection,
-      destination: URL,
-      sameDocument: boolean
-    ) => {
-      const startTime = performance.now();
-
-      const step = (timestamp: number) => {
-        if (disposed || !navigationLocked) return;
-        const elapsed = clamp(
-          (timestamp - startTime) / PAGE_TURN_DURATION,
-          0,
-          1
-        );
-        drawPageCurl(canvas, easePageTurn(elapsed), direction);
-
-        if (elapsed < 1) {
-          animationFrame = window.requestAnimationFrame(step);
-          return;
-        }
-
-        finishNavigation(destination, sameDocument);
-      };
-
-      animationFrame = window.requestAnimationFrame(step);
-    };
-
-    const beginTurn = async (
-      destination: URL,
-      sameDocument: boolean,
-      direction: TurnDirection
-    ) => {
-      const bounds = getContentBounds();
-      let source: HTMLCanvasElement;
-
-      try {
-        source = await captureViewport(bounds.left, bounds.width, bounds.height);
-      } catch {
-        source = createPaperFallback(bounds.width, bounds.height);
-      }
-
-      if (disposed || !navigationLocked) return;
-
-      turningCanvas = buildTurningCanvas(
-        source,
-        bounds.left,
-        bounds.width,
-        bounds.height
-      );
-      drawPageCurl(turningCanvas, 0, direction);
-      root.classList.remove('rn-page-turn-capturing');
-      root.classList.add('rn-page-turn-active');
-      animatePageTurn(turningCanvas, direction, destination, sameDocument);
-    };
+    prefetchNavigationPages();
 
     const onNavigationClick = (event: MouseEvent) => {
       if (!isPlainPrimaryClick(event) || event.defaultPrevented) return;
@@ -356,32 +183,40 @@ export function PageTurnTransition() {
       event.preventDefault();
       if (navigationLocked) return;
 
+      beginPageNoteDeparture();
+
       if (reducedMotion.matches) {
-        if (sameDocument) {
-          moveWithinPage(destination);
-        } else {
-          window.location.assign(destination.href);
-        }
+        if (sameDocument) moveWithinPage(destination);
+        else window.location.assign(destination.href);
         return;
       }
 
-      navigationLocked = true;
-      const direction = getTurnDirection(destination);
-      beginPageNoteDeparture(direction);
+      lockNavigation();
+
       if (!sameDocument) {
         window.sessionStorage.setItem(PAGE_NOTE_ARRIVAL_KEY, 'enter');
+        window.requestAnimationFrame(() => {
+          if (!disposed) window.location.assign(destination.href);
+        });
+        return;
       }
-      root.classList.add('rn-page-turn-locked', 'rn-page-turn-capturing');
-      root.setAttribute('aria-busy', 'true');
-      schedule(
-        () =>
-          void beginTurn(
-            destination,
-            sameDocument,
-            direction
-          ),
-        0
-      );
+
+      const startViewTransition =
+        document.startViewTransition?.bind(document);
+
+      if (!startViewTransition) {
+        moveWithinPage(destination);
+        clearTransition();
+        beginPageNoteArrival();
+        return;
+      }
+
+      const transition = startViewTransition(() => moveWithinPage(destination));
+      void transition.finished.finally(() => {
+        if (disposed) return;
+        clearTransition();
+        beginPageNoteArrival();
+      });
     };
 
     document.addEventListener('click', onNavigationClick);
@@ -395,16 +230,5 @@ export function PageTurnTransition() {
     };
   }, []);
 
-  return (
-    <div ref={overlayRef} className="rn-page-turn" aria-hidden="true">
-      <div className="rn-page-turn__stage">
-        <span className="rn-page-turn__underlay" />
-        <span className="rn-page-turn__binding">
-          {Array.from({ length: 12 }, (_, index) => (
-            <i key={index} />
-          ))}
-        </span>
-      </div>
-    </div>
-  );
+  return null;
 }

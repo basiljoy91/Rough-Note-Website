@@ -52,7 +52,7 @@ export function SiteLayout({
         onClose={() => setMenuOpen(false)}
         ctaLabel={mobileCtaLabel}
       />
-      {children}
+      <div className="rn-page-surface">{children}</div>
     </>
   );
 }
