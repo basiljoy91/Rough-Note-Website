@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
-export const PAGE_TURN_DURATION = 760;
+export const PAGE_TURN_DURATION = 880;
+export const PAGE_LOAD_TIMEOUT = 6000;
 export const PAGE_NOTE_SETTLE_DURATION = 720;
 export const PAGE_NOTE_ARRIVAL_KEY = 'rough-note-page-note-arrival';
 
@@ -15,6 +16,12 @@ const PAGE_NOTE_CLASSES = [
   'page-note--fall-previous',
   'page-note--arriving'
 ] as const;
+
+interface TurnStage {
+  destination: HTMLIFrameElement;
+  element: HTMLDivElement;
+  sheet: HTMLDivElement;
+}
 
 function isPlainPrimaryClick(event: MouseEvent) {
   return (
@@ -58,7 +65,7 @@ function moveWithinPage(url: URL) {
   target?.scrollIntoView({ block: 'start', behavior: 'auto' });
 }
 
-function prefetchNavigationPages() {
+function getNavigationDestinations() {
   const current = new URL(window.location.href);
   const urls = new Set<string>();
 
@@ -80,7 +87,11 @@ function prefetchNavigationPages() {
       urls.add(destination.href);
     });
 
-  urls.forEach((href) => {
+  return urls;
+}
+
+function prefetchNavigationPages() {
+  getNavigationDestinations().forEach((href) => {
     if (document.head.querySelector(`link[data-rn-prefetch][href="${href}"]`)) {
       return;
     }
@@ -94,10 +105,67 @@ function prefetchNavigationPages() {
   });
 }
 
+function removeDuplicateAccessibilityTree(clone: HTMLElement) {
+  clone.setAttribute('aria-hidden', 'true');
+  clone.setAttribute('inert', '');
+  clone.querySelectorAll('video, audio').forEach((media) => {
+    (media as HTMLMediaElement).pause();
+  });
+}
+
 /**
- * Coordinates native same-origin View Transitions for notebook navigation.
- * The browser supplies the real destination page as the lower layer, avoiding
- * the expensive html2canvas capture and white-paper interstitial used before.
+ * Builds a viewport-sized stage without rasterising the page. The destination
+ * document is a real, fully loaded same-origin page underneath a DOM clone of
+ * the current paper, so the turn begins immediately and never exposes a blank
+ * interstitial sheet.
+ */
+function createTurnStage(destinationUrl: string): TurnStage | null {
+  const source = document.querySelector<HTMLElement>('.rn-page-surface');
+  if (!source) return null;
+
+  const rect = source.getBoundingClientRect();
+  const left = Math.max(0, Math.min(window.innerWidth - 1, rect.left));
+  const width = Math.max(1, Math.min(rect.width, window.innerWidth - left));
+
+  const element = document.createElement('div');
+  element.className = 'rn-page-turn';
+  element.setAttribute('aria-hidden', 'true');
+  element.style.setProperty('--rn-page-left', `${left}px`);
+  element.style.setProperty('--rn-page-width', `${width}px`);
+
+  const destination = document.createElement('iframe');
+  destination.className = 'rn-page-turn__destination';
+  destination.src = destinationUrl;
+  destination.tabIndex = -1;
+  destination.title = 'Loading next page';
+  destination.setAttribute('aria-hidden', 'true');
+
+  const sheet = document.createElement('div');
+  sheet.className = 'rn-page-turn__sheet';
+
+  const clone = source.cloneNode(true) as HTMLElement;
+  clone.classList.add('rn-page-turn__clone');
+  clone.style.setProperty('--rn-clone-top', `${rect.top}px`);
+  clone.style.width = `${rect.width}px`;
+  clone.style.height = `${rect.height}px`;
+  clone.style.minHeight = `${rect.height}px`;
+  removeDuplicateAccessibilityTree(clone);
+
+  const edge = document.createElement('span');
+  edge.className = 'rn-page-turn__edge';
+  edge.setAttribute('aria-hidden', 'true');
+
+  sheet.append(clone, edge);
+  element.append(destination, sheet);
+  document.body.append(element);
+
+  return { destination, element, sheet };
+}
+
+/**
+ * Runs a deterministic cross-document page turn. It intentionally avoids the
+ * browser-only cross-document View Transition API so the effect works in the
+ * hosted browser, local preview, and in-app browser alike.
  */
 export function PageTurnTransition() {
   useEffect(() => {
@@ -106,6 +174,7 @@ export function PageTurnTransition() {
     const timers = new Set<number>();
     let navigationLocked = false;
     let disposed = false;
+    let activeStage: TurnStage | null = null;
 
     const schedule = (callback: () => void, delay: number) => {
       const timer = window.setTimeout(() => {
@@ -152,11 +221,59 @@ export function PageTurnTransition() {
       root.setAttribute('aria-busy', 'true');
     };
 
+    const removeStage = () => {
+      activeStage?.element.remove();
+      activeStage = null;
+    };
+
     const clearTransition = () => {
+      removeStage();
       root.classList.remove(...TRANSITION_CLASSES);
       root.removeAttribute('aria-busy');
       navigationLocked = false;
     };
+
+    const finishCrossPageNavigation = (destination: URL) => {
+      if (disposed) return;
+      window.sessionStorage.setItem(PAGE_NOTE_ARRIVAL_KEY, 'enter');
+      window.location.assign(destination.href);
+    };
+
+    const beginCrossPageTurn = (destination: URL) => {
+      activeStage = createTurnStage(destination.href);
+      if (!activeStage) {
+        finishCrossPageNavigation(destination);
+        return;
+      }
+
+      let turnStarted = false;
+      const beginTurn = () => {
+        if (turnStarted || disposed || !activeStage) return;
+        turnStarted = true;
+        activeStage.element.classList.add('rn-page-turn--ready');
+
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            if (disposed || !activeStage) return;
+            activeStage.element.classList.add('rn-page-turn--turning');
+            schedule(
+              () => finishCrossPageNavigation(destination),
+              PAGE_TURN_DURATION
+            );
+          });
+        });
+      };
+
+      activeStage.destination.addEventListener('load', beginTurn, { once: true });
+      schedule(() => {
+        if (turnStarted || disposed) return;
+        clearTransition();
+        finishCrossPageNavigation(destination);
+      }, PAGE_LOAD_TIMEOUT);
+    };
+
+    root.classList.remove(...TRANSITION_CLASSES);
+    root.removeAttribute('aria-busy');
 
     if (window.sessionStorage.getItem(PAGE_NOTE_ARRIVAL_KEY) === 'enter') {
       window.sessionStorage.removeItem(PAGE_NOTE_ARRIVAL_KEY);
@@ -187,36 +304,20 @@ export function PageTurnTransition() {
 
       if (reducedMotion.matches) {
         if (sameDocument) moveWithinPage(destination);
-        else window.location.assign(destination.href);
+        else finishCrossPageNavigation(destination);
         return;
       }
 
       lockNavigation();
 
-      if (!sameDocument) {
-        window.sessionStorage.setItem(PAGE_NOTE_ARRIVAL_KEY, 'enter');
-        window.requestAnimationFrame(() => {
-          if (!disposed) window.location.assign(destination.href);
-        });
-        return;
-      }
-
-      const startViewTransition =
-        document.startViewTransition?.bind(document);
-
-      if (!startViewTransition) {
+      if (sameDocument) {
         moveWithinPage(destination);
         clearTransition();
         beginPageNoteArrival();
         return;
       }
 
-      const transition = startViewTransition(() => moveWithinPage(destination));
-      void transition.finished.finally(() => {
-        if (disposed) return;
-        clearTransition();
-        beginPageNoteArrival();
-      });
+      beginCrossPageTurn(destination);
     };
 
     document.addEventListener('click', onNavigationClick);
