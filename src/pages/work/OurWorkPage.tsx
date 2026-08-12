@@ -16,17 +16,17 @@ export function OurWorkPage() {
   const [part2Filter, setPart2Filter] = useState('ALL');
 
   const part2Projects = [
-    { title: "Alta Wear", category: "Brand Identity", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
-    { title: "Natura Skincare", category: "Packaging Design", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    { title: "Alta Wear", category: "Brand Identity", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    { title: "Natura Skincare", category: "Packaging Design", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
     { title: "Nova ERP", category: "ERP Software", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&q=80&auto=format&fit=crop", clipped: true, isDefaultPart2: true },
-    { title: "EazyHRM", category: "HR Management System", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
-    { title: "FlowAI Agent", category: "AI Automation", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    { title: "EazyHRM", category: "HR Management System", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    { title: "FlowAI Agent", category: "AI Automation", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
     
     /* Additional projects included to satisfy WEB, 3D, and MOTION filter categories using existing data */
-    { title: "Urban Arc House", category: "Website Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=480&q=80&auto=format&fit=crop" },
-    { title: "TasteBite", category: "Restaurant Website", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=480&q=80&auto=format&fit=crop" },
-    { title: "Volt X Concept", category: "3D Modeling", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1531297121281-2c1b2c4c810d?w=480&q=80&auto=format&fit=crop" },
-    { title: "Future of Energy", category: "Motion Graphics", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=480&q=80&auto=format&fit=crop" }
+    { title: "Urban Arc House", category: "Website Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=480&q=80&auto=format&fit=crop" },
+    { title: "TasteBite", category: "Restaurant Website", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=480&q=80&auto=format&fit=crop" },
+    { title: "Volt X Concept", category: "3D Modeling", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=480&q=80&auto=format&fit=crop" },
+    { title: "Future of Energy", category: "Motion Graphics", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=480&q=80&auto=format&fit=crop" }
   ];
 
   const filteredPart2Projects = part2Projects.filter(p => {
@@ -800,18 +800,18 @@ function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
   const [sortBy, setSortBy] = useState('Latest');
   
   const projects = [
-    { title: "Alta Wear", category: "Brand Identity", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=480&q=80&auto=format&fit=crop" },
-    { title: "Natura Skincare", category: "Packaging Design", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=480&q=80&auto=format&fit=crop" },
+    { title: "Alta Wear", category: "Brand Identity", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=480&q=80&auto=format&fit=crop" },
+    { title: "Natura Skincare", category: "Packaging Design", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=480&q=80&auto=format&fit=crop" },
     { title: "Nova ERP System", category: "ERP Software", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&q=80&auto=format&fit=crop" },
-    { title: "Urban Arc House", category: "Website Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=480&q=80&auto=format&fit=crop" },
-    { title: "FlowAI Agent", category: "AI Automation", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&q=80&auto=format&fit=crop" },
-    { title: "Future of Energy", category: "Motion Graphics", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=480&q=80&auto=format&fit=crop" },
-    { title: "Volt X Concept", category: "3D Modeling", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1531297121281-2c1b2c4c810d?w=480&q=80&auto=format&fit=crop" },
-    { title: "EazyHRM", category: "HR Management System", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=480&q=80&auto=format&fit=crop" },
-    { title: "TasteBite", category: "Restaurant Website", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=480&q=80&auto=format&fit=crop" },
+    { title: "Urban Arc House", category: "Website Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=480&q=80&auto=format&fit=crop" },
+    { title: "FlowAI Agent", category: "AI Automation", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=480&q=80&auto=format&fit=crop" },
+    { title: "Future of Energy", category: "Motion Graphics", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=480&q=80&auto=format&fit=crop" },
+    { title: "Volt X Concept", category: "3D Modeling", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=480&q=80&auto=format&fit=crop" },
+    { title: "EazyHRM", category: "HR Management System", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=480&q=80&auto=format&fit=crop" },
+    { title: "TasteBite", category: "Restaurant Website", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=480&q=80&auto=format&fit=crop" },
     { title: "SalesTrack Pro", category: "CRM Software", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&q=80&auto=format&fit=crop" },
-    { title: "Nectar Tea", category: "Packaging Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1596328315183-7d8b5849887e?w=480&q=80&auto=format&fit=crop" },
-    { title: "AI Support Bot", category: "AI Chatbot Development", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=480&q=80&auto=format&fit=crop" }
+    { title: "Nectar Tea", category: "Packaging Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=480&q=80&auto=format&fit=crop" },
+    { title: "AI Support Bot", category: "AI Chatbot Development", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=480&q=80&auto=format&fit=crop" }
   ];
 
   const filteredProjects = projects.filter(p => {
