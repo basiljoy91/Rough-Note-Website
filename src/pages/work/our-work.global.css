@@ -259,7 +259,39 @@
     0% 12%, 12% 0%, 25% 10%, 38% 2%, 50% 12%, 62% 4%, 75% 12%, 88% 2%, 100% 10%,
     98% 90%, 85% 100%, 72% 92%, 60% 98%, 48% 90%, 35% 98%, 22% 90%, 10% 100%, 0% 88%
   );
+}
+
+.ow-coffee-cup {
+  position: absolute;
+  top: -6%;
+  left: 77%;
+  width: 180px;
+  z-index: 90;
+  filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.15));
   pointer-events: none;
+}
+
+.ow-coffee-cup img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ow-pencil-decoration {
+  position: absolute;
+  bottom: 4%;
+  left: calc(78% - 50px);
+  width: 340px;
+  z-index: 90;
+  filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.2));
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.ow-pencil-decoration img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .ow-paperclip {
@@ -1438,8 +1470,8 @@
     max-height: 35px;
   }
 
-  /* Hide pins/tapes on mobile for cleaner stack look */
-  .ow-pin, .ow-tape, .ow-paperclip {
+  /* Hide pins/tapes/decorative items on mobile for cleaner stack look */
+  .ow-pin, .ow-tape, .ow-paperclip, .ow-coffee-cup, .ow-pencil-decoration {
     display: none !important;
   }
 }

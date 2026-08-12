@@ -6,6 +6,7 @@ import { FooterPaper } from '../../features/notebook-footer/components/FooterPap
 import { RoughNoteDrawingFeature } from '../../features/rough-note-drawing/RoughNoteDrawingFeature';
 import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
+import coffeeImg from '../../assets/illustrations/coffee-rn.svg';
 
 export function OurWorkPage() {
   const mainRef = useRef<HTMLElement>(null);
@@ -180,6 +181,16 @@ export function OurWorkPage() {
               <circle cx="9" cy="7" r="1.8" fill="#fff" opacity="0.4" />
               <path d="M10 13.5 L10 18" stroke="#666" strokeWidth="1.5" />
             </svg>
+
+            {/* Coffee Cup - Top Right */}
+            <div className="ow-coffee-cup">
+              <img src={coffeeImg} alt="Coffee Cup" />
+            </div>
+
+            {/* Pencil - Bottom Right */}
+            <div className="ow-pencil-decoration">
+              <img src="/assets/images/pencil-left.png" alt="Pencil" />
+            </div>
 
 
             {/* ==========================================
