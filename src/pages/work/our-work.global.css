@@ -1,0 +1,1469 @@
+/* ==========================================================================
+   OUR WORK PAGE STYLING (ow- PREFIX TO PREVENT COLLISION)
+   ========================================================================== */
+
+/* Overall Page Layout */
+.ow-page-container {
+  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #faf6ee;
+  color: #1b1814;
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 100px rgba(70, 55, 40, 0.08);
+  padding: 0;
+}
+
+/* Scaler container for desktop viewports */
+.ow-content-scaler {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 40px;
+  width: 2290px;
+  height: 1152px;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform-origin: left center;
+  box-sizing: border-box;
+}
+
+
+
+
+/* Page Vignette Edge Detail */
+.ow-page-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.04);
+  z-index: 10;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT COLUMN - CONTENT & CHECKLIST
+   -------------------------------------------------------------------------- */
+.ow-left-col {
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  padding-top: 10px;
+}
+
+.ow-page-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8c8273;
+  margin-bottom: 16px;
+}
+
+
+
+.ow-title {
+  font-family: 'Caveat Brush', cursive;
+  font-size: 10.5rem;
+  line-height: 0.90;
+  margin: 0 0 10px 0;
+  color: #1b1814;
+  transform: rotate(-1.5deg) translateX(-5px);
+  transform-origin: left center;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+
+
+
+
+.ow-subtitle-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.ow-subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: 2.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #2e2a24;
+  margin: 0;
+}
+
+
+
+.ow-wavy-underline {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: 12px;
+  margin-top: 5px;
+}
+
+
+.ow-body-text {
+  font-size: 1.45rem;
+  line-height: 1.6;
+  color: #4a443a;
+  max-width: 430px;
+  margin: 0 0 30px 0;
+}
+
+
+
+/* Checklist Note using new.png only */
+.ow-checklist-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.ow-checklist-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 280px;
+  width: 100%;
+  height: 310px;
+  overflow: hidden;
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 90%, 95% 91%, 90% 89%, 85% 92%, 80% 90%, 75% 93%, 70% 91%, 65% 94%, 60% 91%, 55% 93%, 50% 90%, 45% 92%, 40% 89%, 35% 93%, 30% 90%, 25% 92%, 20% 89%, 15% 91%, 10% 88%, 5% 90%, 0% 88%
+  );
+  filter: drop-shadow(3px 5px 8px rgba(70, 55, 40, 0.22));
+  transform: rotate(-2.5deg);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  transform-origin: center center;
+}
+
+
+.ow-checklist-wrapper:hover {
+  transform: rotate(-1deg) scale(1.02);
+  filter: drop-shadow(4px 8px 12px rgba(70, 55, 40, 0.28));
+}
+
+.ow-checklist-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ow-checklist-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 25px 25px 35px 45px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+.ow-checklist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.ow-checklist-item {
+  font-family: 'Caveat', cursive;
+  font-size: 25px;
+  font-weight: 700;
+  color: #2d261e;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+
+.ow-checklist-smile {
+  margin-left: auto;
+  margin-right: 40px;
+  margin-bottom: 5px;
+  opacity: 0.85;
+}
+
+
+
+/* Open Archive Link */
+.ow-open-archive {
+  font-family: 'Caveat', cursive;
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: #1b1814;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  user-select: none;
+  margin-top: 35px;
+  padding-bottom: 0;
+}
+
+
+
+.ow-open-archive:hover {
+  color: #ec9b3d;
+  transform: translateX(4px);
+}
+
+.ow-archive-arrow {
+  display: inline-block;
+  font-size: 2.5rem;
+  transition: transform 0.2s ease;
+}
+
+
+.ow-open-archive:hover .ow-archive-arrow {
+  transform: translateY(3px);
+}
+
+/* --------------------------------------------------------------------------
+   RIGHT COLUMN - SCRAPBOOK / MOOD BOARD
+   -------------------------------------------------------------------------- */
+.ow-moodboard {
+  position: relative;
+  width: 1800px;
+  height: 1152px;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+
+
+/* Pins, Clips, and Tape Common Styles */
+.ow-pin {
+  position: absolute;
+  z-index: 100;
+  filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.3));
+  pointer-events: none;
+}
+
+.ow-tape {
+  position: absolute;
+  background: rgba(238, 226, 192, 0.55);
+  backdrop-filter: blur(0.5px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  z-index: 90;
+  clip-path: polygon(
+    0% 12%, 12% 0%, 25% 10%, 38% 2%, 50% 12%, 62% 4%, 75% 12%, 88% 2%, 100% 10%,
+    98% 90%, 85% 100%, 72% 92%, 60% 98%, 48% 90%, 35% 98%, 22% 90%, 10% 100%, 0% 88%
+  );
+  pointer-events: none;
+}
+
+.ow-paperclip {
+  position: absolute;
+  z-index: 95;
+  filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15));
+  pointer-events: none;
+}
+
+/* Paper Base Styles */
+.ow-paper {
+  position: absolute;
+  box-sizing: border-box;
+  background-color: #fafaf8;
+  filter: drop-shadow(2px 5px 8px rgba(60, 50, 40, 0.12));
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+  transform-origin: center center;
+}
+
+.ow-paper:hover {
+  filter: drop-shadow(4px 10px 18px rgba(60, 50, 40, 0.2));
+  z-index: 85 !important;
+}
+
+/* Sticky Note Base Styles */
+.ow-sticky {
+  position: absolute;
+  box-sizing: border-box;
+  background: none !important;
+  filter: 
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.22))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.15))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.35));
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+  transform-origin: center center;
+  isolation: isolate;
+}
+
+.ow-sticky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fdf59b;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
+    var(--contact-grain),
+    linear-gradient(135deg, #fdf59b 0%, #faf082 100%);
+  background-blend-mode: multiply, normal, normal;
+  
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  
+  box-shadow: 
+    inset 3px 3px 0px rgba(255, 255, 255, 0.5), 
+    inset -3px -3px 0px rgba(0, 0, 0, 0.05);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ow-sticky:hover {
+  filter: 
+    drop-shadow(0 26px 30px rgba(62, 42, 22, 0.28))
+    drop-shadow(0 8px 10px rgba(62, 42, 22, 0.2))
+    drop-shadow(0 3px 4px rgba(62, 42, 22, 0.4));
+  z-index: 85 !important;
+}
+
+/* --------------------------------------------------------------------------
+   SPECIFIC PAPERS & NOTES
+   -------------------------------------------------------------------------- */
+
+/* 1. Website Mockup Paper */
+.ow-mockup-paper {
+  top: 3%;
+  left: 17%;
+  width: 32%;
+  height: 48%;
+  transform: rotate(-0.5deg);
+  padding: 16px;
+  background: none !important;
+  border-radius: 2px 4px 2px 3px / 3px 2px 4px 2px;
+  z-index: 10;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.18))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.12))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.28));
+}
+.ow-mockup-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fbfbf9;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ow-mockup-paper:hover {
+  transform: scale(1.02) rotate(-0.5deg);
+}
+
+.ow-mockup-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 11px;
+  color: #333;
+}
+
+
+.ow-mockup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+}
+
+.ow-mockup-logo {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.ow-mockup-nav {
+  display: flex;
+  gap: 8px;
+  color: #888;
+}
+
+.ow-mockup-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ow-mockup-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #1b1814;
+  margin: 4px 0 8px 0;
+  max-width: 90%;
+}
+
+
+/* Web Mockup Hero GFX (minimalist vase/bottle concept) */
+.ow-mockup-hero {
+  width: 100%;
+  flex: 1;
+  border-radius: 2px;
+  background-color: #faf6ee;
+  border: 1px solid #f0e9dd;
+  overflow: hidden;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ow-mockup-hero svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ow-mockup-footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+}
+
+.ow-mockup-lines span {
+  display: block;
+  height: 3px;
+  background: #eae5d9;
+  margin-bottom: 2.5px;
+  border-radius: 1px;
+}
+
+.ow-mockup-lines span:nth-child(2) { width: 85%; }
+.ow-mockup-lines span:nth-child(3) { width: 60%; }
+
+.ow-mockup-thumb {
+  height: 14px;
+  background: #f0eae0;
+  border-radius: 1px;
+}
+
+
+/* 2. Brand Strategy Sticky Note */
+.ow-brand-sticky {
+  top: 4%;
+  left: 51%;
+  width: 14%;
+  height: 19%;
+  transform: rotate(2deg);
+  padding: 15px 24px;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.ow-brand-sticky:hover {
+  transform: scale(1.04) rotate(0deg);
+}
+
+.ow-sticky-title {
+  font-family: 'Caveat', cursive;
+  font-size: 23px;
+  font-weight: bold;
+  margin: 0 0 6px 0;
+  border-bottom: 1px dashed rgba(27, 24, 20, 0.15);
+  padding-bottom: 2px;
+}
+
+.ow-sticky-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+
+
+.ow-sticky-list li {
+  margin-bottom: 2px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.ow-sticky-list li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+}
+
+
+/* 3. Black Rough Note Card */
+.ow-black-card {
+  top: 18%;
+  left: 52%;
+  width: 19%;
+  height: 15%;
+  transform: rotate(-3.5deg);
+  background: none !important;
+  color: #faf6ee;
+  padding: 12px;
+  border-radius: 1px;
+  z-index: 20;
+  isolation: isolate;
+  position: absolute;
+}
+
+.ow-black-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #201e1b;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ow-black-card:hover {
+  transform: scale(1.03) rotate(-1deg);
+}
+
+.ow-black-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 1px solid rgba(250, 246, 238, 0.12);
+  box-sizing: border-box;
+}
+
+.ow-black-rn {
+  font-size: 26px;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.ow-black-tag {
+  font-size: 6.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  color: rgba(250, 246, 238, 0.6);
+}
+
+
+/* 4. Logo Exploration Paper */
+.ow-logo-paper {
+  top: 32%;
+  left: 54%;
+  width: 13%;
+  height: 18%;
+  transform: rotate(1deg);
+  padding: 12px;
+  background: none !important;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.18))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.12))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.28));
+}
+.ow-logo-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fafafa;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+.ow-logo-paper:hover {
+  transform: scale(1.04) rotate(-1deg);
+}
+
+.ow-logo-title {
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 8px 0;
+  color: #555;
+}
+
+
+.ow-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  align-items: center;
+  justify-items: center;
+}
+
+.ow-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ow-logo-item svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ow-logo-label {
+  font-size: 11px;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #999;
+  margin-top: 2px;
+}
+
+
+
+
+/* 5. AI Workflow Paper */
+.ow-ai-workflow {
+  top: 10%;
+  left: 69%;
+  width: 17%;
+  height: 42%;
+  transform: rotate(2.5deg);
+  padding: 16px 12px;
+  background: none !important;
+  z-index: 8;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.18))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.12))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.28));
+}
+
+.ow-ai-workflow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fcfcfc;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+.ow-ai-workflow:hover {
+  transform: scale(1.02) rotate(1deg);
+}
+
+.ow-workflow-title {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 10px 0;
+  border-bottom: 1.5px solid #eae2d3;
+  padding-bottom: 2px;
+}
+
+
+.ow-workflow-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5px;
+}
+
+.ow-workflow-step {
+  font-size: 12.5px;
+  background: #f5f2e8;
+  border: 1px solid #e1dace;
+  padding: 3.5px 7px;
+  border-radius: 2px;
+  width: 80%;
+  text-align: center;
+  font-weight: 500;
+}
+
+
+.ow-workflow-arrow {
+  font-size: 12px;
+  color: #8c8273;
+}
+
+.ow-workflow-footer {
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  font-weight: bold;
+  color: #c95b5b;
+  text-align: center;
+  margin-top: 15px;
+}
+
+
+
+
+/* 6. Website Wireframe Paper */
+.ow-wireframe-paper {
+  top: 48%;
+  left: 7%;
+  width: 17%;
+  height: 38%;
+  transform: rotate(-2deg);
+  padding: 20px 16px;
+  background: none !important;
+  z-index: 18;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.18))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.12))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.28));
+}
+
+.ow-wireframe-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #f6efe0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+.ow-wireframe-paper:hover {
+  transform: scale(1.04) rotate(-1deg);
+}
+
+.ow-wireframe-title {
+  font-family: 'Caveat', cursive;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  color: #7a6e5b;
+}
+
+
+
+.ow-wireframe-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 240px;
+}
+
+
+.ow-wf-box {
+  border: 1px dashed #9c8e76;
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  color: #9c8e76;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: relative;
+}
+
+
+
+.ow-wf-header { height: 20px; }
+.ow-wf-hero {
+  height: 48px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.ow-wf-hero::before,
+.ow-wf-hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: rgba(156, 142, 118, 0.2);
+  top: 50%;
+  left: 0;
+}
+
+.ow-wf-hero::before { transform: rotate(11deg); }
+.ow-wf-hero::after { transform: rotate(-11deg); }
+
+.ow-wf-split {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5px;
+}
+
+.ow-wf-about { height: 36px; }
+.ow-wf-services { height: 36px; }
+
+
+
+/* 7. User Journey Note */
+.ow-user-journey {
+  top: 51%;
+  left: 27%;
+  width: 17%;
+  height: 19%;
+  transform: rotate(1deg);
+  padding: 15px 20px;
+  z-index: 14;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: none !important;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.22))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.15))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.35));
+}
+
+.ow-user-journey::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fdf59b;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #fdf59b 0%, #faf082 100%);
+  background-blend-mode: multiply, normal;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+.ow-user-journey:hover {
+  transform: scale(1.04) rotate(-0.5deg);
+}
+
+.ow-uj-title {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+
+.ow-uj-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 2px;
+}
+
+.ow-uj-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16%;
+}
+
+.ow-uj-step svg {
+  width: 16px;
+  height: 16px;
+  stroke: #444;
+}
+
+.ow-uj-label {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  margin-top: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+
+.ow-uj-arrow {
+  font-size: 10px;
+  color: #888;
+}
+
+
+
+/* 8. ERP Dashboard Paper */
+.ow-erp-dashboard {
+  top: 50%;
+  left: 47%;
+  width: 23%;
+  height: 23%;
+  transform: rotate(-1.5deg);
+  background: none !important;
+  color: #bcc3d0;
+  padding: 8px;
+  z-index: 11;
+  border-radius: 3px;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.18))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.12))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.28));
+}
+
+.ow-erp-dashboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #161a22;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ow-erp-dashboard:hover {
+  transform: scale(1.03) rotate(-0.5deg);
+}
+
+.ow-erp-inner {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  height: 100%;
+  background: #1d212a;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ow-erp-sidebar {
+  background: #14171f;
+  padding: 5px 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ow-erp-logo {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00bfa5;
+  margin: 0 auto 5px auto;
+}
+
+.ow-erp-nav-item {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+}
+
+.ow-erp-nav-item.active {
+  background: #00bfa5;
+  width: 80%;
+}
+
+.ow-erp-main {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ow-erp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 8px;
+  color: rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 2px;
+}
+
+
+.ow-erp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.ow-erp-card {
+  background: #252a36;
+  border-radius: 1.5px;
+  padding: 3px;
+  font-size: 8px;
+  border-left: 1.5px solid #00bfa5;
+}
+
+.ow-erp-card-val {
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 1px;
+}
+
+
+.ow-erp-charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4px;
+  flex: 1;
+}
+
+.ow-erp-chart-box {
+  background: #252a36;
+  border-radius: 1.5px;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ow-erp-chart-box svg {
+  width: 100%;
+  height: 100%;
+  max-height: 24px;
+}
+
+
+/* 9. ERP System Sticky Note */
+.ow-erp-sticky {
+  top: 51%;
+  left: 69%;
+  width: 12%;
+  height: 18%;
+  transform: rotate(3deg);
+  padding: 15px 20px;
+  z-index: 17;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: none !important;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.22))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.15))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.35));
+}
+
+.ow-erp-sticky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fdf59b;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #fdf59b 0%, #faf082 100%);
+  background-blend-mode: multiply, normal;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+.ow-erp-sticky:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+
+/* 10. Motion Storyboard Paper */
+.ow-storyboard {
+  top: 70%;
+  left: 23%;
+  width: 24%;
+  height: 24%;
+  transform: rotate(0.8deg);
+  padding: 12px;
+  background: none !important;
+  z-index: 13;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.18))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.12))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.28));
+}
+
+.ow-storyboard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fafafa;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ow-storyboard:hover {
+  transform: scale(1.03) rotate(0deg);
+}
+
+.ow-sb-title {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 6px 0;
+  color: #444;
+}
+
+
+.ow-sb-panels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  height: calc(100% - 20px);
+}
+
+.ow-sb-panel {
+  border: 1px solid #ddd;
+  background: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  border-radius: 1.5px;
+}
+
+.ow-sb-visual {
+  flex: 1;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+}
+
+.ow-sb-visual svg {
+  width: 80%;
+  height: 80%;
+}
+
+.ow-sb-label {
+  font-family: 'Caveat', cursive;
+  font-size: 13px;
+  text-align: center;
+  padding-top: 2px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+
+/* 11. Packaging Concept Paper */
+.ow-packaging {
+  top: 68%;
+  left: 49%;
+  width: 27%;
+  height: 26%;
+  transform: rotate(-1.5deg);
+  padding: 12px 16px;
+  background: none !important;
+  z-index: 9;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  isolation: isolate;
+  position: absolute;
+  filter:
+    drop-shadow(0 20px 24px rgba(62, 42, 22, 0.18))
+    drop-shadow(0 4px 7px rgba(62, 42, 22, 0.12))
+    drop-shadow(0 2px 3px rgba(62, 42, 22, 0.28));
+}
+
+.ow-packaging::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #fbfbf9;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperTear'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.08' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M15,15 L985,15 L985,985 L15,985 Z' filter='url(%23paperTear)' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ow-packaging:hover {
+  transform: scale(1.03) rotate(-0.5deg);
+}
+
+.ow-pk-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.ow-pk-title {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 6px 0;
+  color: #444;
+}
+
+.ow-pk-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: 'Caveat', cursive;
+  font-size: 15.5px;
+  line-height: 1.35;
+  color: #555;
+}
+
+
+
+.ow-pk-list li {
+  margin-bottom: 2px;
+  padding-left: 8px;
+  position: relative;
+}
+
+.ow-pk-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #8c8273;
+}
+
+.ow-pk-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ow-box-sketch {
+  width: 100%;
+  height: auto;
+  max-height: 65px;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN & REFLOW (FOR STACKED/CLEAN COMPOSITION)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .ow-page-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    display: block;
+  }
+
+  .ow-content-scaler {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    transform-origin: center center !important;
+  }
+
+  .ow-left-col {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .ow-wavy-underline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ow-body-text {
+    max-width: 100%;
+  }
+
+  .ow-checklist-container {
+    justify-content: center;
+  }
+
+  .ow-open-archive {
+    margin: 20px 0;
+  }
+
+  /* Reflow moodboard to standard grid on tablet/mobile */
+  .ow-moodboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    min-height: auto !important;
+    width: 100% !important;
+  }
+
+
+  /* Reset absolute positions */
+  .ow-paper, .ow-sticky, .ow-black-card, .ow-erp-dashboard {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 160px;
+    aspect-ratio: auto;
+    transform: rotate(0deg) !important;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06) !important;
+  }
+
+  /* Restore visual rotations slightly on mobile but keep it neat */
+  .ow-paper:nth-child(odd) { transform: rotate(1deg) !important; }
+  .ow-paper:nth-child(even) { transform: rotate(-1deg) !important; }
+  .ow-sticky:nth-child(odd) { transform: rotate(-1.5deg) !important; }
+  .ow-sticky:nth-child(even) { transform: rotate(1.5deg) !important; }
+  .ow-black-card { transform: rotate(-1deg) !important; }
+  .ow-erp-dashboard { transform: rotate(1deg) !important; }
+
+  /* Reset inner element heights */
+  .ow-mockup-paper, .ow-logo-paper, .ow-ai-workflow, .ow-wireframe-paper,
+  .ow-user-journey, .ow-storyboard, .ow-packaging {
+    height: auto !important;
+  }
+
+  /* Scale height adjustments */
+  .ow-mockup-hero {
+    height: 140px;
+  }
+
+  .ow-wf-hero {
+    height: 60px;
+  }
+
+  .ow-wf-about, .ow-wf-services {
+    height: 45px;
+  }
+
+  .ow-workflow-step {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .ow-workflow-arrow {
+    font-size: 11px;
+  }
+
+  .ow-sb-visual {
+    height: 60px;
+  }
+
+  .ow-box-sketch {
+    max-height: 90px;
+  }
+
+  .ow-erp-dashboard {
+    min-height: 200px;
+  }
+
+  .ow-erp-inner {
+    grid-template-columns: 50px 1fr;
+  }
+
+  .ow-erp-card-val {
+    font-size: 10px;
+  }
+
+  .ow-erp-header, .ow-erp-card {
+    font-size: 7px;
+  }
+
+  .ow-erp-chart-box svg {
+    max-height: 35px;
+  }
+
+  /* Hide pins/tapes on mobile for cleaner stack look */
+  .ow-pin, .ow-tape, .ow-paperclip {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ow-moodboard {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ow-page-container {
+    padding: 16px;
+    padding-top: 70px;
+  }
+
+  .ow-title {
+    font-size: 3.5rem;
+  }
+
+  .ow-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .ow-body-text {
+    font-size: 0.95rem;
+  }
+}

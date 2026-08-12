@@ -227,9 +227,9 @@ export function ContactJourney({
     // Fade out Step 1 UI
     await transitions.unfold(workspace);
     
-    // Wait for the 3D paper to finish unfolding (approx 1.2s) plus a short natural settle
+    // Wait for the 3D paper to finish unfolding (approx 7.2s) plus a short natural settle
     if (!reducedMotion) {
-      await new Promise(resolve => window.setTimeout(resolve, 1500));
+      await new Promise(resolve => window.setTimeout(resolve, 7600));
     }
     
     // 3. Stage 04 - Transition smoothly to Step 02

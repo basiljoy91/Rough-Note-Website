@@ -80,6 +80,7 @@ export default defineConfig({
         process: page('html/process.html'),
         projects: page('html/projects.html'),
         services: page('html/services.html'),
+        work: page('html/work.html'),
         testimonials: page('html/testimonials.html'),
         scheduleStep1: page('html/schedule-step-1.html'),
         scheduleStep2: page('html/schedule-step-2.html'),
