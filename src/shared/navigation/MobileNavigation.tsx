@@ -63,7 +63,7 @@ export function MobileNavigation({
           ×
         </button>
         <a
-          href="/html/index.html?animated=true"
+          href="/html/index.html"
           className="brand"
           aria-label="Rough Note home"
           onClick={onClose}

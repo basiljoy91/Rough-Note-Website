@@ -20,6 +20,10 @@ import {
   type TurningCanvas
 } from '../../shared/navigation/pageTurnPhysics';
 import {
+  isTransitionPreviewDocument,
+  PAGE_TURN_SETTLED_EVENT
+} from '../../shared/navigation/transitionState';
+import {
   founderContent,
   founderCutoutSource,
   founderNarrative,
@@ -196,28 +200,101 @@ function ChapterPage() {
 function useFounderSceneMotion(rootRef: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
     const root = rootRef.current;
-    if (!root) return;
+    if (!root || isTransitionPreviewDocument()) return;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-story-panel]'));
-    const frame = window.requestAnimationFrame(() => root.classList.add('is-scene-ready'));
+    const scrollRoot = root.closest<HTMLElement>('.story-book__page');
+    let panels: HTMLElement[] = [];
+    let frame = 0;
+    let scrollRange = 0;
+    let scrollFrame = 0;
+    let resizeObserver: ResizeObserver | undefined;
+    let observer: IntersectionObserver | undefined;
+    let started = false;
+    let sceneVisible = true;
 
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-      panels.forEach((panel) => panel.classList.add('is-visible'));
-      return () => window.cancelAnimationFrame(frame);
+    const activeSceneSelector = window.matchMedia('(max-width: 767px)').matches
+      ? '.character-scene--mobile'
+      : window.matchMedia('(max-width: 1023px)').matches
+        ? '.character-scene--tablet'
+        : '.character-scene--desktop';
+    const activeScene = root.querySelector<HTMLElement>(activeSceneSelector);
+    if (!activeScene) return;
+    panels = Array.from(activeScene.querySelectorAll<HTMLElement>('[data-story-panel]'));
+
+    const updateScrollProgress = () => {
+      if (!scrollRoot || !sceneVisible || document.visibilityState === 'hidden') return;
+      const progress = scrollRange > 0 ? Math.min(1, scrollRoot.scrollTop / scrollRange) : 0;
+      root.style.setProperty('--character-scroll-progress', progress.toFixed(3));
+    };
+
+    const measureScrollRange = () => {
+      if (!scrollRoot) return;
+      scrollRange = Math.max(0, scrollRoot.scrollHeight - scrollRoot.clientHeight);
+      updateScrollProgress();
+    };
+
+    const onSceneScroll = () => {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(() => {
+        scrollFrame = 0;
+        updateScrollProgress();
+      });
+    };
+
+    const startScene = () => {
+      if (started) return;
+      started = true;
+      frame = window.requestAnimationFrame(() => root.classList.add('is-scene-ready'));
+
+      if (reducedMotion || !('IntersectionObserver' in window)) {
+        panels.forEach((panel) => panel.classList.add('is-visible'));
+        return;
+      }
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { root: scrollRoot, rootMargin: '0px', threshold: 0.04 });
+
+      panels.forEach((panel) => observer?.observe(panel));
+      if (scrollRoot) {
+        measureScrollRange();
+        scrollRoot.addEventListener('scroll', onSceneScroll, { passive: true });
+        if ('ResizeObserver' in window) {
+          resizeObserver = new ResizeObserver(measureScrollRange);
+          resizeObserver.observe(scrollRoot);
+          resizeObserver.observe(activeScene);
+        }
+      }
+    };
+
+    const visibilityObserver = 'IntersectionObserver' in window
+      ? new IntersectionObserver(([entry]) => {
+          sceneVisible = entry?.isIntersecting ?? true;
+          if (sceneVisible) onSceneScroll();
+        }, { root: scrollRoot, threshold: 0.01 })
+      : undefined;
+    visibilityObserver?.observe(activeScene);
+
+    const waitingForRouteHandoff = document.documentElement.dataset.pageTurnArrival === 'pending';
+    if (waitingForRouteHandoff) {
+      window.addEventListener(PAGE_TURN_SETTLED_EVENT, startScene, { once: true });
+    } else {
+      startScene();
     }
 
-    const scrollRoot = root.closest<HTMLElement>('.story-book__page');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('is-visible');
-      });
-    }, { root: scrollRoot, rootMargin: '0px 0px -12% 0px', threshold: 0.16 });
-
-    panels.forEach((panel) => observer.observe(panel));
     return () => {
+      window.removeEventListener(PAGE_TURN_SETTLED_EVENT, startScene);
       window.cancelAnimationFrame(frame);
-      observer.disconnect();
+      window.cancelAnimationFrame(scrollFrame);
+      scrollRoot?.removeEventListener('scroll', onSceneScroll);
+      resizeObserver?.disconnect();
+      observer?.disconnect();
+      visibilityObserver?.disconnect();
+      root.classList.remove('is-scene-ready');
+      root.style.removeProperty('--character-scroll-progress');
     };
   }, [rootRef]);
 }
@@ -231,8 +308,8 @@ function FounderCutout({ founder, className = '' }: { founder: FounderKey; class
         alt={profile.imageAlt}
         loading="eager"
         decoding="async"
-        width="1422"
-        height="636"
+        width="1536"
+        height="1024"
       />
     </figure>
   );

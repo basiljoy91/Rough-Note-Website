@@ -69,6 +69,11 @@ body:has(.our-story-page) .header {
   z-index: 30;
 }
 
+html[data-page-turn-arrival="pending"] .story-entry-glow,
+html[data-page-turn-arrival="pending"] .story-book {
+  animation-play-state: paused;
+}
+
 .story-book-stage {
   display: grid;
   height: 100%;
@@ -1462,6 +1467,7 @@ body:has(.our-story-page) .header {
   --character-layer-foreground: 6;
   --character-layer-brand: 7;
   --character-layer-atmosphere: 8;
+  --character-scroll-progress: 0;
   background: #eadbc1;
   height: 100%;
   min-height: 100%;
@@ -1872,7 +1878,7 @@ body:has(.our-story-page) .header {
 }
 
 .character-cutout {
-  aspect-ratio: 711 / 636;
+  aspect-ratio: 3 / 4;
   margin: 0;
   overflow: hidden;
   pointer-events: none;
@@ -1892,9 +1898,20 @@ body:has(.our-story-page) .header {
 
 .character-cutout--kannan img { left: 0; }
 .character-cutout--ganeish img { left: -100%; }
-.character-cutout--desktop { bottom: 7.6%; width: 52%; }
-.character-cutout--desktop.character-cutout--kannan { left: -1.6%; }
-.character-cutout--desktop.character-cutout--ganeish { right: 0; }
+.character-cutout--desktop {
+  aspect-ratio: auto;
+  inset: 0;
+  width: 100%;
+}
+
+.character-cutout--desktop.character-cutout--kannan { clip-path: inset(0 50% 0 0); }
+.character-cutout--desktop.character-cutout--ganeish { clip-path: inset(0 0 0 50%); }
+
+.character-cutout--desktop img {
+  inset: 0;
+  object-fit: contain;
+  width: 100%;
+}
 
 .character-focus-note {
   background:
@@ -2122,10 +2139,61 @@ body:has(.our-story-page) .header {
 @keyframes character-ink-reveal { from { clip-path: inset(0 100% 0 0); opacity: 0; } to { clip-path: inset(0); opacity: 1; } }
 @keyframes character-line-draw { to { transform: rotate(-1deg) scaleX(1); } }
 @keyframes character-portrait-settle { from { opacity: 0; transform: translateY(1.3cqw); } to { opacity: 1; transform: translateY(0); } }
-@keyframes character-note-settle { from { opacity: 0; translate: 0 -0.8cqw; } to { opacity: 1; translate: 0 0; } }
+@keyframes character-note-settle {
+  from { opacity: 0; translate: 0 calc(var(--character-scroll-y, 0px) - 0.8cqw); }
+  to { opacity: 1; translate: 0 var(--character-scroll-y, 0px); }
+}
 @keyframes character-arrow-sketch { from { clip-path: inset(0 0 100% 0); opacity: 0; } to { clip-path: inset(0); opacity: 1; } }
 @keyframes character-foreground-reveal { from { opacity: 0; transform: translateY(0.6cqw); } to { opacity: 1; transform: translateY(0); } }
 @keyframes character-brand-settle { from { opacity: 0; translate: 0 1.4cqw; } to { opacity: 1; translate: 0 0; } }
+
+/* Wide/laptop: a short pinned scroll beat inside the same physical book. */
+@media (width >= 1024px) {
+  .story-book__page:has(.story-page--founders) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-color: rgb(116 78 42 / 42%) transparent;
+    scrollbar-width: thin;
+  }
+
+  .story-page--founders {
+    height: 150%;
+    min-height: 150%;
+    overflow: visible;
+  }
+
+  .character-scene--desktop {
+    height: 66.6667%;
+    position: sticky;
+    top: 0;
+  }
+
+  .character-scene--tablet,
+  .character-scene--mobile {
+    content-visibility: hidden;
+  }
+
+  .character-scene--desktop .character-research-card,
+  .character-scene--desktop .character-sketch-sheet,
+  .character-scene--desktop .character-swatches {
+    --character-scroll-y: calc(var(--character-scroll-progress, 0) * -0.9cqw);
+  }
+
+  .character-scene--desktop .character-focus-note,
+  .character-scene--desktop .character-process-note,
+  .character-scene--desktop .character-narrative {
+    --character-scroll-y: calc(var(--character-scroll-progress, 0) * -0.45cqw);
+  }
+
+  .character-scene--desktop .character-scene__light {
+    transform: translate3d(0, calc(var(--character-scroll-progress, 0) * 1.2%), 0);
+  }
+
+  .character-scene--desktop .character-desk-props {
+    display: none;
+  }
+}
 
 /* Laptop: denser type protection with a simplified foreground. */
 @media (width >= 1024px) and (width <= 1439px) {
@@ -2135,10 +2203,9 @@ body:has(.our-story-page) .header {
   .character-founder-heading { top: 3.5%; width: 25%; }
   .character-founder-heading h3 { font-size: 3.15cqw; }
   .character-founder-heading p { font-size: 1.34cqw; }
-  .character-bio { font-size: 0.97cqw; line-height: 1.34; }
+  .character-bio { font-size: max(0.97cqw, 11px); line-height: 1.34; }
   .character-bio--kannan { top: 19%; width: 15%; }
   .character-bio--ganeish { top: 18.4%; width: 16%; }
-  .character-cutout--desktop { bottom: 8.2%; width: 51%; }
   .character-narrative--desktop { left: 44.2%; width: 11.8%; }
   .character-focus-note { width: 13.8%; }
   .character-logo-papers i:nth-child(2),
@@ -2152,6 +2219,8 @@ body:has(.our-story-page) .header {
   .story-page--founders { height: auto; min-height: 100%; overflow: visible; }
   .character-scene--desktop,
   .character-scene--mobile { display: none; }
+  .character-scene--desktop,
+  .character-scene--mobile { content-visibility: hidden; }
   .character-scene--tablet {
     background:
       linear-gradient(104deg, rgb(99 64 34 / 8%), transparent 8% 92%, rgb(99 64 34 / 8%)),
@@ -2204,11 +2273,11 @@ body:has(.our-story-page) .header {
   .character-tablet-founder .character-logo-studies small,
   .character-tablet-founder .character-logo-studies em { font-size: 10px; }
   .character-tablet-founder .character-logo-studies > div b { font-size: 24px; }
-  .character-tablet-founder .character-api-sheet { height: 92px; left: 5%; top: 46%; width: 125px; }
+  .character-tablet-founder .character-api-sheet { height: 92px; left: auto; right: 7%; top: 43%; width: 125px; }
   .character-tablet-founder .character-cloud { font-size: 10px; padding: 8px; top: 8px; }
   .character-tablet-founder .character-api-sheet > i { height: 46px; top: 37px; }
   .character-tablet-founder .character-api-sheet > b { bottom: 7px; font-size: 8px; }
-  .character-tablet-founder .character-swatches { left: auto; right: 5%; top: 48%; }
+  .character-tablet-founder .character-swatches { left: auto; right: 7%; top: 60%; }
   .character-tablet-founder .character-swatches i { height: 28px; width: 22px; }
   .character-tablet-founder .character-focus-note { bottom: 36px; left: 24px; right: auto; top: auto; width: 210px; z-index: 6; }
   .character-tablet-founder--ganeish .character-focus-note { left: auto; right: 24px; }
@@ -2230,6 +2299,20 @@ body:has(.our-story-page) .header {
   .character-tablet-finale .character-brand-card > i { height: 2px; }
   .character-tablet-finale .character-brand-card > span { font-size: 24px; left: 140px; }
 
+  .story-page--founders .character-scene--tablet .character-code-card,
+  .story-page--founders .character-scene--tablet .character-logo-studies {
+    translate: 0 calc(var(--character-scroll-progress, 0) * -18px);
+  }
+
+  .story-page--founders .character-scene--tablet .character-api-sheet,
+  .story-page--founders .character-scene--tablet .character-swatches {
+    translate: 0 calc(var(--character-scroll-progress, 0) * -10px);
+  }
+
+  .story-page--founders .character-tablet-finale .character-desk-props {
+    translate: 0 calc(var(--character-scroll-progress, 0) * -16px);
+  }
+
   [data-story-panel] { opacity: 0; transform: translateY(24px); transition: opacity 500ms ease, transform 650ms cubic-bezier(0.18, 0.75, 0.24, 1); }
   [data-story-panel].is-visible { opacity: 1; transform: translateY(0); }
 }
@@ -2239,6 +2322,8 @@ body:has(.our-story-page) .header {
   .story-page--founders { height: auto; min-height: 100%; overflow: visible; }
   .character-scene--desktop,
   .character-scene--tablet { display: none; }
+  .character-scene--desktop,
+  .character-scene--tablet { content-visibility: hidden; }
   .character-scene--mobile {
     background:
       linear-gradient(100deg, rgb(91 55 27 / 7%), transparent 10% 91%, rgb(91 55 27 / 8%)),
@@ -2331,11 +2416,37 @@ body:has(.our-story-page) .header {
   .character-mobile-panel--finale .character-brand-card > i { height: 2px; }
   .character-mobile-panel--finale .character-brand-card > span { font-size: 23px; left: 29%; }
 
+  .story-page--founders .character-scene--mobile .character-code-card,
+  .story-page--founders .character-scene--mobile .character-logo-studies,
+  .story-page--founders .character-scene--mobile .character-focus-note {
+    translate: 0 calc(var(--character-scroll-progress, 0) * -12px);
+  }
+
+  .story-page--founders .character-scene--mobile .character-api-sheet,
+  .story-page--founders .character-scene--mobile .character-swatches,
+  .story-page--founders .character-scene--mobile .character-process-note {
+    translate: 0 calc(var(--character-scroll-progress, 0) * -7px);
+  }
+
+  .story-page--founders .character-mobile-panel--finale .character-desk-props {
+    translate: 0 calc(var(--character-scroll-progress, 0) * -18px);
+  }
+
   [data-story-panel] { opacity: 0; transform: translateY(22px); transition: opacity 420ms ease, transform 560ms cubic-bezier(0.18, 0.75, 0.24, 1); }
   [data-story-panel].is-visible { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .story-page--founders {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .story-page--founders .character-scene--desktop {
+    height: 100%;
+    position: relative;
+  }
+
   .story-page--founders .character-scene--desktop > *,
   .story-page--founders [data-story-panel] {
     animation: none !important;

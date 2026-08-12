@@ -265,6 +265,6 @@ test('the shared notebook navigation remains available', async ({ page }) => {
   }
   await expect(page.getByRole('link', { name: 'Rough Note home' })).toHaveAttribute(
     'href',
-    '/html/index.html?animated=true'
+    '/html/index.html'
   );
 });

@@ -45,6 +45,7 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
     let current = 0;
     let transitionTimer = 0;
     let initialTimer = 0;
+    let captureTimer = 0;
     let animationFrame = 0;
     let turningCanvas: TurningCanvas | null = null;
     let isTurning = false;
@@ -129,6 +130,7 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
 
     const finishTurn = () => {
       window.clearTimeout(transitionTimer);
+      window.clearTimeout(captureTimer);
       window.cancelAnimationFrame(animationFrame);
       turningCanvas?.element.remove();
       turningCanvas?.front.remove();
@@ -138,7 +140,7 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       section.classList.remove('workbook--turning');
       section.removeAttribute('aria-busy');
       setControlsDisabled(false);
-      window.setTimeout(() => void warmCapture(current), 120);
+      captureTimer = window.setTimeout(() => void warmCapture(current), 120);
     };
 
     const buildTurningCanvas = (source: HTMLCanvasElement) => {
@@ -289,7 +291,7 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
         .querySelectorAll<HTMLElement>('.reveal-on-scroll')
         .forEach((item) => item.classList.add('visible'));
       // Let the opening reveal finish so the cached frame is fully opaque.
-      window.setTimeout(() => void warmCapture(current), 950);
+      captureTimer = window.setTimeout(() => void warmCapture(current), 950);
     }, 100);
 
     const observer = new IntersectionObserver(
@@ -306,6 +308,7 @@ export function useWorkbookCarousel(rootRef: RefObject<HTMLElement | null>) {
       turnRequest += 1;
       captureRequest += 1;
       window.clearTimeout(initialTimer);
+      window.clearTimeout(captureTimer);
       finishTurn();
       observer.disconnect();
       previous.removeEventListener('click', showPrevious);

@@ -62,6 +62,28 @@ describe('PageTurnTransition', () => {
     );
   });
 
+  it('uses the shared page turn for Home navigation', () => {
+    window.history.replaceState({}, '', '/html/services.html');
+    document.body.innerHTML = `
+      <header class="header">
+        <a href="/html/index.html">Home</a>
+        <div class="page-note" data-page-note></div>
+      </header>
+      <div class="rn-page-surface"><main>Our Story</main></div>
+      <div id="transition-root"></div>
+    `;
+
+    render(<PageTurnTransition />, {
+      container: document.getElementById('transition-root') as HTMLElement
+    });
+
+    const clickCompleted = fireEvent.click(document.querySelector('a') as HTMLAnchorElement);
+
+    expect(clickCompleted).toBe(false);
+    expect(document.querySelector('.rn-page-turn')).toBeInTheDocument();
+    expect(document.documentElement).toHaveAttribute('data-page-turn-state', 'preparing');
+  });
+
   it('loads the destination beneath a one-direction turning paper', async () => {
     document.body.innerHTML = `
       <header class="header">

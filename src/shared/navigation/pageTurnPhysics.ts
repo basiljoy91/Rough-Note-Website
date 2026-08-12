@@ -26,6 +26,9 @@ type CurlColumn = {
   sourceWidth: number;
 };
 
+const curlColumnsCache = new Map<string, CurlColumn[]>();
+const MAX_CACHED_CURL_FRAMES = 72;
+
 export const clamp = (value: number, minimum: number, maximum: number) =>
   Math.min(maximum, Math.max(minimum, value));
 
@@ -125,45 +128,42 @@ export const drawPageCurl = (
   context.fillRect(0, 0, width, height);
 
   const sourceStep = Math.max(2, Math.ceil(width / 620));
-  const columns: CurlColumn[] = [];
+  // Quantizing geometry to a sub-frame interval is visually indistinguishable
+  // at 60 Hz, while letting every route/story turn reuse the expensive column
+  // mapping and depth sort instead of rebuilding it on each paint.
+  const progressBucket = Math.round(normalizedProgress * 240);
+  const cacheKey = `${width}:${sourceStep}:${direction}:${progressBucket}`;
+  let columns = curlColumnsCache.get(cacheKey);
 
-  for (let sourceLeft = 0; sourceLeft < width; sourceLeft += sourceStep) {
-    const sourceWidth = Math.min(sourceStep, width - sourceLeft);
-    const sourceRight = sourceLeft + sourceWidth;
-    const normalizedCenter = (sourceLeft + sourceWidth / 2) / width;
-    const leftPoint = getCurlPoint(
-      sourceLeft / width,
-      normalizedProgress,
-      direction
-    );
-    const rightPoint = getCurlPoint(
-      sourceRight / width,
-      normalizedProgress,
-      direction
-    );
-    const centerPoint = getCurlPoint(
-      normalizedCenter,
-      normalizedProgress,
-      direction
-    );
-    const destinationStart = leftPoint.x * width;
-    const destinationEnd = rightPoint.x * width;
+  if (!columns) {
+    const geometryProgress = progressBucket / 240;
+    columns = [];
+    for (let sourceLeft = 0; sourceLeft < width; sourceLeft += sourceStep) {
+      const sourceWidth = Math.min(sourceStep, width - sourceLeft);
+      const sourceRight = sourceLeft + sourceWidth;
+      const normalizedCenter = (sourceLeft + sourceWidth / 2) / width;
+      const leftPoint = getCurlPoint(sourceLeft / width, geometryProgress, direction);
+      const rightPoint = getCurlPoint(sourceRight / width, geometryProgress, direction);
+      const centerPoint = getCurlPoint(normalizedCenter, geometryProgress, direction);
+      const destinationStart = leftPoint.x * width;
+      const destinationEnd = rightPoint.x * width;
 
-    columns.push({
-      angle: centerPoint.angle,
-      depth: centerPoint.depth,
-      destinationLeft: Math.min(destinationStart, destinationEnd) - 0.8,
-      destinationWidth: Math.max(
-        1.25,
-        Math.abs(destinationEnd - destinationStart) + 1.6
-      ),
-      normalizedCenter,
-      sourceLeft,
-      sourceWidth
-    });
+      columns.push({
+        angle: centerPoint.angle,
+        depth: centerPoint.depth,
+        destinationLeft: Math.min(destinationStart, destinationEnd) - 0.8,
+        destinationWidth: Math.max(1.25, Math.abs(destinationEnd - destinationStart) + 1.6),
+        normalizedCenter,
+        sourceLeft,
+        sourceWidth
+      });
+    }
+    columns.sort((left, right) => left.depth - right.depth);
+    if (curlColumnsCache.size >= MAX_CACHED_CURL_FRAMES) {
+      curlColumnsCache.delete(curlColumnsCache.keys().next().value ?? '');
+    }
+    curlColumnsCache.set(cacheKey, columns);
   }
-
-  columns.sort((left, right) => left.depth - right.depth);
 
   columns.forEach((column) => {
     if (

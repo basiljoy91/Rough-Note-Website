@@ -7,11 +7,16 @@ import {
   pageTurnDuration,
   type TurningCanvas
 } from './pageTurnPhysics';
+import {
+  isTransitionPreviewDocument,
+  PAGE_TURN_ARRIVAL_KEY,
+  PAGE_TURN_SETTLED_EVENT
+} from './transitionState';
 
 export const PAGE_TURN_DURATION = pageTurnDuration;
 export const PAGE_LOAD_TIMEOUT = 4200;
 export const PAGE_NOTE_SETTLE_DURATION = 720;
-export const PAGE_NOTE_ARRIVAL_KEY = 'rough-note-page-note-arrival';
+export { PAGE_TURN_ARRIVAL_KEY as PAGE_NOTE_ARRIVAL_KEY } from './transitionState';
 
 type PageTurnState =
   | 'idle'
@@ -63,6 +68,7 @@ const NAVIGATION_SELECTOR = [
   '[data-notebook-turn][href]'
 ].join(',');
 const MAX_CAPTURE_PIXELS = 3_200_000;
+const MAX_PREFETCHED_DOCUMENTS = 4;
 
 const isPlainPrimaryClick = (event: MouseEvent) =>
   event.button === 0 &&
@@ -131,7 +137,7 @@ const getNavigationDestinations = () => {
       destinations.add(destination.href);
     }
   });
-  return destinations;
+  return [...destinations].slice(0, MAX_PREFETCHED_DOCUMENTS);
 };
 
 const prefetchDocument = (href: string) => {
@@ -239,6 +245,7 @@ const createTurnStage = (
   destination.tabIndex = -1;
   destination.title = 'Loading destination page';
   destination.setAttribute('aria-hidden', 'true');
+  destination.name = 'rough-note-transition-preview';
   Object.assign(destination.style, {
     height: `${window.innerHeight}px`,
     left: `${-Math.max(0, rect.left)}px`,
@@ -312,6 +319,7 @@ const moveWithinPage = (destination: URL) => {
 export function PageTurnProvider() {
   useEffect(() => {
     const root = document.documentElement;
+    if (isTransitionPreviewDocument()) return;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const timers = new Set<number>();
     let state: PageTurnState = 'idle';
@@ -450,7 +458,7 @@ export function PageTurnProvider() {
 
     const recordArrival = (destination: URL) => {
       window.sessionStorage.setItem(
-        PAGE_NOTE_ARRIVAL_KEY,
+        PAGE_TURN_ARRIVAL_KEY,
         JSON.stringify({ route: routeIdentity(destination), timestamp: Date.now() })
       );
     };
@@ -616,9 +624,12 @@ export function PageTurnProvider() {
     };
 
     const restoreArrivalFocus = () => {
-      const rawArrival = window.sessionStorage.getItem(PAGE_NOTE_ARRIVAL_KEY);
-      if (!rawArrival) return;
-      window.sessionStorage.removeItem(PAGE_NOTE_ARRIVAL_KEY);
+      const rawArrival = window.sessionStorage.getItem(PAGE_TURN_ARRIVAL_KEY);
+      if (!rawArrival) {
+        delete root.dataset.pageTurnArrival;
+        return;
+      }
+      window.sessionStorage.removeItem(PAGE_TURN_ARRIVAL_KEY);
       try {
         const arrival = JSON.parse(rawArrival) as { route?: string; timestamp?: number };
         if (
@@ -643,7 +654,12 @@ export function PageTurnProvider() {
           if (!hadTabIndex) main.addEventListener('blur', () => main.removeAttribute('tabindex'), { once: true });
         }
         setState('complete');
-        schedule(() => setState('idle'), 80);
+        root.dataset.pageTurnArrival = 'complete';
+        window.dispatchEvent(new CustomEvent(PAGE_TURN_SETTLED_EVENT));
+        schedule(() => {
+          setState('idle');
+          delete root.dataset.pageTurnArrival;
+        }, 80);
       }, 90);
     };
 
@@ -659,7 +675,7 @@ export function PageTurnProvider() {
     document.addEventListener('pointerover', onNavigationIntent, true);
     document.addEventListener('touchstart', onNavigationIntent, { capture: true, passive: true });
     window.addEventListener('resize', onResize, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
+    surface.addEventListener('scroll', onScroll, { passive: true });
     document.addEventListener('visibilitychange', onVisibilityChange);
     navigationApi?.addEventListener('navigate', onBrowserTraversal);
 
@@ -671,7 +687,7 @@ export function PageTurnProvider() {
       document.removeEventListener('pointerover', onNavigationIntent, true);
       document.removeEventListener('touchstart', onNavigationIntent, true);
       window.removeEventListener('resize', onResize);
-      window.removeEventListener('scroll', onScroll);
+      surface.removeEventListener('scroll', onScroll);
       document.removeEventListener('visibilitychange', onVisibilityChange);
       navigationApi?.removeEventListener('navigate', onBrowserTraversal);
       timers.forEach((timer) => window.clearTimeout(timer));

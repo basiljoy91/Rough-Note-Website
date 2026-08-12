@@ -412,11 +412,17 @@
 
 .schedule-btn {
   align-items: center;
-  background: #171717;
-  border: 2px solid #0f0f0f;
-  border-radius: 2px;
-  box-shadow: 0 4px 8px rgb(20 18 13 / 18%);
-  color: #fff;
+  background:
+    linear-gradient(92deg, rgb(116 70 31 / 8%), transparent 15% 84%, rgb(116 70 31 / 9%)),
+    radial-gradient(circle at 18% 18%, rgb(255 250 226 / 65%), transparent 33%),
+    #ead8ac;
+  border: 1px solid rgb(98 65 31 / 14%);
+  box-shadow:
+    2px 5px 8px rgb(45 30 14 / 18%),
+    inset 0 1px rgb(255 251 230 / 78%),
+    inset 0 -2px rgb(119 78 35 / 8%);
+  clip-path: polygon(1.3% 7%, 8% 3%, 21% 6%, 36% 2%, 53% 5%, 70% 3%, 84% 6%, 98.5% 4%, 97.3% 29%, 99% 53%, 97.4% 76%, 98.2% 96%, 84% 93%, 67% 98%, 52% 95%, 37% 98%, 23% 94%, 8% 97%, 1% 91%, 2.4% 66%, 0.8% 45%, 2.2% 23%);
+  color: var(--contact-ink);
   display: flex;
   font-family: 'Patrick Hand', cursive;
   font-size: clamp(18px, 1.65cqi, 23px);
@@ -424,14 +430,49 @@
   justify-content: flex-start;
   min-height: 56px;
   padding: 11px 18px;
+  position: relative;
   text-decoration: none;
-  transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  transform: rotate(-0.7deg);
+  transition: box-shadow 160ms ease, transform 160ms ease;
   width: 100%;
+}
+
+.schedule-btn::before {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 9px, rgb(112 78 38 / 5%) 10px 11px),
+    radial-gradient(rgb(92 65 34 / 11%) 0.7px, transparent 0.9px);
+  background-size: auto, 8px 8px;
+  content: '';
+  inset: 0;
+  opacity: 0.62;
+  pointer-events: none;
+  position: absolute;
+}
+
+.schedule-btn::after {
+  background: #d68161;
+  bottom: 9px;
+  content: '';
+  height: 3px;
+  left: 74px;
+  opacity: 0.72;
+  position: absolute;
+  transform: rotate(-1deg) scaleX(0.92);
+  transform-origin: left center;
+  width: min(54%, 265px);
 }
 
 .schedule-btn svg {
   height: 1.15em;
+  position: relative;
+  stroke-width: 1.9;
   width: 1.15em;
+  z-index: 1;
+}
+
+.schedule-btn span {
+  position: relative;
+  z-index: 1;
 }
 
 .schedule-btn svg:last-child {
@@ -440,9 +481,11 @@
 }
 
 .schedule-btn:hover {
-  background: #2a2927;
-  box-shadow: 0 6px 10px rgb(20 18 13 / 22%);
-  transform: translateY(-1px);
+  box-shadow:
+    3px 8px 11px rgb(45 30 14 / 24%),
+    inset 0 1px rgb(255 251 230 / 82%),
+    inset 0 -2px rgb(119 78 35 / 9%);
+  transform: translateY(-2px) rotate(-0.7deg);
 }
 
 .schedule-btn:hover svg:last-child {
@@ -637,27 +680,53 @@
 
 .studio-map {
   align-self: stretch;
+  background: #cdbd9d;
+  border: 1px solid rgb(65 45 27 / 16%);
+  box-shadow:
+    inset 0 0 0 2px rgb(245 233 204 / 18%),
+    inset 0 0 26px rgb(52 37 21 / 22%),
+    0 8px 16px rgb(51 31 15 / 13%);
+  clip-path: polygon(1.2% 2%, 9% 0.8%, 18% 2.5%, 33% 0.7%, 47% 2%, 61% 0.9%, 76% 2.4%, 90% 1.1%, 98.8% 3%, 97.7% 21%, 99.2% 42%, 97.8% 60%, 99% 80%, 97.2% 97%, 86% 98.3%, 70% 96.8%, 56% 98.8%, 40% 97%, 25% 99%, 11% 97.5%, 1.1% 98.4%, 2.4% 76%, 0.8% 57%, 2.2% 39%, 0.9% 19%);
   min-height: 238px;
   overflow: hidden;
   position: relative;
 }
 
-.studio-map::after {
-  background: rgb(241 229 204 / 17%);
+.studio-map::before {
+  background:
+    linear-gradient(90deg, rgb(246 235 205 / 33%), transparent 16% 84%, rgb(74 49 27 / 12%)),
+    radial-gradient(circle at 44% 36%, transparent 0 16%, rgb(246 235 205 / 16%) 16% 22%, transparent 23%);
   content: '';
   inset: 0;
+  mix-blend-mode: soft-light;
   pointer-events: none;
   position: absolute;
+  z-index: 1;
+}
+
+.studio-map::after {
+  background:
+    linear-gradient(rgb(241 229 204 / 19%), rgb(241 229 204 / 21%)),
+    radial-gradient(rgb(36 26 16 / 10%) 0.45px, transparent 0.75px);
+  background-size: auto, 5px 5px;
+  content: '';
+  inset: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
 }
 
 .studio-map > img {
   display: block;
-  filter: sepia(0.28) saturate(0.78) contrast(0.9);
-  height: 100%;
+  filter: sepia(0.32) saturate(0.68) contrast(0.92);
+  height: 144%;
+  max-width: none;
   object-fit: cover;
-  object-position: 56% 50%;
-  opacity: 0.76;
-  width: 100%;
+  object-position: 76% 58%;
+  opacity: 0.72;
+  transform: translate3d(-48%, -17%, 0);
+  width: 165%;
 }
 
 .map-paper-label {
@@ -672,7 +741,7 @@
   position: absolute;
   top: 36%;
   transform: rotate(-1deg);
-  z-index: 2;
+  z-index: 4;
 }
 
 .map-paper-label svg {
@@ -698,7 +767,7 @@
   transform: rotate(-1deg);
   transition: filter 160ms ease, transform 160ms ease;
   width: clamp(190px, 27cqi, 290px);
-  z-index: 3;
+  z-index: 5;
 }
 
 .directions-note:hover {

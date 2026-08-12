@@ -5,6 +5,34 @@
     url('../../assets/textures/paper-texture.jpg') center top / cover;
 }
 
+/* Route arrivals focus the page container for assistive technology. The
+   container is not an interactive control, so suppress the browser's page-wide
+   blue focus rectangle while retaining focus rings on real controls. */
+.rn-page-surface main[tabindex="-1"]:focus,
+.rn-page-surface [data-page-heading][tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* The destination iframe is a paint-only lower sheet. Keeping it static stops
+   a second route controller and a hidden copy of page-local animations from
+   competing with the visible curl. */
+html.rn-page-turn-preview *,
+html.rn-page-turn-preview *::before,
+html.rn-page-turn-preview *::after {
+  animation: none !important;
+  scroll-behavior: auto !important;
+  transition: none !important;
+}
+
+html.rn-page-turn-preview .story-entry-glow {
+  display: none !important;
+}
+
+html.rn-page-turn-preview .story-book {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) rotate(-0.15deg) scale(1) !important;
+}
+
 html.rn-page-turn-locked,
 html.rn-page-turn-locked * {
   cursor: wait !important;

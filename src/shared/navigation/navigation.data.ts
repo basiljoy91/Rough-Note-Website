@@ -29,7 +29,7 @@ export const navigationItems: NavigationItem[] = [
   {
     key: 'home',
     label: 'Home',
-    href: '/html/index.html?animated=true',
+    href: '/html/index.html',
     icon: homeIcon
   },
   {
