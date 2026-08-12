@@ -1818,7 +1818,11 @@
   .stepShell {
     border-radius: 13px 16px 12px 15px;
     min-height: calc(100svh - 128px);
-    padding: 84px 34px 76px;
+    padding: 84px 34px 160px; /* Increased bottom padding to avoid collision with torn edge */
+  }
+
+  .step4 {
+    padding-bottom: 280px; /* Step 4 is exceptionally tall, needs extra padding */
   }
 
   .progress {
@@ -1870,7 +1874,11 @@
     border-radius: 9px 13px 10px 12px;
     min-height: calc(100svh - 124px);
     overflow: visible;
-    padding: 88px 20px 76px;
+    padding: 88px 20px 160px; /* Increased bottom padding to avoid collision with torn edge */
+  }
+
+  .step4 {
+    padding-bottom: 280px; /* Step 4 is exceptionally tall, needs extra padding */
   }
 
   .stepShell::before,
