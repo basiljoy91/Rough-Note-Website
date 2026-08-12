@@ -13,6 +13,34 @@ export function OurWorkPage() {
 
   const [scale, setScale] = useState(1);
   const [isExpandedView, setIsExpandedView] = useState(false);
+  const [part2Filter, setPart2Filter] = useState('ALL');
+
+  const part2Projects = [
+    { title: "Alta Wear", category: "Brand Identity", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    { title: "Natura Skincare", category: "Packaging Design", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    { title: "Nova ERP", category: "ERP Software", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&q=80&auto=format&fit=crop", clipped: true, isDefaultPart2: true },
+    { title: "EazyHRM", category: "HR Management System", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    { title: "FlowAI Agent", category: "AI Automation", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&q=80&auto=format&fit=crop", isDefaultPart2: true },
+    
+    /* Additional projects included to satisfy WEB, 3D, and MOTION filter categories using existing data */
+    { title: "Urban Arc House", category: "Website Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=480&q=80&auto=format&fit=crop" },
+    { title: "TasteBite", category: "Restaurant Website", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=480&q=80&auto=format&fit=crop" },
+    { title: "Volt X Concept", category: "3D Modeling", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1531297121281-2c1b2c4c810d?w=480&q=80&auto=format&fit=crop" },
+    { title: "Future of Energy", category: "Motion Graphics", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=480&q=80&auto=format&fit=crop" }
+  ];
+
+  const filteredPart2Projects = part2Projects.filter(p => {
+    if (part2Filter === 'ALL') return p.isDefaultPart2;
+    const cat = p.category.toUpperCase();
+    if (part2Filter === 'BRAND') return cat.includes('BRAND') || cat.includes('PACKAGING');
+    if (part2Filter === 'WEB') return cat.includes('WEB');
+    if (part2Filter === 'SOFTWARE') return cat.includes('SOFTWARE') || cat.includes('SYSTEM') || cat.includes('MANAGEMENT');
+    if (part2Filter === 'ERP') return cat.includes('ERP');
+    if (part2Filter === 'AI') return cat.includes('AI ');
+    if (part2Filter === '3D') return cat.includes('3D');
+    if (part2Filter === 'MOTION') return cat.includes('MOTION');
+    return false;
+  });
 
   useEffect(() => {
     const handleResize = () => {
@@ -538,7 +566,8 @@ export function OurWorkPage() {
                   {['ALL', 'BRAND', 'WEB', 'SOFTWARE', 'AI', '3D', 'MOTION'].map((cat) => (
                     <button
                       key={cat}
-                      className={`ow-filter-btn${cat === 'ALL' ? ' ow-filter-active' : ''}`}
+                      className={`ow-filter-btn${part2Filter === cat ? ' ow-filter-active' : ''}`}
+                      onClick={() => setPart2Filter(cat)}
                     >
                       {cat}
                     </button>
@@ -546,127 +575,36 @@ export function OurWorkPage() {
                 </nav>
               </div>
 
-              {/* FIVE PROJECT CARDS */}
+              {/* PROJECT CARDS */}
               <div className="ow-projects-row">
-
-                {/* Card 1 – Alta Wear */}
-                <article className="ow-proj-card">
-                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
-                  <div className="ow-proj-card-inner">
-                    <div className="ow-proj-img-wrap">
-                      <img
-                        src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=480&q=80&auto=format&fit=crop"
-                        alt="Alta Wear – Brand Identity"
-                        className="ow-proj-img"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    </div>
-                    <div className="ow-proj-info">
-                      <div className="ow-proj-name-row">
-                        <span className="ow-proj-name">Alta Wear</span>
-                        <span className="ow-proj-year">2024</span>
+                {filteredPart2Projects.map((proj, idx) => (
+                  <article className={`ow-proj-card ${proj.clipped ? 'ow-proj-card--clipped' : ''}`} key={idx}>
+                    {proj.clipped && (
+                      <svg className="ow-card-clip" viewBox="0 0 18 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 3 C3.5 3 3.5 53 9 53 C14.5 53 14.5 10 9 10 C5.5 10 5.5 46 9 46" stroke="#999" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                      </svg>
+                    )}
+                    <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
+                    <div className="ow-proj-card-inner">
+                      <div className="ow-proj-img-wrap">
+                        <img
+                          src={proj.img}
+                          alt={`${proj.title} – ${proj.category}`}
+                          className="ow-proj-img"
+                          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                        />
                       </div>
-                      <span className="ow-proj-category">Brand Identity</span>
-                      <span className="ow-proj-status ow-status-approved">APPROVED ✓</span>
-                    </div>
-                  </div>
-                </article>
-
-                {/* Card 2 – Natura Skincare */}
-                <article className="ow-proj-card">
-                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
-                  <div className="ow-proj-card-inner">
-                    <div className="ow-proj-img-wrap">
-                      <img
-                        src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=480&q=80&auto=format&fit=crop"
-                        alt="Natura Skincare – Packaging Design"
-                        className="ow-proj-img"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    </div>
-                    <div className="ow-proj-info">
-                      <div className="ow-proj-name-row">
-                        <span className="ow-proj-name">Natura Skincare</span>
-                        <span className="ow-proj-year">2024</span>
+                      <div className="ow-proj-info">
+                        <div className="ow-proj-name-row">
+                          <span className="ow-proj-name">{proj.title}</span>
+                          <span className="ow-proj-year">{proj.year}</span>
+                        </div>
+                        <span className="ow-proj-category">{proj.category}</span>
+                        <span className={`ow-proj-status ${proj.statusClass}`}>{proj.status} {proj.status === 'APPROVED' || proj.status === 'DELIVERED' ? '✓' : ''}</span>
                       </div>
-                      <span className="ow-proj-category">Packaging Design</span>
-                      <span className="ow-proj-status ow-status-delivered">DELIVERED ✓</span>
                     </div>
-                  </div>
-                </article>
-
-                {/* Card 3 – Nova ERP (paper-clip accent) */}
-                <article className="ow-proj-card ow-proj-card--clipped">
-                  <svg className="ow-card-clip" viewBox="0 0 18 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 3 C3.5 3 3.5 53 9 53 C14.5 53 14.5 10 9 10 C5.5 10 5.5 46 9 46" stroke="#999" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                  </svg>
-                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
-                  <div className="ow-proj-card-inner">
-                    <div className="ow-proj-img-wrap">
-                      <img
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&q=80&auto=format&fit=crop"
-                        alt="Nova ERP – ERP Software"
-                        className="ow-proj-img"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    </div>
-                    <div className="ow-proj-info">
-                      <div className="ow-proj-name-row">
-                        <span className="ow-proj-name">Nova ERP</span>
-                        <span className="ow-proj-year">2024</span>
-                      </div>
-                      <span className="ow-proj-category">ERP Software</span>
-                      <span className="ow-proj-status ow-status-delivered">DELIVERED ✓</span>
-                    </div>
-                  </div>
-                </article>
-
-                {/* Card 4 – EazyHRM */}
-                <article className="ow-proj-card">
-                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
-                  <div className="ow-proj-card-inner">
-                    <div className="ow-proj-img-wrap">
-                      <img
-                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&q=80&auto=format&fit=crop"
-                        alt="EazyHRM – HR Management System"
-                        className="ow-proj-img"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    </div>
-                    <div className="ow-proj-info">
-                      <div className="ow-proj-name-row">
-                        <span className="ow-proj-name">EazyHRM</span>
-                        <span className="ow-proj-year">2024</span>
-                      </div>
-                      <span className="ow-proj-category">HR Management System</span>
-                      <span className="ow-proj-status ow-status-approved">APPROVED ✓</span>
-                    </div>
-                  </div>
-                </article>
-
-                {/* Card 5 – FlowAI Agent */}
-                <article className="ow-proj-card">
-                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
-                  <div className="ow-proj-card-inner">
-                    <div className="ow-proj-img-wrap">
-                      <img
-                        src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&q=80&auto=format&fit=crop"
-                        alt="FlowAI Agent – AI Automation"
-                        className="ow-proj-img"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                      />
-                    </div>
-                    <div className="ow-proj-info">
-                      <div className="ow-proj-name-row">
-                        <span className="ow-proj-name">FlowAI Agent</span>
-                        <span className="ow-proj-year">2024</span>
-                      </div>
-                      <span className="ow-proj-category">AI Automation</span>
-                      <span className="ow-proj-status ow-status-delivered">DELIVERED ✓</span>
-                    </div>
-                  </div>
-                </article>
-
+                  </article>
+                ))}
               </div>{/* /ow-projects-row */}
 
               {/* View More Projects */}
@@ -858,6 +796,9 @@ export function OurWorkPage() {
 // EXPANDED PROJECT ARCHIVE (PART 4 VIEW)
 // ============================================================================
 function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
+  const [activeFilter, setActiveFilter] = useState('ALL WORK');
+  const [sortBy, setSortBy] = useState('Latest');
+  
   const projects = [
     { title: "Alta Wear", category: "Brand Identity", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=480&q=80&auto=format&fit=crop" },
     { title: "Natura Skincare", category: "Packaging Design", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=480&q=80&auto=format&fit=crop" },
@@ -873,6 +814,26 @@ function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
     { title: "AI Support Bot", category: "AI Chatbot Development", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=480&q=80&auto=format&fit=crop" }
   ];
 
+  const filteredProjects = projects.filter(p => {
+    if (activeFilter === 'ALL WORK') return true;
+    const cat = p.category.toUpperCase();
+    if (activeFilter === 'BRANDING') return cat.includes('BRAND') || cat.includes('PACKAGING');
+    if (activeFilter === 'WEBSITE') return cat.includes('WEBSITE');
+    if (activeFilter === 'SOFTWARE') return cat.includes('SOFTWARE') || cat.includes('SYSTEM') || cat.includes('MANAGEMENT');
+    if (activeFilter === 'ERP') return cat.includes('ERP');
+    if (activeFilter === 'AI AUTOMATION') return cat.includes('AI');
+    if (activeFilter === '3D MODELING') return cat.includes('3D');
+    if (activeFilter === 'MOTION GRAPHICS') return cat.includes('MOTION');
+    return false;
+  }).sort((a, b) => {
+    if (sortBy === 'Latest') {
+      return b.year.localeCompare(a.year); // Sort descending by year for "Latest"
+    }
+    return 0;
+  });
+
+  const filters = ['ALL WORK', 'BRANDING', 'WEBSITE', 'SOFTWARE', 'ERP', 'AI AUTOMATION', '3D MODELING', 'MOTION GRAPHICS'];
+
   return (
     <section className="ow-expanded-archive-section">
       <div className="ow-ea-paper">
@@ -883,20 +844,24 @@ function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
           {/* Top Filter Bar */}
           <div className="ow-ea-top-bar">
             <div className="ow-ea-filters">
-              <button className="ow-ea-filter-btn active">ALL WORK</button>
-              <button className="ow-ea-filter-btn">BRANDING</button>
-              <button className="ow-ea-filter-btn">WEBSITE</button>
-              <button className="ow-ea-filter-btn">SOFTWARE</button>
-              <button className="ow-ea-filter-btn">ERP</button>
-              <button className="ow-ea-filter-btn">AI AUTOMATION</button>
-              <button className="ow-ea-filter-btn">3D MODELING</button>
-              <button className="ow-ea-filter-btn">MOTION GRAPHICS</button>
+              {filters.map(f => (
+                <button 
+                  key={f}
+                  className={`ow-ea-filter-btn ${activeFilter === f ? 'active' : ''}`}
+                  onClick={() => setActiveFilter(f)}
+                >
+                  {f}
+                </button>
+              ))}
             </div>
             
             <div className="ow-ea-sort">
               <span className="ow-ea-sort-label">Sort by:</span>
-              <div className="ow-ea-dropdown">
-                Latest
+              <div 
+                className="ow-ea-dropdown" 
+                onClick={() => setSortBy(sortBy === 'Latest' ? 'Oldest' : 'Latest')}
+              >
+                {sortBy}
                 <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </div>
             </div>
@@ -904,7 +869,7 @@ function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
 
           {/* 12 Project Grid */}
           <div className="ow-ea-grid">
-            {projects.map((proj, idx) => (
+            {filteredProjects.map((proj, idx) => (
               <article className="ow-ea-card" key={idx}>
                 <img src="/assets/images/c-s-m.png" className="ow-ea-card-bg" alt="" aria-hidden="true" />
                 <div className="ow-ea-card-inner">
