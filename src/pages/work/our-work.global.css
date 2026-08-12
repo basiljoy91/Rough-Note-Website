@@ -2745,6 +2745,19 @@
 
 @media (max-width: 600px) {
   .ow-ea-grid { grid-template-columns: 1fr; }
-  .ow-ea-filters { justify-content: center; }
-  .ow-ea-top-bar { flex-direction: column; }
+  .ow-ea-filters { 
+    justify-content: center; 
+    flex-wrap: wrap; 
+  }
+  .ow-ea-top-bar { 
+    flex-direction: column; 
+    align-items: center;
+    gap: 16px;
+  }
+  .ow-ea-card-bg {
+    object-fit: fill;
+  }
+  .ow-ea-card-inner {
+    padding: 8% 11% 10% 11%;
+  }
 }
