@@ -679,6 +679,163 @@ export function OurWorkPage() {
             </div>{/* /ow-archive-content */}
           </div>{/* /ow-archive-paper */}
         </section>
+
+        {/* ============================================================
+            PART 3 — PROJECT OF THE WEEK & CTA
+            ============================================================ */}
+        <section className="ow-part3-section">
+          {/* Top Paper Section */}
+          <div className="ow-p3-top-paper">
+            <div className="ow-p3-top-inner">
+              
+              {/* LEFT: Project Info */}
+              <div className="ow-p3-left-col">
+                <span className="ow-p3-label">PROJECT OF THE WEEK</span>
+                <h2 className="ow-p3-title">NOVA ERP SYSTEM</h2>
+                <span className="ow-p3-subtitle">ERP Software</span>
+                
+                <p className="ow-p3-quote">
+                  "Turning a complicated<br />
+                  workflow into a simple,<br />
+                  powerful system."
+                </p>
+                
+                <button className="ow-p3-cta-btn">
+                  Open Case Study &nbsp;→
+                </button>
+              </div>
+
+              {/* CENTER: Project Image Frame */}
+              <div className="ow-p3-center-col">
+                <div className="ow-p3-photo-frame">
+                  <div className="ow-p3-tape"></div>
+                  <div className="ow-p3-photo-inner">
+                    <img src="/assets/images/GR studio.png" alt="Nova ERP Dashboard" className="ow-p3-main-img" />
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT: Information Items */}
+              <div className="ow-p3-right-col">
+                
+                <div className="ow-p3-info-item">
+                  <div className="ow-p3-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="8" strokeDasharray="2 2" />
+                      <path d="M12 8v4l2 2" />
+                      <path d="M18.36 5.64l1.42-1.42M5.64 5.64L4.22 4.22M18.36 18.36l1.42 1.42M5.64 18.36L4.22 19.78" />
+                    </svg>
+                  </div>
+                  <div className="ow-p3-info-text">
+                    <h4>The Challenge</h4>
+                    <p>Manual processes, scattered<br />data and no real-time insights.</p>
+                  </div>
+                </div>
+
+                <div className="ow-p3-info-item">
+                  <div className="ow-p3-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="8" />
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M12 9v-2M12 17v-2M9 12H7M17 12h-2M10 10l-1.5-1.5M15.5 15.5L14 14M14 10l1.5-1.5M8.5 15.5L10 14" />
+                    </svg>
+                  </div>
+                  <div className="ow-p3-info-text">
+                    <h4>Our Thinking</h4>
+                    <p>Centralized system with smart<br />automation and real-time data.</p>
+                  </div>
+                </div>
+
+                <div className="ow-p3-info-item">
+                  <div className="ow-p3-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <rect x="8" y="10" width="8" height="6" rx="1" />
+                      <path d="M12 10V6M10 6h4M12 16v3" />
+                    </svg>
+                  </div>
+                  <div className="ow-p3-info-text">
+                    <h4>The Build</h4>
+                    <p>ERP with modules for sales,<br />inventory, HR, finance & more.</p>
+                  </div>
+                </div>
+
+                <div className="ow-p3-info-item">
+                  <div className="ow-p3-info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M9 12l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <div className="ow-p3-info-text">
+                    <h4>The Result</h4>
+                    <p>70% faster operations and<br />complete business visibility.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {/* Middle Row - 7 Small Papers */}
+          <div className="ow-p3-middle-row">
+            {/* Paperclip detail on the row */}
+            <svg className="ow-p3-row-clip" viewBox="0 0 20 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 5 C4 5 4 55 10 55 C16 55 16 15 10 15 C6.5 15 6.5 47 10 47" stroke="#777" strokeWidth="2" strokeLinecap="round" fill="none"/>
+            </svg>
+
+            {[
+              { title: "Brand\nIdentity", icon: <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />, count: "12" },
+              { title: "Motion\nGraphics", icon: <><rect x="2" y="7" width="16" height="10" rx="2" /><path d="M18 10l4-2v8l-4-2" /><circle cx="6" cy="12" r="1.5" /><circle cx="14" cy="12" r="1.5" /></>, count: "8" },
+              { title: "Website\nDesign", icon: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 8h18" /><circle cx="6" cy="6" r="0.5" /><circle cx="9" cy="6" r="0.5" /><circle cx="12" cy="6" r="0.5" /></>, count: "24" },
+              { title: "3D\nModeling", icon: <><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" /><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5" /></>, count: "7" },
+              { title: "ERP\nSoftware", icon: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 16v-4M12 16v-8M17 16V9M3 16h18" /></>, count: "6" },
+              { title: "Custom\nSoftware", icon: <><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 6l-4 12" /></>, count: "11" },
+              { title: "AI\nAutomation", icon: <><rect x="5" y="8" width="14" height="10" rx="2" /><path d="M12 4v4M9 4h6M7 13v.01M17 13v.01M12 15h.01" /></>, count: "9" }
+            ].map((cat, i) => (
+              <div className="ow-p3-small-paper" key={i}>
+                <img src="/assets/images/d-2-2.png" className="ow-p3-small-paper-bg" alt="" aria-hidden="true" />
+                <div className="ow-p3-sp-content">
+                  <h3 className="ow-p3-sp-title">{cat.title}</h3>
+                  <div className="ow-p3-sp-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      {cat.icon}
+                    </svg>
+                  </div>
+                  <span className="ow-p3-sp-count">{cat.count} Projects &nbsp;→</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Black CTA */}
+          <div className="ow-p3-bottom-cta">
+            <div className="ow-p3-cta-content">
+              
+              <div className="ow-p3-cta-left">
+                <h2 className="ow-p3-cta-title">Your project could be next.</h2>
+                <p className="ow-p3-cta-desc">
+                  We've shown you what we've built.<br />
+                  Now tell us what's keeping you up at night.
+                </p>
+              </div>
+
+              <div className="ow-p3-cta-center">
+                <button className="ow-p3-drop-note-btn">
+                  <div className="ow-p3-btn-tape"></div>
+                  Drop Your Rough Note &nbsp;→
+                </button>
+              </div>
+
+              <div className="ow-p3-cta-right">
+                <button className="ow-p3-start-conv-btn">
+                  Start a Conversation
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </section>
         
         {/* FOOTER PAPER - consistent notebook layout */}
         <div id="rough-note-footer-root" className="notebook-footer-placeholder">

@@ -1477,7 +1477,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 24px 18px 40px 18px;
+  /* Reduced vertical padding to tighten gap with Part 1 and Part 3 */
+  padding: 4px 18px 4px 18px;
   box-sizing: border-box;
   background: transparent;
 }
@@ -1883,4 +1884,458 @@
 
   .ow-proj-name { font-size: 0.82rem; }
   .ow-filter-btn { font-size: 0.6rem; padding: 3px 7px; }
+}
+
+/* ==========================================================================
+   PART 3 — PROJECT OF THE WEEK & CTA
+   ========================================================================== */
+
+.ow-part3-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---- Top Cream Paper Area ---- */
+.ow-p3-top-paper {
+  position: relative;
+  width: 96%;
+  max-width: 1400px;
+  background: #f4efdf;
+  background-image: url('/assets/images/paper-texture.jpg');
+  background-blend-mode: multiply;
+  box-shadow: 
+    inset 0 0 40px rgba(0,0,0,0.03),
+    0 15px 30px rgba(40,30,20,0.15),
+    0 4px 10px rgba(40,30,20,0.1);
+  padding: 24px 45px; /* Reduced vertical padding to shrink paper height */
+  border-radius: 4px;
+  /* torn edge effect */
+  clip-path: polygon(
+    0% 2%, 2% 0%, 98% 1%, 100% 3%,
+    99% 98%, 97% 100%, 3% 99%, 0% 97%
+  );
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.ow-p3-top-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1.2fr;
+  gap: 30px; /* Tighter gap */
+  align-items: center;
+}
+
+/* Left Column */
+.ow-p3-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ow-p3-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 2px; /* Tighter */
+}
+
+.ow-p3-title {
+  font-family: 'Caveat', cursive;
+  font-size: 2.8rem;
+  line-height: 1.0; /* Tighter */
+  color: #1a1a1a;
+  margin: 0 0 2px 0; /* Tighter */
+}
+
+.ow-p3-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 12px; /* Tighter */
+}
+
+.ow-p3-quote {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  line-height: 1.15; /* Tighter line spacing */
+  color: #333;
+  margin: 0 0 16px 0; /* Tighter */
+}
+
+.ow-p3-cta-btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  padding: 10px 20px; /* Slightly tighter button padding */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  font-weight: 500;
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+}
+
+.ow-p3-cta-btn:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+/* Center Column */
+.ow-p3-center-col {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.ow-p3-photo-frame {
+  position: relative;
+  background: #fdfbf7;
+  padding: 10px 10px 30px 10px; /* Tighter photo frame */
+  box-shadow: 
+    0 10px 25px rgba(0,0,0,0.15),
+    0 4px 10px rgba(0,0,0,0.1);
+  transform: rotate(-1deg);
+  border-radius: 2px;
+}
+
+.ow-p3-tape {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(3deg);
+  width: 50px;
+  height: 22px;
+  background: rgba(220, 210, 190, 0.8);
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+  z-index: 5;
+}
+
+.ow-p3-photo-inner {
+  background: #222;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ow-p3-main-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Right Column */
+.ow-p3-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Tighter gap between info items */
+}
+
+.ow-p3-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px; /* Tighter gap between icon and text */
+}
+
+.ow-p3-info-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  margin-top: 2px; /* Align slightly down */
+}
+
+.ow-p3-info-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ow-p3-info-text h4 {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  margin: 0 0 0px 0; /* Tighter */
+  color: #1a1a1a;
+  line-height: 1.1;
+}
+
+.ow-p3-info-text p {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  line-height: 1.15; /* Tighter line spacing */
+  margin: 0;
+  color: #555;
+}
+
+/* ---- Middle Row (7 Papers) ---- */
+.ow-p3-middle-row {
+  position: relative;
+  width: 96%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: -15px; /* Overlap black CTA slightly */
+  z-index: 3;
+}
+
+.ow-p3-row-clip {
+  position: absolute;
+  top: -25px;
+  left: 30px;
+  width: 25px;
+  height: 65px;
+  z-index: 10;
+  filter: drop-shadow(2px 3px 3px rgba(0,0,0,0.3));
+}
+
+.ow-p3-small-paper {
+  position: relative;
+  width: 13%;
+  aspect-ratio: 0.85; /* taller than wide */
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+  transition: transform 0.2s, filter 0.2s;
+}
+
+/* Rotate slightly randomly */
+.ow-p3-small-paper:nth-child(2) { transform: rotate(-1deg); }
+.ow-p3-small-paper:nth-child(3) { transform: rotate(1deg) translateY(3px); }
+.ow-p3-small-paper:nth-child(4) { transform: rotate(-2deg); }
+.ow-p3-small-paper:nth-child(5) { transform: rotate(1.5deg) translateY(-2px); }
+.ow-p3-small-paper:nth-child(6) { transform: rotate(-0.5deg); }
+.ow-p3-small-paper:nth-child(7) { transform: rotate(2deg); }
+.ow-p3-small-paper:nth-child(8) { transform: rotate(-1.5deg) translateY(2px); }
+
+.ow-p3-small-paper:hover {
+  transform: translateY(-5px) scale(1.05) !important;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+  z-index: 10;
+}
+
+.ow-p3-small-paper-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ROTATE the background image 90deg to match requirement */
+  transform: rotate(90deg) scale(1.3);
+  border-radius: 3px;
+  z-index: 0;
+}
+
+.ow-p3-sp-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 15px 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.ow-p3-sp-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  margin: 0;
+  color: #1a1a1a;
+  white-space: pre-line;
+}
+
+.ow-p3-sp-icon {
+  width: 45px;
+  height: 45px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ow-p3-sp-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ow-p3-sp-count {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* ---- Bottom Black CTA ---- */
+.ow-p3-bottom-cta {
+  width: 100%;
+  background: #151515;
+  padding: 60px 20px 40px 20px;
+  /* torn top edge */
+  clip-path: polygon(
+    0% 3%, 5% 0%, 15% 2%, 25% 0%, 35% 3%, 45% 1%, 55% 2%, 65% 0%, 75% 3%, 85% 1%, 95% 2%, 100% 0%,
+    100% 100%, 0% 100%
+  );
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.ow-p3-cta-content {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.ow-p3-cta-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.ow-p3-cta-title {
+  font-family: 'Caveat', cursive;
+  font-size: 2.2rem;
+  margin: 0 0 10px 0;
+  font-weight: 400;
+  color: #f4efdf;
+}
+
+.ow-p3-cta-desc {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin: 0;
+  color: #bbb;
+}
+
+.ow-p3-cta-center {
+  flex-shrink: 0;
+}
+
+.ow-p3-drop-note-btn {
+  position: relative;
+  background: #ebdcc0;
+  color: #2a251d;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  transform: rotate(-1deg);
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  /* torn paper edges */
+  clip-path: polygon(2% 2%, 98% 0%, 99% 98%, 1% 100%);
+}
+
+.ow-p3-drop-note-btn:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.ow-p3-btn-tape {
+  position: absolute;
+  top: -10px;
+  left: 0px;
+  width: 30px;
+  height: 18px;
+  background: rgba(220, 210, 190, 0.7);
+  transform: rotate(-15deg);
+}
+
+.ow-p3-cta-right {
+  flex-shrink: 0;
+}
+
+.ow-p3-start-conv-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.ow-p3-start-conv-btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
+}
+
+/* ==========================================================================
+   PART 3 — RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .ow-p3-top-inner {
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 20px;
+  }
+  .ow-p3-title { font-size: 2.2rem; }
+  .ow-p3-quote { font-size: 1.2rem; }
+  .ow-p3-small-paper { width: 13.5%; }
+}
+
+@media (max-width: 960px) {
+  .ow-p3-top-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .ow-p3-left-col {
+    align-items: center;
+  }
+  
+  .ow-p3-right-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .ow-p3-middle-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .ow-p3-small-paper {
+    width: 20%;
+    min-width: 110px;
+  }
+
+  .ow-p3-cta-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ow-p3-cta-left, .ow-p3-cta-center, .ow-p3-cta-right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .ow-p3-right-col {
+    grid-template-columns: 1fr;
+  }
+
+  .ow-p3-small-paper {
+    width: 40%;
+  }
 }
