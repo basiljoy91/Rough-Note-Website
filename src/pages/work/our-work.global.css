@@ -1282,7 +1282,7 @@
 }
 
 .ow-pk-list li::before {
-  content: "•";
+  content: "â€¢";
   position: absolute;
   left: 0;
   color: #8c8273;
@@ -1466,4 +1466,421 @@
   .ow-body-text {
     font-size: 0.95rem;
   }
+}
+
+/* ==========================================================================
+   PART 2 â€” THE PROJECT ARCHIVE  (100% browser-zoom optimised)
+   ========================================================================== */
+
+/* ---- Section wrapper ---- */
+.ow-archive-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px 18px 40px 18px;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* ---- Large horizontal background paper ---- */
+.ow-archive-paper {
+  position: relative;
+  width: 88%;
+  max-width: 1380px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  filter:
+    drop-shadow(0 16px 28px rgba(55, 42, 26, 0.20))
+    drop-shadow(0 4px 7px rgba(55, 42, 26, 0.12));
+}
+
+/* bg image fills the paper; height follows content */
+.ow-archive-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: 3px;
+  z-index: 0;
+}
+
+/* ---- Content sits on top of bg ---- */
+.ow-archive-content {
+  position: relative;
+  z-index: 1;
+  padding: 24px 32px 28px 32px;
+  box-sizing: border-box;
+}
+
+/* ---- TOP ROW: title LEFT | filters RIGHT â€” same horizontal band ---- */
+.ow-archive-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: nowrap;
+  margin-bottom: 18px;
+}
+
+.ow-archive-heading-group {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.ow-archive-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.95rem;
+  font-weight: 700;
+  color: #1b1814;
+  margin: 0 0 2px 0;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.ow-archive-subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: #6a5a45;
+  margin: 0;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* ---- Filter navigation ---- */
+.ow-archive-filters {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.ow-filter-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  color: #4a443a;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 2px;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.ow-filter-btn:hover {
+  color: #1b1814;
+  background: rgba(27, 24, 20, 0.07);
+}
+
+.ow-filter-active {
+  background: #1b1814 !important;
+  color: #faf6ee !important;
+  border-radius: 3px;
+  padding: 4px 12px;
+}
+
+/* ---- Five sticky notes: one compact horizontal row ---- */
+.ow-projects-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  width: calc(100% + 36px);
+  margin-left: -18px;
+  margin-right: -18px;
+  box-sizing: border-box;
+  margin-top: 2px;
+  align-items: start;
+}
+
+/* ---- Individual project sticky note ---- */
+.ow-proj-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  box-sizing: border-box;
+  filter:
+    drop-shadow(0 5px 12px rgba(55, 42, 26, 0.18))
+    drop-shadow(0 1px 3px rgba(55, 42, 26, 0.12));
+  transition: transform 0.22s ease, filter 0.22s ease;
+}
+
+.ow-proj-card:nth-child(1) { transform: rotate(-0.6deg); }
+.ow-proj-card:nth-child(2) { transform: rotate(0.4deg); }
+.ow-proj-card:nth-child(3) { transform: rotate(-0.2deg); margin-top: -5px; }
+.ow-proj-card:nth-child(4) { transform: rotate(0.5deg); }
+.ow-proj-card:nth-child(5) { transform: rotate(-0.5deg); }
+
+.ow-proj-card:hover {
+  transform: rotate(0deg) scale(1.03) !important;
+  filter:
+    drop-shadow(0 10px 22px rgba(55, 42, 26, 0.28))
+    drop-shadow(0 3px 6px rgba(55, 42, 26, 0.14));
+  z-index: 10;
+}
+
+/* c-s-m.png as physical sticky-note paper */
+.ow-proj-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Content sits directly on the paper — no white card layer */
+.ow-proj-card-inner {
+  position: absolute;
+  top: 17%;
+  left: 11%;
+  right: 11%;
+  bottom: 9%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-sizing: border-box;
+  background: transparent;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ---- Project image area ---- */
+.ow-proj-img-wrap {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 52%;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #d8d0c2;
+  flex-shrink: 1;
+  margin-bottom: 5px;
+}
+
+.ow-proj-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ---- Project text info ---- */
+.ow-proj-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.ow-proj-name-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3px;
+  flex-wrap: nowrap;
+}
+
+.ow-proj-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1b1814;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ow-proj-year {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.63rem;
+  color: #8c8273;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.ow-proj-category {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.58rem;
+  color: #6a5f52;
+  font-weight: 400;
+  margin-bottom: 3px;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Status badge */
+.ow-proj-status {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1.5px solid;
+  margin-top: 1px;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ow-status-approved {
+  color: #2e6845;
+  border-color: #2e6845;
+  background: rgba(46, 104, 69, 0.07);
+}
+
+.ow-status-delivered {
+  color: #2e6845;
+  border-color: #2e6845;
+  background: rgba(46, 104, 69, 0.07);
+}
+
+/* ---- Paperclip on card 3 ---- */
+.ow-proj-card--clipped { }
+
+.ow-card-clip {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 40px;
+  z-index: 5;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+  pointer-events: none;
+}
+
+/* ---- View More Projects ---- */
+.ow-view-more-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 18px;
+  gap: 3px;
+}
+
+.ow-view-more-btn {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1b1814;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.ow-view-more-btn:hover {
+  color: #c07a28;
+  transform: translateX(4px);
+}
+
+.ow-view-more-underline {
+  width: 135px;
+  height: 5px;
+}
+
+/* ==========================================================================
+   PART 2 â€” RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .ow-archive-paper { width: 93%; }
+  .ow-archive-title { font-size: 1.7rem; }
+  .ow-archive-subtitle { font-size: 0.92rem; }
+  .ow-filter-btn { font-size: 0.62rem; padding: 3px 8px; }
+  .ow-projects-row {
+    gap: 7px;
+    width: calc(100% + 28px);
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+}
+
+@media (max-width: 960px) {
+  .ow-archive-paper { width: 97%; }
+  .ow-archive-content { padding: 20px 20px 24px 20px; }
+  .ow-archive-top-row { flex-wrap: wrap; }
+  .ow-archive-filters { justify-content: flex-start; flex-wrap: wrap; }
+  .ow-archive-title { font-size: 1.6rem; white-space: normal; }
+
+  .ow-projects-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .ow-proj-card:nth-child(3) { margin-top: 0; }
+}
+
+@media (max-width: 680px) {
+  .ow-archive-section { padding: 16px 8px 30px 8px; }
+  .ow-archive-content { padding: 16px 14px 20px 14px; }
+  .ow-archive-title { font-size: 1.4rem; }
+
+  .ow-projects-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+  }
+
+  .ow-proj-card:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  .ow-proj-card:nth-child(1),
+  .ow-proj-card:nth-child(2),
+  .ow-proj-card:nth-child(3),
+  .ow-proj-card:nth-child(4),
+  .ow-proj-card:nth-child(5) {
+    transform: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .ow-archive-title { font-size: 1.2rem; }
+  .ow-archive-subtitle { font-size: 0.88rem; }
+
+  .ow-projects-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ow-proj-card:nth-child(5) {
+    grid-column: auto;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .ow-proj-name { font-size: 0.82rem; }
+  .ow-filter-btn { font-size: 0.6rem; padding: 3px 7px; }
 }

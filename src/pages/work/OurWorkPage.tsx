@@ -514,6 +514,171 @@ export function OurWorkPage() {
           </div>
           </div>
         </main>
+
+        {/* ============================================================
+            PART 2 — THE PROJECT ARCHIVE
+            ============================================================ */}
+        <section className="ow-archive-section">
+          <div className="ow-archive-paper">
+            <img src="/assets/images/bottom-left.png" className="ow-archive-bg" alt="" aria-hidden="true" />
+
+            <div className="ow-archive-content">
+
+              {/* TOP ROW: title LEFT, filters RIGHT — same horizontal band */}
+              <div className="ow-archive-top-row">
+                <div className="ow-archive-heading-group">
+                  <h2 className="ow-archive-title">The Project Archive</h2>
+                  <p className="ow-archive-subtitle">A few things we've been working on.</p>
+                </div>
+
+                <nav className="ow-archive-filters" aria-label="Project categories">
+                  {['ALL', 'BRAND', 'WEB', 'SOFTWARE', 'AI', '3D', 'MOTION'].map((cat) => (
+                    <button
+                      key={cat}
+                      className={`ow-filter-btn${cat === 'ALL' ? ' ow-filter-active' : ''}`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+
+              {/* FIVE PROJECT CARDS */}
+              <div className="ow-projects-row">
+
+                {/* Card 1 – Alta Wear */}
+                <article className="ow-proj-card">
+                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
+                  <div className="ow-proj-card-inner">
+                    <div className="ow-proj-img-wrap">
+                      <img
+                        src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=480&q=80&auto=format&fit=crop"
+                        alt="Alta Wear – Brand Identity"
+                        className="ow-proj-img"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    </div>
+                    <div className="ow-proj-info">
+                      <div className="ow-proj-name-row">
+                        <span className="ow-proj-name">Alta Wear</span>
+                        <span className="ow-proj-year">2024</span>
+                      </div>
+                      <span className="ow-proj-category">Brand Identity</span>
+                      <span className="ow-proj-status ow-status-approved">APPROVED ✓</span>
+                    </div>
+                  </div>
+                </article>
+
+                {/* Card 2 – Natura Skincare */}
+                <article className="ow-proj-card">
+                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
+                  <div className="ow-proj-card-inner">
+                    <div className="ow-proj-img-wrap">
+                      <img
+                        src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=480&q=80&auto=format&fit=crop"
+                        alt="Natura Skincare – Packaging Design"
+                        className="ow-proj-img"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    </div>
+                    <div className="ow-proj-info">
+                      <div className="ow-proj-name-row">
+                        <span className="ow-proj-name">Natura Skincare</span>
+                        <span className="ow-proj-year">2024</span>
+                      </div>
+                      <span className="ow-proj-category">Packaging Design</span>
+                      <span className="ow-proj-status ow-status-delivered">DELIVERED ✓</span>
+                    </div>
+                  </div>
+                </article>
+
+                {/* Card 3 – Nova ERP (paper-clip accent) */}
+                <article className="ow-proj-card ow-proj-card--clipped">
+                  <svg className="ow-card-clip" viewBox="0 0 18 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 3 C3.5 3 3.5 53 9 53 C14.5 53 14.5 10 9 10 C5.5 10 5.5 46 9 46" stroke="#999" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  </svg>
+                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
+                  <div className="ow-proj-card-inner">
+                    <div className="ow-proj-img-wrap">
+                      <img
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&q=80&auto=format&fit=crop"
+                        alt="Nova ERP – ERP Software"
+                        className="ow-proj-img"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    </div>
+                    <div className="ow-proj-info">
+                      <div className="ow-proj-name-row">
+                        <span className="ow-proj-name">Nova ERP</span>
+                        <span className="ow-proj-year">2024</span>
+                      </div>
+                      <span className="ow-proj-category">ERP Software</span>
+                      <span className="ow-proj-status ow-status-delivered">DELIVERED ✓</span>
+                    </div>
+                  </div>
+                </article>
+
+                {/* Card 4 – EazyHRM */}
+                <article className="ow-proj-card">
+                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
+                  <div className="ow-proj-card-inner">
+                    <div className="ow-proj-img-wrap">
+                      <img
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&q=80&auto=format&fit=crop"
+                        alt="EazyHRM – HR Management System"
+                        className="ow-proj-img"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    </div>
+                    <div className="ow-proj-info">
+                      <div className="ow-proj-name-row">
+                        <span className="ow-proj-name">EazyHRM</span>
+                        <span className="ow-proj-year">2024</span>
+                      </div>
+                      <span className="ow-proj-category">HR Management System</span>
+                      <span className="ow-proj-status ow-status-approved">APPROVED ✓</span>
+                    </div>
+                  </div>
+                </article>
+
+                {/* Card 5 – FlowAI Agent */}
+                <article className="ow-proj-card">
+                  <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
+                  <div className="ow-proj-card-inner">
+                    <div className="ow-proj-img-wrap">
+                      <img
+                        src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&q=80&auto=format&fit=crop"
+                        alt="FlowAI Agent – AI Automation"
+                        className="ow-proj-img"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    </div>
+                    <div className="ow-proj-info">
+                      <div className="ow-proj-name-row">
+                        <span className="ow-proj-name">FlowAI Agent</span>
+                        <span className="ow-proj-year">2024</span>
+                      </div>
+                      <span className="ow-proj-category">AI Automation</span>
+                      <span className="ow-proj-status ow-status-delivered">DELIVERED ✓</span>
+                    </div>
+                  </div>
+                </article>
+
+              </div>{/* /ow-projects-row */}
+
+              {/* View More Projects */}
+              <div className="ow-view-more-row">
+                <button className="ow-view-more-btn">
+                  View More Projects &nbsp;→
+                </button>
+                <svg className="ow-view-more-underline" viewBox="0 0 200 6" fill="none">
+                  <path d="M2 3 Q50 1, 100 3 T198 3" stroke="#1b1814" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </div>
+
+            </div>{/* /ow-archive-content */}
+          </div>{/* /ow-archive-paper */}
+        </section>
         
         {/* FOOTER PAPER - consistent notebook layout */}
         <div id="rough-note-footer-root" className="notebook-footer-placeholder">
