@@ -2339,3 +2339,367 @@
     width: 40%;
   }
 }
+
+/* ==========================================================================
+   EXPANDED PROJECT ARCHIVE (PART 4 VIEW)
+   ========================================================================== */
+
+.ow-expanded-archive-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 4px 15px 32px 15px;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.ow-ea-paper {
+  position: relative;
+  width: 96%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  filter:
+    drop-shadow(0 16px 28px rgba(55, 42, 26, 0.20))
+    drop-shadow(0 4px 7px rgba(55, 42, 26, 0.12));
+}
+
+.ow-ea-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 3px;
+  z-index: 0;
+}
+
+.ow-ea-content {
+  position: relative;
+  z-index: 1;
+  /* Increased top padding to push filters safely inside the paper */
+  padding: 60px 40px 32px 40px;
+  box-sizing: border-box;
+}
+
+/* Top Filter Bar */
+.ow-ea-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: nowrap; /* Prevent Sort By from wrapping to next line */
+  gap: 16px;
+}
+
+.ow-ea-filters {
+  display: flex;
+  gap: 8px; /* Reduced gap to fit on one line */
+  flex-wrap: nowrap;
+}
+
+.ow-ea-filter-btn {
+  background: transparent;
+  border: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #4a443a;
+  padding: 6px 10px; /* Tighter padding */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  white-space: nowrap; /* Prevent button text wrapping */
+}
+
+.ow-ea-filter-btn:hover {
+  color: #1b1814;
+  background: rgba(27, 24, 20, 0.05);
+}
+
+.ow-ea-filter-btn.active {
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.ow-ea-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap; /* Prevent Sort by wrapping */
+}
+
+.ow-ea-sort-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  color: #6a5a45;
+}
+
+.ow-ea-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+/* 12 Project Grid */
+.ow-ea-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ow-ea-card {
+  position: relative;
+  border-radius: 3px;
+  filter: drop-shadow(0 5px 12px rgba(55, 42, 26, 0.18));
+  transition: transform 0.2s, filter 0.2s;
+  cursor: pointer;
+}
+
+.ow-ea-card:nth-child(even) { transform: rotate(0.5deg); }
+.ow-ea-card:nth-child(odd) { transform: rotate(-0.5deg); }
+.ow-ea-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  filter: drop-shadow(0 10px 22px rgba(55, 42, 26, 0.25));
+  z-index: 10;
+}
+
+.ow-ea-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  z-index: 0;
+}
+
+.ow-ea-card-inner {
+  position: relative;
+  z-index: 1;
+  /* Increased padding to keep content strictly within the physical paper bounds of c-s-m.png */
+  padding: 16px 14px 24px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ow-ea-img-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  background: #d8d0c2;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.ow-ea-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ow-ea-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ow-ea-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.ow-ea-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1b1814;
+}
+
+.ow-ea-year {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  color: #6a5a45;
+}
+
+.ow-ea-category {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.ow-ea-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ow-ea-star {
+  width: 12px;
+  height: 12px;
+  color: #8c8273;
+}
+
+.ow-ea-status {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 2px;
+  border: 1px solid;
+}
+
+.ow-status-approved { color: #2e6845; border-color: #2e6845; background: rgba(46,104,69,0.07); }
+.ow-status-delivered { color: #2e6845; border-color: #2e6845; background: rgba(46,104,69,0.07); }
+
+/* Bottom Area (Pagination, Notes) */
+.ow-ea-bottom-area {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+/* Left Note */
+.ow-ea-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ow-ea-bottom-note {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  line-height: 1.1;
+  color: #333;
+  transform: rotate(-3deg);
+}
+
+.ow-ea-bottom-arrow {
+  width: 32px;
+  height: 16px;
+  color: #333;
+}
+
+/* Pagination */
+.ow-ea-pagination {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.ow-ea-page-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6a5a45;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.ow-ea-page-btn:hover {
+  background: rgba(0,0,0,0.05);
+  color: #1a1a1a;
+}
+
+.ow-ea-page-btn.active {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.ow-ea-page-ellipsis {
+  color: #6a5a45;
+}
+
+/* Right Torn Note */
+.ow-ea-bottom-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ow-ea-torn-note {
+  position: relative;
+  background: #ebdcc0;
+  padding: 10px 16px;
+  transform: rotate(2deg);
+  box-shadow: 2px 4px 10px rgba(0,0,0,0.15);
+  /* torn paper edges */
+  clip-path: polygon(2% 2%, 98% 0%, 99% 98%, 1% 100%);
+}
+
+.ow-ea-tape {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  width: 20px;
+  height: 12px;
+  background: rgba(220, 210, 190, 0.8);
+  transform: rotate(15deg);
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.ow-ea-torn-content {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: #2a251d;
+}
+
+.ow-ea-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* ==========================================================================
+   EXPANDED PROJECT ARCHIVE RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .ow-ea-grid { grid-template-columns: repeat(3, 1fr); }
+  .ow-ea-content { padding: 24px; }
+}
+
+@media (max-width: 960px) {
+  .ow-ea-grid { grid-template-columns: repeat(2, 1fr); }
+  .ow-ea-bottom-area {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    text-align: center;
+  }
+  .ow-ea-bottom-left { justify-content: center; }
+  .ow-ea-pagination { justify-content: center; }
+  .ow-ea-bottom-right { justify-content: center; }
+}
+
+@media (max-width: 600px) {
+  .ow-ea-grid { grid-template-columns: 1fr; }
+  .ow-ea-filters { justify-content: center; }
+  .ow-ea-top-bar { flex-direction: column; }
+}

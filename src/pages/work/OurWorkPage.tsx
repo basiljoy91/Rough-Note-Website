@@ -12,6 +12,7 @@ export function OurWorkPage() {
   useScrollReveal(mainRef);
 
   const [scale, setScale] = useState(1);
+  const [isExpandedView, setIsExpandedView] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -514,7 +515,9 @@ export function OurWorkPage() {
           </div>
           </div>
         </main>
-
+        
+        {!isExpandedView ? (
+          <>
         {/* ============================================================
             PART 2 — THE PROJECT ARCHIVE
             ============================================================ */}
@@ -668,7 +671,7 @@ export function OurWorkPage() {
 
               {/* View More Projects */}
               <div className="ow-view-more-row">
-                <button className="ow-view-more-btn">
+                <button className="ow-view-more-btn" onClick={() => setIsExpandedView(true)}>
                   View More Projects &nbsp;→
                 </button>
                 <svg className="ow-view-more-underline" viewBox="0 0 200 6" fill="none">
@@ -836,6 +839,10 @@ export function OurWorkPage() {
             </div>
           </div>
         </section>
+          </>
+        ) : (
+          <ExpandedProjectArchive onBack={() => setIsExpandedView(false)} />
+        )}
         
         {/* FOOTER PAPER - consistent notebook layout */}
         <div id="rough-note-footer-root" className="notebook-footer-placeholder">
@@ -844,5 +851,128 @@ export function OurWorkPage() {
       </SiteLayout>
       <RoughNoteDrawingFeature />
     </>
+  );
+}
+
+// ============================================================================
+// EXPANDED PROJECT ARCHIVE (PART 4 VIEW)
+// ============================================================================
+function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
+  const projects = [
+    { title: "Alta Wear", category: "Brand Identity", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=480&q=80&auto=format&fit=crop" },
+    { title: "Natura Skincare", category: "Packaging Design", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=480&q=80&auto=format&fit=crop" },
+    { title: "Nova ERP System", category: "ERP Software", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&q=80&auto=format&fit=crop" },
+    { title: "Urban Arc House", category: "Website Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=480&q=80&auto=format&fit=crop" },
+    { title: "FlowAI Agent", category: "AI Automation", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&q=80&auto=format&fit=crop" },
+    { title: "Future of Energy", category: "Motion Graphics", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=480&q=80&auto=format&fit=crop" },
+    { title: "Volt X Concept", category: "3D Modeling", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1531297121281-2c1b2c4c810d?w=480&q=80&auto=format&fit=crop" },
+    { title: "EazyHRM", category: "HR Management System", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=480&q=80&auto=format&fit=crop" },
+    { title: "TasteBite", category: "Restaurant Website", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=480&q=80&auto=format&fit=crop" },
+    { title: "SalesTrack Pro", category: "CRM Software", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&q=80&auto=format&fit=crop" },
+    { title: "Nectar Tea", category: "Packaging Design", year: "2024", status: "APPROVED", statusClass: "ow-status-approved", img: "https://images.unsplash.com/photo-1596328315183-7d8b5849887e?w=480&q=80&auto=format&fit=crop" },
+    { title: "AI Support Bot", category: "AI Chatbot Development", year: "2024", status: "DELIVERED", statusClass: "ow-status-delivered", img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=480&q=80&auto=format&fit=crop" }
+  ];
+
+  return (
+    <section className="ow-expanded-archive-section">
+      <div className="ow-ea-paper">
+        {/* Paper texture background */}
+        <img src="/assets/images/bottom-left.png" className="ow-ea-bg" alt="" aria-hidden="true" />
+        
+        <div className="ow-ea-content">
+          {/* Top Filter Bar */}
+          <div className="ow-ea-top-bar">
+            <div className="ow-ea-filters">
+              <button className="ow-ea-filter-btn active">ALL WORK</button>
+              <button className="ow-ea-filter-btn">BRANDING</button>
+              <button className="ow-ea-filter-btn">WEBSITE</button>
+              <button className="ow-ea-filter-btn">SOFTWARE</button>
+              <button className="ow-ea-filter-btn">ERP</button>
+              <button className="ow-ea-filter-btn">AI AUTOMATION</button>
+              <button className="ow-ea-filter-btn">3D MODELING</button>
+              <button className="ow-ea-filter-btn">MOTION GRAPHICS</button>
+            </div>
+            
+            <div className="ow-ea-sort">
+              <span className="ow-ea-sort-label">Sort by:</span>
+              <div className="ow-ea-dropdown">
+                Latest
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
+          </div>
+
+          {/* 12 Project Grid */}
+          <div className="ow-ea-grid">
+            {projects.map((proj, idx) => (
+              <article className="ow-ea-card" key={idx}>
+                <img src="/assets/images/c-s-m.png" className="ow-ea-card-bg" alt="" aria-hidden="true" />
+                <div className="ow-ea-card-inner">
+                  <div className="ow-ea-img-wrap">
+                    <img
+                      src={proj.img}
+                      alt={proj.title}
+                      className="ow-ea-img"
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                    />
+                  </div>
+                  <div className="ow-ea-info">
+                    <div className="ow-ea-name-row">
+                      <span className="ow-ea-name">{proj.title}</span>
+                      <span className="ow-ea-year">{proj.year}</span>
+                    </div>
+                    <span className="ow-ea-category">{proj.category}</span>
+                    
+                    <div className="ow-ea-bottom-row">
+                      <svg className="ow-ea-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                      <span className={`ow-ea-status ${proj.statusClass}`}>{proj.status} {proj.status === 'APPROVED' || proj.status === 'DELIVERED' ? '✓' : ''}</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Bottom Pagination & CTAs */}
+          <div className="ow-ea-bottom-area">
+            
+            {/* Left Note */}
+            <div className="ow-ea-bottom-left">
+              <span className="ow-ea-bottom-note">More projects<br />coming soon!</span>
+              <svg className="ow-ea-bottom-arrow" viewBox="0 0 40 20" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 10 Q 20 5, 35 10 M30 5 L35 10 L30 15" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+
+            {/* Pagination */}
+            <div className="ow-ea-pagination">
+              <button className="ow-ea-page-btn" aria-label="Previous page">←</button>
+              <button className="ow-ea-page-btn active">1</button>
+              <button className="ow-ea-page-btn">2</button>
+              <button className="ow-ea-page-btn">3</button>
+              <button className="ow-ea-page-btn">4</button>
+              <span className="ow-ea-page-ellipsis">...</span>
+              <button className="ow-ea-page-btn">8</button>
+              <button className="ow-ea-page-btn" aria-label="Next page">→</button>
+            </div>
+
+            {/* Right Torn Note */}
+            <div className="ow-ea-bottom-right">
+              <div className="ow-ea-torn-note">
+                <div className="ow-ea-tape"></div>
+                <div className="ow-ea-torn-content" onClick={onBack} style={{ cursor: 'pointer' }}>
+                  Have a project in mind?<br />
+                  <span className="ow-ea-link">Let's talk. &nbsp;→</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }
