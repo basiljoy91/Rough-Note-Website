@@ -148,24 +148,24 @@ export function OurWorkPage() {
                ========================================== */}
             
             {/* Website Mockup Pin */}
-            <svg className="ow-pin" style={{ top: '1.5%', left: '32.5%', width: '18px', height: '18px' }} viewBox="0 0 20 20">
+            <svg className="ow-pin" style={{ top: '1.5%', left: '32.5%', width: '64px', height: '64px' }} viewBox="0 0 20 20">
               <circle cx="10" cy="8" r="6" fill="#111" />
               <circle cx="9" cy="7" r="2" fill="#fff" opacity="0.4" />
               <path d="M10 14 L10 19" stroke="#555" strokeWidth="1.5" />
             </svg>
 
             {/* Brand Strategy Sticky Pin */}
-            <svg className="ow-pin" style={{ top: '2.5%', left: '57%', width: '14px', height: '14px' }} viewBox="0 0 20 20">
+            <svg className="ow-pin" style={{ top: '2.5%', left: '57%', width: '56px', height: '56px' }} viewBox="0 0 20 20">
               <circle cx="10" cy="8" r="5" fill="#a43a3a" />
               <circle cx="9" cy="7" r="1.5" fill="#fff" opacity="0.4" />
               <path d="M10 13 L10 17" stroke="#444" strokeWidth="1.2" />
             </svg>
 
             {/* AI Workflow Top Tape */}
-            <div className="ow-tape" style={{ top: '8%', left: '76%', width: '45px', height: '14px', transform: 'rotate(-4deg)' }} />
+            <div className="ow-tape" style={{ top: '8%', left: '76%', width: '160px', height: '48px', transform: 'rotate(-4deg)' }} />
             
             {/* AI Workflow Side Tape */}
-            <div className="ow-tape" style={{ top: '44%', left: '83%', width: '38px', height: '12px', transform: 'rotate(25deg)' }} />
+            <div className="ow-tape" style={{ top: '44%', left: '83%', width: '140px', height: '40px', transform: 'rotate(25deg)' }} />
 
             {/* AI Workflow Binder Clip */}
             <svg className="ow-paperclip" style={{ top: '7.5%', left: '71%', width: '22px', height: '22px' }} viewBox="0 0 24 24" fill="none">
@@ -175,7 +175,7 @@ export function OurWorkPage() {
             </svg>
 
             {/* Website Wireframe Pin */}
-            <svg className="ow-pin" style={{ top: '46%', left: '15%', width: '16px', height: '16px' }} viewBox="0 0 20 20">
+            <svg className="ow-pin" style={{ top: '46%', left: '15%', width: '60px', height: '60px' }} viewBox="0 0 20 20">
               <circle cx="10" cy="8" r="5.5" fill="#bfa37a" />
               <circle cx="9" cy="7" r="1.8" fill="#fff" opacity="0.4" />
               <path d="M10 13.5 L10 18" stroke="#666" strokeWidth="1.5" />
@@ -762,14 +762,14 @@ export function OurWorkPage() {
               </div>
 
               <div className="ow-p3-cta-center">
-                <button className="ow-p3-drop-note-btn">
+                <button className="ow-p3-drop-note-btn" onClick={() => window.location.href = '/html/contact.html'}>
                   <div className="ow-p3-btn-tape"></div>
                   Drop Your Rough Note &nbsp;→
                 </button>
               </div>
 
               <div className="ow-p3-cta-right">
-                <button className="ow-p3-start-conv-btn">
+                <button className="ow-p3-start-conv-btn" onClick={() => window.location.href = '/html/connect.html'}>
                   Start a Conversation
                 </button>
               </div>

@@ -1976,16 +1976,23 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.85rem;
   padding: 10px 20px; /* Slightly tighter button padding */
-  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, transform 0.2s, filter 0.2s;
   font-weight: 500;
-  box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+  filter: drop-shadow(2px 4px 5px rgba(0,0,0,0.2));
+  /* subtle irregular torn edge, slightly deeper at bottom */
+  clip-path: polygon(
+    0% 2%, 8% 0%, 21% 3%, 35% 0%, 48% 2%, 65% 0%, 82% 3%, 94% 0%, 100% 2%,
+    99% 23%, 100% 48%, 98% 71%, 100% 97%,
+    95% 100%, 83% 94%, 76% 99%, 62% 93%, 51% 98%, 45% 95%, 31% 100%, 22% 94%, 15% 98%, 6% 95%, 0% 99%,
+    2% 76%, 0% 51%, 1% 22%, 0% 2%
+  );
 }
 
 .ow-p3-cta-btn:hover {
   background: #333;
   transform: translateY(-2px);
+  filter: drop-shadow(2px 6px 8px rgba(0,0,0,0.25));
 }
 
 /* Center Column */
@@ -2236,14 +2243,20 @@
   border: none;
   cursor: pointer;
   transform: rotate(-1deg);
-  box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+  transition: transform 0.2s, filter 0.2s;
   /* torn paper edges */
-  clip-path: polygon(2% 2%, 98% 0%, 99% 98%, 1% 100%);
+  clip-path: polygon(
+    0% 2%, 8% 0%, 21% 3%, 35% 0%, 48% 2%, 65% 0%, 82% 3%, 94% 0%, 100% 2%,
+    99% 23%, 100% 48%, 98% 71%, 100% 97%,
+    95% 100%, 83% 94%, 76% 99%, 62% 93%, 51% 98%, 45% 95%, 31% 100%, 22% 94%, 15% 98%, 6% 95%, 0% 99%,
+    2% 76%, 0% 51%, 1% 22%, 0% 2%
+  );
 }
 
 .ow-p3-drop-note-btn:hover {
   transform: rotate(0deg) scale(1.05);
+  filter: drop-shadow(2px 6px 10px rgba(0,0,0,0.35));
 }
 
 .ow-p3-btn-tape {
