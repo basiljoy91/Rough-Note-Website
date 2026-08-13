@@ -1,4 +1,4 @@
-import './our-work.global.css';
+﻿import './our-work.global.css';
 import '../../features/notebook-footer/notebook-footer-placeholder.global.css';
 import { useRef, useState, useEffect } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
@@ -102,7 +102,7 @@ export function OurWorkPage() {
             <p className="ow-body-text">
               From brands and digital experiences to
               ERP systems, AI automation, software and
-              motion — here's a look at what we've turned
+              motion &mdash; here's a look at what we've turned
               from rough notes into real products.
             </p>
 
@@ -116,10 +116,10 @@ export function OurWorkPage() {
                 />
                 <div className="ow-checklist-overlay">
                   <div className="ow-checklist-items">
-                    <div className="ow-checklist-item">✓ Delivered</div>
-                    <div className="ow-checklist-item">✓ Tested</div>
-                    <div className="ow-checklist-item">✓ Approved</div>
-                    <div className="ow-checklist-item">✓ Out in the world</div>
+                    <div className="ow-checklist-item">{'\u2713'} Delivered</div>
+                    <div className="ow-checklist-item">{'\u2713'} Tested</div>
+                    <div className="ow-checklist-item">{'\u2713'} Approved</div>
+                    <div className="ow-checklist-item">{'\u2713'} Out in the world</div>
                   </div>
                   {/* Hand-drawn Smile Icon */}
                   <div className="ow-checklist-smile">
@@ -137,7 +137,7 @@ export function OurWorkPage() {
 
             {/* Open the archive */}
             <div className="ow-open-archive">
-              <span className="ow-archive-arrow">↓</span> Open the archive
+              <span className="ow-archive-arrow">&darr;</span> Open the archive
             </div>
           </div>
 
@@ -268,13 +268,13 @@ export function OurWorkPage() {
               <h3 className="ow-workflow-title">AI Workflow</h3>
               <div className="ow-workflow-steps">
                 <div className="ow-workflow-step">Trigger</div>
-                <div className="ow-workflow-arrow">↓</div>
+                <div className="ow-workflow-arrow">&darr;</div>
                 <div className="ow-workflow-step">Data Input</div>
-                <div className="ow-workflow-arrow">↓</div>
+                <div className="ow-workflow-arrow">&darr;</div>
                 <div className="ow-workflow-step">AI Process</div>
-                <div className="ow-workflow-arrow">↓</div>
+                <div className="ow-workflow-arrow">&darr;</div>
                 <div className="ow-workflow-step">Output</div>
-                <div className="ow-workflow-arrow">↓</div>
+                <div className="ow-workflow-arrow">&darr;</div>
                 <div className="ow-workflow-step">Automation</div>
               </div>
               <div className="ow-workflow-footer">
@@ -335,7 +335,7 @@ export function OurWorkPage() {
                   </svg>
                   <span className="ow-uj-label">Search</span>
                 </div>
-                <span className="ow-uj-arrow">→</span>
+                <span className="ow-uj-arrow">&rarr;</span>
                 
                 {/* 2. Explore */}
                 <div className="ow-uj-step">
@@ -345,7 +345,7 @@ export function OurWorkPage() {
                   </svg>
                   <span className="ow-uj-label">Explore</span>
                 </div>
-                <span className="ow-uj-arrow">→</span>
+                <span className="ow-uj-arrow">&rarr;</span>
                 
                 {/* 3. Choose */}
                 <div className="ow-uj-step">
@@ -355,7 +355,7 @@ export function OurWorkPage() {
                   </svg>
                   <span className="ow-uj-label">Choose</span>
                 </div>
-                <span className="ow-uj-arrow">→</span>
+                <span className="ow-uj-arrow">&rarr;</span>
                 
                 {/* 4. Order */}
                 <div className="ow-uj-step">
@@ -366,7 +366,7 @@ export function OurWorkPage() {
                   </svg>
                   <span className="ow-uj-label">Order</span>
                 </div>
-                <span className="ow-uj-arrow">→</span>
+                <span className="ow-uj-arrow">&rarr;</span>
                 
                 {/* 5. Receive */}
                 <div className="ow-uj-step">
@@ -536,7 +536,7 @@ export function OurWorkPage() {
         {!isExpandedView ? (
           <>
         {/* ============================================================
-            PART 2 — THE PROJECT ARCHIVE
+            PART 2 &mdash; THE PROJECT ARCHIVE
             ============================================================ */}
         <section className="ow-archive-section">
           <div className="ow-archive-paper">
@@ -544,7 +544,7 @@ export function OurWorkPage() {
 
             <div className="ow-archive-content">
 
-              {/* TOP ROW: title LEFT, filters RIGHT — same horizontal band */}
+              {/* TOP ROW: title LEFT, filters RIGHT - same horizontal band */}
               <div className="ow-archive-top-row">
                 <div className="ow-archive-heading-group">
                   <h2 className="ow-archive-title">The Project Archive</h2>
@@ -578,7 +578,7 @@ export function OurWorkPage() {
                       <div className="ow-proj-img-wrap">
                         <img
                           src={proj.img}
-                          alt={`${proj.title} – ${proj.category}`}
+                          alt={`${proj.title} &mdash; ${proj.category}`}
                           className="ow-proj-img"
                           onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                         />
@@ -589,7 +589,7 @@ export function OurWorkPage() {
                           <span className="ow-proj-year">{proj.year}</span>
                         </div>
                         <span className="ow-proj-category">{proj.category}</span>
-                        <span className={`ow-proj-status ${proj.statusClass}`}>{proj.status} {proj.status === 'APPROVED' || proj.status === 'DELIVERED' ? '✓' : ''}</span>
+                        <span className={`ow-proj-status ${proj.statusClass}`}>{proj.status} {proj.status === 'APPROVED' || proj.status === 'DELIVERED' ? '\u2713' : ''}</span>
                       </div>
                     </div>
                   </article>
@@ -598,9 +598,9 @@ export function OurWorkPage() {
 
               {/* View More Projects */}
               <div className="ow-view-more-row">
-                <button className="ow-view-more-btn" onClick={() => setIsExpandedView(true)}>
-                  View More Projects &nbsp;→
-                </button>
+                  <button className="ow-view-more-btn" onClick={() => setIsExpandedView(true)}>
+                    View More Projects &nbsp;&rarr;
+                  </button>
                 <svg className="ow-view-more-underline" viewBox="0 0 200 6" fill="none">
                   <path d="M2 3 Q50 1, 100 3 T198 3" stroke="#1b1814" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
@@ -620,19 +620,28 @@ export function OurWorkPage() {
               
               {/* LEFT: Project Info */}
               <div className="ow-p3-left-col">
-                <span className="ow-p3-label">PROJECT OF THE WEEK</span>
-                <h2 className="ow-p3-title">NOVA ERP SYSTEM</h2>
-                <span className="ow-p3-subtitle">ERP Software</span>
+                  <span className="ow-p3-label" style={{ position: 'relative', display: 'inline-block' }}>
+                    PROJECT OF THE WEEK
+                    <svg style={{ position: 'absolute', bottom: '-4px', left: 0, width: '100%', height: '6px' }} viewBox="0 0 100 6" fill="none" preserveAspectRatio="none">
+                      <path d="M2 3 Q25 1, 50 3 T98 3" stroke="#1b1814" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  </span>
+                  <h2 className="ow-p3-title">NOVA ERP SYSTEM</h2>
+                  <span className="ow-p3-subtitle" style={{ position: 'relative', display: 'inline-block' }}>
+                    ERP Software
+                    <svg style={{ position: 'absolute', bottom: '-2px', left: 0, width: '100%', height: '5px' }} viewBox="0 0 100 5" fill="none" preserveAspectRatio="none">
+                      <path d="M2 2 Q25 1, 50 2 T98 3" stroke="#1b1814" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  </span>
                 
                 <p className="ow-p3-quote">
                   "Turning a complicated<br />
                   workflow into a simple,<br />
                   powerful system."
                 </p>
-                
-                <button className="ow-p3-cta-btn">
-                  Open Case Study &nbsp;→
-                </button>
+                                <button className="ow-p3-cta-btn">
+                    Open Case Study &nbsp;&rarr;
+                  </button>
               </div>
 
               {/* CENTER: Project Image Frame */}
@@ -732,7 +741,7 @@ export function OurWorkPage() {
                       {cat.icon}
                     </svg>
                   </div>
-                  <span className="ow-p3-sp-count">{cat.count} Projects &nbsp;→</span>
+                  <span className="ow-p3-sp-count">{cat.count} Projects &nbsp;&rarr;</span>
                 </div>
               </div>
             ))}
@@ -752,9 +761,9 @@ export function OurWorkPage() {
 
               <div className="ow-p3-cta-center">
                 <button className="ow-p3-drop-note-btn" onClick={() => window.location.href = '/html/contact.html'}>
-                  <div className="ow-p3-btn-tape"></div>
-                  Drop Your Rough Note &nbsp;→
-                </button>
+                  <div className="ow-p3-btn-tape-left"></div><div className="ow-p3-btn-tape-right"></div>
+                  Drop Your Rough Note &nbsp;&rarr;
+                  </button>
               </div>
 
               <div className="ow-p3-cta-right">
@@ -881,7 +890,7 @@ function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
                       <svg className="ow-ea-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                       </svg>
-                      <span className={`ow-ea-status ${proj.statusClass}`}>{proj.status} {proj.status === 'APPROVED' || proj.status === 'DELIVERED' ? '✓' : ''}</span>
+                      <span className={`ow-ea-status ${proj.statusClass}`}>{proj.status} {proj.status === 'APPROVED' || proj.status === 'DELIVERED' ? '\u2713' : ''}</span>
                     </div>
                   </div>
                 </div>
@@ -902,7 +911,7 @@ function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
 
             {/* Pagination */}
             <div className="ow-ea-pagination">
-              <button className="ow-ea-page-btn" aria-label="Previous page">←</button>
+              <button className="ow-ea-page-btn" aria-label="Previous page">← </button>
               <button className="ow-ea-page-btn active">1</button>
               <button className="ow-ea-page-btn">2</button>
               <button className="ow-ea-page-btn">3</button>
@@ -917,8 +926,8 @@ function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
               <div className="ow-ea-torn-note">
                 <div className="ow-ea-tape"></div>
                 <div className="ow-ea-torn-content" onClick={onBack} style={{ cursor: 'pointer' }}>
-                  Have a project in mind?<br />
-                  <span className="ow-ea-link">Let's talk. &nbsp;→</span>
+                    Have a project in mind?<br />
+                    <span className="ow-ea-link">Let's talk. &nbsp;&rarr;</span>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    OUR WORK PAGE STYLING (ow- PREFIX TO PREVENT COLLISION)
    ========================================================================== */
 
@@ -1313,8 +1313,7 @@
   position: relative;
 }
 
-.ow-pk-list li::before {
-  content: "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢";
+.ow-pk-list li::before { content: "- ";
   position: absolute;
   left: 0;
   color: #8c8273;
@@ -1501,7 +1500,7 @@
 }
 
 /* ==========================================================================
-   PART 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â THE PROJECT ARCHIVE  (100% browser-zoom optimised)
+   PART 2 ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â THE PROJECT ARCHIVE  (100% browser-zoom optimised)
    ========================================================================== */
 
 /* ---- Section wrapper ---- */
@@ -1556,7 +1555,7 @@
   box-sizing: border-box;
 }
 
-/* ---- TOP ROW: title LEFT | filters RIGHT — same horizontal band ---- */
+/* ---- TOP ROW: title LEFT | filters RIGHT ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â same horizontal band ---- */
 .ow-archive-top-row {
   display: flex;
   align-items: flex-start;
@@ -1690,7 +1689,7 @@
   pointer-events: none;
 }
 
-/* Content sits directly on the paper Ã¢â‚¬â€ no white card layer */
+/* Content sits directly on the paper ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â no white card layer */
 .ow-proj-card-inner {
   position: absolute;
   top: 17%;
@@ -1855,7 +1854,7 @@
 }
 
 /* ==========================================================================
-   PART 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â RESPONSIVE
+   PART 2 ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 1200px) {
@@ -1933,7 +1932,7 @@
 }
 
 /* ==========================================================================
-   PART 3 Ã¢â‚¬â€ PROJECT OF THE WEEK & CTA
+   PART 3 â€“ PROJECT OF THE WEEK & CTA
    ========================================================================== */
 
 .ow-part3-section {
@@ -1947,27 +1946,7 @@
 }
 
 /* ---- Top Cream Paper Area ---- */
-.ow-p3-top-paper {
-  position: relative;
-  width: 96%;
-  max-width: 1400px;
-  background: #f4efdf;
-  background-image: url('/assets/images/paper-texture.jpg');
-  background-blend-mode: multiply;
-  box-shadow: 
-    inset 0 0 40px rgba(0,0,0,0.03),
-    0 15px 30px rgba(40,30,20,0.15),
-    0 4px 10px rgba(40,30,20,0.1);
-  padding: 24px 45px; /* Reduced vertical padding to shrink paper height */
-  border-radius: 4px;
-  /* torn edge effect */
-  clip-path: polygon(
-    0% 2%, 2% 0%, 98% 1%, 100% 3%,
-    99% 98%, 97% 100%, 3% 99%, 0% 97%
-  );
-  margin-top: 20px;
-  z-index: 2;
-}
+.ow-p3-top-paper { position: relative; width: 96%; max-width: 1400px; background: #f4efdf; background-image: url('/assets/images/paper-texture.jpg'); background-blend-mode: multiply; filter: drop-shadow(0 15px 30px rgba(40,30,20,0.15)) drop-shadow(0 4px 10px rgba(40,30,20,0.1)); padding: 24px 45px; border-radius: 4px; -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6 0.02' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='25' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L990,2 L992,60 L985,120 L988,150 L975,190 L970,220 L930,240 L910,260 L905,290 L915,320 L900,340 L910,370 L940,390 L965,420 L975,460 L972,500 L980,550 L978,600 L985,650 L982,700 L990,750 L988,800 L970,850 L965,880 L975,910 L985,950 L980,998 L2,998 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6 0.02' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='25' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L990,2 L992,60 L985,120 L988,150 L975,190 L970,220 L930,240 L910,260 L905,290 L915,320 L900,340 L910,370 L940,390 L965,420 L975,460 L972,500 L980,550 L978,600 L985,650 L982,700 L990,750 L988,800 L970,850 L965,880 L975,910 L985,950 L980,998 L2,998 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E"); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; margin-top: 20px; z-index: 2; }
 
 .ow-p3-top-inner {
   display: grid;
@@ -2048,16 +2027,7 @@
   justify-content: center;
 }
 
-.ow-p3-photo-frame {
-  position: relative;
-  background: #fdfbf7;
-  padding: 10px 10px 30px 10px; /* Tighter photo frame */
-  box-shadow: 
-    0 10px 25px rgba(0,0,0,0.15),
-    0 4px 10px rgba(0,0,0,0.1);
-  transform: rotate(-1deg);
-  border-radius: 2px;
-}
+.ow-p3-photo-frame { position: relative; background: #fdfbf7; padding: 10px 10px 30px 10px; transform: rotate(-1deg); border-radius: 2px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25)) drop-shadow(0 8px 15px rgba(0,0,0,0.15)); -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.04' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M10,10 L300,15 L600,5 L990,10 L985,300 L995,600 L990,990 L700,985 L300,995 L10,990 L5,700 L15,300 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.04' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='15' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M10,10 L300,15 L600,5 L990,10 L985,300 L995,600 L990,990 L700,985 L300,995 L10,990 L5,700 L15,300 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E"); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
 
 .ow-p3-tape {
   position: absolute;
@@ -2134,10 +2104,12 @@
   width: 96%;
   max-width: 1400px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2.5%;
   margin-top: 15px;
   margin-bottom: -15px; /* Overlap black CTA slightly */
   z-index: 3;
+  margin-left:-20px;
 }
 
 .ow-p3-row-clip {
@@ -2152,7 +2124,7 @@
 
 .ow-p3-small-paper {
   position: relative;
-  width: 13%;
+  width: 11.5%;
   aspect-ratio: 0.85; /* taller than wide */
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
   transition: transform 0.2s, filter 0.2s;
@@ -2179,8 +2151,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* ROTATE the background image 90deg to match requirement */
-  transform: rotate(90deg) scale(1.3);
+  /* ROTATE the background image 90deg and scale slightly less to reduce overlap */
+  transform: rotate(90deg) scale(1.1);
   border-radius: 3px;
   z-index: 0;
 }
@@ -2193,14 +2165,14 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  padding: 15px 10px;
+  padding: 10px 6px;
   box-sizing: border-box;
   text-align: center;
 }
 
 .ow-p3-sp-title {
   font-family: 'Caveat', cursive;
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.1;
   margin: 0;
   color: #1a1a1a;
@@ -2208,8 +2180,8 @@
 }
 
 .ow-p3-sp-icon {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   color: #222;
   display: flex;
   align-items: center;
@@ -2223,26 +2195,13 @@
 
 .ow-p3-sp-count {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
   color: #444;
 }
 
 /* ---- Bottom Black CTA ---- */
-.ow-p3-bottom-cta {
-  width: 100%;
-  background: #151515;
-  padding: 60px 20px 40px 20px;
-  /* torn top edge */
-  clip-path: polygon(
-    0% 3%, 5% 0%, 15% 2%, 25% 0%, 35% 3%, 45% 1%, 55% 2%, 65% 0%, 75% 3%, 85% 1%, 95% 2%, 100% 0%,
-    100% 100%, 0% 100%
-  );
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  z-index: 1;
-}
+.ow-p3-bottom-cta { position: relative; width: 100%; background: #151515; padding: 60px 20px 80px 20px; margin-bottom: 40px; color: #fff; display: flex; justify-content: center; z-index: 1; filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5)) drop-shadow(0 10px 15px rgba(0,0,0,0.3)); -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='25' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L998,2 L998,960 L940,970 L880,940 L850,960 L810,930 L780,950 L760,900 L740,940 L710,920 L680,960 L660,910 L630,950 L610,880 L580,940 L540,960 L500,920 L450,950 L400,910 L350,960 L300,930 L250,970 L200,910 L150,960 L120,930 L90,970 L50,920 L2,960 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='25' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L998,2 L998,960 L940,970 L880,940 L850,960 L810,930 L780,950 L760,900 L740,940 L710,920 L680,960 L660,910 L630,950 L610,880 L580,940 L540,960 L500,920 L450,950 L400,910 L350,960 L300,930 L250,970 L200,910 L150,960 L120,930 L90,970 L50,920 L2,960 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E"); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
 
 .ow-p3-cta-content {
   width: 90%;
@@ -2305,17 +2264,7 @@
   filter: drop-shadow(2px 6px 10px rgba(0,0,0,0.35));
 }
 
-.ow-p3-btn-tape {
-  position: absolute;
-  top: -10px;
-  left: 0px;
-  width: 30px;
-  height: 18px;
-  background: rgba(220, 210, 190, 0.7);
-  transform: rotate(-15deg);
-}
-
-.ow-p3-cta-right {
+  .ow-p3-btn-tape-left { position: absolute; top: -8px; left: -10px; width: 35px; height: 20px; background: rgba(220, 210, 190, 0.85); transform: rotate(-12deg); box-shadow: 1px 2px 4px rgba(0,0,0,0.15); z-index: 2; } .ow-p3-btn-tape-right { position: absolute; top: -12px; right: -10px; width: 40px; height: 22px; background: rgba(220, 210, 190, 0.85); transform: rotate(15deg); box-shadow: -1px 2px 4px rgba(0,0,0,0.15); z-index: 2; } .ow-p3-cta-right {
   flex-shrink: 0;
 }
 
@@ -2337,7 +2286,7 @@
 }
 
 /* ==========================================================================
-   PART 3 Ã¢â‚¬â€ RESPONSIVE
+   PART 3 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 1200px) {
