@@ -1518,13 +1518,20 @@
 /* ---- Large horizontal background paper ---- */
 .ow-archive-paper {
   position: relative;
-  width: 88%;
-  max-width: 1380px;
+  width: 99%;
+  max-width: 1900px;
   box-sizing: border-box;
   border-radius: 3px;
   filter:
     drop-shadow(0 16px 28px rgba(55, 42, 26, 0.20))
     drop-shadow(0 4px 7px rgba(55, 42, 26, 0.12));
+  /* Left-side circular punched edge simulating physical notebook paper */
+  -webkit-mask-image: radial-gradient(circle at 10px 18px, transparent 7px, black 7.5px);
+  mask-image: radial-gradient(circle at 10px 18px, transparent 7px, black 7.5px);
+  -webkit-mask-size: 100% 36px;
+  mask-size: 100% 36px;
+  -webkit-mask-repeat: repeat-y;
+  mask-repeat: repeat-y;
 }
 
 /* bg image fills the paper; height follows content */
@@ -1538,17 +1545,18 @@
   display: block;
   border-radius: 3px;
   z-index: 0;
+  pointer-events: none;
 }
 
 /* ---- Content sits on top of bg ---- */
 .ow-archive-content {
   position: relative;
   z-index: 1;
-  padding: 24px 32px 28px 32px;
+  padding: 34px 28px 24px 28px;
   box-sizing: border-box;
 }
 
-/* ---- TOP ROW: title LEFT | filters RIGHT ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â same horizontal band ---- */
+/* ---- TOP ROW: title LEFT | filters RIGHT — same horizontal band ---- */
 .ow-archive-top-row {
   display: flex;
   align-items: flex-start;
@@ -1624,28 +1632,32 @@
 .ow-projects-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
-  width: calc(100% + 36px);
-  margin-left: -18px;
-  margin-right: -18px;
+  gap: 8px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   box-sizing: border-box;
-  margin-top: 2px;
+  margin-top: 14px;
   align-items: start;
 }
 
 /* ---- Individual project sticky note ---- */
 .ow-proj-card {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  /* Extra large cards that use the grid space efficiently while keeping a gap */
+  width: 116%;
+  margin-left: -5%;
+  margin-right: -5%;
+  aspect-ratio: 1 / 1.08;
   background: transparent;
   border: none;
   box-shadow: none;
   overflow: visible;
   box-sizing: border-box;
   filter:
-    drop-shadow(0 5px 12px rgba(55, 42, 26, 0.18))
-    drop-shadow(0 1px 3px rgba(55, 42, 26, 0.12));
+    drop-shadow(0 8px 16px rgba(50, 35, 15, 0.22))
+    drop-shadow(0 3px 6px rgba(50, 35, 15, 0.16))
+    drop-shadow(0 1px 2px rgba(50, 35, 15, 0.10));
   transition: transform 0.22s ease, filter 0.22s ease;
 }
 
@@ -1658,8 +1670,9 @@
 .ow-proj-card:hover {
   transform: rotate(0deg) scale(1.03) !important;
   filter:
-    drop-shadow(0 10px 22px rgba(55, 42, 26, 0.28))
-    drop-shadow(0 3px 6px rgba(55, 42, 26, 0.14));
+    drop-shadow(0 14px 28px rgba(50, 35, 15, 0.32))
+    drop-shadow(0 6px 12px rgba(50, 35, 15, 0.20))
+    drop-shadow(0 2px 4px rgba(50, 35, 15, 0.12));
   z-index: 10;
 }
 
@@ -1719,8 +1732,9 @@
 .ow-proj-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  flex-shrink: 0;
+  gap: 4px; /* Slight base gap */
+  flex-grow: 1;
+  justify-content: space-between;
   overflow: hidden;
 }
 
