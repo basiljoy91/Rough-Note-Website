@@ -1,4 +1,4 @@
-﻿import './our-work.global.css';
+import './our-work.global.css';
 import '../../features/notebook-footer/notebook-footer-placeholder.global.css';
 import { useRef, useState, useEffect } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
@@ -136,7 +136,13 @@ export function OurWorkPage() {
 
 
             {/* Open the archive */}
-            <div className="ow-open-archive">
+            <div 
+              className="ow-open-archive"
+              onClick={() => {
+                document.getElementById('part-02-archive')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              style={{ cursor: 'pointer' }}
+            >
               <span className="ow-archive-arrow">&darr;</span> Open the archive
             </div>
           </div>
@@ -538,7 +544,7 @@ export function OurWorkPage() {
         {/* ============================================================
             PART 2 &mdash; THE PROJECT ARCHIVE
             ============================================================ */}
-        <section className="ow-archive-section">
+        <section id="part-02-archive" className="ow-archive-section">
           <div className="ow-archive-paper">
             <img src="/assets/images/bottom-left.png" className="ow-archive-bg" alt="" aria-hidden="true" />
 
