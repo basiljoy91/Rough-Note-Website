@@ -1314,7 +1314,7 @@
 }
 
 .ow-pk-list li::before {
-  content: "â€¢";
+  content: "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢";
   position: absolute;
   left: 0;
   color: #8c8273;
@@ -1501,7 +1501,7 @@
 }
 
 /* ==========================================================================
-   PART 2 â€” THE PROJECT ARCHIVE  (100% browser-zoom optimised)
+   PART 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â THE PROJECT ARCHIVE  (100% browser-zoom optimised)
    ========================================================================== */
 
 /* ---- Section wrapper ---- */
@@ -1548,7 +1548,7 @@
   box-sizing: border-box;
 }
 
-/* ---- TOP ROW: title LEFT | filters RIGHT â€” same horizontal band ---- */
+/* ---- TOP ROW: title LEFT | filters RIGHT ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â same horizontal band ---- */
 .ow-archive-top-row {
   display: flex;
   align-items: flex-start;
@@ -1677,7 +1677,7 @@
   pointer-events: none;
 }
 
-/* Content sits directly on the paper — no white card layer */
+/* Content sits directly on the paper Ã¢â‚¬â€ no white card layer */
 .ow-proj-card-inner {
   position: absolute;
   top: 17%;
@@ -1841,7 +1841,7 @@
 }
 
 /* ==========================================================================
-   PART 2 â€” RESPONSIVE
+   PART 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 1200px) {
@@ -1919,7 +1919,7 @@
 }
 
 /* ==========================================================================
-   PART 3 — PROJECT OF THE WEEK & CTA
+   PART 3 Ã¢â‚¬â€ PROJECT OF THE WEEK & CTA
    ========================================================================== */
 
 .ow-part3-section {
@@ -2323,7 +2323,7 @@
 }
 
 /* ==========================================================================
-   PART 3 — RESPONSIVE
+   PART 3 Ã¢â‚¬â€ RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 1200px) {
@@ -2760,4 +2760,175 @@
   .ow-ea-card-inner {
     padding: 8% 11% 10% 11%;
   }
+}
+
+/* =========================================================================
+   PART 01 REFINEMENTS (User Requested Overrides)
+   ========================================================================= */
+
+@media (min-width: 901px) {
+  /* CHANGE 1, 2, 3: LEFT MAIN TYPOGRAPHY SIZE AND LAYOUT */
+  .ow-content-scaler {
+    grid-template-columns: 780px 1fr !important;
+  }
+  
+  .ow-title {
+    font-size: 14rem !important;
+  }
+  
+  .ow-subtitle {
+    font-size: 3.1rem !important;
+    line-height: 1.15 !important;
+    max-width: 800px !important;
+  }
+  
+  .ow-body-text {
+    font-size: 1.55rem !important;
+    line-height: 1.5 !important;
+    max-width: 650px !important;
+  }
+  
+  /* CHANGE 4: CHECKLIST POSITION */
+  .ow-checklist-container {
+    justify-content: flex-start !important;
+  }
+  
+  .ow-checklist-overlay {
+    padding: 25px 25px 35px 20px !important;
+  }
+}
+
+  /* CHANGE 5: BOTTOM EDGE OF PART 01 */
+  .ow-page-container {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='18' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L998,2 L998,990 L940,992 L880,985 L850,988 L810,975 L780,970 L760,930 L740,910 L710,905 L680,915 L660,900 L630,910 L610,940 L580,965 L540,975 L500,972 L450,980 L400,978 L350,985 L300,982 L250,990 L200,988 L150,970 L120,965 L90,975 L50,985 L2,980 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='5' result='noise'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='noise' scale='18' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath d='M2,2 L998,2 L998,990 L940,992 L880,985 L850,988 L810,975 L780,970 L760,930 L740,910 L710,905 L680,915 L660,900 L630,910 L610,940 L580,965 L540,975 L500,972 L450,980 L400,978 L350,985 L300,982 L250,990 L200,988 L150,970 L120,965 L90,975 L50,985 L2,980 Z' filter='url(%23n)' fill='black'/%3E%3C/svg%3E") !important;
+    padding-bottom: 20px !important; 
+  }
+  .ow-page-container::after { bottom: 0 !important; }
+  
+  /* Drop shadow with highlight for organic torn edge visibility */
+  .ow-page-container { filter: drop-shadow(0 15px 15px rgba(20, 15, 10, 0.35)) drop-shadow(0 2px 1px rgba(255,255,255,0.2)) !important; z-index: 10; position: relative; }
+
+/* COMMON OVERRIDES FOR STICKY NOTE BACKGROUND IMAGES */
+.ow-mockup-paper::before,
+.ow-brand-sticky::before,
+.ow-erp-sticky::before,
+.ow-user-journey::before,
+.ow-storyboard::before,
+.ow-packaging::before,
+.ow-ai-workflow::before,
+.ow-wireframe-paper::before,
+.ow-logo-paper::before {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-blend-mode: normal !important;
+  filter: drop-shadow(0 6px 12px rgba(62, 42, 22, 0.22)) !important;
+  box-shadow: none !important;
+}
+
+/* CHANGE 6: MAIN TOP-CENTER PAPER / WEBSITE MOCKUP */
+.ow-mockup-paper::before {
+  background-image: url("/assets/images/mid-s.png") !important;
+}
+.ow-mockup-inner {
+  padding: 40px !important;
+  box-sizing: border-box !important;
+}
+
+/* CHANGE 7: BRAND STRATEGY STICKY NOTE */
+.ow-brand-sticky::before {
+  background-image: url("/assets/images/sticky-note-5-bg-clean.png") !important;
+}
+.ow-brand-sticky {
+  padding: 35px 35px 35px 30px !important;
+}
+
+/* CHANGE 8: ERP SYSTEM STICKY NOTE */
+.ow-erp-sticky::before {
+  background-image: url("/assets/images/sticky-note-5-bg-clean.png") !important;
+}
+.ow-erp-sticky {
+  padding: 35px 35px 35px 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* CHANGE 9: USER JOURNEY STICKY NOTE */
+.ow-user-journey::before {
+  background-image: url("/assets/images/l-1.png") !important;
+}
+.ow-user-journey {
+  padding: 40px 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* CHANGE 10: MOTION STORYBOARD + PACKAGING CONCEPT */
+.ow-storyboard::before,
+.ow-packaging::before {
+  background-image: url("/assets/images/mid-s.png") !important;
+}
+.ow-storyboard {
+  padding: 40px 30px !important;
+}
+.ow-packaging {
+  padding: 45px 35px !important;
+}
+
+/* CHANGE 11: AI WORKFLOW + WEBSITE WIREFRAME */
+.ow-ai-workflow::before,
+.ow-wireframe-paper::before {
+  background-image: url("/assets/images/sti-1.png") !important;
+}
+.ow-ai-workflow {
+  padding: 40px 30px !important;
+}
+.ow-wireframe-paper {
+  padding: 45px 35px !important;
+}
+
+/* CHANGE 12: LOGO EXPLORATION */
+.ow-logo-paper::before {
+  background-image: url("/assets/images/sticky-note-1-bg-clean.png") !important;
+}
+.ow-logo-paper {
+  padding: 40px 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* Ensure content stays inside the sticky notes */
+.ow-brand-sticky *, .ow-erp-sticky *, .ow-user-journey *, .ow-storyboard *, .ow-packaging *, .ow-ai-workflow *, .ow-wireframe-paper *, .ow-logo-paper *, .ow-mockup-inner * {
+  position: relative;
+  z-index: 5;
+}
+
+
+/* =========================================================================
+   PART 01 REFINEMENTS (Increase Visual Scale)
+   ========================================================================= */
+
+@media (min-width: 901px) {
+  /* Eliminate empty space to decrease bounding box and increase visual scale */
+  .ow-content-scaler {
+    gap: 0px !important;
+  }
+  .ow-moodboard {
+    margin-left: -280px !important;
+  }
+  
+  /* Slightly shift rightmost elements left to prevent overflow at higher scale */
+  .ow-ai-workflow { left: 65% !important; } 
+  .ow-erp-sticky { left: 65% !important; } 
+  .ow-logo-paper { left: 51% !important; } 
+  .ow-coffee-cup { left: 72% !important; } 
+  .ow-brand-sticky { left: 48% !important; } 
 }

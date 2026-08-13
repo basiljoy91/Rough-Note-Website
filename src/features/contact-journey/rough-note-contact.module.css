@@ -1,4 +1,4 @@
-:global(:root) {
+﻿:global(:root) {
   --contact-paper-main: #f4ead8;
   --contact-paper-light: #fbf5e9;
   --contact-paper-dark: #dfcfb4;
@@ -2473,3 +2473,173 @@
     -webkit-mask-image: linear-gradient(to right, black 78%, transparent 97%);
   }
 }
+
+
+/* =========================================================================
+   COMPREHENSIVE MOBILE RESPONSIVENESS OVERRIDES
+   ========================================================================= */
+@media (max-width: 767px) {
+  /* =========================================================
+     GLOBAL & COMMON FIXES
+     ========================================================= */
+  .contactMain {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  
+  /* Fix vertical positioning for Steps 1, 2, 3 */
+  /* Remove excessive bottom padding and use flex to center */
+  .stepShell {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    padding: 60px 20px 60px !important;
+    min-height: calc(100svh - 120px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  /* Fix horizontal alignment: ensure forms take full width but stay centered */
+  .challengeForm,
+  .contactForm,
+  .tornFormPaper,
+  .successDetails,
+  .stepOneComposition,
+  .ideaExplanation {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* =========================================================
+     PART 1 — FIRST VIEW FIXES
+     ========================================================= */
+  /* Fix overlap by changing from absolute to relative flow */
+  .stepOneComposition {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .noPressureNote {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin: 20px auto 0 !important;
+    width: min(80vw, 200px) !important;
+    z-index: 10 !important;
+  }
+  
+  .ideaExplanation {
+    margin-top: 20px !important;
+    position: relative !important;
+  }
+  
+  /* =========================================================
+     PART 2 & 3 — STEP 01 & 02 FIXES (Floating notes)
+     ========================================================= */
+  /* Reset floating sticky notes that use absolute positioning on desktop */
+  .uploadNote,
+  .specificNote,
+  .routingNote {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 20px auto 0 !important;
+    width: min(80vw, 220px) !important;
+    display: block !important;
+  }
+  
+  /* Remove excessive space */
+  .uploadComposition {
+    margin-bottom: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  .challengeForm {
+    padding: 30px 20px !important;
+  }
+  
+  /* =========================================================
+     PART 5 — STEP 04 FIXES (Sticky note & content relationship)
+     ========================================================= */
+  /* Parent sticky-note: position: relative */
+  .responseNote,
+  .quoteNote {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 250px !important;
+    height: auto !important;
+    padding: 40px 25px !important;
+    margin: 0 auto 30px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Associated content: positioned relative to that parent */
+  .responseNote p,
+  .quoteNote p {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+    z-index: 2 !important;
+    text-align: center !important;
+  }
+  
+  .responseNote svg,
+  .quoteNote svg {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+  
+  /* =========================================================
+     PART 6 — FINAL CONFIRMATION FIXES 
+     ========================================================= */
+  .successComposition {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important; /* Remove excessive gap */
+    margin-bottom: 30px !important;
+  }
+  
+  .finalInvitation {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  .finalInvitation img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  .confirmationNumber {
+    position: relative !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+}
+

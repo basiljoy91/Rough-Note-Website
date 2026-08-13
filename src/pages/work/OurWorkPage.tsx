@@ -52,8 +52,7 @@ export function OurWorkPage() {
       
       const availableWidth = window.innerWidth - 270 - 40; // 270px sidebar offset, 40px horizontal padding (20px each side)
       const availableHeight = window.innerHeight - 40;    // 40px vertical margins (20px each side)
-      
-      const scaleX = availableWidth / 2038; // Active content width boundary (450 left + 40 gap + 1800 * 0.86 moodboard active width)
+      const scaleX = availableWidth / 2050; // Active content width boundary (compressed for larger scale)
       const scaleY = availableHeight / 1152; // Moodboard layout height
       
       // Select the smaller scale factor to fit both dimensions, cap at 1.0
@@ -176,7 +175,7 @@ export function OurWorkPage() {
             </svg>
 
             {/* Website Wireframe Pin */}
-            <svg className="ow-pin" style={{ top: '46%', left: '15%', width: '60px', height: '60px' }} viewBox="0 0 20 20">
+            <svg className="ow-pin" style={{ top: 'calc(46% + 50px)', left: '15%', width: '60px', height: '60px' }} viewBox="0 0 20 20">
               <circle cx="10" cy="8" r="5.5" fill="#bfa37a" />
               <circle cx="9" cy="7" r="1.8" fill="#fff" opacity="0.4" />
               <path d="M10 13.5 L10 18" stroke="#666" strokeWidth="1.5" />
@@ -198,62 +197,19 @@ export function OurWorkPage() {
                ========================================== */}
 
             {/* 1. TOP-CENTER WEBSITE MOCKUP */}
-            <div className="ow-paper ow-mockup-paper">
-              <div className="ow-mockup-inner">
-                <div className="ow-mockup-header">
-                  <div className="ow-mockup-logo">ROUGH NOTE.</div>
-                  <div className="ow-mockup-nav">
-                    <span>work</span>
-                    <span>about</span>
-                    <span>studio</span>
-                  </div>
-                </div>
-                <div className="ow-mockup-content">
-                  <h2 className="ow-mockup-headline">crafting brands that speak.</h2>
-                  
-                  {/* Hero Artwork Sketch (Ceramic vase/bottle layout) */}
-                  <div className="ow-mockup-hero">
-                    <svg viewBox="0 0 200 115" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="200" height="115" fill="#fdfbf7" />
-                      
-                      {/* Shadow behind objects */}
-                      <ellipse cx="120" cy="92" rx="42" ry="12" fill="#eae3d5" opacity="0.7" />
-                      
-                      {/* Table edge line */}
-                      <line x1="15" y1="92" x2="185" y2="92" stroke="#d5ccba" strokeWidth="1.5" />
-                      
-                      {/* Minimalist Ceramic Bottle */}
-                      <path d="M122 92 L122 56 Q122 47 127 45 L127 34 Q127 31 129 31 L135 31 Q137 31 137 34 L137 45 Q142 47 142 56 L142 92 Z" fill="#ebd9c3" stroke="#cca27c" strokeWidth="1" strokeLinejoin="round" />
-                      
-                      {/* Bottle Label */}
-                      <rect x="126" y="58" width="12" height="16" fill="#fdfbf7" rx="0.5" stroke="#cca27c" strokeWidth="0.5" />
-                      <line x1="128.5" y1="62" x2="135.5" y2="62" stroke="#cca27c" strokeWidth="0.5" />
-                      <line x1="128.5" y1="65" x2="135.5" y2="65" stroke="#cca27c" strokeWidth="0.5" />
-                      <circle cx="132" cy="70" r="1.5" fill="#c47e5a" />
-
-                      {/* Small Ceramic Dish */}
-                      <path d="M78 92 Q72 72 65 72 L105 72 Q98 72 92 92 Z" fill="#cfbfac" stroke="#b09f8a" strokeWidth="1" strokeLinejoin="round" />
-                      <ellipse cx="85" cy="72" rx="20" ry="4" fill="#faf5ec" stroke="#b09f8a" strokeWidth="1" />
-
-                      {/* Flat Tray in Background */}
-                      <ellipse cx="108" cy="90" rx="14" ry="4" fill="#bda28c" stroke="#9e846f" strokeWidth="0.8" />
-                      
-                      {/* Little stones */}
-                      <circle cx="116" cy="92" r="2.5" fill="#8c7765" />
-                      <circle cx="112" cy="93" r="1.5" fill="#af9c8c" />
-                    </svg>
-                  </div>
-                  
-                  <div className="ow-mockup-footer">
-                    <div className="ow-mockup-lines">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div className="ow-mockup-thumb"></div>
-                  </div>
-                </div>
-              </div>
+            <div className="ow-paper ow-mockup-paper" style={{ padding: '28px' }}>
+                <img 
+                  src="/assets/images/crafting-brands-mockup.png" 
+                  alt="Crafting Brands Website Mockup" 
+                  style={{ 
+                    display: 'block',
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover',
+                    WebkitMaskImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 1000 1000\' preserveAspectRatio=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'imgMask\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.08\' numOctaves=\'5\' result=\'noise\'/%3E%3CfeDisplacementMap in=\'SourceGraphic\' in2=\'noise\' scale=\'15\' xChannelSelector=\'R\' yChannelSelector=\'G\'/%3E%3C/filter%3E%3Cpath d=\'M15,15 L985,15 L985,985 L15,985 Z\' filter=\'url(%23imgMask)\' fill=\'black\'/%3E%3C/svg%3E")',
+                    maskImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 1000 1000\' preserveAspectRatio=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'imgMask\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.08\' numOctaves=\'5\' result=\'noise\'/%3E%3CfeDisplacementMap in=\'SourceGraphic\' in2=\'noise\' scale=\'15\' xChannelSelector=\'R\' yChannelSelector=\'G\'/%3E%3C/filter%3E%3Cpath d=\'M15,15 L985,15 L985,985 L15,985 Z\' filter=\'url(%23imgMask)\' fill=\'black\'/%3E%3C/svg%3E")'
+                  }} 
+                />
             </div>
 
             {/* 2. BRAND STRATEGY STICKY NOTE */}
@@ -329,13 +285,41 @@ export function OurWorkPage() {
             {/* 6. WEBSITE WIREFRAME */}
             <div className="ow-paper ow-wireframe-paper">
               <h3 className="ow-wireframe-title">Website Wireframe</h3>
-              <div className="ow-wireframe-grid">
-                <div className="ow-wf-box ow-wf-header">HEADER</div>
-                <div className="ow-wf-box ow-wf-hero">HERO SECTION</div>
-                <div className="ow-wf-split">
-                  <div className="ow-wf-box ow-wf-about">ABOUT US</div>
-                  <div className="ow-wf-box ow-wf-services">OUR SERVICES</div>
-                </div>
+              <div className="ow-wireframe-grid" style={{ padding: 0, marginTop: '15px' }}>
+                <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block' }}>
+                  {/* Hand-drawn Browser Window */}
+                  <path d="M5 8 Q 100 4, 195 8 L 196 230 Q 100 234, 4 232 Z" stroke="#333" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(255,255,255,0.4)" />
+                  <path d="M5 22 Q 100 18, 195 22" stroke="#333" strokeWidth="1.5" />
+                  <circle cx="15" cy="14" r="2.5" fill="#333" />
+                  <circle cx="25" cy="14" r="2.5" fill="#333" />
+                  <circle cx="35" cy="14" r="2.5" fill="#333" />
+                  
+                  {/* Header */}
+                  <path d="M15 32 Q 100 30, 185 34 L 183 50 Q 100 48, 17 50 Z" stroke="#444" strokeWidth="1.2" />
+                  <text x="75" y="45" fontSize="12" fill="#333" stroke="none" fontFamily="Caveat, cursive">HEADER</text>
+                  <path d="M140 40 Q 150 38, 160 42" stroke="#666" strokeWidth="1" />
+                  <path d="M165 40 Q 170 38, 175 42" stroke="#666" strokeWidth="1" />
+                  
+                  {/* Hero Section */}
+                  <path d="M15 60 Q 100 58, 185 62 L 183 130 Q 100 134, 17 128 Z" stroke="#444" strokeWidth="1.2" />
+                  <path d="M15 60 Q 100 95, 183 130" stroke="#999" strokeWidth="1" />
+                  <path d="M185 62 Q 100 95, 17 128" stroke="#999" strokeWidth="1" />
+                  <rect x="65" y="85" width="70" height="20" fill="rgba(255,255,255,0.8)" />
+                  <text x="68" y="99" fontSize="12" fill="#333" stroke="none" fontFamily="Caveat, cursive">HERO SECTION</text>
+
+                  {/* Split Sections */}
+                  <path d="M15 140 Q 55 138, 95 142 L 93 200 Q 55 198, 17 200 Z" stroke="#444" strokeWidth="1.2" />
+                  <text x="35" y="160" fontSize="11" fill="#333" stroke="none" fontFamily="Caveat, cursive">ABOUT US</text>
+                  <path d="M25 170 Q 55 168, 85 172" stroke="#777" strokeWidth="1" />
+                  <path d="M22 178 Q 55 176, 88 180" stroke="#777" strokeWidth="1" />
+                  <path d="M28 186 Q 45 184, 65 188" stroke="#777" strokeWidth="1" />
+                  
+                  <path d="M105 140 Q 145 138, 185 142 L 183 200 Q 145 198, 107 200 Z" stroke="#444" strokeWidth="1.2" />
+                  <text x="115" y="160" fontSize="11" fill="#333" stroke="none" fontFamily="Caveat, cursive">OUR SERVICES</text>
+                  <path d="M115 170 Q 135 168, 155 172" stroke="#777" strokeWidth="1" />
+                  <path d="M112 178 Q 145 176, 178 180" stroke="#777" strokeWidth="1" />
+                  <path d="M118 186 Q 135 184, 155 188" stroke="#777" strokeWidth="1" />
+                </svg>
               </div>
             </div>
 
@@ -476,44 +460,43 @@ export function OurWorkPage() {
                 {/* Scene 1 */}
                 <div className="ow-sb-panel">
                   <div className="ow-sb-visual">
-                    <svg viewBox="0 0 40 40">
-                      {/* Bulb Sketch */}
-                      <circle cx="20" cy="16" r="8" stroke="#333" strokeWidth="1.2" fill="none" />
-                      <path d="M15 22 Q20 22 20 28 Q20 22 25 22" stroke="#333" strokeWidth="1.2" fill="none" />
-                      <line x1="20" y1="8" x2="20" y2="4" stroke="#888" strokeWidth="1" />
-                      <line x1="12" y1="12" x2="9" y2="9" stroke="#888" strokeWidth="1" />
-                      <line x1="28" y1="12" x2="31" y2="9" stroke="#888" strokeWidth="1" />
+                    <svg viewBox="0 0 60 50" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 2 L58 3 L57 48 L3 47 Z" fill="rgba(255,255,255,0.5)" stroke="#444" strokeWidth="1.2" strokeLinejoin="round" />
+                      <path d="M15 15 L25 5 L45 5 L55 15 L55 35 L45 45 L25 45 L15 35 Z" stroke="#ddd" strokeWidth="1" fill="none" />
+                      <circle cx="25" cy="22" r="8" stroke="#333" strokeWidth="1.5" fill="none" />
+                      <line x1="30" y1="28" x2="38" y2="36" stroke="#333" strokeWidth="1.8" strokeLinecap="round" />
+                      <path d="M25 10 L25 6 M37 22 L41 22 M13 22 L9 22" stroke="#666" strokeWidth="1" />
                     </svg>
                   </div>
-                  <div className="ow-sb-label">Scene 1: Idea</div>
+                  <div className="ow-sb-label">Scene 1<br/>Idea</div>
                 </div>
                 
                 {/* Scene 2 */}
                 <div className="ow-sb-panel">
                   <div className="ow-sb-visual">
-                    <svg viewBox="0 0 40 40">
-                      {/* Gears Sketch */}
-                      <circle cx="16" cy="18" r="6" stroke="#333" strokeWidth="1.2" fill="none" />
-                      <circle cx="24" cy="24" r="5" stroke="#333" strokeWidth="1.2" fill="none" />
-                      <path d="M16 12 L16 10 M16 26 L16 24 M10 18 L12 18 M22 18 L20 18" stroke="#333" strokeWidth="1" />
-                      <path d="M24 19 L24 17 M24 31 L24 29 M19 24 L21 24 M29 24 L27 24" stroke="#333" strokeWidth="1" />
+                    <svg viewBox="0 0 60 50" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 3 L58 2 L59 47 L4 48 Z" fill="rgba(255,255,255,0.5)" stroke="#444" strokeWidth="1.2" strokeLinejoin="round" />
+                      <circle cx="30" cy="25" r="12" stroke="#333" strokeWidth="1.5" fill="none" />
+                      <path d="M30 18 L35 30 L25 30 Z" stroke="#333" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+                      <circle cx="30" cy="15" r="3" fill="#333" />
+                      <path d="M10 25 Q30 5 50 25" stroke="#999" strokeWidth="1" fill="none" strokeDasharray="3 3" />
                     </svg>
                   </div>
-                  <div className="ow-sb-label">Scene 2: Build</div>
+                  <div className="ow-sb-label">Scene 2<br/>Build</div>
                 </div>
                 
                 {/* Scene 3 */}
                 <div className="ow-sb-panel">
                   <div className="ow-sb-visual">
-                    <svg viewBox="0 0 40 40">
-                      {/* Rocket Launch Sketch */}
-                      <path d="M20 6 Q25 15 25 26 H15 Q15 15 20 6 Z" stroke="#333" strokeWidth="1.2" fill="none" />
-                      <path d="M15 26 L12 30 H28 L25 26" stroke="#333" strokeWidth="1.2" fill="none" />
-                      {/* Fire thrust */}
-                      <path d="M17 31 Q20 38 20 38 Q20 38 23 31" stroke="#c95b5b" strokeWidth="1" fill="none" />
+                    <svg viewBox="0 0 60 50" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 2 L57 4 L58 48 L2 49 Z" fill="rgba(255,255,255,0.5)" stroke="#444" strokeWidth="1.2" strokeLinejoin="round" />
+                      <path d="M10 40 L30 10 L50 40 Z" stroke="#333" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+                      <circle cx="30" cy="28" r="8" stroke="#333" strokeWidth="1.2" fill="none" />
+                      <path d="M27 24 L35 28 L27 32 Z" fill="#333" />
+                  <path d="M30 10 L30 5 M20 18 L15 15 M40 18 L45 15" stroke="#666" strokeWidth="1" strokeLinecap="round" />
                     </svg>
                   </div>
-                  <div className="ow-sb-label">Scene 3: Launch</div>
+                  <div className="ow-sb-label">Scene 3<br/>Launch</div>
                 </div>
               </div>
             </div>
@@ -528,28 +511,23 @@ export function OurWorkPage() {
                   <li>Sustainable</li>
                 </ul>
               </div>
-              <div className="ow-pk-right">
-                {/* Isometric 3D box drawing */}
-                <svg className="ow-box-sketch" viewBox="0 0 100 100" fill="none">
-                  {/* Top Face */}
-                  <path d="M50 20 L80 32 L50 44 L20 32 Z" stroke="#222" strokeWidth="1.2" strokeLinejoin="round" fill="#fafafa" />
-                  
-                  {/* Left Face */}
-                  <path d="M20 32 L20 68 L50 82 L50 44 Z" stroke="#222" strokeWidth="1.2" strokeLinejoin="round" fill="#f4f4f4" />
-                  
-                  {/* Right Face */}
-                  <path d="M80 32 L80 68 L50 82 L50 44 Z" stroke="#222" strokeWidth="1.2" strokeLinejoin="round" fill="#eaeaea" />
-                  
-                  {/* Minimal Cardboard/Packaging label line designs */}
-                  <path d="M25 40 L45 50" stroke="#ccc" strokeWidth="0.8" />
-                  <path d="M25 44 L45 54" stroke="#ccc" strokeWidth="0.8" />
-                  <rect x="25" y="49" width="10" height="12" stroke="#bbb" strokeWidth="0.8" fill="none" />
-                  
-                  {/* Small leaf logo on the box face */}
-                  <path d="M60 52 Q62 46 68 46 Q64 54 60 52" stroke="#728c6e" strokeWidth="1.2" fill="none" />
-                  <path d="M60 52 L68 46" stroke="#728c6e" strokeWidth="0.8" />
-                </svg>
-              </div>
+                <div className="ow-pk-right">
+                  {/* Realistic 3D Packaging Prototype */}
+                  <div style={{ width: '100%', height: '140px', position: 'relative' }}>
+                    <img 
+                      src="/assets/images/JSB Packaging.png" 
+                      alt="3D Packaging Concept" 
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'contain',
+                        mixBlendMode: 'multiply',
+                        filter: 'drop-shadow(0 15px 12px rgba(60,40,20,0.15)) drop-shadow(0 4px 4px rgba(0,0,0,0.08))',
+                        transform: 'scale(1.1) translateY(-5px)'
+                      }} 
+                    />
+                  </div>
+                </div>
             </div>
           </div>
           </div>
