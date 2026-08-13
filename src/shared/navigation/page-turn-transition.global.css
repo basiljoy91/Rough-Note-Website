@@ -86,7 +86,7 @@ html.rn-page-turn-locked .menu-backdrop {
   z-index: 0;
 }
 
-.rn-page-turn--ready .rn-page-turn__destination {
+.rn-page-turn--destination-ready .rn-page-turn__destination {
   opacity: 1;
 }
 

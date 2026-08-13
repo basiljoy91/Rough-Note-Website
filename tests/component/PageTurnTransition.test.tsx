@@ -81,7 +81,7 @@ describe('PageTurnTransition', () => {
 
     expect(clickCompleted).toBe(false);
     expect(document.querySelector('.rn-page-turn')).toBeInTheDocument();
-    expect(document.documentElement).toHaveAttribute('data-page-turn-state', 'preparing');
+    expect(document.documentElement).toHaveAttribute('data-page-turn-state', 'turning');
   });
 
   it('loads the destination beneath a one-direction turning paper', async () => {
@@ -108,7 +108,8 @@ describe('PageTurnTransition', () => {
     ) as HTMLIFrameElement;
 
     expect(stage).toBeInTheDocument();
-    expect(stage).not.toHaveClass('rn-page-turn--ready');
+    expect(stage).toHaveClass('rn-page-turn--ready');
+    expect(stage).not.toHaveClass('rn-page-turn--destination-ready');
     expect(destination.src).toContain('/html/services.html');
     expect(document.querySelector('.rn-page-turn__clone')).toHaveTextContent(
       'Current paper'
@@ -122,6 +123,8 @@ describe('PageTurnTransition', () => {
     fireEvent.load(destination);
     await act(async () => {
       await Promise.resolve();
+      await Promise.resolve();
+      vi.advanceTimersByTime(450);
       await Promise.resolve();
     });
 

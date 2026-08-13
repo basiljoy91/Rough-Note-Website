@@ -199,6 +199,30 @@ const captureVisibleSurface = async (surface: HTMLElement) => {
   });
 };
 
+/**
+ * The live DOM clone remains the visible front of the sheet, so an uncached
+ * turn only needs a paper-coloured canvas for the narrow curled edge. This
+ * keeps first-interaction navigation immediate instead of blocking the main
+ * thread on a fresh html2canvas render.
+ */
+const createPaperTurnFallback = (surface: HTMLElement) => {
+  const rect = surface.getBoundingClientRect();
+  const cssPixels = Math.max(1, rect.width * window.innerHeight);
+  const scale = Math.max(
+    0.82,
+    Math.min(1, Math.sqrt(MAX_CAPTURE_PIXELS / cssPixels))
+  );
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(rect.width * scale));
+  canvas.height = Math.max(1, Math.round(window.innerHeight * scale));
+  const context = canvas.getContext('2d');
+  if (context) {
+    context.fillStyle = '#f7f0df';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  return canvas;
+};
+
 const waitForDestinationDocument = async (frame: HTMLIFrameElement) => {
   try {
     const frameDocument = frame.contentDocument;
@@ -272,24 +296,42 @@ const createTurnStage = (
   element.append(destination, canvas, front);
 
   const destinationReady = new Promise<void>((resolve, reject) => {
+    let preparing = false;
+    let settled = false;
     const timeout = window.setTimeout(
-      () => reject(new Error('Destination page did not become ready in time.')),
+      () => {
+        if (settled) return;
+        settled = true;
+        signal.removeEventListener('abort', abort);
+        // The navigation itself remains reliable even if its paint-only
+        // preview is unavailable. The outgoing paper still completes its curl.
+        resolve();
+      },
       PAGE_LOAD_TIMEOUT
     );
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timeout);
+      signal.removeEventListener('abort', abort);
+      element.classList.add('rn-page-turn--destination-ready');
+      resolve();
+    };
+    const prepare = () => {
+      if (settled || preparing) return;
+      const frameDocument = destination.contentDocument;
+      if (!frameDocument || frameDocument.readyState === 'loading') return;
+      preparing = true;
+      void waitForDestinationDocument(destination).then(finish, finish);
+    };
     const abort = () => {
+      if (settled) return;
+      settled = true;
       window.clearTimeout(timeout);
       reject(new DOMException('Navigation cancelled.', 'AbortError'));
     };
     signal.addEventListener('abort', abort, { once: true });
-    destination.addEventListener(
-      'load',
-      () => {
-        window.clearTimeout(timeout);
-        signal.removeEventListener('abort', abort);
-        void waitForDestinationDocument(destination).then(resolve);
-      },
-      { once: true }
-    );
+    destination.addEventListener('load', prepare, { once: true });
   });
 
   destination.src = destinationUrl;
@@ -432,6 +474,22 @@ export function PageTurnProvider() {
       }
     };
 
+    const getPreparedCapture = () => {
+      const key = getCaptureKey(surface);
+      if (cachedCapture?.key === key) {
+        const capture = cachedCapture.canvas;
+        cachedCapture = null;
+        return { capture, upgrade: null };
+      }
+      return {
+        capture: createPaperTurnFallback(surface),
+        upgrade:
+          captureInFlight && captureInFlightKey === key
+            ? captureInFlight
+            : null
+      };
+    };
+
     const warmCapture = () => {
       if (state !== 'idle' || disposed) return;
       void getCapture().catch(() => undefined);
@@ -446,13 +504,13 @@ export function PageTurnProvider() {
             warmIdleCallback = 0;
             warmCapture();
           },
-          { timeout: 1400 }
+          { timeout: 700 }
         );
       } else {
         warmIdleCallback = schedule(() => {
           warmIdleCallback = 0;
           warmCapture();
-        }, 900);
+        }, 420);
       }
     };
 
@@ -471,7 +529,12 @@ export function PageTurnProvider() {
       activeCommit();
     };
 
-    const animateStage = (stage: TurnStage, capture: HTMLCanvasElement, id: number) => {
+    const animateStage = (
+      stage: TurnStage,
+      capture: HTMLCanvasElement,
+      id: number,
+      sourceUpgrade: Promise<HTMLCanvasElement> | null
+    ) => {
       stage.canvas.width = capture.width;
       stage.canvas.height = capture.height;
       const turningCanvas = {
@@ -479,6 +542,10 @@ export function PageTurnProvider() {
         front: stage.front,
         source: capture
       } satisfies TurningCanvas;
+      void sourceUpgrade?.then((upgradedCapture) => {
+        if (disposed || id !== requestId || state !== 'turning') return;
+        turningCanvas.source = upgradedCapture;
+      }).catch(() => undefined);
       drawPageCurl(turningCanvas, 0, 'next');
       stage.element.classList.add('rn-page-turn--ready');
       setState('turning');
@@ -525,18 +592,14 @@ export function PageTurnProvider() {
       lockNavigation();
       beginPageNoteDeparture();
       activeStage = createTurnStage(destination.href, surface, abort.signal);
+      const stage = activeStage;
 
-      try {
-        const [capture] = await Promise.all([getCapture(), activeStage.destinationReady]);
-        if (disposed || id !== requestId || abort.signal.aborted || !activeStage) return;
-        cachedCapture = null;
-        animateStage(activeStage, capture, id);
-      } catch {
-        if (disposed || id !== requestId || abort.signal.aborted) return;
-        // A blank lower sheet is worse than no effect. Slow or blocked routes
-        // fall back to native navigation and can never strand the controller.
-        commitNavigation();
-      }
+      // Destination readiness controls only the lower-sheet reveal. It must
+      // never delay or cancel the visible turn, especially for media-heavy
+      // routes such as Home.
+      void stage.destinationReady.catch(() => undefined);
+      const preparedCapture = getPreparedCapture();
+      animateStage(stage, preparedCapture.capture, id, preparedCapture.upgrade);
     };
 
     const onNavigationClick = (event: MouseEvent) => {
