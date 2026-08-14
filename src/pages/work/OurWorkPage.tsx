@@ -7,6 +7,7 @@ import { RoughNoteDrawingFeature } from '../../features/rough-note-drawing/Rough
 import { useScrollReveal } from '../../shared/hooks/useScrollReveal';
 import { SketchFilters } from '../../shared/ui/SketchFilters';
 import coffeeImg from '../../assets/illustrations/coffee-rn.svg';
+import { Div2RoughNote } from './Div2RoughNote';
 
 export function OurWorkPage() {
   const mainRef = useRef<HTMLElement>(null);
@@ -781,6 +782,7 @@ export function OurWorkPage() {
             </div>
           </div>
         </section>
+        <Div2RoughNote />
           </>
         ) : (
           <ExpandedProjectArchive onBack={() => setIsExpandedView(false)} />

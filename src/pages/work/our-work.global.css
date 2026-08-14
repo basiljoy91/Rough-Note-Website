@@ -2913,4 +2913,522 @@
   .ow-logo-paper { left: 51% !important; } 
   .ow-coffee-cup { left: 72% !important; } 
   .ow-brand-sticky { left: 48% !important; } 
+}/* ============================================================================
+   NEW DIV-2 SECTION: EVERY PROJECT STARTS AS A ROUGH NOTE
+============================================================================ */
+.ow-div2-section {
+  width: 100%;
+  padding: 40px 20px;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+}
+
+.ow-div2-container {
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.ow-div2-main-pad {
+  width: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 100px 80px 80px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* Typography */
+.ow-div2-step-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: inline-block;
+  border-bottom: 3px solid #D9A02C;
+}
+
+.ow-div2-headline {
+  font-family: 'Caveat Brush', 'Caveat', cursive;
+  font-size: 72px;
+  line-height: 1;
+  color: #111;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ow-div2-highlight {
+  color: #D9A02C;
+}
+
+.ow-div2-subtext {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.ow-div2-underline {
+  text-decoration: underline;
+  text-decoration-color: #D9A02C;
+  text-decoration-thickness: 3px;
+}
+
+.ow-div2-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Metadata */
+.ow-div2-metadata {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border-top: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 15px 0;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.ow-div2-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+}
+
+.ow-div2-meta-label {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+.ow-div2-meta-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+.ow-div2-status-active {
+  color: #D9A02C;
+  font-style: italic;
+}
+
+.ow-div2-meta-divider {
+  width: 1px;
+  height: 30px;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.ow-div2-stamp-progress {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-5deg);
+  border: 3px solid #B33A2E;
+  color: #B33A2E;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+/* Video Section */
+.ow-div2-video-section {
+  position: relative;
+  width: 100%;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.ow-div2-video-wrapper {
+  width: 85%;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ow-div2-video-img {
+  width: 100%;
+  display: block;
+}
+
+.ow-div2-video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+}
+
+.ow-div2-play-btn {
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ow-div2-play-btn::after {
+  content: '';
+  display: block;
+  border-left: 8px solid black;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  margin-left: 3px;
+}
+
+.ow-div2-progress-track {
+  flex-grow: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  position: relative;
+  border-radius: 2px;
+}
+
+.ow-div2-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  background: #D9A02C;
+  border-radius: 2px;
+}
+
+.ow-div2-progress-fill::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: -3px;
+  width: 10px;
+  height: 10px;
+  background: #D9A02C;
+  border-radius: 50%;
+}
+
+.ow-div2-video-annotation-left {
+  position: absolute;
+  left: -20px;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ow-div2-video-annotation-right {
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Services */
+.ow-div2-services-row {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto 60px;
+}
+
+.ow-div2-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ow-div2-service-icon {
+  margin-bottom: 15px;
+}
+
+.ow-div2-service-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.ow-div2-service-label span {
+  font-weight: 400;
+  font-size: 11px;
+  color: #555;
+  text-transform: none;
+}
+
+/* Footer */
+.ow-div2-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.ow-div2-scroll-prompt {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ow-div2-approval {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ow-div2-stamp-approved {
+  border: 3px solid #B33A2E;
+  color: #B33A2E;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transform: rotate(-10deg);
+}
+
+.ow-div2-signature {
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  color: #111;
+  transform: rotate(-5deg);
+}
+
+/* Handwritten / Annotations */
+.ow-div2-handwritten {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  line-height: 1.1;
+  color: #111;
+  text-align: center;
+}
+
+.ow-div2-coffee-annotation {
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Stickies */
+.ow-div2-sticky {
+  position: absolute;
+  z-index: 10;
+  filter: drop-shadow(2px 6px 8px rgba(0,0,0,0.3));
+}
+
+.ow-div2-sticky-bg {
+  width: 140px;
+  display: block;
+}
+
+.ow-div2-sticky-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px 20px;
+  font-family: 'Caveat Brush', 'Caveat', cursive;
+  font-size: 22px;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.ow-div2-sticky-1 {
+  top: 100px;
+  left: -40px;
+  transform: rotate(-5deg);
+}
+
+.ow-div2-sticky-2 {
+  bottom: 80px;
+  left: -50px;
+  transform: rotate(-3deg);
+}
+.ow-div2-sticky-2 .ow-div2-sticky-bg {
+  width: 180px;
+}
+.ow-div2-sticky-2 .ow-div2-sticky-text {
+  font-size: 24px;
+  padding: 30px;
+}
+
+.ow-div2-sticky-3 {
+  top: 300px;
+  right: -50px;
+  transform: rotate(4deg);
+}
+.ow-div2-sticky-3 .ow-div2-sticky-bg {
+  width: 160px;
+}
+.ow-div2-sticky-3 .ow-div2-sticky-text {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  padding: 25px 15px 15px 30px;
+}
+.ow-div2-sticky-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.ow-div2-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ow-div2-check {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+/* Carousel */
+.ow-div2-carousel {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.ow-div2-minipad {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  padding: 30px 15px;
+  border-radius: 6px;
+  min-height: 180px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ow-div2-minipad.active {
+  border: 2px solid #D9A02C;
+  box-shadow: 0 0 15px rgba(217,160,44,0.6);
+}
+
+.ow-div2-minipad-content {
+  text-align: left;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #111;
+}
+
+.ow-div2-minipad-num {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ow-div2-minipad-title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.ow-div2-minipad-desc {
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.ow-div2-carousel-arrow {
+  font-size: 14px;
+  color: #888;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ow-div2-main-pad {
+    padding: 80px 40px;
+  }
+  .ow-div2-headline {
+    font-size: 56px;
+  }
+  .ow-div2-services-row {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .ow-div2-carousel {
+    flex-wrap: wrap;
+  }
+  .ow-div2-minipad {
+    min-width: 120px;
+  }
+  .ow-div2-carousel-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ow-div2-main-pad {
+    padding: 60px 20px;
+  }
+  .ow-div2-headline {
+    font-size: 40px;
+  }
+  .ow-div2-metadata {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .ow-div2-meta-divider {
+    width: 50px;
+    height: 1px;
+  }
+  .ow-div2-stamp-progress, .ow-div2-approval {
+    position: static;
+    margin-top: 20px;
+    transform: none;
+  }
+  .ow-div2-video-wrapper {
+    width: 100%;
+  }
+  .ow-div2-sticky {
+    display: none; /* Hide stickies on small screens if they overlap too much */
+  }
+  .ow-div2-coffee-annotation, .ow-div2-video-annotation-left, .ow-div2-video-annotation-right {
+    display: none; /* Hide annotations on mobile to save space */
+  }
 }
