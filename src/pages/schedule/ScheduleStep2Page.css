@@ -419,8 +419,39 @@
     align-items: center;
     background-color: #fdfaf3;
     width: 100%;
-    padding: 40px 20px;
+    padding: 120px 20px 40px 20px !important; /* Compact, comfortable gap below navbar */
     box-sizing: border-box;
+  }
+
+  .top-info-block {
+    top: 0 !important; /* Clear any desktop top offset to ensure predictable gap */
+  }
+
+  /* Shorten underline for mobile */
+  .step-heading-container .heading-underline-sketch {
+    width: 65% !important; /* Proportionate shorter length */
+  }
+
+  /* Move the main Step 02 content block slightly toward the right side */
+  .top-info-block,
+  .pencil-sketch-wrapper {
+    position: relative;
+    left: 6vw; /* Balanced horizontal shift */
+  }
+
+  .pencil-sketch-wrapper {
+    margin-top: 25px !important; /* Move calendar downward slightly from text */
+  }
+
+  /* Move inspirational text to the right end and 40px upward */
+  .inspirational-text {
+    position: relative;
+    left: auto !important;
+    margin-left: auto !important; /* Push to the right end of the flex column */
+    margin-right: 5%;
+    margin-top: -140px !important; /* Replaces top offset to visually lift while closing the ghost gap below */
+    top: auto !important;
+    text-align: right;
   }
 
   .info-column, .form-column {
@@ -439,7 +470,7 @@
     background-image: url('/assets/images/c-s-m.png');
     background-size: cover;
     background-position: center;
-    padding: 40px 20px 100px 20px; /* Increased bottom padding to avoid collision with torn edge */
+    padding: 40px 20px 30px 20px !important; /* Reduced excessive bottom padding */
     box-sizing: border-box;
     border-radius: 8px;
   }
@@ -475,6 +506,11 @@
     margin-top: 40px;
     flex-direction: column;
     gap: 20px;
+  }
+  
+  .footer-tab {
+    left: -2% !important; /* Position it close to the left edge with a small margin */
+    margin-left: 0 !important; /* Clear any desktop negative margin so it doesn't bleed off screen */
   }
   
   .footer-text {
