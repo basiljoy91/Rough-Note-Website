@@ -700,3 +700,271 @@
     display: none;
   }
 }
+
+@media (max-width: 767px) {
+  /* Force flex container for order to work reliably on all mobile devices */
+  .notebook-spread {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Reset all mobile position hacks, let cards flow naturally */
+  .connect-page-wrapper .bottom-studio-wrapper,
+  .sticky-email,
+  .sticky-coffee-meeting {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  /* 1. Our Studio */
+  .connect-page-wrapper .bottom-studio-wrapper {
+    width: 92% !important; /* Slightly reduced to allow safe right-shift */
+    margin: 0 2% 0 auto !important; /* Safely pushed to the right, not touching edge */
+    order: 3 !important;
+    transform: none !important;
+  }
+
+  /* 2. Email Us */
+  .sticky-email {
+    8px 12px 20px rgba(0,0,0,0.08),
+    inset 0 0 12px rgba(180, 160, 130, 0.2);
+  transform: rotate(2deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  text-decoration: none;
+  color: #111; /* Increased text contrast */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Subtle corner curl shadow */
+.connect-page-wrapper .get-directions::before {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  width: 40%;
+  height: 20%;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.25);
+  transform: skew(-10deg) rotate(5deg);
+  z-index: -1;
+  transition: box-shadow 0.3s ease;
+}
+
+.connect-page-wrapper .get-directions:hover,
+.connect-page-wrapper .get-directions:focus {
+  transform: rotate(2deg) translateY(-3px) scale(1.03);
+  box-shadow: 
+    3px 8px 15px rgba(0,0,0,0.18),
+    10px 15px 25px rgba(0,0,0,0.12),
+    inset 0 0 12px rgba(180, 160, 130, 0.2);
+  filter: brightness(1.03);
+  outline: none;
+}
+.connect-page-wrapper .get-directions:hover::before {
+  box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+}
+.connect-page-wrapper .directions-tape {
+  width: 80px;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  position: absolute;
+  z-index: 11;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+.connect-page-wrapper .directions-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.connect-page-wrapper .studio-desc {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+.connect-page-wrapper .smile-icon-small {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  bottom: 5px;
+  right: 50px;
+}
+
+/* Decorative Pencil */
+.connect-page-wrapper .decorative-pencil-right {
+  position: absolute;
+  top: 50%;
+  right: -50px;
+  width: 150px;
+  height: auto;
+  transform: translateY(-50%) rotate(170deg);
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.25));
+}
+
+/* Responsiveness */
+@media (max-width: 1300px) {
+  .notebook-spread {
+    transform: scale(0.9);
+    transform-origin: top center;
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 1100px) {
+  .notebook-spread {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-width: 900px) {
+  .notebook-spread {
+    transform: none;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .page-header,
+  .main-heading-container,
+  .description-container,
+  .coffee-cup-container,
+  .sticky-philosophy,
+  .sticky-call,
+  .sticky-email,
+  .sticky-coffee-meeting,
+  .bottom-margin-text,
+  .bottom-studio-wrapper {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .main-heading-container {
+    text-align: center;
+  }
+
+  .coffee-cup-container {
+    display: none; /* Hide cup on mobile to save space */
+  }
+
+  .bottom-margin-text {
+    display: none; /* Hide margin text on mobile */
+  }
+
+  .connect-page-wrapper .bottom-studio-wrapper {
+    height: auto;
+    flex-direction: column;
+    padding: 40px 30px;
+    margin-bottom: 20px;
+  }
+
+  .connect-page-wrapper .studio-info-col,
+  .connect-page-wrapper .studio-map-col {
+    width: 100%;
+    padding: 0;
+    left: 0;
+  }
+
+  .connect-page-wrapper .studio-map-col {
+    margin-top: 30px;
+    height: 250px;
+  }
+
+  .connect-page-wrapper .get-directions {
+    right: 0;
+    bottom: -10px;
+  }
+
+  .connect-page-wrapper .decorative-pencil-right {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Force flex container for order to work reliably on all mobile devices */
+  .notebook-spread {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* Reset all mobile position hacks, let cards flow naturally */
+  .connect-page-wrapper .bottom-studio-wrapper,
+  .sticky-email,
+  .sticky-coffee-meeting {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  /* 1. Our Studio */
+  .connect-page-wrapper .bottom-studio-wrapper {
+    width: 92% !important; /* Slightly reduced to allow safe right-shift */
+    margin: 0 2% 0 auto !important; /* Safely pushed to the right, not touching edge */
+    order: 3 !important;
+    transform: none !important;
+  }
+
+  /* 2. Email Us */
+  .sticky-email {
+    margin: 0 auto !important; /* Natural gap is handled by flex container */
+    order: 1 !important;
+    transform: rotate(-1deg) !important; /* Restore natural rotation */
+  }
+
+  /* 3. Let's Have a Coffee */
+  .sticky-coffee-meeting {
+    margin: 0 auto !important;
+    order: 2 !important;
+    transform: rotate(1deg) !important; /* Restore natural rotation */
+    height: 330px !important; /* Taller background for comfortable spacing */
+  }
+
+  /* 4. Internal Content Alignment (Shift text slightly right) */
+  .sticky-call .sticky-content,
+  .sticky-email .sticky-content {
+    padding-left: 65px !important; /* Increased further to move text more to the right */
+  }
+
+  .sticky-coffee-meeting .sticky-content {
+    padding-left: 55px !important; /* Increased from 40px */
+  }
+
+  /* 5. Coffee Meeting Mobile Layout Adjustments */
+  .sticky-coffee-meeting .meeting-header h2 {
+    max-width: 170px !important; /* Force heading onto exactly 2 lines to avoid illustration collision */
+  }
+
+  .sticky-coffee-meeting .meeting-footer {
+    bottom: 20px !important; /* Move text further downward inside the taller card */
+    left: 55px !important; /* Align with the new internal padding */
+  }
+
+  .sticky-coffee-meeting .meeting-sketch {
+    width: 85px !important; /* Scaled down from 110px for mobile proportionality */
+    height: 80px !important; /* Scaled down from 90px */
+  }
+
+  .sticky-coffee-meeting .peach-highlight-svg {
+    width: 120px !important; /* Compact width proportional to the 2-line heading */
+    height: 70px !important; /* Balanced height to cover the text naturally */
+  }
+}
