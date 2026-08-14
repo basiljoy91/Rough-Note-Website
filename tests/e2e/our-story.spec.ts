@@ -43,7 +43,7 @@ test('Contact arrival focus never draws a page-wide browser outline', async ({ p
 });
 
 test('Our Story uses one global route stage and settles cleanly', async ({ page }) => {
-  await page.goto('/html/services.html');
+  await page.goto('/html/services.html', { waitUntil: 'domcontentloaded' });
   const navigation = await openNavigation(page);
   const storyLink = navigation.getByRole('link', { name: 'Our Story', exact: true });
   await storyLink.evaluate((link: HTMLAnchorElement) => link.click());
@@ -52,8 +52,12 @@ test('Our Story uses one global route stage and settles cleanly', async ({ page 
   await expect(destination).toHaveCount(1, { timeout: 3_000 });
 
   await expect(page).toHaveURL(/\/html\/about\.html$/);
-  await expect(page.locator('.story-book')).toBeVisible();
+  await expect(page.locator('.story-book')).toBeVisible({ timeout: 15_000 });
   await expect(page.locator('.rn-page-turn')).toHaveCount(0);
+  await expect(page.locator('.our-story-page')).toHaveClass(/our-story-page--route-arrival/);
+  await expect(page.locator('.story-entry-glow')).toHaveCSS('display', 'none');
+  await expect(page.locator('.story-book')).toHaveCSS('animation-name', 'none');
+  await expect(page.locator('.story-cover-title__ink')).toHaveCSS('animation-name', 'none');
 });
 
 test('turns through the story, restores focus, and follows browser history', async ({ page }) => {

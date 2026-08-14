@@ -75,6 +75,11 @@ function DoodleStar({ className = '' }: { className?: string }) {
 function CoverPage() {
   return (
     <article className="story-page story-page--cover" data-page-index="0" aria-labelledby="story-cover-title">
+      <div className="cover-page-stamp" aria-hidden="true">
+        <span>ROUGH NOTE</span>
+        <strong>No. 001</strong>
+      </div>
+
       <div className="cover-margin-doodle" aria-hidden="true">
         <span>idea</span><i />
       </div>
@@ -101,6 +106,16 @@ function CoverPage() {
         <span className="cover-pencil-sketch__arrow">↘</span>
         <small>start anywhere.</small>
       </div>
+
+      <div className="cover-process-note" aria-hidden="true">
+        <span>collect</span>
+        <i>→</i>
+        <span>connect</span>
+        <i>→</i>
+        <span>create</span>
+      </div>
+      <span className="cover-paperclip" aria-hidden="true" />
+      <span className="cover-coffee-ring" aria-hidden="true" />
     </article>
   );
 }
@@ -570,6 +585,10 @@ function pageIndexFromLocation() {
 export function StoryBook() {
   const [pageIndex, setPageIndex] = useState(pageIndexFromLocation);
   const [isTurning, setIsTurning] = useState(false);
+  const [arrivedViaPageTurn] = useState(
+    () => isTransitionPreviewDocument() ||
+      document.documentElement.dataset.pageTurnArrival === 'pending'
+  );
   const pageRef = useRef<HTMLDivElement>(null);
   const bookRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef(0);
@@ -720,14 +739,27 @@ export function StoryBook() {
   };
 
   return (
-    <main className="our-story-page" data-rough-anchor="about-page">
+    <main
+      className={`our-story-page${arrivedViaPageTurn ? ' our-story-page--route-arrival' : ''}`}
+      data-rough-anchor="about-page"
+    >
       <div className="story-entry-glow" aria-hidden="true" />
       <div className="story-desk-objects" aria-hidden="true">
         <span className="desk-leaves"><i /><i /><i /></span>
+        <img
+          className="desk-coffee-plant"
+          src="/assets/images/workspace-board/coffee-plant-props.png"
+          alt=""
+        />
         <span className="desk-note"><b>ideas</b><DoodleStar /></span>
         <span className="desk-pencil desk-pencil--one" />
         <span className="desk-pencil desk-pencil--two" />
         <span className="desk-sketch">rough<br />notes<br />↗</span>
+        <span className="desk-ruler"><i /><i /><i /><i /><i /></span>
+        <span className="desk-paperclip desk-paperclip--one" />
+        <span className="desk-paperclip desk-paperclip--two" />
+        <span className="desk-eraser" />
+        <span className="desk-coffee-ring" />
       </div>
 
       <section className="story-book-stage" aria-label="Rough Note storybook">

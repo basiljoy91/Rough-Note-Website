@@ -20,7 +20,7 @@ body:has(.our-story-page)::before {
 }
 
 body:has(.our-story-page) .rn-page-surface {
-  background: var(--story-wood-dark);
+  background: #3a2115;
 }
 
 body:has(.our-story-page) .header {
@@ -34,10 +34,11 @@ body:has(.our-story-page) .header {
 
 .our-story-page {
   background:
-    radial-gradient(ellipse at 52% 18%, rgb(255 213 137 / 24%), transparent 41%),
-    linear-gradient(100deg, rgb(20 9 4 / 35%), transparent 24% 76%, rgb(21 10 5 / 28%)),
-    repeating-linear-gradient(2deg, transparent 0 31px, rgb(34 16 7 / 18%) 32px 34px, transparent 35px 77px),
-    linear-gradient(90deg, #3a2114 0%, #6f4326 18%, #4f2d1a 47%, #75492b 77%, #3c2214 100%);
+    radial-gradient(ellipse at 52% -8%, rgb(255 222 162 / 28%), transparent 42%),
+    radial-gradient(ellipse at 11% 76%, rgb(17 7 3 / 24%), transparent 33%),
+    linear-gradient(96deg, rgb(17 7 3 / 34%), transparent 18% 78%, rgb(22 9 4 / 28%)),
+    repeating-linear-gradient(1.2deg, transparent 0 23px, rgb(44 19 8 / 10%) 24px, transparent 25px 58px),
+    linear-gradient(90deg, #3b2013 0%, #6c4025 14%, #4c2b1b 39%, #70452a 67%, #402317 100%);
   color: var(--story-ink);
   height: 100svh;
   isolation: isolate;
@@ -49,11 +50,25 @@ body:has(.our-story-page) .header {
 
 .our-story-page::before {
   background:
-    repeating-linear-gradient(88deg, transparent 0 10.8%, rgb(26 12 5 / 15%) 10.9% 11.1%, transparent 11.2% 20%),
-    radial-gradient(circle at 42% 8%, rgb(255 231 172 / 18%), transparent 28%);
+    repeating-linear-gradient(90deg, transparent 0 12.32%, rgb(25 10 4 / 26%) 12.42% 12.62%, rgb(255 221 167 / 7%) 12.72%, transparent 12.82% 25%),
+    repeating-linear-gradient(2deg, transparent 0 68px, rgb(255 231 190 / 5%) 69px, transparent 71px 138px),
+    radial-gradient(circle at 48% 4%, rgb(255 236 190 / 20%), transparent 31%);
   content: "";
   inset: 0;
   mix-blend-mode: soft-light;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.our-story-page::after {
+  background:
+    linear-gradient(90deg, transparent, rgb(255 236 198 / 6%) 48%, transparent 52%),
+    repeating-linear-gradient(89deg, rgb(255 255 255 / 1.5%) 0 1px, transparent 1px 4px);
+  content: "";
+  inset: 0;
+  mix-blend-mode: screen;
+  opacity: 0.65;
   pointer-events: none;
   position: absolute;
   z-index: -1;
@@ -72,6 +87,38 @@ body:has(.our-story-page) .header {
 html[data-page-turn-arrival="pending"] .story-entry-glow,
 html[data-page-turn-arrival="pending"] .story-book {
   animation-play-state: paused;
+}
+
+/* A cross-page curl already provides the entrance. The destination must land
+   fully settled instead of replaying a second book, text and paper animation. */
+.our-story-page--route-arrival .story-entry-glow {
+  display: none;
+}
+
+.our-story-page--route-arrival .story-book {
+  animation: none;
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(-0.15deg) scale(1);
+}
+
+.our-story-page--route-arrival .story-cover-title__ink,
+.our-story-page--route-arrival .story-cover-title__star,
+.our-story-page--route-arrival .story-cover-underline,
+.our-story-page--route-arrival .story-chapter-label {
+  animation: none;
+}
+
+.our-story-page--route-arrival .story-cover-title__ink {
+  clip-path: inset(0);
+}
+
+.our-story-page--route-arrival .story-cover-title__star {
+  opacity: 1;
+  transform: rotate(7deg) scale(1);
+}
+
+.our-story-page--route-arrival .story-cover-underline {
+  transform: rotate(-1.4deg) scaleX(1);
 }
 
 .story-book-stage {
@@ -236,11 +283,11 @@ html[data-page-turn-arrival="pending"] .story-book {
 }
 
 .story-cover-copy {
-  left: 26%;
+  left: 25%;
   position: absolute;
   text-align: center;
-  top: 14%;
-  width: 62%;
+  top: 12.5%;
+  width: 64%;
 }
 
 .story-kicker {
@@ -292,7 +339,8 @@ html[data-page-turn-arrival="pending"] .story-book {
 
 .story-cover-copy > p {
   font: 500 3.45cqw/1.28 var(--story-hand);
-  margin: 0;
+  margin: 0 auto;
+  max-width: 45cqw;
 }
 
 .story-cover-copy > p em {
@@ -338,6 +386,28 @@ html[data-page-turn-arrival="pending"] .story-book {
   position: absolute;
   top: 20%;
   transform: rotate(-7deg);
+}
+
+.cover-page-stamp {
+  align-items: center;
+  border: 0.14cqw solid rgb(73 49 29 / 32%);
+  color: rgb(63 43 27 / 58%);
+  display: flex;
+  font: 600 0.88cqw/1 var(--story-hand);
+  gap: 0.55cqw;
+  left: 5.2%;
+  letter-spacing: 0.08em;
+  padding: 0.48cqw 0.7cqw 0.36cqw;
+  position: absolute;
+  text-transform: uppercase;
+  top: 7%;
+  transform: rotate(-3deg);
+}
+
+.cover-page-stamp strong {
+  border-left: 0.1cqw solid currentColor;
+  font-weight: 700;
+  padding-left: 0.55cqw;
 }
 
 .cover-margin-doodle i {
@@ -387,6 +457,58 @@ html[data-page-turn-arrival="pending"] .story-book {
 
 .cover-pencil-sketch small {
   font-size: 1.25cqw;
+}
+
+.cover-process-note {
+  align-items: center;
+  bottom: 8.2%;
+  color: rgb(62 43 28 / 52%);
+  display: flex;
+  font: 600 1.05cqw/1 var(--story-hand);
+  gap: 0.52cqw;
+  left: 8.5%;
+  position: absolute;
+  transform: rotate(-2deg);
+}
+
+.cover-process-note span {
+  border-bottom: 0.12cqw solid rgb(183 100 63 / 55%);
+  padding: 0 0.16cqw 0.18cqw;
+}
+
+.cover-process-note i {
+  color: #b56a42;
+  font-style: normal;
+}
+
+.cover-paperclip {
+  border: 0.16cqw solid rgb(64 61 56 / 48%);
+  border-radius: 1cqw;
+  height: 4.7cqw;
+  position: absolute;
+  right: 4.4%;
+  top: 8.5%;
+  transform: rotate(13deg);
+  width: 1.55cqw;
+}
+
+.cover-paperclip::after {
+  border: 0.11cqw solid rgb(64 61 56 / 38%);
+  border-radius: 0.7cqw;
+  content: "";
+  inset: 0.38cqw 0.28cqw 0.26cqw;
+  position: absolute;
+}
+
+.cover-coffee-ring {
+  border: 0.28cqw solid rgb(139 86 50 / 10%);
+  border-radius: 50%;
+  bottom: 18%;
+  height: 7.2cqw;
+  left: 4.2%;
+  position: absolute;
+  transform: rotate(-9deg) scaleY(0.78);
+  width: 7.2cqw;
 }
 
 /* Chapter one */
@@ -891,7 +1013,13 @@ html[data-page-turn-arrival="pending"] .story-book {
 }
 
 /* Persistent desk objects */
-.story-desk-objects { inset: 0; pointer-events: none; position: absolute; z-index: 0; }
+.story-desk-objects {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
 
 .desk-leaves {
   filter: drop-shadow(7px 10px 8px rgb(17 10 4 / 40%));
@@ -913,6 +1041,18 @@ html[data-page-turn-arrival="pending"] .story-book {
 
 .desk-leaves i:nth-child(2) { --leaf-rotate: 54deg; margin-left: 70px; }
 .desk-leaves i:nth-child(3) { --leaf-rotate: 102deg; margin-left: 13px; }
+
+.desk-coffee-plant {
+  filter: drop-shadow(-10px 16px 13px rgb(20 9 3 / 34%));
+  height: min(46vw, 680px);
+  max-height: 78vh;
+  object-fit: contain;
+  position: absolute;
+  right: -16%;
+  top: -24%;
+  transform: rotate(6deg);
+  width: min(46vw, 680px);
+}
 
 .desk-note,
 .desk-sketch {
@@ -954,6 +1094,104 @@ html[data-page-turn-arrival="pending"] .story-book {
 
 .desk-pencil--one { transform: rotate(-49deg); }
 .desk-pencil--two { bottom: 1%; right: 6%; transform: rotate(-38deg); }
+
+.desk-ruler {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 15px, rgb(66 42 20 / 48%) 15px 17px, transparent 17px 30px),
+    linear-gradient(180deg, rgb(237 202 130 / 88%), rgb(184 133 63 / 90%));
+  border: 1px solid rgb(71 40 14 / 44%);
+  border-radius: 3px;
+  box-shadow: 4px 8px 10px rgb(24 11 4 / 28%);
+  height: 31px;
+  left: 34%;
+  opacity: 0.9;
+  position: absolute;
+  top: -7px;
+  transform: rotate(1.7deg);
+  width: clamp(210px, 23vw, 410px);
+}
+
+.desk-ruler::after {
+  color: rgb(61 39 21 / 62%);
+  content: "ROUGH MEASUREMENTS";
+  font: 600 10px/1 var(--story-hand);
+  left: 50%;
+  letter-spacing: 0.14em;
+  position: absolute;
+  top: 10px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.desk-paperclip {
+  border: 4px solid rgb(183 180 169 / 92%);
+  border-radius: 22px;
+  box-shadow:
+    1px 2px 2px rgb(26 13 6 / 30%),
+    inset 1px 0 rgb(255 255 255 / 60%);
+  height: 67px;
+  position: absolute;
+  width: 24px;
+}
+
+.desk-paperclip::after {
+  border: 2px solid rgb(121 118 110 / 78%);
+  border-radius: 15px;
+  content: "";
+  inset: 8px 5px 6px;
+  position: absolute;
+}
+
+.desk-paperclip--one {
+  left: 7.2%;
+  top: 31%;
+  transform: rotate(-20deg);
+}
+
+.desk-paperclip--two {
+  bottom: 9%;
+  right: 22%;
+  transform: rotate(24deg) scale(0.84);
+}
+
+.desk-eraser {
+  background: linear-gradient(90deg, #d8958d 0 56%, #e8d7bc 57% 100%);
+  border: 1px solid rgb(62 34 21 / 26%);
+  border-radius: 3px 5px 4px 3px;
+  bottom: 3.8%;
+  box-shadow: 4px 7px 7px rgb(24 11 4 / 26%);
+  height: 31px;
+  left: 28%;
+  position: absolute;
+  transform: rotate(7deg);
+  width: 76px;
+}
+
+.desk-eraser::after {
+  border-left: 1px solid rgb(87 51 29 / 20%);
+  content: "";
+  inset: 4px 25px 4px auto;
+  position: absolute;
+}
+
+.desk-coffee-ring {
+  border: 8px solid rgb(42 19 7 / 20%);
+  border-radius: 50%;
+  bottom: -3.5%;
+  height: clamp(98px, 9vw, 165px);
+  left: 4.5%;
+  position: absolute;
+  transform: rotate(-8deg) scaleY(0.82);
+  width: clamp(98px, 9vw, 165px);
+}
+
+.desk-coffee-ring::after {
+  border: 2px solid rgb(255 220 168 / 10%);
+  border-radius: inherit;
+  content: "";
+  inset: -5px 3px 4px -4px;
+  position: absolute;
+}
 
 /* Page controls and shared curl layer */
 .story-turn-control {
@@ -1085,6 +1323,10 @@ html[data-page-turn-arrival="pending"] .story-book {
   .story-turn-canvas,
   .story-turn-front { height: calc(100% - 48px); }
   .desk-note, .desk-sketch { opacity: 0.45; }
+  .desk-coffee-plant { right: -24%; top: -12%; width: min(52vw, 560px); }
+  .desk-ruler { left: 31%; opacity: 0.62; }
+  .desk-paperclip--one { left: 4%; }
+  .desk-paperclip--two { right: 13%; }
 
   .story-turn-control {
     bottom: 7px;
@@ -1245,6 +1487,11 @@ html[data-page-turn-arrival="pending"] .story-book {
   .story-desk-objects { opacity: 0.48; }
   .desk-note, .desk-sketch { display: none; }
   .desk-pencil { width: 150px; }
+  .desk-coffee-plant,
+  .desk-ruler,
+  .desk-paperclip,
+  .desk-eraser { display: none; }
+  .desk-coffee-ring { bottom: -34px; left: -28px; }
 
   .story-turn-control {
     bottom: 7px;
@@ -1274,6 +1521,13 @@ html[data-page-turn-arrival="pending"] .story-book {
     width: 80%;
   }
 
+  .cover-page-stamp {
+    font-size: 10px;
+    left: 7%;
+    padding: 6px 8px 5px;
+    top: 4.5%;
+  }
+
   .story-kicker { font-size: clamp(14px, 3vw, 20px); margin-bottom: 18px; }
   .story-cover-copy h1 { font-size: clamp(64px, 14vw, 112px); }
   .story-cover-title__star { font-size: clamp(34px, 8vw, 58px); margin-left: 8px; }
@@ -1283,6 +1537,9 @@ html[data-page-turn-arrival="pending"] .story-book {
   .story-chapter-label .story-tape { height: 18px; top: -9px; width: 60px; }
   .cover-margin-doodle { display: none; }
   .cover-pencil-sketch { bottom: 10%; right: 7%; }
+  .cover-process-note,
+  .cover-paperclip,
+  .cover-coffee-ring { display: none; }
   .cover-pencil-sketch__bulb { height: 38px; width: 34px; }
   .cover-pencil-sketch__arrow { font-size: 25px; }
   .cover-pencil-sketch small { font-size: 13px; }
