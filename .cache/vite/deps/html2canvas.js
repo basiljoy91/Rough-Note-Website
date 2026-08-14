@@ -1,4 +1,4 @@
-import { t as __commonJSMin } from "./rolldown-runtime-EAsCxrDo.js";
+import { t as __commonJSMin } from "./rolldown-runtime-B-1-B7_t.js";
 //#region node_modules/html2canvas/dist/html2canvas.js
 var require_html2canvas = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	/*!
