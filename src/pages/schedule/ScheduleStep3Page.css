@@ -529,8 +529,35 @@
     align-items: center;
     background-color: #fdfaf3;
     width: 100%;
-    padding: 40px 20px;
+    padding: 120px 20px 40px 20px !important; /* Compact gap below navbar */
     box-sizing: border-box;
+  }
+
+  .top-info-block {
+    top: 0 !important; /* Clear desktop offset */
+    position: relative;
+    left: 6vw; /* Shift introductory text to the right for balance */
+  }
+
+  /* Shorten underline for mobile */
+  .step-heading-container .heading-underline-sketch {
+    width: 65% !important; /* Proportionate shorter length */
+  }
+
+  /* Move the clock sketch downward by 50px visually */
+  .pencil-sketch-wrapper {
+    top: -10px !important; /* Adjusted from desktop's -60px */
+  }
+
+  /* Move inspirational text to the right end */
+  .inspirational-text {
+    position: relative;
+    left: auto !important;
+    margin-left: auto !important; /* Push to the right end */
+    margin-right: 5%;
+    margin-top: -90px !important; /* Pull up to visually match desktop while closing the ghost gap */
+    top: auto !important;
+    text-align: right;
   }
 
   .info-column, .form-column {
@@ -590,7 +617,10 @@
     flex-direction: column;
     gap: 20px;
   }
-
+  .footer-tab {
+    transform: rotate(-1deg) translateX(20px) !important; /* Move it 20px toward the right from its current visual position */
+  }
+  
   .footer-text {
     transform: none;
   }
