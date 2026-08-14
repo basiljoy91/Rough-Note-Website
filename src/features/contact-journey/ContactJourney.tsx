@@ -8,6 +8,7 @@ import {
   type FormEvent
 } from 'react';
 import { CONTACT_STEPS } from './constants';
+import { gsap } from 'gsap';
 import {
   foldChallengeIntoContact,
   reversePaperStep,
@@ -143,7 +144,6 @@ export function ContactJourney({
     if (state.transitionState !== 'idle' && state.transitionState !== 'complete') {
       return;
     }
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     headingRef.current?.focus({ preventScroll: true });
   }, [state.currentStep, state.transitionState]);
 
@@ -170,9 +170,55 @@ export function ContactJourney({
   const startJourney = async () => {
     if (actionLockedRef.current || !journeyRef.current) return;
     actionLockedRef.current = true;
+
+    const workspace = journeyRef.current;
+
+    // 1. Smoothly redirect viewport to the existing Stage-02 paper ball
+    const paperBallElement = workspace.querySelector('[data-paper-ball]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (paperBallElement) {
+      paperBallElement.scrollIntoView({
+        behavior: reducedMotion ? 'auto' : 'smooth',
+        block: 'center',
+        inline: 'nearest'
+      });
+
+      if (!reducedMotion) {
+        // Wait for the scroll to finish, plus a short natural settle so the user sees the crumpled ball
+        await new Promise(resolve => window.setTimeout(resolve, 800));
+      }
+    }
+
+    // 2. Trigger Stage-03 unfolding animation on the CrumpledPaper3D component
     dispatch({ type: 'SET_TRANSITION', value: 'unfolding' });
-    await transitions.unfold(journeyRef.current);
+
+    // Fade out Step 1 UI
+    await transitions.unfold(workspace);
+
+    // Wait for the 3D paper to finish unfolding (approx 7.2s) plus a short natural settle
+    if (!reducedMotion) {
+      await new Promise(resolve => window.setTimeout(resolve, 7600));
+    }
+
+    // 3. Stage 04 - Transition smoothly to Step 02
+    if (!reducedMotion) {
+      // Soft fade out the unfolded 3D paper to avoid an abrupt jump
+      await gsap.to(workspace, { opacity: 0, duration: 0.35, ease: 'power2.inOut' });
+    }
+
+    // Mount Step 02 (this will replace Step 01 in the exact same location)
     commitStep(2);
+    dispatch({ type: 'SET_TRANSITION', value: 'idle' });
+
+    await nextPaint();
+
+    if (!reducedMotion) {
+      // Soft fade in the correct Step 02 form
+      await gsap.to(workspace, { opacity: 1, duration: 0.45, ease: 'power2.out' });
+    }
+
+    // Unlock to allow further interaction now that Step 02 is the clear focus
     actionLockedRef.current = false;
   };
 
@@ -187,11 +233,15 @@ export function ContactJourney({
       return;
     }
     actionLockedRef.current = true;
-    await positionPaperForTransition(form);
-    dispatch({ type: 'SET_TRANSITION', value: 'folding' });
-    await transitions.foldToContact(journeyRef.current);
-    commitStep(3);
-    actionLockedRef.current = false;
+    try {
+      await positionPaperForTransition(form);
+      dispatch({ type: 'SET_TRANSITION', value: 'folding' });
+      await transitions.foldToContact(journeyRef.current);
+      commitStep(3);
+      dispatch({ type: 'SET_TRANSITION', value: 'idle' });
+    } finally {
+      actionLockedRef.current = false;
+    }
   };
 
   const submitJourney = async (event: FormEvent<HTMLFormElement>) => {
@@ -244,10 +294,14 @@ export function ContactJourney({
   const goBack = async (step: 1 | 2) => {
     if (actionLockedRef.current || !journeyRef.current) return;
     actionLockedRef.current = true;
-    dispatch({ type: 'SET_TRANSITION', value: 'folding' });
-    await transitions.reverse(journeyRef.current);
-    commitStep(step);
-    actionLockedRef.current = false;
+    try {
+      dispatch({ type: 'SET_TRANSITION', value: 'folding' });
+      await transitions.reverse(journeyRef.current);
+      commitStep(step);
+      dispatch({ type: 'SET_TRANSITION', value: 'idle' });
+    } finally {
+      actionLockedRef.current = false;
+    }
   };
 
   const handleFile = (file: File) => {

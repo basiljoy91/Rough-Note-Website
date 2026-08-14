@@ -38,14 +38,14 @@ function localNotFoundFallback() {
             if (urlPath === '/' || urlPath.endsWith('/')) {
               urlPath += 'index.html';
             }
-            
+
             const filePath = join(server.config.root, urlPath);
-            
+
             // If the requested HTML file exists on disk, let Vite serve it normally
             if (existsSync(filePath)) {
               return next();
             }
-            
+
             // Otherwise, it is a genuine 404 missing route
             const content = readFileSync(resolve(server.config.root, 'html/pagenotfound.html'), 'utf-8');
             const transformed = await server.transformIndexHtml(req.url || '/', content);
@@ -86,6 +86,7 @@ export default defineConfig({
         process: page('html/process.html'),
         projects: page('html/projects.html'),
         services: page('html/services.html'),
+        work: page('html/work.html'),
         testimonials: page('html/testimonials.html'),
         scheduleStep1: page('html/schedule-step-1.html'),
         scheduleStep2: page('html/schedule-step-2.html'),

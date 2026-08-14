@@ -16,6 +16,7 @@ import {
 } from '../components/PaperUI';
 import { UploadPaper } from '../components/UploadPaper';
 import { CreaseOverlay, FoldingPaperEdges } from '../paper/PaperObjects';
+import { Bubbles3D } from '../paper/Bubbles3D';
 import styles from '../rough-note-contact.module.css';
 
 interface StepTwoChallengeProps {
@@ -56,6 +57,7 @@ export function StepTwoChallenge({
       headingRef={headingRef}
       headingAdornment={<StarDoodle className={styles.headingStar} />}
     >
+      <Bubbles3D />
       <p className={styles.stepIntro}>
         Help us understand your challenge
         <br />

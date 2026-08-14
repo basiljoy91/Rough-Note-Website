@@ -5,10 +5,12 @@ import nextSoftwareIcon from '../../assets/icons/nex-software.svg';
 import processIcon from '../../assets/icons/our-plans.svg';
 import quoteIcon from '../../assets/icons/quote.svg';
 import servicesIcon from '../../assets/icons/service.svg';
+import workIcon from '../../assets/icons/our-work.svg';
 
 export type NavigationKey =
   | 'home'
   | 'services'
+  | 'work'
   | 'about'
   | 'process'
   | 'contact'
@@ -37,6 +39,12 @@ export const navigationItems: NavigationItem[] = [
     label: 'Our Services',
     href: '/html/services.html',
     icon: servicesIcon
+  },
+  {
+    key: 'work',
+    label: 'Our Work',
+    href: '/html/work.html',
+    icon: workIcon
   },
   {
     key: 'about',

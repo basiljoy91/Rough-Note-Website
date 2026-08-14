@@ -400,7 +400,7 @@
     height: auto;
     min-height: 100vh;
     overflow: auto;
-    background-color: #fdfaf3; 
+    background-color: #fdfaf3;
     align-items: flex-start;
   }
 
@@ -432,14 +432,14 @@
     max-width: 500px;
     height: auto;
   }
-  
+
   .form-card {
     aspect-ratio: auto;
     margin-top: 40px;
     background-image: url('/assets/images/c-s-m.png');
     background-size: cover;
     background-position: center;
-    padding: 40px 20px;
+    padding: 40px 20px 100px 20px; /* Increased bottom padding to avoid collision with torn edge */
     box-sizing: border-box;
     border-radius: 8px;
   }
@@ -447,7 +447,7 @@
   .form-card-bg {
     display: none;
   }
-  
+
   .form-tape {
     top: -10px;
     width: 60px;
@@ -457,7 +457,7 @@
     width: 100%;
     gap: 20px;
   }
-  
+
   .step-navigation {
     position: relative;
     bottom: auto;
@@ -466,7 +466,7 @@
     max-width: 500px;
     margin-top: 40px;
   }
-  
+
   .notebook-footer {
     position: relative;
     bottom: auto;
@@ -476,7 +476,7 @@
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .footer-text {
     transform: none;
   }
