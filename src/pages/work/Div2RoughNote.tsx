@@ -190,36 +190,35 @@ export function Div2RoughNote() {
              </div>
           </div>
 
-        </div>
-      </div>
-
-      {/* 8 Bottom Pads Row - Positioned physically below the main pad container */}
-      <div className="div2-pads-row">
-        {bottomPads.map((pad, i) => (
-          <div className={`div2-mini-pad ${pad.active ? 'active' : ''}`} key={i}>
-            <img src="/assets/images/small-pad.jpeg" alt={`Small Pad ${pad.num}`} className="div2-mini-pad-bg" />
-            <div className="div2-mini-pad-content">
-              <span className="div2-mp-num">{pad.num}</span>
-              <span className="div2-mp-title">{pad.title}</span>
-              {pad.desc && <span className="div2-mp-desc">{pad.desc}</span>}
-              
-              <div className="div2-mp-visual">
-                {/* Visual approximations for each pad */}
-                {pad.visual === 'door' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><path d="M10 35 V10 H25 V35" /><path d="M25 10 L30 5 V30 L25 35" /><path d="M10 35 L15 30 V5 L10 10" /><circle cx="23" cy="22" r="1" fill="#333" /><path d="M25 15 L35 12" strokeDasharray="1 2" /><path d="M25 25 L35 28" strokeDasharray="1 2" /></svg>}
-                {pad.visual === 'sketch' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="10" y="10" width="8" height="8"/><rect x="22" y="10" width="8" height="8"/><rect x="16" y="22" width="8" height="8"/><path d="M14 18 L18 22 M26 18 L22 22"/></svg>}
-                {pad.visual === 'r-logo' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="8" y="8" width="24" height="24" strokeDasharray="2 2"/><path d="M14 30 V12 H22 Q26 12, 26 16 T22 20 H14 M20 20 L26 30" strokeWidth="2"/></svg>}
-                {pad.visual === 'wireframe' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="5" y="8" width="18" height="24"/><rect x="26" y="14" width="10" height="18" rx="1"/><path d="M5 12 H23 M26 16 H36"/></svg>}
-                {pad.visual === 'dashboard' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="4" y="6" width="32" height="26"/><rect x="6" y="10" width="8" height="18"/><rect x="16" y="10" width="18" height="8"/><rect x="16" y="20" width="8" height="8"/><rect x="26" y="20" width="8" height="8"/><circle cx="20" cy="24" r="2" fill="#333"/></svg>}
-                {pad.visual === 'automation' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><circle cx="20" cy="20" r="10" strokeDasharray="3 3"/><circle cx="20" cy="10" r="3"/><circle cx="11" cy="25" r="3"/><circle cx="29" cy="25" r="3"/><path d="M20 13 V17 M13 23 L16 20 M27 23 L24 20"/></svg>}
-                {pad.visual === 'sphere' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><circle cx="15" cy="15" r="8"/><ellipse cx="15" cy="15" rx="8" ry="3"/><ellipse cx="15" cy="15" rx="3" ry="8"/><circle cx="28" cy="28" r="5" strokeDasharray="2 2"/></svg>}
-                {pad.visual === 'chart' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><path d="M8 32 H32 M10 32 V22 H14 V32 M18 32 V15 H22 V32 M26 32 V8 H30 V32"/><path d="M8 20 Q18 10, 32 5" strokeWidth="1.5"/></svg>}
+          {/* 8 Bottom Pads Row - Positioned physically below the main pad container */}
+          <div className="div2-pads-row">
+            {bottomPads.map((pad, i) => (
+              <div className={`div2-mini-pad ${pad.active ? 'active' : ''}`} key={i}>
+                <img src="/assets/images/small-pad.png" alt={`Small Pad ${pad.num}`} className="div2-mini-pad-bg" />
+                <div className="div2-mini-pad-content">
+                  <span className="div2-mp-num">{pad.num}</span>
+                  <span className="div2-mp-title">{pad.title}</span>
+                  {pad.desc && <span className="div2-mp-desc">{pad.desc}</span>}
+                  
+                  <div className="div2-mp-visual">
+                    {/* Visual approximations for each pad */}
+                    {pad.visual === 'door' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><path d="M10 35 V10 H25 V35" /><path d="M25 10 L30 5 V30 L25 35" /><path d="M10 35 L15 30 V5 L10 10" /><circle cx="23" cy="22" r="1" fill="#333" /><path d="M25 15 L35 12" strokeDasharray="1 2" /><path d="M25 25 L35 28" strokeDasharray="1 2" /></svg>}
+                    {pad.visual === 'sketch' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="10" y="10" width="8" height="8"/><rect x="22" y="10" width="8" height="8"/><rect x="16" y="22" width="8" height="8"/><path d="M14 18 L18 22 M26 18 L22 22"/></svg>}
+                    {pad.visual === 'r-logo' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="8" y="8" width="24" height="24" strokeDasharray="2 2"/><path d="M14 30 V12 H22 Q26 12, 26 16 T22 20 H14 M20 20 L26 30" strokeWidth="2"/></svg>}
+                    {pad.visual === 'wireframe' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="5" y="8" width="18" height="24"/><rect x="26" y="14" width="10" height="18" rx="1"/><path d="M5 12 H23 M26 16 H36"/></svg>}
+                    {pad.visual === 'dashboard' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><rect x="4" y="6" width="32" height="26"/><rect x="6" y="10" width="8" height="18"/><rect x="16" y="10" width="18" height="8"/><rect x="16" y="20" width="8" height="8"/><rect x="26" y="20" width="8" height="8"/><circle cx="20" cy="24" r="2" fill="#333"/></svg>}
+                    {pad.visual === 'automation' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><circle cx="20" cy="20" r="10" strokeDasharray="3 3"/><circle cx="20" cy="10" r="3"/><circle cx="11" cy="25" r="3"/><circle cx="29" cy="25" r="3"/><path d="M20 13 V17 M13 23 L16 20 M27 23 L24 20"/></svg>}
+                    {pad.visual === 'sphere' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><circle cx="15" cy="15" r="8"/><ellipse cx="15" cy="15" rx="8" ry="3"/><ellipse cx="15" cy="15" rx="3" ry="8"/><circle cx="28" cy="28" r="5" strokeDasharray="2 2"/></svg>}
+                    {pad.visual === 'chart' && <svg viewBox="0 0 40 40" fill="none" stroke="#333" strokeWidth="1"><path d="M8 32 H32 M10 32 V22 H14 V32 M18 32 V15 H22 V32 M26 32 V8 H30 V32"/><path d="M8 20 Q18 10, 32 5" strokeWidth="1.5"/></svg>}
+                  </div>
+                </div>
+                {i < bottomPads.length - 1 && (
+                  <div className="div2-pad-connector">&rarr;</div>
+                )}
               </div>
-            </div>
-            {i < bottomPads.length - 1 && (
-              <div className="div2-pad-connector">&rarr;</div>
-            )}
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
