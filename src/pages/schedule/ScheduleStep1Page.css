@@ -357,9 +357,11 @@
     position: relative;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Vertically center content when space allows */
     background-color: #fdfaf3; /* Paper color */
     width: 100%;
-    padding: 40px 20px;
+    min-height: 100vh;
+    padding: 180px 20px 60px 20px; /* 120px top padding guarantees safe clearance below fixed navbar */
     box-sizing: border-box;
   }
 
@@ -401,11 +403,26 @@
     padding: 12px 25px; /* Fixed padding for mobile */
   }
 
+  /* Shift specific Step 01 content slightly right for visual balance on mobile */
+  .step-heading-container,
+  .step-desc,
+  .pencil-sketch-wrapper,
+  .inspirational-text {
+    position: relative;
+    left: 8vw; /* Shift horizontally without changing available width or text wrapping */
+  }
+
+  .step-heading-container .heading-underline-sketch {
+    width: 75% !important; /* Shorter underline, ending closer to the text */
+  }
+
   .respect-time-sticky {
     position: relative;
-    left: 0;
-    margin: 40px auto 0;
-    width: 180px;
+    left: auto !important; /* Clear center/left positioning */
+    margin: -250px 5% 0 auto !important; /* Moves note visually UP while simultaneously pulling form up to close gap */
+    align-self: flex-end !important; /* Ensure right-alignment in the flex column */
+    width: 180px; /* Preserve existing size */
+    top: auto !important; /* Replaced by negative margin */
   }
 
   .notebook-footer {
