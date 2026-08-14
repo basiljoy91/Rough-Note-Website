@@ -28,6 +28,220 @@ export function Div2RoughNote() {
         <img src="/assets/images/bg-pad.jpeg" alt="Desk with Clipboard" className="div2-bg-img" />
 
         <div className="div2-content-layer">
+          {/* Desk Props Layer */}
+          <div className="div2-desk-props">
+            {/* Realistic Small Potted Plant (Top Left) */}
+            <svg viewBox="0 0 120 120" className="div2-prop div2-prop-plant">
+              <defs>
+                {/* Pot gradients */}
+                <linearGradient id="pot-body" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#d1a68c" />
+                  <stop offset="40%" stopColor="#8c5a3d" />
+                  <stop offset="100%" stopColor="#4a2a18" />
+                </linearGradient>
+                <linearGradient id="pot-inner" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#3d2212" />
+                  <stop offset="100%" stopColor="#1a0a03" />
+                </linearGradient>
+                
+                {/* Realistic Leaf Gradients */}
+                <linearGradient id="leaf-bright" x1="0.2" y1="0.2" x2="0.8" y2="0.8">
+                  <stop offset="0%" stopColor="#7cb342" />
+                  <stop offset="50%" stopColor="#558b2f" />
+                  <stop offset="100%" stopColor="#33691e" />
+                </linearGradient>
+                <linearGradient id="leaf-mid" x1="0.1" y1="0.1" x2="0.9" y2="0.9">
+                  <stop offset="0%" stopColor="#689f38" />
+                  <stop offset="50%" stopColor="#33691e" />
+                  <stop offset="100%" stopColor="#1b5e20" />
+                </linearGradient>
+                <linearGradient id="leaf-dark" x1="0.3" y1="0.3" x2="0.7" y2="0.7">
+                  <stop offset="0%" stopColor="#43a047" />
+                  <stop offset="60%" stopColor="#1b5e20" />
+                  <stop offset="100%" stopColor="#083a15" />
+                </linearGradient>
+                <linearGradient id="leaf-deep" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#2e7d32" />
+                  <stop offset="70%" stopColor="#124116" />
+                  <stop offset="100%" stopColor="#04210a" />
+                </linearGradient>
+                <linearGradient id="leaf-vein" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#aed581" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#558b2f" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+
+              {/* Pot Contact Shadow */}
+              <ellipse cx="50" cy="58" rx="22" ry="18" fill="#000" filter="blur(4px)" opacity="0.5" />
+              <ellipse cx="53" cy="62" rx="30" ry="24" fill="#000" filter="blur(8px)" opacity="0.3" />
+
+              {/* Pot Body (Terracotta) */}
+              <circle cx="50" cy="54" r="20" fill="url(#pot-body)" />
+              <circle cx="50" cy="50" r="18" fill="url(#pot-inner)" />
+              <circle cx="50" cy="50" r="16" fill="#120904" />
+
+              {/* Bottom/Deep Leaves */}
+              <path d="M 50 50 Q 70 30 85 45 Q 75 65 50 50" fill="url(#leaf-deep)" />
+              <path d="M 50 50 Q 75 35 85 45" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" opacity="0.5" />
+              <path d="M 50 50 Q 20 40 15 20 Q 40 10 50 50" fill="url(#leaf-deep)" />
+              <path d="M 50 50 Q 25 35 15 20" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" opacity="0.5" />
+              <path d="M 50 50 Q 15 65 25 85 Q 45 80 50 50" fill="url(#leaf-deep)" />
+
+              {/* Mid Leaves */}
+              <path d="M 50 50 C 40 30, 20 20, 25 5 C 45 10, 55 30, 50 50" fill="url(#leaf-dark)" filter="drop-shadow(2px 3px 2px rgba(0,0,0,0.5))" />
+              <path d="M 50 50 Q 25 25 25 5" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" />
+              
+              <path d="M 50 50 C 70 30, 90 20, 95 35 C 80 55, 60 50, 50 50" fill="url(#leaf-mid)" filter="drop-shadow(-2px 4px 2px rgba(0,0,0,0.4))" />
+              <path d="M 50 50 Q 75 30 95 35" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" />
+              
+              <path d="M 50 50 C 30 60, 20 80, 10 75 C 20 55, 40 50, 50 50" fill="url(#leaf-dark)" filter="drop-shadow(2px -2px 2px rgba(0,0,0,0.4))" />
+              <path d="M 50 50 Q 25 65 10 75" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" />
+
+              <path d="M 50 50 C 70 65, 80 90, 70 95 C 55 85, 50 65, 50 50" fill="url(#leaf-mid)" filter="drop-shadow(-3px -2px 2px rgba(0,0,0,0.4))" />
+              <path d="M 50 50 Q 65 75 70 95" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" />
+
+              {/* Top/Bright Leaves */}
+              <path d="M 50 50 C 35 25, 45 5, 55 10 C 65 30, 55 45, 50 50" fill="url(#leaf-bright)" filter="drop-shadow(3px 4px 3px rgba(0,0,0,0.5))" />
+              <path d="M 50 50 Q 45 25 55 10" fill="none" stroke="url(#leaf-vein)" strokeWidth="1.2" />
+
+              <path d="M 50 50 C 70 45, 95 55, 90 65 C 75 75, 60 60, 50 50" fill="url(#leaf-bright)" filter="drop-shadow(-2px 3px 3px rgba(0,0,0,0.4))" />
+              <path d="M 50 50 Q 80 50 90 65" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" />
+
+              <path d="M 50 50 C 35 60, 25 90, 40 95 C 50 75, 55 60, 50 50" fill="url(#leaf-bright)" filter="drop-shadow(3px -2px 3px rgba(0,0,0,0.4))" />
+              <path d="M 50 50 Q 30 75 40 95" fill="none" stroke="url(#leaf-vein)" strokeWidth="1" />
+
+              {/* Small central new leaves */}
+              <path d="M 50 50 C 45 40, 35 45, 40 55 Z" fill="url(#leaf-bright)" />
+              <path d="M 50 50 C 55 45, 65 50, 60 55 Z" fill="#8bc34a" opacity="0.9" />
+              
+              {/* Highlight sweeps on bright leaves */}
+              <path d="M 50 50 C 35 25, 45 5, 55 10" fill="none" stroke="#fff" strokeWidth="2" opacity="0.2" filter="blur(1px)" />
+              <path d="M 50 50 C 70 45, 95 55, 90 65" fill="none" stroke="#fff" strokeWidth="2" opacity="0.2" filter="blur(1px)" />
+            </svg>
+
+            {/* Realistic Coffee Cup (Top Right) */}
+            <svg viewBox="0 0 120 120" className="div2-prop div2-prop-coffee">
+              <defs>
+                <linearGradient id="mug-body" x1="0.1" y1="0.1" x2="0.9" y2="0.9">
+                  <stop offset="0%" stopColor="#fcfbf9" />
+                  <stop offset="30%" stopColor="#ebe4da" />
+                  <stop offset="75%" stopColor="#c3b5a6" />
+                  <stop offset="100%" stopColor="#968979" />
+                </linearGradient>
+
+                <linearGradient id="mug-bounce" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stopColor="#a37b5d" stopOpacity="0.5" />
+                  <stop offset="25%" stopColor="#a37b5d" stopOpacity="0" />
+                </linearGradient>
+
+                <linearGradient id="mug-handle" x1="0.1" y1="0.1" x2="0.9" y2="0.9">
+                  <stop offset="0%" stopColor="#fcfbf9" />
+                  <stop offset="50%" stopColor="#c3b5a6" />
+                  <stop offset="100%" stopColor="#857868" />
+                </linearGradient>
+
+                <linearGradient id="mug-rim" x1="0.1" y1="0.1" x2="0.9" y2="0.9">
+                  <stop offset="0%" stopColor="#ded5cb" />
+                  <stop offset="20%" stopColor="#ffffff" />
+                  <stop offset="70%" stopColor="#c3b5a6" />
+                  <stop offset="100%" stopColor="#968979" />
+                </linearGradient>
+
+                <linearGradient id="mug-inner" x1="0.2" y1="0.2" x2="0.8" y2="0.8">
+                  <stop offset="0%" stopColor="#968979" />
+                  <stop offset="50%" stopColor="#685d51" />
+                  <stop offset="100%" stopColor="#3d352d" />
+                </linearGradient>
+
+                <linearGradient id="coffee-liq" x1="0.3" y1="0.2" x2="0.7" y2="0.8">
+                  <stop offset="0%" stopColor="#4a2916" />
+                  <stop offset="60%" stopColor="#241107" />
+                  <stop offset="100%" stopColor="#0d0502" />
+                </linearGradient>
+
+                <linearGradient id="liq-edge" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#8a532d" stopOpacity="0.8" />
+                  <stop offset="50%" stopColor="#3d2111" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#1a0d06" stopOpacity="0.8" />
+                </linearGradient>
+                
+                <linearGradient id="liq-refl" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#fff" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
+              {/* Soft contact shadow on the desk directly below the cup */}
+              <ellipse cx="48" cy="63" rx="30" ry="24" fill="#000" filter="blur(3px)" opacity="0.3" />
+              <ellipse cx="50" cy="65" rx="36" ry="28" fill="#000" filter="blur(8px)" opacity="0.2" />
+
+              {/* Handle */}
+              <path d="M 83 48 C 115 45, 110 70, 78 60" fill="none" stroke="url(#mug-handle)" strokeWidth="10" strokeLinecap="round" />
+              <path d="M 82 48 C 95 46, 92 65, 78 60" fill="none" stroke="#5a4f45" strokeWidth="10" strokeLinecap="round" opacity="0.5" filter="blur(1.5px)"/>
+              <path d="M 83 48 C 105 47, 102 65, 79 59" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity="0.6" /> 
+
+              {/* Cup Outer Body */}
+              <path d="M 16 50 L 22 65 A 28 22 0 0 0 78 65 L 84 50 Z" fill="url(#mug-body)" />
+              <path d="M 16 50 L 22 65 A 28 22 0 0 0 78 65 L 84 50 Z" fill="url(#mug-bounce)" />
+
+              {/* Cup Rim */}
+              <ellipse cx="50" cy="50" rx="34" ry="26" fill="url(#mug-rim)" />
+
+              {/* Cup Inner Wall */}
+              <ellipse cx="50" cy="50.5" rx="29" ry="22" fill="url(#mug-inner)" />
+
+              {/* Coffee Liquid Surface */}
+              <ellipse cx="50" cy="54" rx="27" ry="19" fill="url(#coffee-liq)" />
+              <ellipse cx="50" cy="54" rx="27" ry="19" fill="none" stroke="url(#liq-edge)" strokeWidth="1.5" />
+              <ellipse cx="50" cy="52" rx="23" ry="12" fill="url(#liq-refl)" />
+              
+              {/* Foam / Bubbles */}
+              <circle cx="35" cy="45" r="4" fill="#603f26" opacity="0.8"/>
+              <circle cx="38" cy="41" r="2" fill="#805636" opacity="0.9"/>
+              <circle cx="65" cy="62" r="3.5" fill="#603f26" opacity="0.7"/>
+              <path d="M28 55 Q 40 70 65 55" fill="none" stroke="#603f26" strokeWidth="1.5" opacity="0.5" />
+
+              {/* Ceramic Specular Highlight on Rim */}
+              <path d="M 22 45 A 34 26 0 0 1 65 26" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" opacity="0.6" filter="blur(0.5px)" />
+              <path d="M 26 42 A 34 26 0 0 1 45 26" fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
+            </svg>
+
+            {/* Pencil Left */}
+            <img src="/assets/images/pencil-left.png" alt="Desk Pencil" className="div2-prop div2-prop-pencil" />
+
+            {/* Silver Paperclips */}
+            <svg viewBox="0 0 40 100" className="div2-prop div2-prop-clip1">
+              <defs>
+                <linearGradient id="silver-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#888" /><stop offset="30%" stopColor="#eee" /><stop offset="70%" stopColor="#ccc" /><stop offset="100%" stopColor="#999" /></linearGradient>
+              </defs>
+              <path d="M15 80 V20 A 8 8 0 0 1 31 20 V70 A 5 5 0 0 1 21 70 V30" fill="none" stroke="url(#silver-grad)" strokeWidth="4" strokeLinecap="round" />
+              <path d="M15 80 V20 A 8 8 0 0 1 31 20 V70 A 5 5 0 0 1 21 70 V30" fill="none" stroke="#fff" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+            </svg>
+            <svg viewBox="0 0 40 100" className="div2-prop div2-prop-clip2">
+              <path d="M15 80 V20 A 8 8 0 0 1 31 20 V70 A 5 5 0 0 1 21 70 V30" fill="none" stroke="url(#silver-grad)" strokeWidth="4" strokeLinecap="round" />
+              <path d="M15 80 V20 A 8 8 0 0 1 31 20 V70 A 5 5 0 0 1 21 70 V30" fill="none" stroke="#fff" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+            </svg>
+
+            {/* Black Marker (Right) */}
+            <svg viewBox="0 0 20 150" className="div2-prop div2-prop-marker-right">
+              <defs>
+                <linearGradient id="pen-body" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#222" /><stop offset="30%" stopColor="#444" /><stop offset="50%" stopColor="#111" /><stop offset="80%" stopColor="#333" /><stop offset="100%" stopColor="#000" /></linearGradient>
+                <linearGradient id="pen-cap" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#111" /><stop offset="40%" stopColor="#333" /><stop offset="60%" stopColor="#111" /><stop offset="100%" stopColor="#000" /></linearGradient>
+              </defs>
+              <rect x="4" y="30" width="12" height="110" rx="2" fill="url(#pen-body)" />
+              <path d="M4 140 L8 148 H12 L16 140 Z" fill="#222" />
+              <rect x="3" y="10" width="14" height="35" rx="3" fill="url(#pen-cap)" />
+              <rect x="15" y="15" width="4" height="25" rx="1" fill="#ddd" />
+            </svg>
+
+            {/* Additional Marker (Left) */}
+            <svg viewBox="0 0 20 150" className="div2-prop div2-prop-marker-left">
+              <rect x="4" y="30" width="12" height="110" rx="2" fill="url(#pen-body)" />
+              <path d="M4 140 L8 148 H12 L16 140 Z" fill="#222" />
+              <rect x="3" y="10" width="14" height="35" rx="3" fill="url(#pen-cap)" />
+              <rect x="15" y="15" width="4" height="25" rx="1" fill="#ddd" />
+            </svg>
+          </div>
           {/* Header */}
           <div className="div2-header">
              <span className="div2-header-text">01 / ENTER THE STUDIO</span>
