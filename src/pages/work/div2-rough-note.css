@@ -1,0 +1,817 @@
+/* ==========================================================================
+   DIV-2: EVERY PROJECT STARTS AS A ROUGH NOTE
+   ========================================================================== */
+
+.div2-section {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  background-color: #1a1a1a; /* Assuming dark background around the desk if it doesn't span full width */
+  overflow: hidden;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #1b1814;
+}
+
+.div2-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* -----------------------------------------------------------
+   DESK PROPS
+   ----------------------------------------------------------- */
+.div2-desk-props {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5; /* Underneath the main clipboard content (which sits higher naturally) but above background */
+}
+
+.div2-prop {
+  position: absolute;
+  pointer-events: none;
+}
+
+.div2-prop-pencil {
+  width: 18vw;
+  height: auto;
+  left: 5%;
+  top: 35%;
+  transform: rotate(20deg);
+  filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.6));
+  margin-left: -130px;
+}
+
+.div2-prop-marker-right {
+  width: 2.5vw;
+  height: auto;
+  right: 12%;
+  top: 60%;
+  transform: rotate(-15deg);
+  filter: drop-shadow(-4px 8px 6px rgba(0,0,0,0.6));
+  margin-top: -600px;
+  margin-right: -100px;
+}
+
+.div2-prop-marker-left {
+  width: 2.2vw;
+  height: auto;
+  left: 9%;
+  top: 55%;
+  transform: rotate(25deg);
+  filter: drop-shadow(4px 6px 5px rgba(0,0,0,0.5));
+  margin-left: -40px;
+  margin-top: -140px;
+}
+
+.div2-prop-clip1 {
+  width: 1.2vw;
+  height: auto;
+  left: 11%;
+  top: 25%;
+  transform: rotate(-25deg);
+  filter: drop-shadow(2px 4px 3px rgba(0,0,0,0.4));
+  margin-left: -100px;
+}
+
+.div2-prop-clip2 {
+  width: 1.2vw;
+  height: auto;
+  left: 13%;
+  top: 28%;
+  transform: rotate(45deg);
+  filter: drop-shadow(2px 4px 3px rgba(0,0,0,0.4));
+  margin-left: -100px;
+}
+
+.div2-prop-coffee {
+  width: 15vw;
+  height: auto;
+  right: -2%;
+  top: 2%;
+  transform: rotate(15deg);
+}
+
+.div2-prop-plant {
+  width: 12vw;
+  height: auto;
+  left: -2%;
+  top: -1%;
+  transform: rotate(-5deg);
+}
+
+/* -----------------------------------------------------------
+   BACKGROUND
+   ----------------------------------------------------------- */
+
+.div2-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.div2-content-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* -----------------------------------------------------------
+   HEADER & HEADLINE (Top Center-Left Paper Area)
+   ----------------------------------------------------------- */
+.div2-header {
+  position: absolute;
+  top: 14%;
+  left: 13%;
+  transform: rotate(-2deg);
+}
+
+.div2-header-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1vw;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #4a443a;
+  text-transform: uppercase;
+}
+
+.div2-mustard-line {
+  width: 100%;
+  height: 3px;
+  background-color: #c8942b;
+  margin-top: 4px;
+  border-radius: 2px;
+  transform: rotate(-0.5deg);
+}
+
+.div2-headline {
+  position: absolute;
+  top: 16%;
+  left: 28%;
+  font-family: 'Caveat Brush', cursive;
+  font-size: 6vw;
+  line-height: 0.9;
+  transform: rotate(-2deg);
+  margin: 0;
+  color: #1b1814;
+  font-weight: normal;
+}
+
+.div2-mustard-text {
+  color: #c8942b;
+}
+
+.div2-subtext {
+  position: absolute;
+  top: 31%;
+  left: 33%;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3vw;
+  line-height: 1.4;
+  color: #333;
+  transform: rotate(-1deg);
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.div2-underline {
+  position: relative;
+  display: inline-block;
+}
+.div2-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #c8942b;
+  transform: rotate(-1deg);
+}
+
+/* -----------------------------------------------------------
+   METADATA ROW
+   ----------------------------------------------------------- */
+.div2-metadata-row {
+  position: absolute;
+  top: 36%;
+  left: 17%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 1% 0;
+  transform: rotate(-1deg);
+}
+
+.div2-meta-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.div2-meta-label {
+  font-size: 0.8vw;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #666;
+}
+
+.div2-meta-value {
+  font-size: 1.1vw;
+  font-weight: 500;
+  color: #222;
+  margin-top: 2px;
+}
+
+.div2-meta-divider {
+  width: 1px;
+  height: 2.5vw;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.div2-meta-stamp-container {
+  position: relative;
+}
+
+.div2-stamp {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: bold;
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 2px 6px;
+  transform: rotate(-5deg);
+  opacity: 0.8;
+}
+
+.div2-stamp-progress {
+  color: #b33939;
+  border-color: #b33939;
+  font-size: 1.2vw;
+}
+
+/* -----------------------------------------------------------
+   ANNOTATIONS (Top Right / Middle Left / Middle Right)
+   ----------------------------------------------------------- */
+.div2-anno-top-right {
+  position: absolute;
+  top: 12%;
+  left: 77%;
+  transform: rotate(4deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div2-anno-text {
+  font-size: 1.6vw;
+  line-height: 1.1;
+  color: #333;
+  text-align: center;
+  position: relative;
+  top:20px;
+  left: 40px;
+}
+
+.div2-curved-arrow {
+  width: 4vw;
+  height: 4vw;
+  position: absolute;
+  margin-top: -35px;
+  left: 50px;
+ transform: rotate(-14deg);
+}
+
+.div2-coffee-ring {
+  position: absolute;
+  top: 22%;
+  left: 72%;
+  width: 10vw;
+  height: 10vw;
+  pointer-events: none;
+}
+
+.div2-anno-left {
+  position: absolute;
+  top: 55%;
+  left: 9%;
+  transform: rotate(-5deg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.div2-anno-left .div2-curved-arrow {
+  margin-bottom: -1vw;
+  margin-right: -1vw;
+}
+
+.div2-anno-right {
+  position: absolute;
+  top: 61%;
+  left: 73%;
+  transform: rotate(3deg);
+}
+
+/* -----------------------------------------------------------
+   MAIN MEDIA PANEL (Video Image)
+   ----------------------------------------------------------- */
+.div2-media-panel {
+  position: absolute;
+  top: 42%;
+  left: 20%;
+  width: 58%;
+  height: 20%;
+  background: #000;
+  border-radius: 8px;
+  transform: rotate(-0.5deg);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.div2-main-vid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.div2-video-ui {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.div2-video-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5vw;
+}
+
+.div2-video-time {
+  color: white;
+  font-size: 0.9vw;
+  margin-left: 1vw;
+  font-family: monospace;
+}
+
+.div2-video-spacer {
+  flex-grow: 1;
+}
+
+.div2-video-progress {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+}
+.div2-vp-bar {
+  width: 15%;
+  height: 100%;
+  background: #c8942b;
+  border-radius: 2px;
+}
+
+/* -----------------------------------------------------------
+   SERVICES ROW
+   ----------------------------------------------------------- */
+.div2-services {
+  position: absolute;
+  top: 72%;
+  left: 17%;
+  width: 63%;
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+  transform: rotate(-0.5deg);
+  margin-top: -70px;
+  margin-left: 20px;
+}
+
+.div2-service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.div2-service-separator {
+  width: 1px;
+  height: 6vw;
+  border-left: 2px dotted rgba(0,0,0,0.25);
+  align-self: center;
+}
+
+.div2-service-icon-wrap {
+  width: 3.8vw;
+  height: 3.8vw;
+  margin-bottom: 0.5vw;
+}
+
+.div2-service-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+}
+
+.div2-service-title {
+  font-size: 1.05vw;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.div2-service-sub {
+  font-size: 0.9vw;
+  color: #666;
+}
+
+/* -----------------------------------------------------------
+   FOOTER
+   ----------------------------------------------------------- */
+.div2-footer {
+  position: absolute;
+  top: 77%;
+  left: 17%;
+  width: 63%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(-0.5deg);
+}
+
+.div2-footer-scroll {
+  font-size: 1.2vw;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  color: #444;
+}
+
+.div2-footer-stamps {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.div2-stamp-approved {
+  color: #b33939;
+  border-color: #b33939;
+  font-size: 1.8vw;
+  transform: rotate(-8deg);
+  position: relative;
+  left: 100px;
+  top: -10px;
+}
+
+.div2-signature-wrap {
+  width: 6vw;
+  height: 3vw;
+  transform: rotate(-5deg);
+  position: relative;
+  left: 100px;
+}
+.div2-signature-wrap svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* -----------------------------------------------------------
+   STICKY NOTES
+   ----------------------------------------------------------- */
+.div2-sticky-tl, .div2-sticky-r, .div2-sticky-bl {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(3px 8px 12px rgba(0,0,0,0.25));
+}
+
+.div2-sticky-tl img, .div2-sticky-r img, .div2-sticky-bl img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.div2-sticky-content {
+  position: absolute;
+  font-family: 'Caveat', cursive;
+  color: #111;
+  text-align: center;
+}
+
+.div2-sticky-tl {
+  top: 18%;
+  left: 9%;
+  width: 18%;
+  transform: rotate(-5deg);
+}
+.div2-sticky-tl .div2-sticky-content {
+  font-size: 2vw;
+  line-height: 1.1;
+  transform: rotate(-2deg);
+}
+
+.div2-sticky-r {
+  top: 40%;
+  left: 82%;
+  width: 14%;
+  transform: rotate(4deg);
+}
+.div2-sticky-r .div2-sticky-content {
+  text-align: left;
+  top: 15%;
+  left: 15%;
+}
+.div2-sr-title {
+  font-size: 1.8vw;
+  line-height: 1.1;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+}
+.div2-sr-item {
+  font-size: 1.3vw;
+  line-height: 1.3;
+}
+.div2-sr-check {
+  font-family: sans-serif;
+  margin-right: 4px;
+}
+
+.div2-sticky-bl {
+  top: 78%;
+  left: 6%;
+  width: 20%;
+  transform: rotate(-5deg);
+}
+.div2-sticky-bl .div2-sticky-content {
+  font-size: 2vw;
+  line-height: 1.1;
+}
+
+
+/* -----------------------------------------------------------
+   8 BOTTOM MINI PADS
+   ----------------------------------------------------------- */
+.div2-pads-row {
+  position: absolute;
+  top: 84%;
+  left: 3%;
+  width: 94%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 20;
+  margin-top: 30px;
+}
+
+.div2-mini-pad {
+  position: relative;
+  width: 11.6%;
+  background: transparent;
+  filter: drop-shadow(2px 5px 8px rgba(0,0,0,0.4));
+  transition: transform 0.3s, filter 0.3s;
+}
+.div2-mini-pad.active {
+  transform: translateY(-10px);
+  /* Intense mustard/gold glow that perfectly follows the physical bounds of the PNG shape */
+  filter: drop-shadow(0px 0px 15px rgba(200, 148, 43, 0.9)) drop-shadow(0px 0px 5px rgba(200, 148, 43, 0.6));
+}
+
+.div2-mini-pad-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: transparent;
+}
+
+.div2-mini-pad-content {
+  position: absolute;
+  top: 18%; /* Below the clip */
+  left: 10%;
+  width: 80%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  box-sizing: border-box;
+}
+
+.div2-mp-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9vw;
+  font-weight: 700;
+}
+
+.div2-mp-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8vw;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+.div2-mp-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6vw;
+  color: #555;
+  line-height: 1.2;
+}
+
+.div2-mp-visual {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.div2-mp-visual svg {
+  width: 80%;
+  height: auto;
+}
+
+.div2-pad-connector {
+  position: absolute;
+  top: 50%;
+  right: -15%;
+  font-size: 1.2vw;
+  color: #fff;
+  transform: translateY(-50%);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Ensure responsiveness for small screens */
+@media (max-width: 1024px) {
+  .div2-pads-row {
+    flex-wrap: wrap;
+    bottom: -10%;
+  }
+  .div2-mini-pad {
+    width: 22%;
+    margin-bottom: 2%;
+  }
+  .div2-pad-connector {
+    display: none;
+  }
+}
+
+/* Detailed Mobile Refinement */
+/* Detailed Mobile Refinement */
+/* Detailed Mobile Refinement */
+@media (max-width: 767px) {
+  body { overflow-x: hidden; }
+  .div2-section { overflow-x: hidden; overflow-y: visible; background-color: #1a1a1a; }
+  
+  .div2-container { position: relative; display: flex; flex-direction: column; }
+  
+  .div2-bg-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: auto;
+    z-index: 1;
+  }
+  
+  .div2-content-layer {
+    position: relative;
+    z-index: 2;
+    display: flex; flex-direction: column;
+    width: 100%;
+    padding-top: 15vw; /* Increased top desk gap */
+  }
+
+  /* --- SEAMLESS PAPER EXTENSION ---
+     Creates a physical extension of the paper so content doesn't bleed onto the desk! */
+  .div2-content-layer::before {
+    content: "";
+    position: absolute;
+    top: 100vw; /* Start high enough to blend over the original image paper */
+    height: 240vw; /* Exactly wraps the content, stopping right before the mini pads */
+    left: 2.5vw; right: 2.5vw; /* Width matching the physical paper */
+    background-color: #EBE9E1; /* Realistic warm paper tone */
+    z-index: -1;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15vw);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15vw);
+    box-shadow: 0 4vw 8vw rgba(0,0,0,0.15);
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+  }
+
+  /* -----------------------------------------------------------------
+     MAIN CONTENT BLOCKS (NORMAL FLOW)
+     ----------------------------------------------------------------- */
+  .div2-header, .div2-headline, .div2-subtext, .div2-metadata-row, 
+  .div2-media-panel, .div2-services, .div2-footer, .div2-pads-row {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+  }
+
+  .div2-header { order: 1; align-self: flex-start; margin-left: 12vw; margin-top: 5vw; margin-bottom: 6vw; width: 80vw; }
+  .div2-header-text { font-size: 3.5vw; }
+
+  .div2-headline { order: 2; align-self: flex-start; margin-left: 32vw; width: 60vw; margin-bottom: 8vw; font-size: 7.5vw; line-height: 0.95; }
+  
+  .div2-subtext { order: 3; align-self: center; margin-left: 0; width: 80vw; margin-bottom: 15vw; text-align: center; font-size: 3.5vw; }
+
+  .div2-metadata-row { 
+    order: 4; align-self: center; margin-left: 0; width: 72vw; margin-bottom: 15vw; 
+    display: flex; flex-wrap: wrap; justify-content: space-between; 
+    padding: 4vw 0; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); 
+  }
+  .div2-meta-col { width: 45%; margin-bottom: 4vw; }
+  .div2-meta-col:nth-child(3) { margin-bottom: 0; }
+  .div2-meta-divider { display: none; }
+  .div2-meta-label { font-size: 3vw; margin-bottom: 1vw; }
+  .div2-meta-value { font-size: 4.5vw; }
+  .div2-meta-stamp-container { width: 45%; display: flex; align-items: center; justify-content: flex-end; }
+  .div2-stamp-progress { font-size: 4vw; position: relative; }
+
+  .div2-media-panel { order: 5; align-self: center; margin-left: 0; width: 60vw; height: auto; margin-bottom: 25vw; aspect-ratio: 16/9; }
+  .div2-video-time { font-size: 2.5vw; }
+
+  .div2-services { 
+    order: 6; align-self: center; margin-left: 0; width: 80vw; margin-bottom: 20vw; 
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8vw 10vw; 
+  }
+  .div2-service-item { width: 40%; margin-bottom: 4vw; }
+  .div2-service-separator { display: none; }
+  .div2-service-icon-wrap { width: 10vw; height: 10vw; margin: 0 auto 3vw auto; }
+  .div2-service-title { font-size: 3.5vw; }
+  .div2-service-sub { font-size: 2.8vw; }
+
+  .div2-footer { 
+    order: 7; align-self: flex-start; margin-left: 30vw; width: 60vw; margin-bottom: 35vw; 
+    display: flex; flex-direction: column; align-items: center; gap: 8vw; 
+  }
+  .div2-footer-scroll { font-size: 4vw; text-align: center; }
+  .div2-footer-stamps { position: relative; right: auto; width: 100%; display: flex; justify-content: center; gap: 6vw; align-items: center; }
+  .div2-stamp-approved { font-size: 7vw; position: relative; left: auto; top: auto; transform: rotate(-5deg); }
+  .div2-signature-wrap { width: 25vw; height: 12vw; position: relative; left: auto; top: auto; transform: rotate(-5deg); }
+
+  /* 8. Mini Pads (Normal Flow to drive total height) */
+  .div2-pads-row { 
+    order: 8; align-self: center; width: 92vw; margin: 15vw auto 15vw auto; 
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0; 
+  }
+  .div2-mini-pad { width: 48%; margin-bottom: 6vw; }
+  .div2-pad-connector { display: none; }
+  .div2-mp-num { font-size: 3.5vw; }
+  .div2-mp-title { font-size: 3.8vw; margin-bottom: 1.5vw; }
+  .div2-mp-desc { font-size: 2.8vw; }
+
+  /* -----------------------------------------------------------------
+     FLANKING ANNOTATIONS & PROPS (ABSOLUTE)
+     ----------------------------------------------------------------- */
+  .div2-desk-props { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+  .div2-prop-plant { position: absolute !important; top: -2vw !important; left: -4vw !important; width: 22vw !important; }
+  .div2-prop-coffee { position: absolute !important; top: 2vw !important; right: -2vw !important; width: 20vw !important; }
+  .div2-prop-pencil { position: absolute !important; top: 75vw !important; left: -4vw !important; width: 20vw !important; margin-left: 0; }
+  .div2-prop-marker-left, .div2-prop-marker-right, .div2-prop-clip1, .div2-prop-clip2 { display: none; }
+  .div2-coffee-ring { position: absolute !important; top: 40vw !important; right: 5vw !important; left: auto !important; width: 20vw !important; height: 20vw !important; z-index: 1; }
+
+  .div2-sticky-tl, .div2-sticky-r, .div2-sticky-bl, .div2-anno-top-right, .div2-anno-left, .div2-anno-right {
+    position: absolute !important;
+    z-index: 5;
+  }
+
+  .div2-sticky-tl { top: 32vw; left: 2vw; width: 26vw; }
+  .div2-sticky-tl .div2-sticky-content { font-size: 3.5vw; }
+  
+  .div2-anno-top-right { top: 33vw; right: 8vw; left: auto; width: 20vw; display: flex; flex-direction: column; align-items: center; }
+  
+  .div2-sticky-r { top: 118vw; right: 0vw; left: auto; width: 18vw; }
+  .div2-sr-title { font-size: 3vw; margin-bottom: 2vw; padding-bottom: 1vw; border-bottom: 1px solid rgba(0,0,0,0.2); }
+  .div2-sr-item { font-size: 2vw; margin-bottom: 1vw; }
+  
+  .div2-anno-left { top: 126vw; left: 4vw; width: 17vw; display: flex; flex-direction: column; align-items: center; }
+  
+  .div2-anno-right { top: 158vw; right: 8vw; left: auto; width: 25vw; display: flex; flex-direction: column; align-items: center; }
+  
+  .div2-sticky-bl { top: 300vw; left: 5vw; width: 24vw; }
+  .div2-sticky-bl .div2-sticky-content { font-size: 3.5vw; }
+
+  /* Reset shared internal text positioning for absolute annotations */
+  .div2-anno-text { font-size: 3.2vw; position: relative !important; top: 0 !important; left: 0 !important; text-align: center; display: block; margin-top: 1vw; }
+  .div2-curved-arrow { width: 8vw; height: 8vw; position: relative !important; top: 0 !important; left: 0 !important; margin: 0 auto !important; display: block; }
+}
