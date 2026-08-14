@@ -676,3 +676,142 @@
     display: none;
   }
 }
+
+/* Detailed Mobile Refinement */
+/* Detailed Mobile Refinement */
+/* Detailed Mobile Refinement */
+@media (max-width: 767px) {
+  body { overflow-x: hidden; }
+  .div2-section { overflow-x: hidden; overflow-y: visible; background-color: #1a1a1a; }
+  
+  .div2-container { position: relative; display: flex; flex-direction: column; }
+  
+  .div2-bg-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: auto;
+    z-index: 1;
+  }
+  
+  .div2-content-layer {
+    position: relative;
+    z-index: 2;
+    display: flex; flex-direction: column;
+    width: 100%;
+    padding-top: 15vw; /* Increased top desk gap */
+  }
+
+  /* --- SEAMLESS PAPER EXTENSION ---
+     Creates a physical extension of the paper so content doesn't bleed onto the desk! */
+  .div2-content-layer::before {
+    content: "";
+    position: absolute;
+    top: 100vw; /* Start high enough to blend over the original image paper */
+    height: 240vw; /* Exactly wraps the content, stopping right before the mini pads */
+    left: 2.5vw; right: 2.5vw; /* Width matching the physical paper */
+    background-color: #EBE9E1; /* Realistic warm paper tone */
+    z-index: -1;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15vw);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15vw);
+    box-shadow: 0 4vw 8vw rgba(0,0,0,0.15);
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+  }
+
+  /* -----------------------------------------------------------------
+     MAIN CONTENT BLOCKS (NORMAL FLOW)
+     ----------------------------------------------------------------- */
+  .div2-header, .div2-headline, .div2-subtext, .div2-metadata-row, 
+  .div2-media-panel, .div2-services, .div2-footer, .div2-pads-row {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+  }
+
+  .div2-header { order: 1; align-self: flex-start; margin-left: 12vw; margin-top: 5vw; margin-bottom: 6vw; width: 80vw; }
+  .div2-header-text { font-size: 3.5vw; }
+
+  .div2-headline { order: 2; align-self: flex-start; margin-left: 32vw; width: 60vw; margin-bottom: 8vw; font-size: 7.5vw; line-height: 0.95; }
+  
+  .div2-subtext { order: 3; align-self: center; margin-left: 0; width: 80vw; margin-bottom: 15vw; text-align: center; font-size: 3.5vw; }
+
+  .div2-metadata-row { 
+    order: 4; align-self: center; margin-left: 0; width: 72vw; margin-bottom: 15vw; 
+    display: flex; flex-wrap: wrap; justify-content: space-between; 
+    padding: 4vw 0; border-top: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); 
+  }
+  .div2-meta-col { width: 45%; margin-bottom: 4vw; }
+  .div2-meta-col:nth-child(3) { margin-bottom: 0; }
+  .div2-meta-divider { display: none; }
+  .div2-meta-label { font-size: 3vw; margin-bottom: 1vw; }
+  .div2-meta-value { font-size: 4.5vw; }
+  .div2-meta-stamp-container { width: 45%; display: flex; align-items: center; justify-content: flex-end; }
+  .div2-stamp-progress { font-size: 4vw; position: relative; }
+
+  .div2-media-panel { order: 5; align-self: center; margin-left: 0; width: 60vw; height: auto; margin-bottom: 25vw; aspect-ratio: 16/9; }
+  .div2-video-time { font-size: 2.5vw; }
+
+  .div2-services { 
+    order: 6; align-self: center; margin-left: 0; width: 80vw; margin-bottom: 20vw; 
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8vw 10vw; 
+  }
+  .div2-service-item { width: 40%; margin-bottom: 4vw; }
+  .div2-service-separator { display: none; }
+  .div2-service-icon-wrap { width: 10vw; height: 10vw; margin: 0 auto 3vw auto; }
+  .div2-service-title { font-size: 3.5vw; }
+  .div2-service-sub { font-size: 2.8vw; }
+
+  .div2-footer { 
+    order: 7; align-self: flex-start; margin-left: 30vw; width: 60vw; margin-bottom: 35vw; 
+    display: flex; flex-direction: column; align-items: center; gap: 8vw; 
+  }
+  .div2-footer-scroll { font-size: 4vw; text-align: center; }
+  .div2-footer-stamps { position: relative; right: auto; width: 100%; display: flex; justify-content: center; gap: 6vw; align-items: center; }
+  .div2-stamp-approved { font-size: 7vw; position: relative; left: auto; top: auto; transform: rotate(-5deg); }
+  .div2-signature-wrap { width: 25vw; height: 12vw; position: relative; left: auto; top: auto; transform: rotate(-5deg); }
+
+  /* 8. Mini Pads (Normal Flow to drive total height) */
+  .div2-pads-row { 
+    order: 8; align-self: center; width: 92vw; margin: 15vw auto 15vw auto; 
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0; 
+  }
+  .div2-mini-pad { width: 48%; margin-bottom: 6vw; }
+  .div2-pad-connector { display: none; }
+  .div2-mp-num { font-size: 3.5vw; }
+  .div2-mp-title { font-size: 3.8vw; margin-bottom: 1.5vw; }
+  .div2-mp-desc { font-size: 2.8vw; }
+
+  /* -----------------------------------------------------------------
+     FLANKING ANNOTATIONS & PROPS (ABSOLUTE)
+     ----------------------------------------------------------------- */
+  .div2-desk-props { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+  .div2-prop-plant { position: absolute !important; top: -2vw !important; left: -4vw !important; width: 22vw !important; }
+  .div2-prop-coffee { position: absolute !important; top: 2vw !important; right: -2vw !important; width: 20vw !important; }
+  .div2-prop-pencil { position: absolute !important; top: 75vw !important; left: -4vw !important; width: 20vw !important; margin-left: 0; }
+  .div2-prop-marker-left, .div2-prop-marker-right, .div2-prop-clip1, .div2-prop-clip2 { display: none; }
+  .div2-coffee-ring { position: absolute !important; top: 40vw !important; right: 5vw !important; left: auto !important; width: 20vw !important; height: 20vw !important; z-index: 1; }
+
+  .div2-sticky-tl, .div2-sticky-r, .div2-sticky-bl, .div2-anno-top-right, .div2-anno-left, .div2-anno-right {
+    position: absolute !important;
+    z-index: 5;
+  }
+
+  .div2-sticky-tl { top: 32vw; left: 2vw; width: 26vw; }
+  .div2-sticky-tl .div2-sticky-content { font-size: 3.5vw; }
+  
+  .div2-anno-top-right { top: 33vw; right: 8vw; left: auto; width: 20vw; display: flex; flex-direction: column; align-items: center; }
+  
+  .div2-sticky-r { top: 118vw; right: 0vw; left: auto; width: 18vw; }
+  .div2-sr-title { font-size: 3vw; margin-bottom: 2vw; padding-bottom: 1vw; border-bottom: 1px solid rgba(0,0,0,0.2); }
+  .div2-sr-item { font-size: 2vw; margin-bottom: 1vw; }
+  
+  .div2-anno-left { top: 126vw; left: 4vw; width: 17vw; display: flex; flex-direction: column; align-items: center; }
+  
+  .div2-anno-right { top: 158vw; right: 8vw; left: auto; width: 25vw; display: flex; flex-direction: column; align-items: center; }
+  
+  .div2-sticky-bl { top: 300vw; left: 5vw; width: 24vw; }
+  .div2-sticky-bl .div2-sticky-content { font-size: 3.5vw; }
+
+  /* Reset shared internal text positioning for absolute annotations */
+  .div2-anno-text { font-size: 3.2vw; position: relative !important; top: 0 !important; left: 0 !important; text-align: center; display: block; margin-top: 1vw; }
+  .div2-curved-arrow { width: 8vw; height: 8vw; position: relative !important; top: 0 !important; left: 0 !important; margin: 0 auto !important; display: block; }
+}
