@@ -31,7 +31,7 @@ export const navigationItems: NavigationItem[] = [
   {
     key: 'home',
     label: 'Home',
-    href: '/html/index.html?animated=true',
+    href: '/html/index.html',
     icon: homeIcon
   },
   {
@@ -48,8 +48,8 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     key: 'about',
-    label: 'About',
-    href: '/html/index.html?animated=true#div-3',
+    label: 'Our Story',
+    href: '/html/about.html',
     icon: aboutIcon,
     dividerBefore: true
   },

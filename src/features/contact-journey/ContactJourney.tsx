@@ -85,6 +85,7 @@ export function ContactJourney({
   transitions = DEFAULT_TRANSITIONS,
   submitRequest = submitContactRequest
 }: ContactJourneyProps = {}) {
+  const usesDefaultTransitions = transitions === DEFAULT_TRANSITIONS;
   const [state, dispatch] = useReducer(
     contactJourneyReducer,
     initialContactState
@@ -177,14 +178,17 @@ export function ContactJourney({
     const paperBallElement = workspace.querySelector('[data-paper-ball]');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (paperBallElement) {
+    if (
+      paperBallElement instanceof HTMLElement &&
+      typeof paperBallElement.scrollIntoView === 'function'
+    ) {
       paperBallElement.scrollIntoView({
         behavior: reducedMotion ? 'auto' : 'smooth',
         block: 'center',
         inline: 'nearest'
       });
 
-      if (!reducedMotion) {
+      if (!reducedMotion && usesDefaultTransitions) {
         // Wait for the scroll to finish, plus a short natural settle so the user sees the crumpled ball
         await new Promise(resolve => window.setTimeout(resolve, 800));
       }
@@ -197,12 +201,12 @@ export function ContactJourney({
     await transitions.unfold(workspace);
 
     // Wait for the 3D paper to finish unfolding (approx 7.2s) plus a short natural settle
-    if (!reducedMotion) {
+    if (!reducedMotion && usesDefaultTransitions) {
       await new Promise(resolve => window.setTimeout(resolve, 7600));
     }
 
     // 3. Stage 04 - Transition smoothly to Step 02
-    if (!reducedMotion) {
+    if (!reducedMotion && usesDefaultTransitions) {
       // Soft fade out the unfolded 3D paper to avoid an abrupt jump
       await gsap.to(workspace, { opacity: 0, duration: 0.35, ease: 'power2.inOut' });
     }
@@ -213,7 +217,7 @@ export function ContactJourney({
 
     await nextPaint();
 
-    if (!reducedMotion) {
+    if (!reducedMotion && usesDefaultTransitions) {
       // Soft fade in the correct Step 02 form
       await gsap.to(workspace, { opacity: 1, duration: 0.45, ease: 'power2.out' });
     }

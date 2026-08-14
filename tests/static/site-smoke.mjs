@@ -68,10 +68,10 @@ if (!homepageEntry.includes('HomePage')) {
   failures.push('home entrypoint does not mount HomePage');
 }
 if (
-  !/has\(\s*['"]animated['"]\s*\)/.test(homepageEntry) ||
-  !homepageEntry.includes("location.replace('/')")
+  !homepageEntry.includes('renderPage(<HomePage />)') ||
+  homepageEntry.includes("location.replace('/')")
 ) {
-  failures.push('home entrypoint does not route first visits through the intro');
+  failures.push('home entrypoint must mount the product hero without replaying the intro');
 }
 
 const homepage = await readFile(join(root, 'src/pages/home/HomePage.tsx'), 'utf8');

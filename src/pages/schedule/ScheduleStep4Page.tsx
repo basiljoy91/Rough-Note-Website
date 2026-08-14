@@ -1,5 +1,4 @@
 import { SiteLayout } from '../../app/layouts/SiteLayout';
-import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleStep4Page.css';
 
 // SVGs
@@ -220,7 +219,6 @@ export function ScheduleStep4Page() {
       pageTitle="Confirm Your Meeting"
     >
       <div className="schedule-step-wrapper">
-        <NotebookPageTransition pageSelector=".notebook-container-wide" />
         <div className="notebook-container-wide">
           <div className="notebook-bg-split">
             <div className="notebook-bg-left"></div>

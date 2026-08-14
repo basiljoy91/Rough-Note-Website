@@ -6,6 +6,15 @@ import {
   PageTurnTransition
 } from '../../src/shared/navigation/PageTurnTransition';
 
+vi.mock('html2canvas', () => ({
+  default: vi.fn(async () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200;
+    canvas.height = 800;
+    return canvas;
+  })
+}));
+
 describe('PageTurnTransition', () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -26,6 +35,7 @@ describe('PageTurnTransition', () => {
         <div class="page-note" data-page-note></div>
       </header>
       <section id="div-3"></section>
+      <div class="rn-page-surface"><main>Current paper</main></div>
       <div id="transition-root"></div>
     `;
 
@@ -52,7 +62,29 @@ describe('PageTurnTransition', () => {
     );
   });
 
-  it('loads the destination beneath a one-direction turning paper', () => {
+  it('uses the shared page turn for Home navigation', () => {
+    window.history.replaceState({}, '', '/html/services.html');
+    document.body.innerHTML = `
+      <header class="header">
+        <a href="/html/index.html">Home</a>
+        <div class="page-note" data-page-note></div>
+      </header>
+      <div class="rn-page-surface"><main>Our Story</main></div>
+      <div id="transition-root"></div>
+    `;
+
+    render(<PageTurnTransition />, {
+      container: document.getElementById('transition-root') as HTMLElement
+    });
+
+    const clickCompleted = fireEvent.click(document.querySelector('a') as HTMLAnchorElement);
+
+    expect(clickCompleted).toBe(false);
+    expect(document.querySelector('.rn-page-turn')).toBeInTheDocument();
+    expect(document.documentElement).toHaveAttribute('data-page-turn-state', 'turning');
+  });
+
+  it('loads the destination beneath a one-direction turning paper', async () => {
     document.body.innerHTML = `
       <header class="header">
         <a href="/html/services.html">Services</a>
@@ -76,7 +108,8 @@ describe('PageTurnTransition', () => {
     ) as HTMLIFrameElement;
 
     expect(stage).toBeInTheDocument();
-    expect(stage).not.toHaveClass('rn-page-turn--turning');
+    expect(stage).toHaveClass('rn-page-turn--ready');
+    expect(stage).not.toHaveClass('rn-page-turn--destination-ready');
     expect(destination.src).toContain('/html/services.html');
     expect(document.querySelector('.rn-page-turn__clone')).toHaveTextContent(
       'Current paper'
@@ -88,9 +121,15 @@ describe('PageTurnTransition', () => {
     expect(document.documentElement).toHaveAttribute('aria-busy', 'true');
 
     fireEvent.load(destination);
-    act(() => vi.advanceTimersByTime(32));
+    await act(async () => {
+      await Promise.resolve();
+      await Promise.resolve();
+      vi.advanceTimersByTime(450);
+      await Promise.resolve();
+    });
 
-    expect(stage).toHaveClass('rn-page-turn--ready', 'rn-page-turn--turning');
+    expect(stage).toHaveClass('rn-page-turn--ready');
+    expect(document.documentElement).toHaveAttribute('data-page-turn-state', 'turning');
 
     fireEvent.click(anchor);
     fireEvent.click(anchor);
@@ -103,6 +142,7 @@ describe('PageTurnTransition', () => {
         <a href="/html/services.html">Services</a>
         <a href="/html/process.html">Process</a>
       </header>
+      <div class="rn-page-surface"><main>Current paper</main></div>
       <div id="transition-root"></div>
     `;
 
@@ -119,9 +159,13 @@ describe('PageTurnTransition', () => {
       <header class="header">
         <div class="page-note" data-page-note></div>
       </header>
+      <div class="rn-page-surface"><main>Arrived paper</main></div>
       <div id="transition-root"></div>
     `;
-    window.sessionStorage.setItem(PAGE_NOTE_ARRIVAL_KEY, 'enter');
+    window.sessionStorage.setItem(
+      PAGE_NOTE_ARRIVAL_KEY,
+      JSON.stringify({ route: '/html/index.html', timestamp: Date.now() })
+    );
 
     render(<PageTurnTransition />, {
       container: document.getElementById('transition-root') as HTMLElement

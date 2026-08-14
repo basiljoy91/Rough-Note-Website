@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { SiteLayout } from '../../app/layouts/SiteLayout';
-import { NotebookPageTransition } from '../../shared/navigation/NotebookPageTransition';
 import './ScheduleStep1Page.css';
 
 // SVG Assets
@@ -101,7 +100,6 @@ export function ScheduleStep1Page() {
       pageTitle="Schedule a Meeting"
     >
       <div className="schedule-step-wrapper">
-        <NotebookPageTransition pageSelector=".notebook-container" />
         <div className="notebook-container">
           <img src="/assets/images/notebook-paper.jpeg" alt="Notebook Background" className="notebook-bg" />
           
