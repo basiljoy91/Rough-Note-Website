@@ -105,54 +105,56 @@ export function turnUnfoldedPaperIntoChallenge(
     filter: 'brightness(1) saturate(1)',
     height: sourceHeight,
     left: sourceLeft,
-    rotateY: -2,
+    rotateY: 0,
+    rotateZ: 0,
     top: sourceTop,
     transformOrigin: '0% 50%',
+    transformPerspective: 1200,
     width: sourceWidth,
     x: 0,
-    y: 0
+    y: 0,
+    zIndex: 80
   });
 
   const timeline = gsap.timeline();
   timeline
-    .to(sheet, {
-      autoAlpha: 1,
-      duration: 0.14,
-      ease: 'power1.out'
-    }, 1.42)
-    .to(paper, {
-      autoAlpha: 0,
-      duration: 0.16,
-      ease: 'power1.in'
-    }, 1.42)
+    // The WebGL note takes 2.2 seconds to reach its flat paper state. Swap it
+    // for the identically-sized DOM sheet on one rendered frame only after it
+    // is fully open. Cross-fading these layers exposed their small lighting
+    // and perspective differences as a bright blink.
+    .set(sheet, { autoAlpha: 1 }, 2.2)
+    .set(paper, { autoAlpha: 0 }, 2.2)
     .to(sheet, {
       borderRadius: 0,
+      boxShadow:
+        '-24px 0 34px rgb(52 35 18 / 24%), 0 32px 38px rgb(52 35 18 / 24%), inset 1px 0 rgb(255 255 255 / 60%)',
       height: destinationHeight,
       left: 0,
       top: 0,
       width: rootRect.width,
-      duration: 0.7,
+      duration: 0.72,
       ease: 'power3.inOut'
-    }, 1.5)
-    .set(outgoing, { autoAlpha: 0 }, 2.18)
+    }, 2.2)
+    .set(outgoing, { autoAlpha: 0 }, 2.91)
     .to(sheet, {
-      rotateY: -176,
-      xPercent: -1.2,
-      filter: 'brightness(0.78) saturate(0.88)',
-      duration: 1.16,
+      rotateY: -180,
+      xPercent: -0.6,
+      filter: 'brightness(0.76) saturate(0.86)',
+      boxShadow:
+        '-38px 0 48px rgb(52 35 18 / 30%), 0 18px 26px rgb(52 35 18 / 18%), inset 2px 0 rgb(255 255 255 / 54%)',
+      duration: 1.08,
       ease: 'power3.inOut'
-    }, 2.19)
+    }, 2.92)
     .to(incoming, {
       filter: 'brightness(1) saturate(1)',
-      duration: 0.62,
+      duration: 0.7,
       ease: 'power2.out'
-    }, 2.46)
-    .to(sheet, {
-      autoAlpha: 0,
-      duration: 0.12,
-      ease: 'power1.out'
-    }, 3.24)
-    .set(incoming, { clearProps: 'opacity,visibility,filter' });
+    }, 3.02)
+    // At 180 degrees the sheet is already hidden by backface-visibility. An
+    // atomic cleanup avoids the final opacity dip that previously preceded
+    // the React step commit.
+    .set(sheet, { autoAlpha: 0 }, 4)
+    .set(incoming, { clearProps: 'opacity,visibility,filter' }, 4);
 
   return timelinePromise(timeline);
 }

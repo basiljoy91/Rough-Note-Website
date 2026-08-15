@@ -85,6 +85,7 @@
 
 .pageHandoffSheet {
   backface-visibility: hidden;
+  background-color: #f5ead6;
   background:
     linear-gradient(135deg, transparent 20%, rgb(255 255 255 / 16%) 45%, rgb(0 0 0 / 3%) 65%, transparent 85%),
     radial-gradient(ellipse at 50% -5%, rgb(255 255 255 / 56%), transparent 42%),
@@ -100,6 +101,7 @@
   position: absolute;
   transform-style: preserve-3d;
   visibility: hidden;
+  will-change: transform, width, height, left, top, filter, box-shadow;
   z-index: 80;
 }
 
