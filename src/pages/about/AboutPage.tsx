@@ -114,6 +114,23 @@ function CoverPage() {
         <i>→</i>
         <span>create</span>
       </div>
+
+      <PaperNote className="cover-origin-note">
+        <PaperTape />
+        <small>rough thought #01</small>
+        <strong>Small ideas<br />deserve room<br />to grow.</strong>
+        <span>keep sketching ↗</span>
+      </PaperNote>
+
+      <div className="cover-story-trail" aria-hidden="true">
+        <span><b>01</b> notice</span>
+        <i>→</i>
+        <span><b>02</b> sketch</span>
+        <i>→</i>
+        <span><b>03</b> shape</span>
+      </div>
+
+      <span className="cover-spark-cluster" aria-hidden="true">✦ · ✧</span>
       <span className="cover-paperclip" aria-hidden="true" />
       <span className="cover-coffee-ring" aria-hidden="true" />
     </article>
