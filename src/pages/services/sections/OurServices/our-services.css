@@ -8,7 +8,9 @@
   margin-top: -18px;
   padding: calc(clamp(2.5rem, 4vw, 4rem) + 18px) clamp(1rem, 3vw, 2.75rem) clamp(2.5rem, 4vw, 4rem);
   overflow: hidden;
-  background-color: var(--paper-cream, #f8f5f0);
+  /* Continue the same photographed, worn brown paper used by the section
+     above so the torn edge reads as one sheet rather than a colour change. */
+  background: #eee2ce url('/assets/images/Services_Div1_Background.png') center top / cover no-repeat;
   clip-path: var(--rn-paper-tear-top);
 }
 
