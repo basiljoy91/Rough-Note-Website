@@ -26,6 +26,10 @@ describe('PageTurnTransition', () => {
       configurable: true,
       value: vi.fn()
     });
+    Object.defineProperty(HTMLElement.prototype, 'getAnimations', {
+      configurable: true,
+      value: vi.fn(() => [])
+    });
   });
 
   it('moves to a same-page destination without creating a cross-page stage', () => {
@@ -155,6 +159,10 @@ describe('PageTurnTransition', () => {
   });
 
   it('settles the new page note after a cross-page navigation arrives', () => {
+    const finishArrivalAnimation = vi.fn();
+    vi.mocked(HTMLElement.prototype.getAnimations).mockReturnValue([
+      { finish: finishArrivalAnimation } as unknown as Animation
+    ]);
     document.body.innerHTML = `
       <header class="header">
         <div class="page-note" data-page-note></div>
@@ -174,6 +182,9 @@ describe('PageTurnTransition', () => {
     const pageNote = document.querySelector('[data-page-note]');
     expect(window.sessionStorage.getItem(PAGE_NOTE_ARRIVAL_KEY)).toBeNull();
     expect(pageNote).toHaveClass('page-note--arriving');
+
+    act(() => vi.advanceTimersByTime(90));
+    expect(finishArrivalAnimation).toHaveBeenCalledOnce();
 
     act(() => vi.advanceTimersByTime(PAGE_NOTE_SETTLE_DURATION));
     expect(pageNote).not.toHaveClass('page-note--arriving');

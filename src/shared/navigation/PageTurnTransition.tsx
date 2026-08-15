@@ -16,6 +16,7 @@ import {
 export const PAGE_TURN_DURATION = pageTurnDuration;
 export const PAGE_LOAD_TIMEOUT = 4200;
 export const PAGE_NOTE_SETTLE_DURATION = 720;
+export const PAGE_TURN_HANDOFF_GRACE = 320;
 export { PAGE_TURN_ARRIVAL_KEY as PAGE_NOTE_ARRIVAL_KEY } from './transitionState';
 
 type PageTurnState =
@@ -551,6 +552,26 @@ export function PageTurnProvider() {
       setState('turning');
       const startTime = performance.now();
 
+      const completeHandoff = () => {
+        let settled = false;
+        const finish = () => {
+          if (settled || disposed || id !== requestId) return;
+          settled = true;
+          // Give the ready iframe one real painted frame before the browser
+          // captures the cross-document handoff. Without this frame boundary,
+          // navigation can snapshot the old paper background even though the
+          // destination-ready class was already applied.
+          animationFrame = window.requestAnimationFrame(commitNavigation);
+        };
+
+        // Usually the destination iframe has finished before the curl does.
+        // If a late font or image is still settling, keep the completed lower
+        // sheet in place briefly so the top-level document never replaces it
+        // with an intermediate layout.
+        void stage.destinationReady.then(finish, finish);
+        schedule(finish, PAGE_TURN_HANDOFF_GRACE);
+      };
+
       const step = (timestamp: number) => {
         if (disposed || id !== requestId || state !== 'turning') return;
         const elapsed = clamp((timestamp - startTime) / pageTurnDuration, 0, 1);
@@ -560,7 +581,8 @@ export function PageTurnProvider() {
           return;
         }
         setState('settling');
-        commitNavigation();
+        stage.element.classList.add('rn-page-turn--settling');
+        completeHandoff();
       };
 
       animationFrame = window.requestAnimationFrame(step);
@@ -709,6 +731,18 @@ export function PageTurnProvider() {
       setState('settling');
       beginPageNoteArrival();
       schedule(() => {
+        // The iframe preview is intentionally shown in its final, static
+        // state. Finish finite entry animations on the real destination before
+        // releasing the native handoff snapshot so both layers have identical
+        // geometry and typography.
+        const arrivalAnimations = surface.getAnimations?.({ subtree: true }) ?? [];
+        arrivalAnimations.forEach((animation) => {
+          try {
+            animation.finish();
+          } catch {
+            // Infinite ambient loops cannot be finished and are safe to keep.
+          }
+        });
         const main = surface.querySelector<HTMLElement>('main');
         if (main) {
           const hadTabIndex = main.hasAttribute('tabindex');
@@ -719,10 +753,10 @@ export function PageTurnProvider() {
         setState('complete');
         root.dataset.pageTurnArrival = 'complete';
         window.dispatchEvent(new CustomEvent(PAGE_TURN_SETTLED_EVENT));
-        schedule(() => {
+        window.requestAnimationFrame(() => {
           setState('idle');
           delete root.dataset.pageTurnArrival;
-        }, 80);
+        });
       }, 90);
     };
 
