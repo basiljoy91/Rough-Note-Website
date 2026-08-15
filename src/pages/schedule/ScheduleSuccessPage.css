@@ -261,16 +261,27 @@
     width: 140px;
     height: 140px;
     right: 2%;
+    top: 10%;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .success-content-wrapper {
-    padding-top: 15vh;
+    padding-top: 120px; /* Small vertical gap immediately below the navbar */
+  }
+
+  /* Clear the desktop right offset to naturally center the summary card on mobile */
+  .meeting-summary-card {
+    right: auto;
+  }
+
+  /* Reduce the excessive gap between the Back to Home button and the footer */
+  .success-action-container {
+    margin-bottom: 4vh; 
   }
   
   .yellow-sticky-note {
-    top: 2%;
+    top: 12%;
     right: auto;
     left: 50%;
     transform: translateX(-50%) rotate(2deg);
@@ -287,18 +298,31 @@
   }
   
   .summary-grid {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 15px 10px; /* 15px row gap, 10px column gap */
+    align-items: center;
+    justify-items: start;
+   
+  }
+  
+  /* Hide the 4th child (the middle divider) to split the items into two clean rows */
+  .summary-divider:nth-child(4) {
+    display: none;
   }
   
   .summary-divider {
-    width: 100%;
-    height: 1px;
+    width: 1px;
+    height: 30px; /* Short vertical line between columns */
+    margin: 0;
   }
   
   .summary-item {
     justify-content: flex-start;
+  }
+
+  .summary-text.single-line {
+    white-space: normal; /* Allow text to wrap naturally if space is tight */
   }
 }
 .success-action-container {
