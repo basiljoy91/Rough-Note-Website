@@ -115,6 +115,17 @@
   position: absolute;
 }
 
+.pageHandoffCapture {
+  height: 100%;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 2;
+}
+
 .pageHandoffSheet span {
   border: 3px double rgb(76 45 28 / 78%);
   border-radius: 50%;
@@ -128,6 +139,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 66px;
+  z-index: 3;
 }
 
 .stepShell {

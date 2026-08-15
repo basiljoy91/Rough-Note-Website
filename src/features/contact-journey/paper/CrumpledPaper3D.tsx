@@ -461,7 +461,11 @@ export default function CrumpledPaper3D({
 }) {
   return (
     <div className={styles.canvasContainer}>
-      <Canvas shadows camera={{ position: [2.5, 1.9, 4.6], fov: 38 }}>
+      <Canvas
+        shadows
+        camera={{ position: [2.5, 1.9, 4.6], fov: 38 }}
+        gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
+      >
         {/* Ambient Fill Light */}
         <ambientLight intensity={0.75} color="#fff3df" />
 

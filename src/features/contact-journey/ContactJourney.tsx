@@ -392,6 +392,10 @@ export function ContactJourney({
               data-contact-page-handoff
               aria-hidden="true"
             >
+              <canvas
+                className={styles.pageHandoffCapture}
+                data-contact-page-capture
+              />
               <span>RN</span>
             </div>
           )}

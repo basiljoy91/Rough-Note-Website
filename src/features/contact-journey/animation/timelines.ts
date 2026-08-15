@@ -71,6 +71,11 @@ export function turnUnfoldedPaperIntoChallenge(
   );
   const paper = root.querySelector<HTMLElement>('[data-paper-ball]');
   const sheet = root.querySelector<HTMLElement>('[data-contact-page-handoff]');
+  const sourceCanvas = paper?.querySelector<HTMLCanvasElement>('canvas');
+  const captureCanvas = sheet?.querySelector<HTMLCanvasElement>(
+    '[data-contact-page-capture]'
+  );
+  const sheetStamp = sheet?.querySelector<HTMLElement>('span');
 
   if (!outgoing || !incoming || !paper || !sheet) return Promise.resolve();
 
@@ -115,15 +120,42 @@ export function turnUnfoldedPaperIntoChallenge(
     y: 0,
     zIndex: 80
   });
+  if (captureCanvas) gsap.set(captureCanvas, { autoAlpha: 0 });
+  if (sheetStamp) gsap.set(sheetStamp, { autoAlpha: 0 });
+
+  const captureCurrentPaperFrame = () => {
+    if (!sourceCanvas || !captureCanvas) return;
+    const context = captureCanvas.getContext('2d');
+    if (!context) return;
+
+    try {
+      captureCanvas.width = sourceCanvas.width;
+      captureCanvas.height = sourceCanvas.height;
+      context.clearRect(0, 0, captureCanvas.width, captureCanvas.height);
+      context.drawImage(sourceCanvas, 0, 0);
+
+      const canvasRect = sourceCanvas.getBoundingClientRect();
+      gsap.set(captureCanvas, {
+        autoAlpha: 1,
+        height: `${(canvasRect.height / sourceHeight) * 100}%`,
+        width: `${(canvasRect.width / sourceWidth) * 100}%`
+      });
+    } catch {
+      // The textured DOM paper remains ready underneath in browsers that do
+      // not allow copying the WebGL drawing buffer.
+      gsap.set(captureCanvas, { autoAlpha: 0 });
+    }
+  };
 
   const timeline = gsap.timeline();
   timeline
-    // The WebGL note takes 2.2 seconds to reach its flat paper state. Swap it
-    // for the identically-sized DOM sheet on one rendered frame only after it
-    // is fully open. Cross-fading these layers exposed their small lighting
-    // and perspective differences as a bright blink.
-    .set(sheet, { autoAlpha: 1 }, 2.2)
-    .set(paper, { autoAlpha: 0 }, 2.2)
+    // Capture just before the WebGL unfold completes. At this point its eased
+    // geometry is already ~96% flat, but the canvas is still guaranteed to be
+    // visible. Reusing that exact rendered frame avoids the empty frame that
+    // previously appeared between the 3D note and the full notebook sheet.
+    .call(captureCurrentPaperFrame, undefined, 1.72)
+    .set(sheet, { autoAlpha: 1 }, 1.73)
+    .set(paper, { autoAlpha: 0 }, 1.73)
     .to(sheet, {
       borderRadius: 0,
       boxShadow:
@@ -132,10 +164,28 @@ export function turnUnfoldedPaperIntoChallenge(
       left: 0,
       top: 0,
       width: rootRect.width,
-      duration: 0.72,
+      duration: 0.78,
       ease: 'power3.inOut'
-    }, 2.2)
-    .set(outgoing, { autoAlpha: 0 }, 2.91)
+    }, 1.73);
+
+  if (captureCanvas) {
+    timeline.to(captureCanvas, {
+      autoAlpha: 0,
+      duration: 0.68,
+      ease: 'power2.inOut'
+    }, 1.82);
+  }
+
+  if (sheetStamp) {
+    timeline.to(sheetStamp, {
+      autoAlpha: 1,
+      duration: 0.48,
+      ease: 'power2.out'
+    }, 1.92);
+  }
+
+  timeline
+    .set(outgoing, { autoAlpha: 0 }, 2.5)
     .to(sheet, {
       rotateY: -180,
       xPercent: -0.6,
@@ -144,17 +194,17 @@ export function turnUnfoldedPaperIntoChallenge(
         '-38px 0 48px rgb(52 35 18 / 30%), 0 18px 26px rgb(52 35 18 / 18%), inset 2px 0 rgb(255 255 255 / 54%)',
       duration: 1.08,
       ease: 'power3.inOut'
-    }, 2.92)
+    }, 2.51)
     .to(incoming, {
       filter: 'brightness(1) saturate(1)',
       duration: 0.7,
       ease: 'power2.out'
-    }, 3.02)
+    }, 2.61)
     // At 180 degrees the sheet is already hidden by backface-visibility. An
     // atomic cleanup avoids the final opacity dip that previously preceded
     // the React step commit.
-    .set(sheet, { autoAlpha: 0 }, 4)
-    .set(incoming, { clearProps: 'opacity,visibility,filter' }, 4);
+    .set(sheet, { autoAlpha: 0 }, 3.59)
+    .set(incoming, { clearProps: 'opacity,visibility,filter' }, 3.59);
 
   return timelinePromise(timeline);
 }
