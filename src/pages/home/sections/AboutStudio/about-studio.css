@@ -18,11 +18,10 @@
   color: var(--d3-ink);
   height: clamp(980px, 82vw, 1437px);
   isolation: isolate;
-  margin-left: -50px;
   min-height: 980px;
   overflow: hidden;
   position: relative;
-  width: calc(100% + 50px);
+  width: 100%;
 }
 
 /* Torn-paper handoff from Studio Snapshot into the About Studio page. */

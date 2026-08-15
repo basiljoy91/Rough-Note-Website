@@ -5,11 +5,10 @@
   background: var(--d4-paper);
   box-sizing: border-box;
   color: var(--d4-ink);
-  margin-left: -50px;
   overflow: hidden;
   padding: 0;
   scroll-margin-top: 88px;
-  width: calc(100% + 50px);
+  width: 100%;
 }
 
 #div-4,

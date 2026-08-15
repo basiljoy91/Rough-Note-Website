@@ -51,7 +51,10 @@ export function OurWorkPage() {
         return;
       }
 
-      const availableWidth = window.innerWidth - 270 - 40; // 270px sidebar offset, 40px horizontal padding (20px each side)
+      // Measure the actual route surface instead of duplicating the sidebar
+      // width here. This keeps the moodboard aligned if the menu changes size.
+      const pageWidth = mainRef.current?.clientWidth ?? window.innerWidth;
+      const availableWidth = pageWidth - 40; // 20px breathing room on each edge
       const availableHeight = window.innerHeight - 40;    // 40px vertical margins (20px each side)
       const scaleX = availableWidth / 2050; // Active content width boundary (compressed for larger scale)
       const scaleY = availableHeight / 1152; // Moodboard layout height

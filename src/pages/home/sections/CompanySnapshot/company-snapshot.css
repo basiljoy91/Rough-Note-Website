@@ -817,13 +817,6 @@
   }
 }
 
-@media (min-width: 901px) {
-  .div-2-snapshot {
-    width: calc(100% + 50px);
-    margin-left: -50px;
-  }
-}
-
 @media (max-width: 700px) {
   .div-2-snapshot {
     min-height: 0;

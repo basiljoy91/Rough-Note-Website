@@ -242,13 +242,6 @@
   z-index: 2;
 }
 
-@media (min-width: 901px) {
-  .div-1-hero {
-    margin-left: -50px;
-    width: calc(100% + 50px);
-  }
-}
-
 @media (max-width: 1220px) {
   .div-1-hero {
     padding-inline: clamp(24px, 3vw, 38px);

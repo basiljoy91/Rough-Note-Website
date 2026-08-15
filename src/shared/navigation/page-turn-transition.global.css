@@ -1,5 +1,7 @@
 .rn-page-surface {
+  box-sizing: border-box;
   min-height: 100vh;
+  min-width: 0;
   background:
     linear-gradient(rgb(255 252 244 / 42%), rgb(247 240 225 / 42%)),
     url('../../assets/textures/paper-texture.jpg') center top / cover;
