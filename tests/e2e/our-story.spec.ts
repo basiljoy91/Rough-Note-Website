@@ -95,6 +95,44 @@ test('turns through the story, restores focus, and follows browser history', asy
   await expect(page).toHaveURL(/#founders$/);
 });
 
+test('turns one story page per intentional wheel gesture', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto(STORY_PAGE, { waitUntil: 'domcontentloaded' });
+  await page.locator('.story-book').hover();
+
+  // Trackpads emit several inertial wheel events for one physical gesture.
+  // They must advance one sheet, never skip directly to the founders page.
+  await page.locator('.our-story-page').evaluate((storyRoot) => {
+    storyRoot.dispatchEvent(new WheelEvent('wheel', {
+      bubbles: true,
+      cancelable: true,
+      deltaY: 160
+    }));
+    storyRoot.dispatchEvent(new WheelEvent('wheel', {
+      bubbles: true,
+      cancelable: true,
+      deltaY: 160
+    }));
+  });
+
+  await expect(page.locator('.story-page')).toHaveAttribute('data-page-index', '1');
+  await expect(page).toHaveURL(/#chapter-one$/);
+
+  await page.waitForTimeout(1_750);
+  await page.locator('.story-book__page').evaluate((storyPage) => {
+    storyPage.scrollTop = storyPage.scrollHeight;
+  });
+  await page.locator('.our-story-page').evaluate((storyRoot) => {
+    storyRoot.dispatchEvent(new WheelEvent('wheel', {
+      bubbles: true,
+      cancelable: true,
+      deltaY: 160
+    }));
+  });
+  await expect(page.locator('.story-page')).toHaveAttribute('data-page-index', '2');
+  await expect(page).toHaveURL(/#founders$/);
+});
+
 test('keeps the book inside every configured viewport without page-level overflow', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(`${STORY_PAGE}#founders`);

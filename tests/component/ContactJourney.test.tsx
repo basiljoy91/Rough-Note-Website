@@ -8,11 +8,13 @@ import {
 
 const submissionMock = vi.fn();
 const unfoldMock = vi.fn().mockResolvedValue(undefined);
+const handoffMock = vi.fn().mockResolvedValue(undefined);
 const foldToContactMock = vi.fn().mockResolvedValue(undefined);
 const sealEnvelopeMock = vi.fn().mockResolvedValue(undefined);
 const reverseMock = vi.fn().mockResolvedValue(undefined);
 const transitions: ContactJourneyTransitions = {
   unfold: unfoldMock,
+  handoff: handoffMock,
   foldToContact: foldToContactMock,
   sealEnvelope: sealEnvelopeMock,
   reverse: reverseMock
@@ -49,6 +51,7 @@ describe('ContactJourney', () => {
   beforeEach(() => {
     submissionMock.mockReset();
     unfoldMock.mockReset().mockResolvedValue(undefined);
+    handoffMock.mockReset().mockResolvedValue(undefined);
     foldToContactMock.mockReset().mockResolvedValue(undefined);
     sealEnvelopeMock.mockReset().mockResolvedValue(undefined);
     reverseMock.mockReset().mockResolvedValue(undefined);
@@ -76,6 +79,27 @@ describe('ContactJourney', () => {
         screen.getByLabelText(/What type of solution do you need/)
       ).toHaveFocus()
     );
+  });
+
+  it('prepares the next paper before completing the opening handoff', async () => {
+    handoffMock.mockImplementationOnce(async (root: HTMLElement) => {
+      expect(root.style.opacity).toBe('');
+      expect(
+        root.querySelector('[data-contact-incoming-page]')
+      ).toBeInTheDocument();
+      expect(
+        root.querySelector('[data-contact-page-handoff]')
+      ).toBeInTheDocument();
+    });
+    const user = userEvent.setup();
+    renderJourney();
+
+    await user.click(screen.getByRole('button', { name: 'Start My Rough Note' }));
+
+    await waitFor(() => expect(handoffMock).toHaveBeenCalledTimes(1));
+    await screen.findByRole('heading', {
+      name: /Tell Us About\s+Your Challenge/
+    });
   });
 
   it('preserves values when moving forward and back', async () => {

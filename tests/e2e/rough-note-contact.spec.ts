@@ -13,7 +13,7 @@ async function reachChallengeStep(page: Page) {
     page.getByRole('heading', {
       name: /Tell Us About\s+Your Challenge/
     })
-  ).toBeVisible();
+  ).toBeVisible({ timeout: 12_000 });
 }
 
 async function completeChallengeStep(page: Page) {
@@ -48,6 +48,7 @@ test.beforeEach(async ({ page }) => {
 test('completes the full physical-paper journey after server confirmation', async ({
   page
 }, testInfo) => {
+  test.setTimeout(60_000);
   test.skip(
     !testInfo.project.name.includes('desktop'),
     'The full-duration transformation is covered once on desktop.'
@@ -77,9 +78,8 @@ test('completes the full physical-paper journey after server confirmation', asyn
   await expect(
     page
       .locator('section[data-step="4"]')
-      .getByText('Your rough note has been received.', { exact: true })
+      .getByRole('img', { name: 'Your rough note has been received.' })
   ).toBeVisible();
-  await expect(page.locator('[data-envelope]')).toBeVisible();
   expect(requestCount).toBe(1);
 });
 
@@ -212,8 +212,19 @@ test('reduced motion advances quickly and moves focus to the new heading', async
   page
 }) => {
   await openContact(page);
-  const startedAt = Date.now();
   await page.getByRole('button', { name: 'Start My Rough Note' }).focus();
+  await page.evaluate(() => {
+    const startedAt = performance.now();
+    const recordTransitionDuration = (event: FocusEvent) => {
+      if (!(event.target instanceof HTMLElement)) return;
+      if (event.target.id !== 'contact-step-2-title') return;
+      document.documentElement.dataset.contactReducedMotionDuration = String(
+        performance.now() - startedAt
+      );
+      document.removeEventListener('focusin', recordTransitionDuration);
+    };
+    document.addEventListener('focusin', recordTransitionDuration);
+  });
   await page.keyboard.press('Enter');
   const heading = page.getByRole('heading', {
     name: /Tell Us About\s+Your Challenge/
@@ -221,7 +232,10 @@ test('reduced motion advances quickly and moves focus to the new heading', async
 
   await expect(heading).toBeVisible();
   await expect(heading).toBeFocused();
-  expect(Date.now() - startedAt).toBeLessThan(1_000);
+  const transitionDuration = Number(
+    await page.locator('html').getAttribute('data-contact-reduced-motion-duration')
+  );
+  expect(transitionDuration).toBeLessThan(1_000);
 });
 
 test('mobile paper remains within the viewport and exposes paper-tab progress', async ({

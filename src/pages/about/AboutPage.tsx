@@ -594,6 +594,12 @@ export function StoryBook() {
   const animationRef = useRef(0);
   const routeCommittedRef = useRef(false);
   const pointerStartRef = useRef<number | null>(null);
+  const wheelGestureRef = useRef({
+    accumulatedDelta: 0,
+    direction: 0,
+    lockedUntil: 0,
+    resetTimer: 0
+  });
   const turnToRef = useRef<(target: number, historyMode?: 'push' | 'none') => void>(() => undefined);
 
   const commitRoute = useCallback((target: number, mode: 'push' | 'none') => {
@@ -712,16 +718,72 @@ export function StoryBook() {
   }, [turnTo]);
 
   useEffect(() => {
+    const wheelGesture = wheelGestureRef.current;
     const onPopState = () => turnToRef.current(pageIndexFromLocation(), 'none');
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight' || event.key === 'PageDown') turnToRef.current(pageIndex + 1);
       if (event.key === 'ArrowLeft' || event.key === 'PageUp') turnToRef.current(pageIndex - 1);
     };
+    const onWheel = (event: WheelEvent) => {
+      const rawDelta = event.deltaMode === WheelEvent.DOM_DELTA_LINE
+        ? event.deltaY * 16
+        : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+          ? event.deltaY * window.innerHeight
+          : event.deltaY;
+
+      if (Math.abs(rawDelta) < 0.5 || Math.abs(event.deltaX) > Math.abs(rawDelta)) return;
+
+      const direction = rawDelta > 0 ? 1 : -1;
+      const storyPage = pageRef.current;
+      const scrollEpsilon = 3;
+      const pageCanScroll = storyPage && (
+        direction > 0
+          ? storyPage.scrollTop + storyPage.clientHeight < storyPage.scrollHeight - scrollEpsilon
+          : storyPage.scrollTop > scrollEpsilon
+      );
+
+      // Founders and compact layouts have deliberately scrollable paper. Let
+      // that content move first, then turn the sheet at its physical edge.
+      if (pageCanScroll) {
+        wheelGesture.accumulatedDelta = 0;
+        wheelGesture.direction = 0;
+        return;
+      }
+
+      const target = pageIndex + direction;
+      if (target < 0 || target >= storyPages.length) return;
+
+      event.preventDefault();
+      const now = performance.now();
+      if (now < wheelGesture.lockedUntil || bookRef.current?.hasAttribute('aria-busy')) return;
+
+      if (wheelGesture.direction !== direction) wheelGesture.accumulatedDelta = 0;
+      wheelGesture.direction = direction;
+      wheelGesture.accumulatedDelta += rawDelta;
+      window.clearTimeout(wheelGesture.resetTimer);
+      wheelGesture.resetTimer = window.setTimeout(() => {
+        wheelGesture.accumulatedDelta = 0;
+        wheelGesture.direction = 0;
+      }, 180);
+
+      // A small accumulation threshold distinguishes an intentional scroll
+      // from trackpad noise. The lock absorbs the gesture's inertial tail.
+      if (Math.abs(wheelGesture.accumulatedDelta) < 72) return;
+      wheelGesture.accumulatedDelta = 0;
+      wheelGesture.direction = 0;
+      wheelGesture.lockedUntil = now + pageTurnDuration + 240;
+      turnToRef.current(target);
+    };
+
+    const storyRoot = bookRef.current?.closest<HTMLElement>('.our-story-page');
     window.addEventListener('popstate', onPopState);
     window.addEventListener('keydown', onKeyDown);
+    storyRoot?.addEventListener('wheel', onWheel, { passive: false });
     return () => {
       window.removeEventListener('popstate', onPopState);
       window.removeEventListener('keydown', onKeyDown);
+      storyRoot?.removeEventListener('wheel', onWheel);
+      window.clearTimeout(wheelGesture.resetTimer);
       window.cancelAnimationFrame(animationRef.current);
     };
   }, [pageIndex]);

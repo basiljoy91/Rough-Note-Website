@@ -314,7 +314,7 @@ function PaperMesh({ transitioning = false }: PaperMeshProps) {
     state.camera.lookAt(0, 0.05, 0);
 
     const targetProgress = transitioning ? 1 : 0;
-    const speed = transitioning ? (1 / 7.2) : (1 / 2.0); // unfolds in 7.2s, folds back in 2.0s
+    const speed = transitioning ? (1 / 2.2) : (1 / 1.2);
 
     if (progressRef.current !== targetProgress) {
       if (progressRef.current < targetProgress) {
@@ -454,7 +454,11 @@ function PaperMesh({ transitioning = false }: PaperMeshProps) {
   );
 }
 
-export default function CrumpledPaper3D({ transitioning = false }: { transitioning?: boolean }) {
+export default function CrumpledPaper3D({
+  transitioning = false
+}: {
+  transitioning?: boolean;
+}) {
   return (
     <div className={styles.canvasContainer}>
       <Canvas shadows camera={{ position: [2.5, 1.9, 4.6], fov: 38 }}>

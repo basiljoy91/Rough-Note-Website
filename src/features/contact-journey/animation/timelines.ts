@@ -23,9 +23,11 @@ export function unfoldChallengePaper(
   const arrows = root.querySelectorAll<HTMLElement>('[class*="ballArrow"]');
 
   if (reducedMotion) {
-    const timeline = gsap.timeline();
-    timeline.to(surrounding, { opacity: 0, duration: 0.08 });
-    return timelinePromise(timeline);
+    // Reduced motion is also the deterministic no-animation path. Applying
+    // the final frame synchronously avoids waiting on throttled rAF ticks and
+    // keeps keyboard navigation feeling immediate on low-power devices.
+    gsap.set(surrounding, { opacity: 0 });
+    return Promise.resolve();
   }
 
   const timeline = gsap.timeline();
@@ -49,6 +51,108 @@ export function unfoldChallengePaper(
       },
       0.04
     );
+
+  return timelinePromise(timeline);
+}
+
+/**
+ * Morph the now-flat rough note into the outgoing notebook sheet, then turn it
+ * over the already-mounted challenge page. Keeping the destination in the DOM
+ * for the whole handoff prevents the white frame that used to appear while the
+ * two steps were swapped.
+ */
+export function turnUnfoldedPaperIntoChallenge(
+  root: HTMLElement,
+  reducedMotion = prefersReducedContactMotion()
+): Promise<void> {
+  const outgoing = root.querySelector<HTMLElement>('[data-step="1"]');
+  const incoming = root.querySelector<HTMLElement>(
+    '[data-contact-incoming-page]'
+  );
+  const paper = root.querySelector<HTMLElement>('[data-paper-ball]');
+  const sheet = root.querySelector<HTMLElement>('[data-contact-page-handoff]');
+
+  if (!outgoing || !incoming || !paper || !sheet) return Promise.resolve();
+
+  if (reducedMotion) {
+    gsap.set(incoming, { autoAlpha: 1 });
+    gsap.set(outgoing, { autoAlpha: 0 });
+    gsap.set(incoming, { clearProps: 'opacity,visibility,filter' });
+    return Promise.resolve();
+  }
+
+  const rootRect = root.getBoundingClientRect();
+  const paperRect = paper.getBoundingClientRect();
+  const sourceWidth = Math.min(294, paperRect.width * 0.7);
+  const sourceHeight = sourceWidth * 1.32;
+  const sourceLeft =
+    paperRect.left - rootRect.left + (paperRect.width - sourceWidth) / 2;
+  const sourceTop =
+    paperRect.top - rootRect.top + (paperRect.height - sourceHeight) / 2;
+  const destinationHeight = Math.max(rootRect.height, outgoing.offsetHeight);
+
+  gsap.set(incoming, {
+    autoAlpha: 1,
+    filter: 'brightness(0.94) saturate(0.96)'
+  });
+  gsap.set(outgoing, {
+    position: 'relative',
+    zIndex: 2
+  });
+  gsap.set(sheet, {
+    autoAlpha: 0,
+    borderRadius: 3,
+    filter: 'brightness(1) saturate(1)',
+    height: sourceHeight,
+    left: sourceLeft,
+    rotateY: -2,
+    top: sourceTop,
+    transformOrigin: '0% 50%',
+    width: sourceWidth,
+    x: 0,
+    y: 0
+  });
+
+  const timeline = gsap.timeline();
+  timeline
+    .to(sheet, {
+      autoAlpha: 1,
+      duration: 0.14,
+      ease: 'power1.out'
+    }, 1.42)
+    .to(paper, {
+      autoAlpha: 0,
+      duration: 0.16,
+      ease: 'power1.in'
+    }, 1.42)
+    .to(sheet, {
+      borderRadius: 0,
+      height: destinationHeight,
+      left: 0,
+      top: 0,
+      width: rootRect.width,
+      duration: 0.7,
+      ease: 'power3.inOut'
+    }, 1.5)
+    .set(outgoing, { autoAlpha: 0 }, 2.18)
+    .to(sheet, {
+      rotateY: -176,
+      xPercent: -1.2,
+      filter: 'brightness(0.78) saturate(0.88)',
+      duration: 1.16,
+      ease: 'power3.inOut'
+    }, 2.19)
+    .to(incoming, {
+      filter: 'brightness(1) saturate(1)',
+      duration: 0.62,
+      ease: 'power2.out'
+    }, 2.46)
+    .to(sheet, {
+      autoAlpha: 0,
+      duration: 0.12,
+      ease: 'power1.out'
+    }, 3.24)
+    .set(incoming, { clearProps: 'opacity,visibility,filter' });
 
   return timelinePromise(timeline);
 }

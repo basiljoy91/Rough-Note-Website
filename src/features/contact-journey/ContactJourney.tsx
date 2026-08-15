@@ -8,11 +8,11 @@ import {
   type FormEvent
 } from 'react';
 import { CONTACT_STEPS } from './constants';
-import { gsap } from 'gsap';
 import {
   foldChallengeIntoContact,
   reversePaperStep,
   sealContactEnvelope,
+  turnUnfoldedPaperIntoChallenge,
   unfoldChallengePaper
 } from './animation/timelines';
 import {
@@ -36,6 +36,7 @@ import styles from './rough-note-contact.module.css';
 
 export interface ContactJourneyTransitions {
   unfold: typeof unfoldChallengePaper;
+  handoff: typeof turnUnfoldedPaperIntoChallenge;
   foldToContact: typeof foldChallengeIntoContact;
   sealEnvelope: typeof sealContactEnvelope;
   reverse: typeof reversePaperStep;
@@ -48,6 +49,7 @@ interface ContactJourneyProps {
 
 const DEFAULT_TRANSITIONS: ContactJourneyTransitions = {
   unfold: unfoldChallengePaper,
+  handoff: turnUnfoldedPaperIntoChallenge,
   foldToContact: foldChallengeIntoContact,
   sealEnvelope: sealContactEnvelope,
   reverse: reversePaperStep
@@ -92,8 +94,10 @@ export function ContactJourney({
   );
   const [announcement, setAnnouncement] = useState(STEP_ANNOUNCEMENTS[1]);
   const [resetConfirmation, setResetConfirmation] = useState(false);
+  const [stepTwoPrepared, setStepTwoPrepared] = useState(false);
   const journeyRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const previewHeadingRef = useRef<HTMLHeadingElement>(null);
   const challengeFirstFieldRef = useRef<HTMLSelectElement>(null);
   const contactFirstFieldRef = useRef<HTMLInputElement>(null);
   const actionLockedRef = useRef(false);
@@ -102,6 +106,7 @@ export function ContactJourney({
     () => CONTACT_STEPS.find((step) => step.id === state.currentStep)!,
     [state.currentStep]
   );
+  const challengeStep = CONTACT_STEPS.find((step) => step.id === 2)!;
 
   const focusFirstError = useCallback((errors: ContactErrors) => {
     const field = firstErrorField(errors);
@@ -160,6 +165,7 @@ export function ContactJourney({
       actionLockedRef.current = true;
       dispatch({ type: 'SET_TRANSITION', value: 'folding' });
       void transitions.reverse(journeyRef.current).then(() => {
+        setStepTwoPrepared(requested === 2);
         commitStep(requested, false);
         actionLockedRef.current = false;
       });
@@ -174,56 +180,52 @@ export function ContactJourney({
 
     const workspace = journeyRef.current;
 
-    // 1. Smoothly redirect viewport to the existing Stage-02 paper ball
     const paperBallElement = workspace.querySelector('[data-paper-ball]');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
-    if (
-      paperBallElement instanceof HTMLElement &&
-      typeof paperBallElement.scrollIntoView === 'function'
-    ) {
-      paperBallElement.scrollIntoView({
-        behavior: reducedMotion ? 'auto' : 'smooth',
-        block: 'center',
-        inline: 'nearest'
-      });
+    try {
+      if (
+        paperBallElement instanceof HTMLElement &&
+        typeof paperBallElement.scrollIntoView === 'function'
+      ) {
+        paperBallElement.scrollIntoView({
+          behavior: reducedMotion ? 'auto' : 'smooth',
+          block: 'center',
+          inline: 'nearest'
+        });
 
-      if (!reducedMotion && usesDefaultTransitions) {
-        // Wait for the scroll to finish, plus a short natural settle so the user sees the crumpled ball
-        await new Promise(resolve => window.setTimeout(resolve, 800));
+        if (!reducedMotion && usesDefaultTransitions) {
+          await new Promise((resolve) => window.setTimeout(resolve, 320));
+        }
       }
+
+      if (reducedMotion) {
+        // Do not build or animate the temporary 3D layers when motion is
+        // explicitly reduced. A single state commit avoids an unnecessary
+        // double render and keeps the keyboard handoff immediate.
+        commitStep(2);
+        return;
+      }
+
+      // The destination is mounted first and remains below the current sheet.
+      // This lets the paper itself reveal the form instead of React swapping a
+      // blank workspace in the middle of the animation.
+      setStepTwoPrepared(true);
+      await nextPaint();
+      dispatch({ type: 'SET_TRANSITION', value: 'unfolding' });
+      await Promise.all([
+        transitions.unfold(workspace),
+        transitions.handoff(workspace)
+      ]);
+
+      // This changes only semantics and history; the visible Step 2 node is
+      // preserved, so there is no unmount/remount flash at the end of the turn.
+      commitStep(2);
+    } finally {
+      actionLockedRef.current = false;
     }
-
-    // 2. Trigger Stage-03 unfolding animation on the CrumpledPaper3D component
-    dispatch({ type: 'SET_TRANSITION', value: 'unfolding' });
-
-    // Fade out Step 1 UI
-    await transitions.unfold(workspace);
-
-    // Wait for the 3D paper to finish unfolding (approx 7.2s) plus a short natural settle
-    if (!reducedMotion && usesDefaultTransitions) {
-      await new Promise(resolve => window.setTimeout(resolve, 7600));
-    }
-
-    // 3. Stage 04 - Transition smoothly to Step 02
-    if (!reducedMotion && usesDefaultTransitions) {
-      // Soft fade out the unfolded 3D paper to avoid an abrupt jump
-      await gsap.to(workspace, { opacity: 0, duration: 0.35, ease: 'power2.inOut' });
-    }
-
-    // Mount Step 02 (this will replace Step 01 in the exact same location)
-    commitStep(2);
-    dispatch({ type: 'SET_TRANSITION', value: 'idle' });
-
-    await nextPaint();
-
-    if (!reducedMotion && usesDefaultTransitions) {
-      // Soft fade in the correct Step 02 form
-      await gsap.to(workspace, { opacity: 1, duration: 0.45, ease: 'power2.out' });
-    }
-
-    // Unlock to allow further interaction now that Step 02 is the clear focus
-    actionLockedRef.current = false;
   };
 
   const continueToContact = async (event: FormEvent<HTMLFormElement>) => {
@@ -301,6 +303,7 @@ export function ContactJourney({
     try {
       dispatch({ type: 'SET_TRANSITION', value: 'folding' });
       await transitions.reverse(journeyRef.current);
+      setStepTwoPrepared(step === 2);
       commitStep(step);
       dispatch({ type: 'SET_TRANSITION', value: 'idle' });
     } finally {
@@ -326,6 +329,7 @@ export function ContactJourney({
       return;
     }
     dispatch({ type: 'RESET' });
+    setStepTwoPrepared(false);
     setResetConfirmation(false);
     setAnnouncement(STEP_ANNOUNCEMENTS[1]);
     window.history.replaceState(
@@ -354,17 +358,42 @@ export function ContactJourney({
               onStart={() => void startJourney()}
             />
           )}
-          {state.currentStep === 2 && (
-            <StepTwoChallenge
-              step={activeStep}
-              state={state}
-              dispatch={dispatch}
-              headingRef={headingRef}
-              firstFieldRef={challengeFirstFieldRef}
-              onContinue={(event) => void continueToContact(event)}
-              onBack={() => void goBack(1)}
-              onFile={handleFile}
-            />
+          {(state.currentStep === 2 ||
+            (state.currentStep === 1 && stepTwoPrepared)) && (
+            <div
+              className={
+                state.currentStep === 1
+                  ? styles.incomingStepPreview
+                  : styles.activeStepHost
+              }
+              data-contact-incoming-page={
+                state.currentStep === 1 ? '' : undefined
+              }
+              aria-hidden={state.currentStep === 1 || undefined}
+              inert={state.currentStep === 1}
+            >
+              <StepTwoChallenge
+                step={challengeStep}
+                state={state}
+                dispatch={dispatch}
+                headingRef={
+                  state.currentStep === 1 ? previewHeadingRef : headingRef
+                }
+                firstFieldRef={challengeFirstFieldRef}
+                onContinue={(event) => void continueToContact(event)}
+                onBack={() => void goBack(1)}
+                onFile={handleFile}
+              />
+            </div>
+          )}
+          {state.currentStep === 1 && stepTwoPrepared && (
+            <div
+              className={styles.pageHandoffSheet}
+              data-contact-page-handoff
+              aria-hidden="true"
+            >
+              <span>RN</span>
+            </div>
           )}
           {state.currentStep === 3 && (
             <StepThreeContact
