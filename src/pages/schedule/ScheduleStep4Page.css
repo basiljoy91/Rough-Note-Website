@@ -513,8 +513,10 @@
     padding: 0;
   }
 
-  .notebook-bg {
-    display: none;
+  .notebook-bg,
+  .notebook-bg-split,
+  .notebook-bg-invisible {
+    display: none !important;
   }
 
   .notebook-content {
@@ -523,8 +525,17 @@
     align-items: center;
     background-color: #fdfaf3;
     width: 100%;
-    padding: 40px 20px;
+    padding: 120px 20px 40px 20px !important; /* Compact gap below navbar */
     box-sizing: border-box;
+  }
+
+  .top-info-block {
+    top: 0 !important; /* Clear desktop offset to ensure reliable top gap */
+  }
+
+  /* Shorten underline for mobile */
+  .step-heading-container .heading-underline-sketch {
+    width: 65% !important; /* Proportionate shorter length */
   }
 
   .info-column, .form-column {
@@ -543,7 +554,7 @@
     background-image: url('/assets/images/c-s-m.png');
     background-size: cover;
     background-position: center;
-    padding: 40px 20px 100px 20px; /* Increased bottom padding to avoid collision with torn edge */
+    padding: 40px 20px 140px 20px; /* Increased bottom padding to 140px to compensate for removed internal gaps and keep content inside the card */
     box-sizing: border-box;
     border-radius: 8px;
   }
@@ -559,7 +570,7 @@
 
   .confirmation-content {
     width: 100%;
-    gap: 20px;
+    gap: 0px !important; /* Reduced from 20px to structurally pull the next section upward */
   }
 
   .confirmation-columns {
@@ -578,24 +589,49 @@
     margin-bottom: 20px;
   }
 
+  .confirm-column:last-child {
+    margin-bottom: 0px !important; /* Removed 20px to eliminate the extra vertical gap pushing Before You Confirm down */
+    border-bottom: none;
+  }
+
   .checklist-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Shift handshake sketch downward visually */
+  .handshake-sketch-wrapper {
+    top: -10px !important; /* Adjusted from desktop's -60px */
+  }
+
+  /* Shift 'Almost there...' text downward visually */
+  .inspirational-text {
+    top: -40px !important; /* Adjusted from desktop's -90px */
+  }
+
   .blue-sticky-note {
-    top: -20px;
-    right: -10px;
+    top: -220px !important; /* Brought upward closer to upper content */
+    right: 50px;
   }
 
   .arrow-sketch {
     display: none;
   }
 
+  /* Fix the parent layout controlling the button container width */
+  .notebook-inner-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
   .step-navigation {
     position: relative;
     bottom: auto;
-    left: auto;
-    width: 100%;
+    left: auto !important; /* Clear desktop absolute left shift */
+    margin-left: -160px; /* Shift the entire button group left by an additional 25px */
+    width: 100% !important;
+    box-sizing: border-box;
     max-width: 500px;
     margin-top: 40px;
   }
