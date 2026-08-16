@@ -1,85 +1,85 @@
 {
-  "hash": "4657cd71",
-  "configHash": "9346a972",
+  "hash": "241496ed",
+  "configHash": "97a7c001",
   "lockfileHash": "f89c411d",
-  "browserHash": "7c3e954c",
+  "browserHash": "dde6dd08",
   "optimized": {
     "@react-three/drei": {
       "src": "../../../node_modules/@react-three/drei/index.js",
       "file": "@react-three_drei.js",
-      "fileHash": "7de00b29",
+      "fileHash": "bf30f5c2",
       "needsInterop": false
     },
     "@react-three/fiber": {
       "src": "../../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
       "file": "@react-three_fiber.js",
-      "fileHash": "f84e00ad",
+      "fileHash": "e8cc9d56",
       "needsInterop": false
     },
     "gsap": {
       "src": "../../../node_modules/gsap/index.js",
       "file": "gsap.js",
-      "fileHash": "1e6eda7d",
+      "fileHash": "18dad045",
       "needsInterop": false
     },
-    "gsap/ScrollTrigger": {
-      "src": "../../../node_modules/gsap/ScrollTrigger.js",
-      "file": "gsap_ScrollTrigger.js",
-      "fileHash": "32f4cc7a",
+    "gsap/MotionPathPlugin": {
+      "src": "../../../node_modules/gsap/MotionPathPlugin.js",
+      "file": "gsap_MotionPathPlugin.js",
+      "fileHash": "5c780dc6",
       "needsInterop": false
     },
     "html2canvas": {
       "src": "../../../node_modules/html2canvas/dist/html2canvas.js",
       "file": "html2canvas.js",
-      "fileHash": "c0e9e479",
+      "fileHash": "400a7b48",
       "needsInterop": true
     },
     "lucide-react": {
       "src": "../../../node_modules/lucide-react/dist/esm/lucide-react.mjs",
       "file": "lucide-react.js",
-      "fileHash": "40d15b91",
+      "fileHash": "999b68a1",
       "needsInterop": false
     },
     "react-dom": {
       "src": "../../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "d5fbc2e1",
+      "fileHash": "3188c960",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "35bd5f2e",
+      "fileHash": "38078991",
       "needsInterop": true
     },
     "react": {
       "src": "../../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "7db37b69",
+      "fileHash": "729e8c2c",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "77458b19",
+      "fileHash": "f4c21a8a",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "63f51ce4",
+      "fileHash": "bb5f13fc",
       "needsInterop": true
     },
     "three": {
       "src": "../../../node_modules/three/build/three.module.js",
       "file": "three.js",
-      "fileHash": "72392184",
+      "fileHash": "525011a0",
       "needsInterop": false
     }
   },
   "chunks": {
-    "react-three-fiber.esm-D3TWuu4L": {
-      "file": "react-three-fiber.esm-D3TWuu4L.js",
+    "react-three-fiber.esm-DExQW40j": {
+      "file": "react-three-fiber.esm-DExQW40j.js",
       "isDynamicEntry": false
     },
     "rolldown-runtime-B-1-B7_t": {
