@@ -804,7 +804,7 @@ export function OurWorkPage() {
 // ============================================================================
 // EXPANDED PROJECT ARCHIVE (PART 4 VIEW)
 // ============================================================================
-function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
+export function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
   const [activeFilter, setActiveFilter] = useState('ALL WORK');
   const [sortBy, setSortBy] = useState('Latest');
 

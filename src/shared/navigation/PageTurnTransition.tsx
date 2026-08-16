@@ -16,7 +16,8 @@ import {
 export const PAGE_TURN_DURATION = pageTurnDuration;
 export const PAGE_LOAD_TIMEOUT = 4200;
 export const PAGE_NOTE_SETTLE_DURATION = 720;
-export const PAGE_TURN_HANDOFF_GRACE = 320;
+export const PAGE_TURN_WAIT_PROGRESS = 0.075;
+export const PAGE_TURN_WAIT_DURATION = 260;
 export { PAGE_TURN_ARRIVAL_KEY as PAGE_NOTE_ARRIVAL_KEY } from './transitionState';
 
 type PageTurnState =
@@ -69,7 +70,7 @@ const NAVIGATION_SELECTOR = [
   '[data-notebook-turn][href]'
 ].join(',');
 const MAX_CAPTURE_PIXELS = 3_200_000;
-const MAX_PREFETCHED_DOCUMENTS = 4;
+const MAX_PREFETCHED_DOCUMENTS = 12;
 
 const isPlainPrimaryClick = (event: MouseEvent) =>
   event.button === 0 &&
@@ -151,6 +152,31 @@ const prefetchDocument = (href: string) => {
   document.head.append(link);
 };
 
+const installSpeculationRules = (hrefs: string[]) => {
+  if (
+    !hrefs.length ||
+    document.head.querySelector('[data-rn-speculation-rules]') ||
+    typeof HTMLScriptElement.supports !== 'function' ||
+    !HTMLScriptElement.supports('speculationrules')
+  ) {
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.type = 'speculationrules';
+  script.dataset.rnSpeculationRules = 'true';
+  script.textContent = JSON.stringify({
+    prefetch: [
+      {
+        source: 'list',
+        urls: hrefs,
+        eagerness: 'moderate'
+      }
+    ]
+  });
+  document.head.append(script);
+};
+
 const removeDuplicateAccessibilityTree = (clone: HTMLElement) => {
   clone.setAttribute('aria-hidden', 'true');
   clone.setAttribute('inert', '');
@@ -224,6 +250,54 @@ const createPaperTurnFallback = (surface: HTMLElement) => {
   return canvas;
 };
 
+const waitForStableDestinationLayout = async (frame: HTMLIFrameElement) => {
+  const frameWindow = frame.contentWindow;
+  const frameDocument = frame.contentDocument;
+  if (!frameWindow || !frameDocument) return;
+
+  const nextFrame = () =>
+    new Promise<void>((resolve) =>
+      frameWindow.requestAnimationFrame(() => resolve())
+    );
+  const startedAt = performance.now();
+  let stableFrames = 0;
+  let previousSignature = '';
+
+  while (stableFrames < 3 && performance.now() - startedAt < 900) {
+    await nextFrame();
+    const surface = frameDocument.querySelector<HTMLElement>('.rn-page-surface');
+    const body = frameDocument.body;
+    const sample = [
+      surface,
+      frameDocument.querySelector<HTMLElement>('main'),
+      ...Array.from(
+        frameDocument.querySelectorAll<HTMLElement>(
+          'main > :not(script):not(style), [data-page-heading]'
+        )
+      ).slice(0, 10)
+    ].filter((element): element is HTMLElement => Boolean(element));
+    const signature = [
+      surface?.scrollWidth ?? body.scrollWidth,
+      surface?.scrollHeight ?? body.scrollHeight
+    ]
+      .concat(
+        sample.flatMap((element) => {
+          const rect = element.getBoundingClientRect();
+          return [rect.left, rect.top, rect.width, rect.height];
+        })
+      )
+      .map((value) => Math.round(value))
+      .join(':');
+
+    if (signature === previousSignature && !/^0(?::0)*$/.test(signature)) {
+      stableFrames += 1;
+    } else {
+      stableFrames = 0;
+      previousSignature = signature;
+    }
+  }
+};
+
 const waitForDestinationDocument = async (frame: HTMLIFrameElement) => {
   try {
     const frameDocument = frame.contentDocument;
@@ -231,7 +305,7 @@ const waitForDestinationDocument = async (frame: HTMLIFrameElement) => {
     if (frameDocument.fonts?.ready) {
       await Promise.race([
         frameDocument.fonts.ready,
-        new Promise<void>((resolve) => window.setTimeout(resolve, 450))
+        new Promise<void>((resolve) => window.setTimeout(resolve, 1600))
       ]);
     }
     const images = Array.from(frameDocument.images).filter((image) => {
@@ -240,9 +314,10 @@ const waitForDestinationDocument = async (frame: HTMLIFrameElement) => {
     });
     await Promise.race([
       Promise.all(images.map((image) => image.decode().catch(() => undefined))),
-      new Promise<void>((resolve) => window.setTimeout(resolve, 450))
+      new Promise<void>((resolve) => window.setTimeout(resolve, 900))
     ]);
     frame.contentWindow?.scrollTo({ left: 0, top: 0, behavior: 'auto' });
+    await waitForStableDestinationLayout(frame);
   } catch {
     // A same-origin document is expected. If browser privacy settings make the
     // iframe opaque, its load event still guarantees a paintable destination.
@@ -299,17 +374,7 @@ const createTurnStage = (
   const destinationReady = new Promise<void>((resolve, reject) => {
     let preparing = false;
     let settled = false;
-    const timeout = window.setTimeout(
-      () => {
-        if (settled) return;
-        settled = true;
-        signal.removeEventListener('abort', abort);
-        // The navigation itself remains reliable even if its paint-only
-        // preview is unavailable. The outgoing paper still completes its curl.
-        resolve();
-      },
-      PAGE_LOAD_TIMEOUT
-    );
+    let timeout = 0;
     const finish = () => {
       if (settled) return;
       settled = true;
@@ -331,6 +396,7 @@ const createTurnStage = (
       window.clearTimeout(timeout);
       reject(new DOMException('Navigation cancelled.', 'AbortError'));
     };
+    timeout = window.setTimeout(finish, PAGE_LOAD_TIMEOUT);
     signal.addEventListener('abort', abort, { once: true });
     destination.addEventListener('load', prepare, { once: true });
   });
@@ -551,38 +617,59 @@ export function PageTurnProvider() {
       stage.element.classList.add('rn-page-turn--ready');
       setState('turning');
       const startTime = performance.now();
+      let destinationReady = false;
+      let revealStartedAt = 0;
+      let heldProgress = 0;
 
-      const completeHandoff = () => {
-        let settled = false;
-        const finish = () => {
-          if (settled || disposed || id !== requestId) return;
-          settled = true;
-          // Give the ready iframe one real painted frame before the browser
-          // captures the cross-document handoff. Without this frame boundary,
-          // navigation can snapshot the old paper background even though the
-          // destination-ready class was already applied.
-          animationFrame = window.requestAnimationFrame(commitNavigation);
-        };
-
-        // Usually the destination iframe has finished before the curl does.
-        // If a late font or image is still settling, keep the completed lower
-        // sheet in place briefly so the top-level document never replaces it
-        // with an intermediate layout.
-        void stage.destinationReady.then(finish, finish);
-        schedule(finish, PAGE_TURN_HANDOFF_GRACE);
-      };
+      void stage.destinationReady.then(
+        () => {
+          destinationReady = true;
+          revealStartedAt = performance.now();
+        },
+        () => {
+          destinationReady = true;
+          revealStartedAt = performance.now();
+        }
+      );
 
       const step = (timestamp: number) => {
         if (disposed || id !== requestId || state !== 'turning') return;
-        const elapsed = clamp((timestamp - startTime) / pageTurnDuration, 0, 1);
-        drawPageCurl(turningCanvas, easePageTurn(elapsed), 'next');
-        if (elapsed < 1) {
+        let progress: number;
+
+        if (!destinationReady) {
+          const waitProgress = clamp(
+            (timestamp - startTime) / PAGE_TURN_WAIT_DURATION,
+            0,
+            1
+          );
+          heldProgress = PAGE_TURN_WAIT_PROGRESS * waitProgress;
+          progress = heldProgress;
+        } else {
+          const remainingDuration = Math.max(
+            1,
+            pageTurnDuration * (1 - heldProgress)
+          );
+          const revealProgress = clamp(
+            (timestamp - revealStartedAt) / remainingDuration,
+            0,
+            1
+          );
+          progress = heldProgress + (1 - heldProgress) * revealProgress;
+        }
+
+        drawPageCurl(turningCanvas, easePageTurn(progress), 'next');
+        if (progress < 1) {
           animationFrame = window.requestAnimationFrame(step);
           return;
         }
         setState('settling');
         stage.element.classList.add('rn-page-turn--settling');
-        completeHandoff();
+        // The lower-sheet iframe is stable at this point. Two frame boundaries
+        // let its final compositor state become the outgoing view-transition
+        // snapshot before the top-level document is replaced.
+        animationFrame = window.requestAnimationFrame(() => {
+          animationFrame = window.requestAnimationFrame(commitNavigation);
+        });
       };
 
       animationFrame = window.requestAnimationFrame(step);
@@ -764,7 +851,9 @@ export function PageTurnProvider() {
     root.removeAttribute('aria-busy');
     setState('idle');
     restoreArrivalFocus();
-    getNavigationDestinations().forEach(prefetchDocument);
+    const navigationDestinations = getNavigationDestinations();
+    navigationDestinations.forEach(prefetchDocument);
+    installSpeculationRules(navigationDestinations);
     scheduleWarmCapture();
 
     document.addEventListener('click', onNavigationClick, true);

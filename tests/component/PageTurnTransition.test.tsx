@@ -20,7 +20,7 @@ describe('PageTurnTransition', () => {
     vi.useFakeTimers();
     window.history.replaceState({}, '', '/html/index.html?animated=true');
     document.head
-      .querySelectorAll('[data-rn-prefetch]')
+      .querySelectorAll('[data-rn-prefetch], [data-rn-speculation-rules]')
       .forEach((element) => element.remove());
     Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
       configurable: true,
@@ -156,6 +156,41 @@ describe('PageTurnTransition', () => {
 
     expect(document.head.querySelectorAll('link[data-rn-prefetch]')).toHaveLength(2);
     expect(document.querySelector('.rn-page-turn')).not.toBeInTheDocument();
+  });
+
+  it('uses moderate speculation prefetching when the browser supports it', () => {
+    Object.defineProperty(HTMLScriptElement, 'supports', {
+      configurable: true,
+      value: vi.fn((feature: string) => feature === 'speculationrules')
+    });
+    document.body.innerHTML = `
+      <header class="header">
+        <a href="/html/services.html">Services</a>
+        <a href="/html/work.html">Our Work</a>
+      </header>
+      <div class="rn-page-surface"><main>Current paper</main></div>
+      <div id="transition-root"></div>
+    `;
+
+    render(<PageTurnTransition />, {
+      container: document.getElementById('transition-root') as HTMLElement
+    });
+
+    const rules = document.querySelector<HTMLScriptElement>(
+      '[data-rn-speculation-rules]'
+    );
+    const parsed = JSON.parse(rules?.textContent ?? '{}') as {
+      prefetch?: Array<{ eagerness?: string; urls?: string[] }>;
+    };
+
+    expect(rules).toHaveAttribute('type', 'speculationrules');
+    expect(parsed.prefetch?.[0]?.eagerness).toBe('moderate');
+    expect(parsed.prefetch?.[0]?.urls).toEqual(
+      expect.arrayContaining([
+        expect.stringContaining('/html/services.html'),
+        expect.stringContaining('/html/work.html')
+      ])
+    );
   });
 
   it('settles the new page note after a cross-page navigation arrives', () => {

@@ -2,6 +2,7 @@ import {
   forwardRef,
   useId,
   type ButtonHTMLAttributes,
+  type HTMLAttributes,
   type InputHTMLAttributes,
   type ReactNode,
   type SelectHTMLAttributes,
@@ -49,14 +50,17 @@ export function TapeStrip({ className = '' }: { className?: string }) {
 export function StickyNote({
   tone,
   children,
-  className = ''
-}: {
+  className = '',
+  ...props
+}: HTMLAttributes<HTMLElement> & {
   tone: ContactAccent;
   children: ReactNode;
-  className?: string;
 }) {
   return (
-    <aside className={`${styles.stickyNote} ${styles[tone]} ${className}`}>
+    <aside
+      className={`${styles.stickyNote} ${styles[tone]} ${className}`}
+      {...props}
+    >
       <TapeStrip />
       {children}
     </aside>

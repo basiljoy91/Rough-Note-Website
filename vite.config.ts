@@ -6,6 +6,52 @@ import { defineConfig } from 'vite';
 
 const page = (file: string) => resolve(process.cwd(), file);
 
+function pageTurnBootstrap() {
+  const style = `
+    @view-transition { navigation: auto; }
+    html, body { min-height: 100%; background: #f5efdf; }
+  `;
+  const source = `(() => {
+    const root = document.documentElement;
+    const key = 'rough-note-page-note-arrival';
+    let preview = window.name === 'rough-note-transition-preview';
+    try {
+      preview = preview || Boolean(window.frameElement?.classList.contains('rn-page-turn__destination'));
+    } catch {}
+    if (preview) {
+      root.classList.add('rn-page-turn-preview');
+      root.dataset.pageTurnState = 'preview';
+      return;
+    }
+    try {
+      if (window.sessionStorage.getItem(key)) root.dataset.pageTurnArrival = 'pending';
+    } catch {}
+  })();`;
+
+  return {
+    name: 'page-turn-bootstrap',
+    transformIndexHtml: {
+      order: 'pre' as const,
+      handler() {
+        return [
+          {
+            tag: 'style',
+            attrs: { 'data-rn-page-turn-bootstrap-style': '' },
+            children: style,
+            injectTo: 'head-prepend' as const
+          },
+          {
+            tag: 'script',
+            attrs: { 'data-rn-page-turn-bootstrap': '' },
+            children: source,
+            injectTo: 'head-prepend' as const
+          }
+        ];
+      }
+    }
+  };
+}
+
 function sitesStaticWorker() {
   return {
     name: 'sites-static-worker',
@@ -65,7 +111,12 @@ function localNotFoundFallback() {
 
 export default defineConfig({
   cacheDir: '.cache/vite',
-  plugins: [react(), sitesStaticWorker(), localNotFoundFallback()],
+  plugins: [
+    pageTurnBootstrap(),
+    react(),
+    sitesStaticWorker(),
+    localNotFoundFallback()
+  ],
   publicDir: 'public',
   server: {
     // Some local browser profiles block Vite's inline React Refresh preamble.

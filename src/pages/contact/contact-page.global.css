@@ -1,0 +1,105 @@
+/*
+ * Contact-page proof sequence
+ *
+ * The opening rough-note journey remains the first page. The archive and
+ * client board reuse the exact project and testimonial artwork from the Work
+ * and Home pages, with only their paper handoffs tightened for this route.
+ */
+
+.contact-work-showcase {
+  background:
+    radial-gradient(ellipse at 50% 0, rgb(255 255 255 / 52%), transparent 38%),
+    #f2eadc;
+  margin-top: -38px;
+  overflow: hidden;
+  padding-top: clamp(58px, 6vw, 92px);
+  position: relative;
+}
+
+.contact-work-showcase .ow-expanded-archive-section {
+  padding-bottom: clamp(58px, 6vw, 92px);
+}
+
+.contact-work-showcase .ow-ea-paper {
+  margin-inline: auto;
+}
+
+.contact-client-proof {
+  background: #f2eadc;
+  position: relative;
+}
+
+.contact-client-proof .trusted-companies {
+  margin-top: -42px;
+  padding-top: clamp(76px, 7vw, 108px);
+}
+
+/* The Contact reference begins at the testimonial board, below the logos. */
+.contact-client-proof :is(
+  .trusted-companies__page,
+  .trusted-companies__page-mark,
+  .trusted-companies__heading,
+  .trusted-companies__note,
+  .trusted-companies__arrow,
+  .trusted-companies__strip
+) {
+  display: none;
+}
+
+.contact-client-proof .trusted-companies__inner {
+  box-sizing: border-box;
+  min-height: 760px;
+  padding-top: 82px;
+}
+
+.contact-client-proof .trusted-companies__caption {
+  margin-top: 0;
+  top: 0;
+}
+
+.contact-client-proof .trusted-companies__caption--center {
+  margin-top: 0;
+}
+
+.contact-client-proof .trusted-companies__reviews-heading {
+  margin-top: 0;
+}
+
+.contact-client-proof .trusted-companies__impact {
+  top: 0;
+}
+
+.contact-client-proof .trusted-companies__side-note {
+  top: 250px;
+}
+
+@media (max-width: 1200px) {
+  .contact-work-showcase .ow-ea-content {
+    padding-top: clamp(58px, 7vw, 86px);
+  }
+}
+
+@media (max-width: 680px) {
+  .contact-work-showcase {
+    margin-top: -22px;
+    padding-top: 48px;
+  }
+
+  .contact-client-proof .trusted-companies {
+    margin-top: -28px;
+    padding-top: 68px;
+  }
+
+  .contact-client-proof .trusted-companies__inner {
+    min-height: auto;
+    padding-top: 100px;
+  }
+
+  .contact-client-proof .trusted-companies__caption--center {
+    margin-top: 46px;
+  }
+
+  .contact-client-proof .trusted-companies__reviews-heading {
+    margin-top: 0;
+  }
+}

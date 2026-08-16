@@ -37,12 +37,13 @@
   to { opacity: 0; }
 }
 
-/* Destination documents arrive behind a preview that has all local motion
-   disabled. Pause their finite entry animations at the first frame; the
-   controller finishes them before the native snapshot is released. */
+/* Destination documents arrive behind a preview with finite entry motion held
+   at its settled frame. The controller finishes the real animations before the
+   native snapshot is released, so both layers retain identical geometry. */
 html[data-page-turn-arrival="pending"] .rn-page-surface *,
 html[data-page-turn-arrival="pending"] .rn-page-surface *::before,
 html[data-page-turn-arrival="pending"] .rn-page-surface *::after {
+  animation-delay: -9999s !important;
   animation-play-state: paused !important;
   transition-duration: 0s !important;
 }
@@ -61,7 +62,8 @@ html[data-page-turn-arrival="pending"] .rn-page-surface *::after {
 html.rn-page-turn-preview *,
 html.rn-page-turn-preview *::before,
 html.rn-page-turn-preview *::after {
-  animation: none !important;
+  animation-delay: -9999s !important;
+  animation-play-state: paused !important;
   scroll-behavior: auto !important;
   transition: none !important;
 }
