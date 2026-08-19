@@ -1,12 +1,21 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { subscribeToNewsletter } from '../newsletterSubmission';
 import { HandDrawnUnderline } from './FooterTypography';
 import styles from './notebook-footer.module.css';
 
 interface PaperInputProps {
   onFocusChange: (focused: boolean) => void;
+  value: string;
+  disabled: boolean;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function PaperInput({ onFocusChange }: PaperInputProps) {
+export function PaperInput({
+  onFocusChange,
+  value,
+  disabled,
+  onChange
+}: PaperInputProps) {
   return (
     <label className={styles.paperInputWrap}>
       <span className={styles.srOnly}>Email address</span>
@@ -17,6 +26,10 @@ export function PaperInput({ onFocusChange }: PaperInputProps) {
         placeholder="Your email address"
         autoComplete="email"
         required
+        value={value}
+        disabled={disabled}
+        aria-describedby="newsletter-consent newsletter-status"
+        onChange={onChange}
         onFocus={() => onFocusChange(true)}
         onBlur={() => onFocusChange(false)}
       />
@@ -28,13 +41,21 @@ export function PaperInput({ onFocusChange }: PaperInputProps) {
 
 interface SubscribePaperButtonProps {
   submitted: boolean;
+  submitting: boolean;
 }
 
-export function PaperButton({ submitted }: SubscribePaperButtonProps) {
+export function PaperButton({
+  submitted,
+  submitting
+}: SubscribePaperButtonProps) {
   return (
     <span className={styles.subscribeAction}>
-      <button className={styles.subscribeButton} type="submit">
-        Subscribe
+      <button
+        className={styles.subscribeButton}
+        type="submit"
+        disabled={submitting}
+      >
+        {submitting ? 'Sending…' : submitted ? 'Check inbox' : 'Subscribe'}
       </button>
       <svg
         className={`${styles.subscribeCheck} ${
@@ -52,21 +73,55 @@ export function PaperButton({ submitted }: SubscribePaperButtonProps) {
 
 interface NewsletterCardProps {
   onFocusChange: (focused: boolean) => void;
+  subscribeRequest?: typeof subscribeToNewsletter;
 }
 
-export function NewsletterCard({ onFocusChange }: NewsletterCardProps) {
-  const [submitted, setSubmitted] = useState(false);
-  const formRef = useRef<HTMLFormElement | null>(null);
+type SubmissionState = 'idle' | 'submitting' | 'accepted' | 'error';
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+export function NewsletterCard({
+  onFocusChange,
+  subscribeRequest = subscribeToNewsletter
+}: NewsletterCardProps) {
+  const [email, setEmail] = useState('');
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!event.currentTarget.reportValidity()) return;
-    setSubmitted(false);
-    window.requestAnimationFrame(() => setSubmitted(true));
+    if (submissionState === 'submitting' || !event.currentTarget.reportValidity()) {
+      return;
+    }
+    const honeypotValue = new FormData(event.currentTarget).get(
+      'websiteAddress2'
+    );
+    setSubmissionState('submitting');
+    setErrorMessage('');
     onFocusChange(false);
-    const input = formRef.current?.elements.namedItem('email');
-    if (input instanceof HTMLInputElement) input.blur();
+    try {
+      await subscribeRequest(
+        email,
+        typeof honeypotValue === 'string' ? honeypotValue : ''
+      );
+      setSubmissionState('accepted');
+    } catch (error) {
+      setSubmissionState('error');
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'We could not start your subscription. Please try again.'
+      );
+    }
   };
+
+  const changeEmail = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+    if (submissionState !== 'idle') setSubmissionState('idle');
+    if (errorMessage) setErrorMessage('');
+  };
+
+  const submitted = submissionState === 'accepted';
+  const submitting = submissionState === 'submitting';
 
   return (
     <section
@@ -81,17 +136,45 @@ export function NewsletterCard({ onFocusChange }: NewsletterCardProps) {
         Note.
       </p>
       <form
-        ref={formRef}
         className={styles.newsletterForm}
-        onSubmit={submit}
+        onSubmit={(event) => void submit(event)}
         data-drawing-exclusion
       >
-        <PaperInput onFocusChange={onFocusChange} />
-        <PaperButton submitted={submitted} />
-        <span className={styles.srOnly} role="status" aria-live="polite">
-          {submitted ? 'Subscription request noted.' : ''}
-        </span>
+        <div className={styles.newsletterHoneypot} aria-hidden="true">
+          <label htmlFor="newsletter-website-address-2">Website address 2</label>
+          <input
+            id="newsletter-website-address-2"
+            name="websiteAddress2"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+        <PaperInput
+          onFocusChange={onFocusChange}
+          value={email}
+          disabled={submitting}
+          onChange={changeEmail}
+        />
+        <PaperButton submitted={submitted} submitting={submitting} />
       </form>
+      <div className={styles.newsletterFeedback}>
+        <p id="newsletter-consent" className={styles.newsletterConsent}>
+          We&apos;ll email a confirmation link. Unsubscribe anytime.
+        </p>
+        <p
+          id="newsletter-status"
+          className={`${styles.newsletterStatus} ${
+            submissionState === 'error' ? styles.newsletterStatusError : ''
+          }`}
+          role={submissionState === 'error' ? 'alert' : 'status'}
+          aria-live="polite"
+        >
+          {submitted
+            ? 'Check your inbox to confirm your subscription.'
+            : errorMessage}
+        </p>
+      </div>
     </section>
   );
 }

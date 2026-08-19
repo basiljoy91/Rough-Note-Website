@@ -15,7 +15,7 @@
   color: var(--journey-ink);
   background:
     linear-gradient(rgb(250 247 239 / 80%), rgb(250 247 239 / 80%)),
-    url('/assets/images/Services_Div1_Background.png') center / cover;
+    url('/assets/images/Services_Div1_Background.webp') center / cover;
   font-family: 'Kalam', 'Caveat', cursive;
   clip-path: var(--rn-paper-tear-top);
 }
@@ -48,7 +48,7 @@
   transform: rotate(5deg);
   opacity: 0.72;
   filter: drop-shadow(-8px 10px 9px rgb(58 42 23 / 14%));
-  background: #e2cfad url('/assets/images/Paper_Strip.png') center / cover;
+  background: #e2cfad url('/assets/images/Paper_Strip.webp') center / cover;
   clip-path: polygon(4% 0, 100% 0, 100% 100%, 87% 94%, 78% 100%, 68% 93%, 57% 100%, 47% 92%, 35% 99%, 26% 91%, 14% 97%, 3% 88%);
 }
 

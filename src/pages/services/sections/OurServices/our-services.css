@@ -10,7 +10,7 @@
   overflow: hidden;
   /* Continue the same photographed, worn brown paper used by the section
      above so the torn edge reads as one sheet rather than a colour change. */
-  background: #eee2ce url('/assets/images/Services_Div1_Background.png') center top / cover no-repeat;
+  background: #eee2ce url('/assets/images/Services_Div1_Background.webp') center top / cover no-repeat;
   clip-path: var(--rn-paper-tear-top);
 }
 

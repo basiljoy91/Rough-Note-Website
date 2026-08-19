@@ -54,6 +54,7 @@ The browser sends `multipart/form-data` with these fields:
 | `website` | No | Website address |
 | `role` | Yes | Selected role |
 | `source` | Yes | Always `rough-note-contact-journey` |
+| `companyAddress2` | No | Invisible anti-spam honeypot; humans leave it empty |
 | `referenceFile` | No | JPG, JPEG, PNG, WEBP, PDF, DOC, or DOCX; maximum 5 MB |
 
 The server must enforce the same validation, apply the project's rate limiting
@@ -89,6 +90,16 @@ or:
 
 Requests time out after 15 seconds. Failure restores the editable contact sheet
 with all values and the selected file preserved in memory.
+
+The production implementation is an Express route in `server/routes/contact.ts`.
+It validates every field again, checks the upload's extension and binary
+signature, applies origin and MySQL-backed IP/email limits, writes the
+submission and pending notification in one transaction, and only then attempts
+the studio email. A failed or timed-out email remains recorded as `failed`; the
+durable submission ID is still returned so a lead is not duplicated by a retry.
+
+The Hostinger deployment and live verification steps are in
+[`docs/hostinger-contact-backend.md`](./hostinger-contact-backend.md).
 
 ## State and privacy
 

@@ -518,6 +518,43 @@
   width: min(452px, calc(100% - 10px));
 }
 
+.newsletterHoneypot {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.newsletterFeedback {
+  min-height: 48px;
+}
+
+.newsletterConsent,
+.newsletterStatus {
+  font-family: "Kalam", cursive;
+  font-size: 14px;
+  line-height: 1.35;
+  margin: 9px 12px 0 18px;
+  min-height: 19px;
+}
+
+.newsletterConsent {
+  color: rgb(53 49 44 / 75%);
+}
+
+.newsletterStatus {
+  color: #4f702f;
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+.newsletterStatusError {
+  color: #9a3127;
+}
+
 .paperInputWrap {
   background:
     radial-gradient(circle at 21% 31%, rgb(99 70 38 / 6%) 0 0.7px, transparent 1.25px)
@@ -647,6 +684,12 @@
     0 11px 15px rgb(75 43 18 / 23%),
     inset 0 1px 0 rgb(255 255 255 / 28%);
   transform: translateY(-3px) rotate(0.6deg);
+}
+
+.subscribeButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
 }
 
 .subscribeButton:active {

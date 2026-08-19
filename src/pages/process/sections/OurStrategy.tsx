@@ -22,7 +22,7 @@ export const ourStrategyMarkup = `
       </div>
 
       <div class="strategy-sticky-top-right">
-        <img src="/assets/images/sticky-note-philosophy-bg-clean.png" class="strategy-sticky-bg" alt="" aria-hidden="true" />
+        <img src="/assets/images/sticky-note-philosophy-bg-clean.webp" class="strategy-sticky-bg" alt="" aria-hidden="true" />
         <div class="push-pin-black"></div>
         <div class="strategy-sticky-content">
           <p>We focus on<br/>outcomes.</p>
@@ -154,7 +154,7 @@ export const ourStrategyMarkup = `
 
       <!-- Solutions -->
       <div class="strategy-solutions">
-        <img src="/assets/images/c-3.png" class="solutions-bg" alt="" aria-hidden="true" />
+        <img src="/assets/images/c-3.webp" class="solutions-bg" alt="" aria-hidden="true" />
         <div class="paper-clip paper-clip--left-top"></div>
         <div class="solutions-content">
           <h3><span class="heading-underline">Our Strategic Solutions</span></h3>
@@ -237,7 +237,7 @@ export const ourStrategyMarkup = `
             </g>
           </svg>
 
-          <img src="/assets/images/s-l-m.png" class="ecosystem-img" alt="Ecosystem Illustration" />
+          <img src="/assets/images/s-l-m.webp" class="ecosystem-img" alt="Ecosystem Illustration" />
 
           <div class="eco-node eco-node--top">
             <div class="eco-badge eco-badge--yellow"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5"><polygon points="12 2 15 10 23 12 15 14 12 22 9 14 1 12 9 10 12 2"/></svg></div>
@@ -268,7 +268,7 @@ export const ourStrategyMarkup = `
 
       <!-- Results -->
       <div class="strategy-results">
-        <img src="/assets/images/c-3.png" class="results-bg" alt="" aria-hidden="true" />
+        <img src="/assets/images/c-3.webp" class="results-bg" alt="" aria-hidden="true" />
         <div class="paper-clip paper-clip--right-top"></div>
         <div class="results-content">
           <h3><span class="heading-underline">The Results You'll Experience</span></h3>
@@ -375,7 +375,7 @@ export const ourStrategyMarkup = `
       </div>
 
       <div class="strategy-cta-sticky">
-        <img src="/assets/images/sticky-note-div3-bg.png" class="cta-sticky-bg" alt="" aria-hidden="true" />
+        <img src="/assets/images/sticky-note-div3-bg.webp" class="cta-sticky-bg" alt="" aria-hidden="true" />
         <div class="cta-sticky-content">
           <h3><span class="heading-underline">Let's Build Your<br/>Growth Story.</span></h3>
           <svg class="cta-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="none" stroke="#d32f2f" stroke-width="1.5"/></svg>

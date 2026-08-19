@@ -250,7 +250,7 @@
   right: 0px;
   width: 600px;
   height: 440px;
-  background-image: url('/assets/images/sticky-note-div3-bg.png');
+  background-image: url('/assets/images/sticky-note-div3-bg.webp');
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -416,7 +416,7 @@
 
 .d5-wireframe-paper {
   position: absolute;
-  background-image: url('/assets/images/sticky-note-1-bg-clean.png');
+  background-image: url('/assets/images/sticky-note-1-bg-clean.webp');
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -781,7 +781,7 @@
   bottom: 105px;
   left: 25px;
   transform: rotate(5deg);
-  background-image: url('/assets/images/sticky-note-1-bg-clean.png');
+  background-image: url('/assets/images/sticky-note-1-bg-clean.webp');
   background-size: cover;
   background-position: center;
   background-color: transparent;
@@ -817,7 +817,7 @@
   top: -10px;
   right: -160px;
   transform: rotate(4deg);
-  background-image: url('/assets/images/sticky-note-5-bg-clean.png');
+  background-image: url('/assets/images/sticky-note-5-bg-clean.webp');
   background-size: cover;
   background-position: center;
   background-color: transparent;
@@ -1310,7 +1310,7 @@
   top: 100px;
   right: 25px;
   transform: rotate(6deg);
-  background-image: url('/assets/images/sticky-note-1-bg-clean.png');
+  background-image: url('/assets/images/sticky-note-1-bg-clean.webp');
   background-size: cover;
   background-position: center;
   background-color: transparent;

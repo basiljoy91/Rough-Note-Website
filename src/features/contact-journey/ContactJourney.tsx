@@ -266,7 +266,14 @@ export function ContactJourney({
     setAnnouncement('Sending your rough note.');
 
     try {
-      const result = await submitRequest(state);
+      const honeypotValue = new FormData(event.currentTarget).get(
+        'companyAddress2'
+      );
+      const result = await submitRequest(
+        state,
+        undefined,
+        typeof honeypotValue === 'string' ? honeypotValue : ''
+      );
       const formPaper = journeyRef.current.querySelector<HTMLElement>(
         '[data-torn-form-paper]'
       );

@@ -21,7 +21,7 @@ export interface FounderSceneAsset {
   source: string;
 }
 
-export const founderCutoutSource = '/assets/images/our-story/founders-cutouts.png';
+export const founderCutoutSource = '/assets/images/our-story/founders-cutouts.webp';
 
 export const founderContent: Record<FounderKey, FounderProfileContent> = {
   kannan: {

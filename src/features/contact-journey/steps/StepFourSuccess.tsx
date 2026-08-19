@@ -45,7 +45,7 @@ export function StepFourSuccess({
     >
       <div className={styles.successComposition}>
         <div className={styles.finalInvitation}>
-          <img src="/assets/images/invt.png" alt="Your rough note has been received." />
+          <img src="/assets/images/invt.webp" alt="Your rough note has been received." />
         </div>
         {submissionId && (
           <p className={styles.confirmationNumber}>

@@ -114,7 +114,7 @@ export function OurWorkPage() {
             <div className="ow-checklist-container">
               <div className="ow-checklist-wrapper">
                 <img
-                  src="/assets/images/new.png"
+                  src="/assets/images/new.webp"
                   className="ow-checklist-img"
                   alt="Delivered, Tested, Approved, Out in the world checklist"
                 />
@@ -525,7 +525,7 @@ export function OurWorkPage() {
                   {/* Realistic 3D Packaging Prototype */}
                   <div style={{ width: '100%', height: '140px', position: 'relative' }}>
                     <img
-                      src="/assets/images/JSB Packaging.png"
+                      src="/assets/images/JSB-Packaging.webp"
                       alt="3D Packaging Concept"
                       style={{
                         width: '100%',
@@ -583,7 +583,7 @@ export function OurWorkPage() {
                         <path d="M9 3 C3.5 3 3.5 53 9 53 C14.5 53 14.5 10 9 10 C5.5 10 5.5 46 9 46" stroke="#999" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
                       </svg>
                     )}
-                    <img src="/assets/images/c-s-m.png" className="ow-proj-card-bg" alt="" aria-hidden="true" />
+                    <img src="/assets/images/c-s-m.webp" className="ow-proj-card-bg" alt="" aria-hidden="true" />
                     <div className="ow-proj-card-inner">
                       <div className="ow-proj-img-wrap">
                         <img
@@ -659,7 +659,7 @@ export function OurWorkPage() {
                 <div className="ow-p3-photo-frame">
                   <div className="ow-p3-tape"></div>
                   <div className="ow-p3-photo-inner">
-                    <img src="/assets/images/GR studio.png" alt="Nova ERP Dashboard" className="ow-p3-main-img" />
+                    <img src="/assets/images/GR-studio.webp" alt="Nova ERP Dashboard" className="ow-p3-main-img" />
                   </div>
                 </div>
               </div>
@@ -880,7 +880,7 @@ export function ExpandedProjectArchive({ onBack }: { onBack: () => void }) {
           <div className="ow-ea-grid">
             {filteredProjects.map((proj, idx) => (
               <article className="ow-ea-card" key={idx}>
-                <img src="/assets/images/c-s-m.png" className="ow-ea-card-bg" alt="" aria-hidden="true" />
+                <img src="/assets/images/c-s-m.webp" className="ow-ea-card-bg" alt="" aria-hidden="true" />
                 <div className="ow-ea-card-inner">
                   <div className="ow-ea-img-wrap">
                     <img

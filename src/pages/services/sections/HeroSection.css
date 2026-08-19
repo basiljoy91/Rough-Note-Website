@@ -2,7 +2,7 @@
 
 /* Keep Div-1 flush with the navigation/page edge: no inherited page spacing. */
 main:has(> .services-hero) { margin:0; padding:0; }
-.services-hero { --ink:#201b16; --orange:#df7200; --hero-side-inset:clamp(56px,6.25%,110px); position:relative; min-height:720px; margin:0; overflow:hidden; padding:32px var(--hero-side-inset) 25px; color:var(--ink); background:#eee2ce url('/assets/images/Services_Div1_Background.png') center top/100% 100% no-repeat; font-family:"Kalam", "Caveat", cursive; }
+.services-hero { --ink:#201b16; --orange:#df7200; --hero-side-inset:clamp(56px,6.25%,110px); position:relative; min-height:720px; margin:0; overflow:hidden; padding:32px var(--hero-side-inset) 25px; color:var(--ink); background:#eee2ce url('/assets/images/Services_Div1_Background.webp') center top/100% 100% no-repeat; font-family:"Kalam", "Caveat", cursive; }
 .services-hero::after { content:none; }
 /* The supplied background already contains the exact paper perforations and coffee ring. */
 .services-hero__binding { display:none; }

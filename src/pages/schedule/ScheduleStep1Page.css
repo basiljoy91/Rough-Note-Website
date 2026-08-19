@@ -147,7 +147,7 @@
   bottom: 2%; /* Moved up */
   left: 35%; /* Moved left */
   width: clamp(90px, 5vw, 80px); /* Reduced size by ~20% */
-  aspect-ratio: 1.05; /* Approx aspect ratio of sticky-note-6-bg-clean.png */
+  aspect-ratio: 1.05; /* Approx aspect ratio of sticky-note-6-bg-clean.webp */
   transform: rotate(-3deg);
   filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
 }
@@ -376,7 +376,7 @@
   .form-card {
     aspect-ratio: auto;
     margin-top: 40px;
-    background-image: url('/assets/images/c-s-m.png');
+    background-image: url('/assets/images/c-s-m.webp');
     background-size: cover;
     background-position: center;
     padding: 40px 20px 100px 20px; /* Increased bottom padding to avoid collision with torn edge */

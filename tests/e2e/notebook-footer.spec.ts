@@ -102,6 +102,13 @@ test('continues the desktop notebook content gutter without covering the sidebar
 test('moves the pencil on focus and stamps a check on subscribe', async ({
   page
 }) => {
+  await page.route('**/api/newsletter/subscribe', (route) =>
+    route.fulfill({
+      status: 202,
+      contentType: 'application/json',
+      body: JSON.stringify({ status: 'accepted' })
+    })
+  );
   const input = page.getByRole('textbox', { name: 'Email address' });
   const pencil = page.getByTestId('footer-pencil');
   const restingTransform = await pencil.evaluate(
@@ -118,7 +125,7 @@ test('moves the pencil on focus and stamps a check on subscribe', async ({
   await input.fill('notes@example.com');
   await page.getByRole('button', { name: 'Subscribe' }).click();
   await expect(page.getByRole('status')).toHaveText(
-    'Subscription request noted.'
+    'Check your inbox to confirm your subscription.'
   );
   await expect(page.getByTestId('subscribe-check')).toHaveCSS('opacity', '1');
 });

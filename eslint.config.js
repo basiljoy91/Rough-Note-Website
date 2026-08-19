@@ -9,6 +9,7 @@ export default [
       '.cache/**',
       'carousel_dump.js',
       'dist/**',
+      'dist-server/**',
       'div5_dump.html',
       'legacy/**',
       'node_modules/**',

@@ -104,7 +104,7 @@ export const motionJourneyData: JourneyData = {
   bottomTitle: 'Things we always keep in mind',
   bottomItems: ['Clear message', 'Emotional connection', 'Visual impact', 'Audience engagement'],
   bottomNote: 'Your story. Our creativity. Unforgettable impact.',
-  bottomVisual: '/assets/images/video production.png',
+  bottomVisual: '/assets/images/video-production.webp',
   bottomDiagram: 'Lights, camera, emotion!',
   diagramIcon: Film,
   steps: [
@@ -216,7 +216,7 @@ export const customSoftwareData: JourneyData = {
   bottomTitle: 'What you’ll get',
   bottomItems: ['Custom solution', 'Scalable architecture', 'Clean & secure code', 'High performance', 'Admin dashboard', 'API integrations'],
   bottomNote: 'We don’t just write code. We solve business problems.',
-  bottomVisual: '/assets/images/pixelHive.png',
+  bottomVisual: '/assets/images/pixelHive.webp',
   bottomDiagram: 'A secure architecture shaped around your workflow.',
   diagramIcon: GitBranch,
   steps: [

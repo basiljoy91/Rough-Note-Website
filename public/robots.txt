@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /api/internal/
+
+Sitemap: https://roughnote.in/sitemap.xml

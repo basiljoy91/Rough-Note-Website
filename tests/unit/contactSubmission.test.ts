@@ -61,6 +61,7 @@ describe('contact submission adapter', () => {
     ];
     expect(options.method).toBe('POST');
     expect(options.body.get('source')).toBe('rough-note-contact-journey');
+    expect(options.body.get('companyAddress2')).toBe('');
     expect(options.body.get('referenceFile')).toBeInstanceOf(File);
   });
 
@@ -77,6 +78,24 @@ describe('contact submission adapter', () => {
 
     await expect(submitContactRequest(completeState)).rejects.toThrow(
       'Service unavailable.'
+    );
+  });
+
+  it('aborts a request that exceeds the documented client timeout', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockImplementation(
+        (_url: string, options: { signal: AbortSignal }) =>
+          new Promise((_resolve, reject) => {
+            options.signal.addEventListener('abort', () => {
+              reject(new DOMException('Aborted', 'AbortError'));
+            });
+          })
+      )
+    );
+
+    await expect(submitContactRequest(completeState, 5)).rejects.toThrow(
+      'Sending took too long.'
     );
   });
 });

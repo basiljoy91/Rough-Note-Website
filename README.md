@@ -57,6 +57,34 @@ intro at `/`, the homepage at `/html/index.html`, and the contact journey at
 `/html/contact.html`. A plain static server cannot run the source TSX
 entrypoints.
 
+## Canonical content routes
+
+- `/html/about.html` mounts the complete Our Story experience.
+- `/html/work.html` mounts the complete Our Work experience.
+- `/html/projects.html` is reserved for the separate Next Software preview.
+- `/html/careers.html`, `/html/privacy.html`, and `/html/terms.html` are the
+  canonical footer information pages.
+
+## Deployment targets
+
+The default production build is intentionally Hostinger-safe:
+
+```sh
+npm run build
+# equivalent to npm run build:hostinger
+```
+
+It emits the Vite site into `dist/` and the Express/MySQL server into
+`dist-server/`; the OpenAI Sites worker and metadata are excluded. For an
+OpenAI Sites deployment, use the explicit static target:
+
+```sh
+npm run build:sites
+```
+
+Both commands verify that the target-specific output contains exactly the
+expected hosting files.
+
 ## Verification
 
 ```sh
@@ -67,7 +95,7 @@ npm run test:e2e
 `npm run validate` runs ESLint, strict TypeScript, the single multi-page
 production build, unit/component tests and the static architecture check.
 
-## Contact endpoint
+## Hostinger APIs
 
 The contact page reads its endpoint from:
 
@@ -77,6 +105,28 @@ The contact page reads its endpoint from:
 
 The expected request/response contract is documented in
 `docs/rough-note-contact.md`.
+
+The Hostinger MySQL, SMTP, environment and live acceptance steps are documented
+in `docs/hostinger-contact-backend.md`.
+
+The same Express process also provides:
+
+- `POST /api/newsletter/subscribe`, plus opaque verification and unsubscribe
+  links for double opt-in.
+- `GET /api/availability?date=YYYY-MM-DD` for live MySQL and Google Calendar
+  availability.
+- `POST /api/bookings` with an `Idempotency-Key` header for transactional slot
+  locking, Google Calendar/Meet creation and confirmation email.
+- Opaque `/api/bookings/manage`, `/cancel` and `/reschedule` journeys that do
+  not require a visitor account.
+
+Generate the one-time Google refresh token locally with:
+
+```sh
+npm run calendar:authorize
+```
+
+The exact OAuth and Hostinger secret steps are in the deployment checklist.
 
 ## Drawing privacy
 

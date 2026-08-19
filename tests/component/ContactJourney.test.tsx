@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
@@ -149,6 +149,36 @@ describe('ContactJourney', () => {
     expect(await screen.findByText('Please try again shortly.')).toBeInTheDocument();
     expect(screen.getByLabelText(/Your Name/)).toHaveValue('Ada Lovelace');
     expect(screen.getByLabelText(/Email Address/)).toHaveValue('ada@example.com');
+  });
+
+  it('locks rapid repeated activation to one submission', async () => {
+    let confirmSubmission!: (value: { submissionId: string }) => void;
+    submissionMock.mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          confirmSubmission = resolve;
+        })
+    );
+    const user = userEvent.setup();
+    renderJourney();
+    await reachContactStep(user);
+    await user.type(screen.getByLabelText(/Your Name/), 'Ada Lovelace');
+    await user.type(screen.getByLabelText(/Email Address/), 'ada@example.com');
+    await user.selectOptions(screen.getByLabelText(/Your Role/), 'Founder / Owner');
+    const submitButton = screen.getByRole('button', {
+      name: 'Send My Rough Note'
+    });
+
+    act(() => {
+      submitButton.click();
+      submitButton.click();
+    });
+
+    expect(submissionMock).toHaveBeenCalledTimes(1);
+    await act(async () => {
+      confirmSubmission({ submissionId: 'RN-ONCE' });
+    });
+    await screen.findByRole('heading', { name: 'Thank You!' });
   });
 
   it('rejects an unsupported attachment', async () => {

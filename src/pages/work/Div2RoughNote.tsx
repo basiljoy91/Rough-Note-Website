@@ -365,7 +365,7 @@ export function Div2RoughNote() {
 
           {/* Sticky Notes */}
           <div className="div2-sticky-tl">
-             <img src="/assets/images/sticky-note-5-bg-clean.png" alt="Sticky Note" />
+             <img src="/assets/images/sticky-note-5-bg-clean.webp" alt="Sticky Note" />
              <div className="div2-sticky-content">
                Start<br/>messy.<br/>Build<br/>
                <span style={{ position: 'relative', display: 'inline-block' }}>
@@ -408,7 +408,7 @@ export function Div2RoughNote() {
           <div className="div2-pads-row">
             {bottomPads.map((pad, i) => (
               <div className={`div2-mini-pad ${pad.active ? 'active' : ''}`} key={i}>
-                <img src="/assets/images/small-pad.png" alt={`Small Pad ${pad.num}`} className="div2-mini-pad-bg" />
+                <img src="/assets/images/small-pad.webp" alt={`Small Pad ${pad.num}`} className="div2-mini-pad-bg" />
                 <div className="div2-mini-pad-content">
                   <span className="div2-mp-num">{pad.num}</span>
                   <span className="div2-mp-title">{pad.title}</span>

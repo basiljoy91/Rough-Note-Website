@@ -10,7 +10,7 @@ export const howWeWorkMarkup = `
 
     <!-- Top Right Sticky Note -->
     <div class="hww-sticky hww-sticky--top-right">
-      <img src="/assets/images/sticky-note-5-bg-clean.png" class="hww-sticky__bg" alt="" aria-hidden="true" />
+      <img src="/assets/images/sticky-note-5-bg-clean.webp" class="hww-sticky__bg" alt="" aria-hidden="true" />
 
       <div class="hww-sticky__content">
         <p>Two paths.<br/>One goal.<br/>Your success.</p>
@@ -221,7 +221,7 @@ export const howWeWorkMarkup = `
     <div class="hww-bottom-area">
       <!-- Bottom Left Sticky -->
       <div class="hww-sticky hww-sticky--bottom-left">
-        <img src="/assets/images/sticky-note-philosophy-bg-clean.png" class="hww-sticky__bg" alt="" aria-hidden="true" />
+        <img src="/assets/images/sticky-note-philosophy-bg-clean.webp" class="hww-sticky__bg" alt="" aria-hidden="true" />
 
         <div class="hww-sticky__content hww-sticky__content--list">
           <ul class="hww-checklist">

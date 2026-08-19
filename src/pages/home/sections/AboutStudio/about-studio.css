@@ -74,7 +74,7 @@
   height: clamp(58px, 5vw, 86px);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(110, 78, 42, 0.06)),
-    url("../../../../assets/textures/div2Background.png") center bottom / cover no-repeat,
+    url("../../../../assets/textures/div2Background.webp") center bottom / cover no-repeat,
     #f7f2e8;
   clip-path: polygon(
     0 0,

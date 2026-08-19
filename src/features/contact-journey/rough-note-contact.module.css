@@ -891,7 +891,7 @@
   right: 3%;
   width: 188px;
   z-index: 12;
-  background: url('/assets/images/sticky-note-philosophy-bg-clean.png') center / 100% 100% no-repeat !important;
+  background: url('/assets/images/sticky-note-philosophy-bg-clean.webp') center / 100% 100% no-repeat !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   filter:
@@ -2825,7 +2825,7 @@
 }
 
 .step2 .stickyNote.blue {
-  background: url("/assets/images/sticky-note-philosophy-bg-clean.png") center/100% 100% no-repeat !important;
+  background: url("/assets/images/sticky-note-philosophy-bg-clean.webp") center/100% 100% no-repeat !important;
   background-color: transparent !important;
   box-shadow: none !important;
   filter: drop-shadow(0 14px 19px rgb(50 33 17 / 18%)) drop-shadow(0 3px 5px rgb(50 33 17 / 12%));
@@ -2840,11 +2840,11 @@
 
 .step2 .stickyNote.green {
   background:
-    url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat,
+    url("/assets/images/sticky-note-div3-bg2.webp") center/100% 100% no-repeat,
     url("../../assets/textures/wrinkled-paper.webp") center/cover no-repeat !important;
   background-blend-mode: multiply, normal !important;
-  -webkit-mask: url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat !important;
-  mask: url("/assets/images/sticky-note-div3-bg2.png") center/100% 100% no-repeat !important;
+  -webkit-mask: url("/assets/images/sticky-note-div3-bg2.webp") center/100% 100% no-repeat !important;
+  mask: url("/assets/images/sticky-note-div3-bg2.webp") center/100% 100% no-repeat !important;
   background-color: transparent !important;
   box-shadow: none !important;
   filter:
@@ -2929,7 +2929,7 @@
 
 /* 1. Main Form Paper Replacement */
 .step3 .tornFormPaper {
-  background: url("/assets/images/new.png") center/100% 100% no-repeat !important;
+  background: url("/assets/images/new.webp") center/100% 100% no-repeat !important;
   background-color: transparent !important;
   box-shadow: none !important;
   mask-image: none !important;
@@ -2963,7 +2963,7 @@
 
 /* 3. Sticky Note Replacement */
 .step3 .routingNote {
-  background: url("/assets/images/sticky-note-5-bg-clean.png") center/100% 100% no-repeat !important;
+  background: url("/assets/images/sticky-note-5-bg-clean.webp") center/100% 100% no-repeat !important;
   background-color: transparent !important;
   box-shadow: none !important;
   filter:
@@ -3008,7 +3008,7 @@
 
 /* 3. Replace Working Hours Paper */
 .workingHours {
-  background: url("/assets/images/sticky-note-2-bg-clean.png") center/100% 100% no-repeat !important;
+  background: url("/assets/images/sticky-note-2-bg-clean.webp") center/100% 100% no-repeat !important;
   background-color: transparent !important;
   box-shadow: none !important;
   border: none !important;
@@ -3020,7 +3020,7 @@
 
 /* 4. Replace Blue Sticky Note */
 .responseNote {
-  background: url("/assets/images/sticky-note-6-bg-clean.png") center/100% 100% no-repeat !important;
+  background: url("/assets/images/sticky-note-6-bg-clean.webp") center/100% 100% no-repeat !important;
   background-color: transparent !important;
   box-shadow: none !important;
   filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
@@ -3038,7 +3038,7 @@
 
 /* 5. Replace Yellow Sticky Note */
 .quoteNote {
-  background: url("/assets/images/sticky-note-div3-bg.png") center/100% 100% no-repeat !important;
+  background: url("/assets/images/sticky-note-div3-bg.webp") center/100% 100% no-repeat !important;
   background-color: transparent !important;
   box-shadow: none !important;
   filter: drop-shadow(0 18px 20px rgb(50 33 17 / 28%)) !important;
@@ -3323,4 +3323,13 @@
   .step1 .noPressureNote {
     width: 126px !important;
   }
+}
+.honeypotField {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  pointer-events: none;
 }

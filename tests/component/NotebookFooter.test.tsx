@@ -1,9 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { FooterPaper } from '../../src/features/notebook-footer/components/FooterPaper';
 
 describe('Notebook footer', () => {
+  afterEach(() => vi.unstubAllGlobals());
   it('renders the complete paper composition and hand-drawn illustrations', () => {
     render(<FooterPaper />);
 
@@ -51,7 +52,17 @@ describe('Notebook footer', () => {
     expect(pencil.getAttribute('class')).toBe(restingClass);
   });
 
-  it('stamps a drawn check after a valid subscription submission', async () => {
+  it('stamps a drawn check only after the server accepts the request', async () => {
+    let acceptRequest!: (response: Response) => void;
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(
+        () =>
+          new Promise<Response>((resolve) => {
+            acceptRequest = resolve;
+          })
+      )
+    );
     const user = userEvent.setup();
     render(<FooterPaper />);
 
@@ -61,12 +72,53 @@ describe('Notebook footer', () => {
     );
     await user.click(screen.getByRole('button', { name: 'Subscribe' }));
 
+    expect(screen.getByTestId('subscribe-check').getAttribute('class')).not.toMatch(
+      /subscribeCheckVisible/
+    );
+    expect(screen.getByRole('button', { name: 'Sending…' })).toBeDisabled();
+
+    acceptRequest(
+      new Response(JSON.stringify({ status: 'accepted' }), {
+        status: 202,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    );
+
     await waitFor(() =>
       expect(screen.getByRole('status')).toHaveTextContent(
-        'Subscription request noted.'
+        'Check your inbox to confirm your subscription.'
       )
     );
     expect(screen.getByTestId('subscribe-check').getAttribute('class')).toMatch(
+      /subscribeCheckVisible/
+    );
+  });
+
+  it('keeps the form editable and hides success when the API rejects it', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue(
+        new Response(
+          JSON.stringify({ message: 'Confirmation email could not be sent.' }),
+          {
+            status: 503,
+            headers: { 'Content-Type': 'application/json' }
+          }
+        )
+      )
+    );
+    const user = userEvent.setup();
+    render(<FooterPaper />);
+    const input = screen.getByRole('textbox', { name: 'Email address' });
+    await user.type(input, 'notes@example.com');
+    await user.click(screen.getByRole('button', { name: 'Subscribe' }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'Confirmation email could not be sent.'
+    );
+    expect(input).toHaveValue('notes@example.com');
+    expect(screen.getByRole('button', { name: 'Subscribe' })).toBeEnabled();
+    expect(screen.getByTestId('subscribe-check').getAttribute('class')).not.toMatch(
       /subscribeCheckVisible/
     );
   });

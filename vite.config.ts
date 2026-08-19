@@ -5,29 +5,19 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 const page = (file: string) => resolve(process.cwd(), file);
+const deploymentTarget = process.env.DEPLOY_TARGET ?? 'hostinger';
+
+if (deploymentTarget !== 'hostinger' && deploymentTarget !== 'sites') {
+  throw new Error(
+    `Unsupported DEPLOY_TARGET "${deploymentTarget}". Use "hostinger" or "sites".`
+  );
+}
 
 function pageTurnBootstrap() {
   const style = `
     @view-transition { navigation: auto; }
     html, body { min-height: 100%; background: #f5efdf; }
   `;
-  const source = `(() => {
-    const root = document.documentElement;
-    const key = 'rough-note-page-note-arrival';
-    let preview = window.name === 'rough-note-transition-preview';
-    try {
-      preview = preview || Boolean(window.frameElement?.classList.contains('rn-page-turn__destination'));
-    } catch {}
-    if (preview) {
-      root.classList.add('rn-page-turn-preview');
-      root.dataset.pageTurnState = 'preview';
-      return;
-    }
-    try {
-      if (window.sessionStorage.getItem(key)) root.dataset.pageTurnArrival = 'pending';
-    } catch {}
-  })();`;
-
   return {
     name: 'page-turn-bootstrap',
     transformIndexHtml: {
@@ -42,8 +32,10 @@ function pageTurnBootstrap() {
           },
           {
             tag: 'script',
-            attrs: { 'data-rn-page-turn-bootstrap': '' },
-            children: source,
+            attrs: {
+              'data-rn-page-turn-bootstrap': '',
+              src: '/assets/js/page-turn-bootstrap.js'
+            },
             injectTo: 'head-prepend' as const
           }
         ];
@@ -114,14 +106,17 @@ export default defineConfig({
   plugins: [
     pageTurnBootstrap(),
     react(),
-    sitesStaticWorker(),
+    ...(deploymentTarget === 'sites' ? [sitesStaticWorker()] : []),
     localNotFoundFallback()
   ],
   publicDir: 'public',
   server: {
     // Some local browser profiles block Vite's inline React Refresh preamble.
     // Disabling HMR keeps TSX compilation working without affecting site motion.
-    hmr: false
+    hmr: false,
+    proxy: {
+      '/api': 'http://127.0.0.1:3000'
+    }
   },
   build: {
     emptyOutDir: true,
@@ -138,6 +133,9 @@ export default defineConfig({
         projects: page('html/projects.html'),
         services: page('html/services.html'),
         work: page('html/work.html'),
+        careers: page('html/careers.html'),
+        privacy: page('html/privacy.html'),
+        terms: page('html/terms.html'),
         testimonials: page('html/testimonials.html'),
         scheduleStep1: page('html/schedule-step-1.html'),
         scheduleStep2: page('html/schedule-step-2.html'),

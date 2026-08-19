@@ -62,7 +62,7 @@ export const WhyRoughNote: React.FC = () => {
           </svg>
         </div>
         <div className="wrn-sticky-note-wrapper">
-          <img src="/assets/images/sticky-note-5-bg-clean.png" alt="Sticky Note" className="wrn-sticky-bg" />
+          <img src="/assets/images/sticky-note-5-bg-clean.webp" alt="Sticky Note" className="wrn-sticky-bg" />
           <div className="wrn-sticky-content">
             We don't just<br/>build products.<br/>We help shape<br/>ideas into<br/>businesses.
             <div className="wrn-sticky-star">⭐</div>
@@ -74,7 +74,7 @@ export const WhyRoughNote: React.FC = () => {
       <div className="wrn-cards-grid">
         {/* Card 01 */}
         <div className="wrn-card">
-          <img src="/assets/images/c-s-m.png" alt="Card Background" className="wrn-card-bg" />
+          <img src="/assets/images/c-s-m.webp" alt="Card Background" className="wrn-card-bg" />
           <div className="wrn-card-content">
             <div className="wrn-card-num">01</div>
             <div className="wrn-card-icon">
@@ -96,7 +96,7 @@ export const WhyRoughNote: React.FC = () => {
 
         {/* Card 02 */}
         <div className="wrn-card">
-          <img src="/assets/images/c-s-m.png" alt="Card Background" className="wrn-card-bg" />
+          <img src="/assets/images/c-s-m.webp" alt="Card Background" className="wrn-card-bg" />
           <div className="wrn-card-content">
             <div className="wrn-card-num">02</div>
             <div className="wrn-card-icon">
@@ -117,7 +117,7 @@ export const WhyRoughNote: React.FC = () => {
 
         {/* Card 03 */}
         <div className="wrn-card">
-          <img src="/assets/images/c-s-m.png" alt="Card Background" className="wrn-card-bg" />
+          <img src="/assets/images/c-s-m.webp" alt="Card Background" className="wrn-card-bg" />
           <div className="wrn-card-content">
             <div className="wrn-card-num">03</div>
             <div className="wrn-attachment wrn-push-pin"></div>
@@ -140,7 +140,7 @@ export const WhyRoughNote: React.FC = () => {
 
         {/* Card 04 */}
         <div className="wrn-card">
-          <img src="/assets/images/c-s-m.png" alt="Card Background" className="wrn-card-bg" />
+          <img src="/assets/images/c-s-m.webp" alt="Card Background" className="wrn-card-bg" />
           <div className="wrn-card-content">
             <div className="wrn-card-num">04</div>
             <div className="wrn-attachment wrn-paper-clip"></div>
@@ -162,7 +162,7 @@ export const WhyRoughNote: React.FC = () => {
 
         {/* Card 05 */}
         <div className="wrn-card">
-          <img src="/assets/images/c-s-m.png" alt="Card Background" className="wrn-card-bg" />
+          <img src="/assets/images/c-s-m.webp" alt="Card Background" className="wrn-card-bg" />
           <div className="wrn-card-content">
             <div className="wrn-card-num">05</div>
             <div className="wrn-card-icon">
@@ -188,7 +188,7 @@ export const WhyRoughNote: React.FC = () => {
 
         {/* Card 06 */}
         <div className="wrn-card">
-          <img src="/assets/images/c-s-m.png" alt="Card Background" className="wrn-card-bg" />
+          <img src="/assets/images/c-s-m.webp" alt="Card Background" className="wrn-card-bg" />
           <div className="wrn-card-content">
             <div className="wrn-card-num">06</div>
             <div className="wrn-attachment wrn-push-pin"></div>
@@ -210,7 +210,7 @@ export const WhyRoughNote: React.FC = () => {
 
         {/* Card 07 */}
         <div className="wrn-card">
-          <img src="/assets/images/c-s-m.png" alt="Card Background" className="wrn-card-bg" />
+          <img src="/assets/images/c-s-m.webp" alt="Card Background" className="wrn-card-bg" />
           <div className="wrn-card-content">
             <div className="wrn-card-num">07</div>
             <div className="wrn-card-icon">

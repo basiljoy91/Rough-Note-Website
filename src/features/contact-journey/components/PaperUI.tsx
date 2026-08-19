@@ -187,7 +187,7 @@ export const PaperInput = forwardRef<HTMLInputElement, PaperInputProps>(
 interface PaperSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label: ReactNode;
   placeholder: string;
-  options: string[];
+  options: readonly string[];
   error?: string;
   icon?: ReactNode;
 }

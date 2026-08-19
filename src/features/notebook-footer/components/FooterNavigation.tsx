@@ -36,11 +36,11 @@ export function FooterNavigation() {
         <path d="M4 8c190 1 370-1 550 0 201 1 394-1 586 0 91 1 177 0 257 1" opacity=".28" />
       </svg>
       <nav className={styles.footerNavigation} aria-label="Footer navigation">
-        <a href="/html/contact.html#careers">Careers</a>
+        <a href="/html/careers.html">Careers</a>
         <FooterSeparator />
-        <a href="/html/faq.html#terms-and-conditions">Terms &amp; Conditions</a>
+        <a href="/html/terms.html">Terms &amp; Conditions</a>
         <FooterSeparator />
-        <a href="/html/faq.html#privacy-policy">Privacy Policy</a>
+        <a href="/html/privacy.html">Privacy Policy</a>
       </nav>
       <FooterCopyright />
     </div>

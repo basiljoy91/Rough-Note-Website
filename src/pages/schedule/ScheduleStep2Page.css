@@ -436,7 +436,7 @@
   .form-card {
     aspect-ratio: auto;
     margin-top: 40px;
-    background-image: url('/assets/images/c-s-m.png');
+    background-image: url('/assets/images/c-s-m.webp');
     background-size: cover;
     background-position: center;
     padding: 40px 20px 100px 20px; /* Increased bottom padding to avoid collision with torn edge */

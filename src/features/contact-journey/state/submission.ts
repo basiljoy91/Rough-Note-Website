@@ -37,13 +37,15 @@ function resolveEndpoint(): string {
 
 export async function submitContactRequest(
   state: RoughNoteContactState,
-  timeoutMs = DEFAULT_TIMEOUT_MS
+  timeoutMs = DEFAULT_TIMEOUT_MS,
+  honeypotValue = ''
 ): Promise<ContactSubmissionResult> {
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
   const payload = buildContactPayload(state);
   const formData = new FormData();
   Object.entries(payload).forEach(([key, value]) => formData.append(key, value));
+  formData.append('companyAddress2', honeypotValue);
   if (state.challenge.referenceFile) {
     formData.append('referenceFile', state.challenge.referenceFile);
   }

@@ -66,6 +66,16 @@ export function StepThreeContact({
       </p>
 
       <form className={styles.contactForm} onSubmit={onSubmit} noValidate>
+        <div className={styles.honeypotField} aria-hidden="true">
+          <label htmlFor="companyAddress2">Company address line 2</label>
+          <input
+            id="companyAddress2"
+            name="companyAddress2"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
         <TornFormPaper>
           <PaperInput
             ref={firstFieldRef}

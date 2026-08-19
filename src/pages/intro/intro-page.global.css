@@ -581,7 +581,7 @@ body.no-scroll {
     width: 140px !important; height: 160px !important; 
     margin-top: -35px !important; margin-right: -27.5px !important;
     background-color: transparent !important;
-    background-image: url('/assets/images/sticky-note-5-bg-clean.png') !important;
+    background-image: url('/assets/images/sticky-note-5-bg-clean.webp') !important;
     background-size: 100% 100% !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -595,7 +595,7 @@ body.no-scroll {
     width: 115px !important; height: 115px !important;
     margin-top: -15px !important; margin-right: -15px !important;
     background-color: transparent !important;
-    background-image: url('/assets/images/sticky-note-5-bg-clean.png') !important;
+    background-image: url('/assets/images/sticky-note-5-bg-clean.webp') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -607,7 +607,7 @@ body.no-scroll {
 .sticky-4 { 
     bottom: 35%; left: 13%; transform: rotate(-10deg) translateZ(5px); width: 60px !important; height: 60px !important; padding: 5px; 
     background-color: transparent !important;
-    background-image: url('/assets/images/sticky-note-3-bg-clean.png') !important;
+    background-image: url('/assets/images/sticky-note-3-bg-clean.webp') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -620,7 +620,7 @@ body.no-scroll {
     bottom: 22%; left: 20%;
     transform: rotate(1deg) translateZ(4px); 
     background-color: transparent !important;
-    background-image: url('/assets/images/sticky-note-3-bg-clean.png') !important;
+    background-image: url('/assets/images/sticky-note-3-bg-clean.webp') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -632,7 +632,7 @@ body.no-scroll {
 .sticky-6 { 
     bottom: 22%; left: 75%; transform: rotate(-5deg) translateZ(6px); 
     background-color: transparent !important;
-    background-image: url('/assets/images/sticky-note-3-bg-clean.png') !important;
+    background-image: url('/assets/images/sticky-note-3-bg-clean.webp') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -645,7 +645,7 @@ body.no-scroll {
 .sticky-7 { 
     bottom: 10% !important; left: 52% !important; transform: rotate(4deg) translateZ(6px); 
     background-color: transparent !important;
-    background-image: url('/assets/images/sticky-note-2-bg-clean.png') !important;
+    background-image: url('/assets/images/sticky-note-2-bg-clean.webp') !important;
     background-size: 100% 100% !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -692,7 +692,7 @@ body.no-scroll {
     top: 12% !important; left: 21% !important;
     transform: rotate(-5deg) translateZ(3px) !important;
     background-color: transparent !important;
-    background-image: url('/assets/images/sticky-note-6-bg-clean.png') !important;
+    background-image: url('/assets/images/sticky-note-6-bg-clean.webp') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -714,7 +714,7 @@ body.no-scroll {
     transform: rotate(-10deg) translateZ(2px) !important;
     padding: 50px;
     background-color: transparent !important;
-    background-image: url('/assets/images/anm-1.png') !important;
+    background-image: url('/assets/images/anm-1.webp') !important;
     background-size: 100% 100% !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -898,7 +898,7 @@ body.no-scroll {
 .desk-item--crumpled-paper {
     width: 55px; height: 55px;
     background-color: transparent !important;
-    background-image: url('/assets/images/anm-4-crop.png') !important;
+    background-image: url('/assets/images/anm-4-crop.webp') !important;
     background-size: 100% 100% !important;
     background-repeat: no-repeat !important;
     background-position: center !important;

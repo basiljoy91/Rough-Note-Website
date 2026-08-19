@@ -32,7 +32,12 @@ const expectedModules = [
   'src/app/entrypoints/intro.tsx',
   'src/app/entrypoints/home.tsx',
   'src/app/entrypoints/contact.tsx',
+  'src/app/entrypoints/about.tsx',
+  'src/app/entrypoints/work.tsx',
   'src/app/entrypoints/projects.tsx',
+  'src/app/entrypoints/careers.tsx',
+  'src/app/entrypoints/privacy.tsx',
+  'src/app/entrypoints/terms.tsx',
   'src/app/layouts/SiteLayout.tsx',
   'src/shared/navigation/SidebarNavigation.tsx',
   'src/shared/navigation/MobileNavigation.tsx',
@@ -180,6 +185,29 @@ if (
   !contactPage.includes('entrypoints/contact.tsx')
 ) {
   failures.push('html/contact.html: missing contact page configuration');
+}
+
+for (const [pageName, entrypoint] of [
+  ['about', 'entrypoints/about.tsx'],
+  ['work', 'entrypoints/work.tsx'],
+  ['careers', 'entrypoints/careers.tsx'],
+  ['privacy', 'entrypoints/privacy.tsx'],
+  ['terms', 'entrypoints/terms.tsx']
+]) {
+  const pageContents = await readFile(join(root, `html/${pageName}.html`), 'utf8');
+  if (!pageContents.includes(entrypoint)) {
+    failures.push(`html/${pageName}.html: missing canonical ${entrypoint}`);
+  }
+}
+
+const footerNavigation = await readFile(
+  join(root, 'src/features/notebook-footer/components/FooterNavigation.tsx'),
+  'utf8'
+);
+for (const footerPage of ['careers.html', 'terms.html', 'privacy.html']) {
+  if (!footerNavigation.includes(footerPage)) {
+    failures.push(`footer navigation is missing ${footerPage}`);
+  }
 }
 
 const packageJson = JSON.parse(

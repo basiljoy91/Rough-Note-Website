@@ -827,7 +827,7 @@ export function StoryBook() {
         <span className="desk-leaves"><i /><i /><i /></span>
         <img
           className="desk-coffee-plant"
-          src="/assets/images/workspace-board/coffee-plant-props.png"
+          src="/assets/images/workspace-board/coffee-plant-props.webp"
           alt=""
         />
         <span className="desk-note"><b>ideas</b><DoodleStar /></span>
