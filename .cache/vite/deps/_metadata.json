@@ -1,79 +1,79 @@
 {
-  "hash": "17115464",
-  "configHash": "97a7c001",
+  "hash": "acadcd6c",
+  "configHash": "84ceca18",
   "lockfileHash": "f03d174c",
-  "browserHash": "f04a3afc",
+  "browserHash": "9db182e8",
   "optimized": {
     "@react-three/drei": {
       "src": "../../../node_modules/@react-three/drei/index.js",
       "file": "@react-three_drei.js",
-      "fileHash": "b51e8b1d",
+      "fileHash": "c9167ba3",
       "needsInterop": false
     },
     "@react-three/fiber": {
       "src": "../../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
       "file": "@react-three_fiber.js",
-      "fileHash": "0556f5f2",
+      "fileHash": "b2f9c88c",
       "needsInterop": false
     },
     "gsap": {
       "src": "../../../node_modules/gsap/index.js",
       "file": "gsap.js",
-      "fileHash": "257c4fd4",
+      "fileHash": "813b46be",
       "needsInterop": false
     },
     "gsap/MotionPathPlugin": {
       "src": "../../../node_modules/gsap/MotionPathPlugin.js",
       "file": "gsap_MotionPathPlugin.js",
-      "fileHash": "5a92905f",
+      "fileHash": "821b2f44",
       "needsInterop": false
     },
     "html2canvas": {
       "src": "../../../node_modules/html2canvas/dist/html2canvas.js",
       "file": "html2canvas.js",
-      "fileHash": "252f2131",
+      "fileHash": "992d843e",
       "needsInterop": true
     },
     "lucide-react": {
       "src": "../../../node_modules/lucide-react/dist/esm/lucide-react.mjs",
       "file": "lucide-react.js",
-      "fileHash": "fc04f141",
+      "fileHash": "13e16981",
       "needsInterop": false
     },
     "react-dom": {
       "src": "../../../node_modules/react-dom/index.js",
       "file": "react-dom.js",
-      "fileHash": "04a66939",
+      "fileHash": "c7442dc2",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "4a41338b",
+      "fileHash": "9a0dff55",
       "needsInterop": true
     },
     "react": {
       "src": "../../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "fa9010e1",
+      "fileHash": "7004b115",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "f62e51a7",
+      "fileHash": "379a1a17",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "01ca31bc",
+      "fileHash": "3b82fbe2",
       "needsInterop": true
     },
     "three": {
       "src": "../../../node_modules/three/build/three.module.js",
       "file": "three.js",
-      "fileHash": "8ae12fa9",
+      "fileHash": "c7b79f10",
       "needsInterop": false
     }
   },
